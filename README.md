@@ -1,48 +1,93 @@
 <div align="center">
 
-# Hey, I'm Spin 
+# SPIN
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&width=500&lines=OSINT+Developer;Phone+Intelligence+Tools;Security+Researcher)](https://github.com/thumpersecure)
+
+<br>
+
+[![GitHub](https://img.shields.io/badge/thumpersecure-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/thumpersecure)
+[![Stars](https://img.shields.io/github/stars/thumpersecure?style=for-the-badge&logo=github&label=Total%20Stars&color=gold)](https://github.com/thumpersecure)
 
 </div>
 
----
+<br>
 
-## The Telespot Ecosystem
+---
 
 <div align="center">
 
-*A complete toolkit for phone number intelligence*
+## TELESPOT ECOSYSTEM
 
+*The complete phone number intelligence suite*
 
----
+<br>
 
-## Projects
+[![Telespot](https://img.shields.io/badge/TELESPOT-Python_CLI-00D9FF?style=for-the-badge&logo=python&logoColor=white)](https://github.com/thumpersecure/Telespot)
+[![Telespotter](https://img.shields.io/badge/TELESPOTTER-Rust_CLI-FF6B35?style=for-the-badge&logo=rust&logoColor=white)](https://github.com/thumpersecure/Telespotter)
+[![TelespotXX](https://img.shields.io/badge/TELESPOTXX-Web_UI-8B5CF6?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/thumpersecure/TelespotXX)
 
-<div align="center">
+<br>
 
-### Telespot - The Original
+| | Stars | Description |
+|:---:|:---:|:---|
+| **Telespot** | [![](https://img.shields.io/github/stars/thumpersecure/Telespot?style=flat-square&color=00D9FF)](https://github.com/thumpersecure/Telespot) | Multi-engine search · Pattern analysis · 10 formats |
+| **Telespotter** | [![](https://img.shields.io/github/stars/thumpersecure/Telespotter?style=flat-square&color=FF6B35)](https://github.com/thumpersecure/Telespotter) | 3.6x faster · 6x less memory · OSINT chaining |
+| **TelespotXX** | [![](https://img.shields.io/github/stars/thumpersecure/TelespotXX?style=flat-square&color=8B5CF6)](https://github.com/thumpersecure/TelespotXX) | Real-time streaming · Dark UI · Multi-export |
 
-**Python CLI** | Multi-engine search | Pattern analysis | 10 format variations
+<br>
 
----
-
-### Telespotter - The Fast One
-
-**Rust CLI** | 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
-
-
----
-
-### TelespotXX - The Web UI
-
-
-
-**Flask + WebSocket** | Real-time streaming | Dark theme | Export to JSON/CSV/TXT
-
+<a href="https://github.com/thumpersecure/Telespot">
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=Telespot&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF" />
+</a>
+<a href="https://github.com/thumpersecure/Telespotter">
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=Telespotter&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=FF6B35&icon_color=FF6B35" />
+</a>
 <a href="https://github.com/thumpersecure/TelespotXX">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=TelespotXX&theme=dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF" alt="TelespotXX" />
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=TelespotXX&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=8B5CF6&icon_color=8B5CF6" />
 </a>
 
 </div>
+
+---
+
+<div align="center">
+
+## STATS
+
+<img src="https://github-readme-stats.vercel.app/api?username=thumpersecure&show_icons=true&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF&text_color=c9d1d9" height="165" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=thumpersecure&theme=github-dark-blue&hide_border=true&background=0d1117&stroke=00D9FF&ring=00D9FF&fire=FF6B35&currStreakLabel=00D9FF" height="165" />
+
+<br>
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=thumpersecure&theme=github-dark&hide_border=true&bg_color=0d1117&color=00D9FF&line=00D9FF&point=FF6B35" width="95%" />
+
+</div>
+
+---
+
+<div align="center">
+
+## STACK
+
+![Python](https://img.shields.io/badge/Python-0d1117?style=for-the-badge&logo=python&logoColor=00D9FF)
+![Rust](https://img.shields.io/badge/Rust-0d1117?style=for-the-badge&logo=rust&logoColor=FF6B35)
+![Flask](https://img.shields.io/badge/Flask-0d1117?style=for-the-badge&logo=flask&logoColor=8B5CF6)
+![Docker](https://img.shields.io/badge/Docker-0d1117?style=for-the-badge&logo=docker&logoColor=2496ED)
+![Linux](https://img.shields.io/badge/Linux-0d1117?style=for-the-badge&logo=linux&logoColor=FCC624)
+
+</div>
+
+---
+
+<div align="center">
+
+[**Case Study: Building the Telespot Ecosystem**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
+
+<sub>*for the OSINT community*</sub>
+
+</div>
+
 
 ---
 
