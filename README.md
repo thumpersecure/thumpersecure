@@ -30,6 +30,10 @@
   </svg>
 </a>
 
+<a href="https://github.com/thumpersecure/Telespot" title="Star this repository">
+  <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
+</a>
+
 **Python CLI** | Multi-engine search | Pattern analysis | 10 format variations
 
 ---
@@ -43,6 +47,10 @@
   </svg>
 </a>
 
+<a href="https://github.com/thumpersecure/Telespot" title="Star this repository">
+  <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
+</a>
+
 **Rust CLI** | 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
 
 ---
@@ -54,6 +62,10 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#8b949e" style="vertical-align:middle;">
     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
   </svg>
+</a>
+
+<a href="https://github.com/thumpersecure/Telespot" title="Star this repository">
+  <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
 </a>
 
 **Flask + WebSocket** | Real-time streaming | Dark theme | Export to JSON/CSV/TXT
