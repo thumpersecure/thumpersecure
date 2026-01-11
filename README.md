@@ -1,6 +1,6 @@
 <div align="center">
 
-#  spin 💫 osint
+#  telephone 💫 osint
 
 
 ### Telespot, Telespotter, and TelespotXX 
