@@ -1,6 +1,6 @@
 <div align="center">
 
-#  telephone 💫 osint
+#  telephone 💫 numsint
 
 
 ### Telespot, Telespotter, and TelespotXX 
