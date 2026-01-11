@@ -5,7 +5,8 @@
 ### Telespot, Telespotter, and TelespotXX
 
 ---
-
+<br><summary><strong>Read more</strong></summary>
+<details>
 ## The Telespot Ecosystem
 (New for 2026)
 
@@ -22,9 +23,9 @@
 
 
 
-<summary><strong>Read more</strong></summary>
 
-<br>
+
+
 
 ## Tech Stack
 
@@ -37,7 +38,7 @@
 
 </div>
 
-<details>
+
 
 <div align="center">
 
