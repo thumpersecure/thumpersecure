@@ -40,17 +40,6 @@
 
 ---
 
-<div align="center">
-
-[**Case Study: Building the Telespot Ecosystem**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
-
-<sub>*for the OSINT community*</sub>
-
-</div>
-
-
----
-
 ## Ecosystem Architecture
 
 ┌─────────────────────────────────────────────────────────────────┐
