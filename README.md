@@ -6,14 +6,15 @@
 (New for 2026)
 
 ### Telespot, Telespotter, and TelespotXX
+<br><summary><strong>Read more</strong></summary>
+<details>
 
 ---
 
 *A complete toolkit for phone number intelligence*
 
 
-<br><summary><strong>Read more</strong></summary>
-<details>
+
 ---
 
 ## Read the Case Study
