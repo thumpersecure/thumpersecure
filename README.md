@@ -9,7 +9,7 @@
 
 ---
 
-## The Telespot Ecosystem
+## The Telespot Ecosystem (New for 2026)
 
 <div align="center">
 
