@@ -11,7 +11,7 @@
 
 <div align="center">
 
-## TELESPOT ECOSYSTEM
+## THE TELESPOT ECOSYSTEM
 
 *The complete phone number intelligence suite*
 
