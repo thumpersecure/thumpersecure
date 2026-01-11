@@ -1,6 +1,6 @@
 <div align="center">
 
-# SPIN
+# TELEPHONE 💫 OSINT
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&width=500&lines=Telespot;Telespotter;TelespotXX;NEW+OSINT+2026;Phone+Intelligence+Tools;Security+Researcher)](https://github.com/thumpersecure)
 
