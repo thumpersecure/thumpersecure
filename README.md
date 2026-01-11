@@ -3,7 +3,7 @@
 #  spin 💫 
 
 
-### The Telespot OSINT Ecosystem
+### Telespot, Telespotter, and TelespotXX 
 
 </div>
 
