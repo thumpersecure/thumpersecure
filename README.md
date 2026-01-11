@@ -1,7 +1,6 @@
 <div align="center">
 
 #  telephone 💫 numsint
----
 Telespot 
 (New for 2026)
 
@@ -12,7 +11,7 @@ Telespot
 
 ---
 <br><summary><strong></strong></summary>
-<details>
+
   
 ### Telespot, Telespotter, and TelespotXX
 
