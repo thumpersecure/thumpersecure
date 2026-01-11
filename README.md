@@ -67,11 +67,4 @@
 
 </div>
 
----
-
-<div align="center">
-
-*for the OSINT community*
-
-</div>
 
