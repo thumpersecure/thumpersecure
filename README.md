@@ -1,13 +1,13 @@
 <div align="center">
 
 #  telephone 💫 numsint
+---
+## The Telespot Ecosystem
+(New for 2026)
 
 ### Telespot, Telespotter, and TelespotXX
 
 ---
-
-## The Telespot Ecosystem
-(New for 2026)
 
 *A complete toolkit for phone number intelligence*
 
