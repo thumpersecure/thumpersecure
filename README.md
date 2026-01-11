@@ -22,8 +22,6 @@
 [![TelespotXX](https://img.shields.io/badge/TELESPOTXX-Web_UI-8B5CF6?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/thumpersecure/TelespotXX)
 
 </br>
-
-
 ---
 
 <div align="center">
@@ -39,7 +37,6 @@
 </div>
 
 ---
-
 ## Ecosystem Architecture
 
 ┌─────────────────────────────────────────────────────────────────┐
