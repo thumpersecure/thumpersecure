@@ -1,92 +1,71 @@
 <div align="center">
 
-#  telephone 💫 numsint
-Telespot 
-(New for 2026)
+# Hey, I'm Spin 
 
-## Read the Case Study
+[![GitHub followers](https://img.shields.io/github/followers/thumpersecure?style=for-the-badge&logo=github&label=Followers)](https://github.com/thumpersecure)
 
-[**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
-
-
----
-<br><summary><strong></strong></summary>
-
-  
-### Telespot, Telespotter, and TelespotXX
-
-
----
-
-*A complete toolkit for phone number 
-
-*Architecture decisions, performance optimization, and lessons learned*
-
-
-
-
-
-
-
-
-
-## Tech Stack
-
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Rust](https://img.shields.io/badge/Rust-DEA584?style=for-the-badge&logo=rust&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
-</div>
-
-
-
-<div align="center">
-
-**for the OSINT community**
+### Creator of the Telespot OSINT Ecosystem
 
 </div>
 
 ---
 
-## <a href="https://github.com/thumpersecure/telespot> Link to the Telespot Repo </a>
+## The Telespot Ecosystem
 
-<b>Telespot</b> is a phone number–focused OSINT reconnaissance tool designed for early-stage intelligence gathering. It automates multi-format phone number searches across multiple public search engines and correlates repeated identity indicators such as names, locations, and usernames.
+<div align="center">
 
-Unlike general-purpose OSINT frameworks, Telespot treats the phone number as the primary investigative entity rather than secondary enrichment data. This approach allows analysts to quickly assess whether a number has meaningful public footprint before committing time to deeper investigation.
+*A complete toolkit for phone number intelligence*
 
-Telespot is lightweight, script-based, and transparent by design. It is intended to be run locally, requires minimal configuration, and exposes all logic directly in code.
+| | Stars |
+|---|:---:|
+| [![Telespot](https://img.shields.io/badge/Telespot-Python_CLI-3776AB?style=flat-square&logo=python&logoColor=white)](https://github.com/thumpersecure/Telespot) | [![](https://img.shields.io/github/stars/thumpersecure/Telespot?style=social)](https://github.com/thumpersecure/Telespot/stargazers) |
+| [![Telespotter](https://img.shields.io/badge/Telespotter-Rust_CLI-DEA584?style=flat-square&logo=rust&logoColor=white)](https://github.com/thumpersecure/Telespotter) | [![](https://img.shields.io/github/stars/thumpersecure/Telespotter?style=social)](https://github.com/thumpersecure/Telespotter/stargazers) |
+| [![TelespotXX](https://img.shields.io/badge/TelespotXX-Web_UI-00D9FF?style=flat-square&logo=flask&logoColor=white)](https://github.com/thumpersecure/TelespotXX) | [![](https://img.shields.io/github/stars/thumpersecure/TelespotXX?style=social)](https://github.com/thumpersecure/TelespotXX/stargazers) |
 
-### Intended Use
+</div>
 
-Telespot is designed for reconnaissance and triage. It is most effective when used early in an investigation to determine whether a phone number warrants further analysis using larger OSINT frameworks or manual techniques.
+---
 
-Typical use cases include fraud and phishing research, investigation of suspicious or unsolicited calls, identity correlation, and OSINT pivoting where a phone number is the strongest available identifier.
+## Projects
 
-### Design Philosophy
+<div align="center">
 
-Telespot follows a focused, Unix-style philosophy. It does one task well: surface correlation and repetition around a phone number from unstructured public data.
+### Telespot - The Original
 
-The tool prioritizes signal discovery over data collection. It does not attempt attribution, identity resolution, or automated conclusions. Instead, it highlights patterns and frequency so that analysts can apply human judgment.
+[![Telespot Stars](https://img.shields.io/github/stars/thumpersecure/Telespot?style=for-the-badge&logo=github&label=Stars&color=gold)](https://github.com/thumpersecure/Telespot/stargazers)
 
-Two execution modes are provided to support different operational requirements. The standard mode emphasizes stealth and completeness, while the fast mode prioritizes speed through parallel execution.
+**Python CLI** | Multi-engine search | Pattern analysis | 10 format variations
 
-### When Not To Use Telespot
+<a href="https://github.com/thumpersecure/Telespot">
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=Telespot&theme=dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF" alt="Telespot" />
+</a>
 
-Telespot is not a replacement for full OSINT frameworks or graph-based investigation tools. Analysts requiring entity graphing, long-term case management, or large-scale data aggregation should use more comprehensive platforms.
+---
 
-It is not intended for bulk or unattended scraping. High-volume automated execution increases the risk of rate limiting and detection and falls outside the tool’s intended scope.
+### Telespotter - The Fast One
 
-Telespot does not provide definitive attribution or verification. All results are correlations derived from public sources and must be validated independently.
+[![Telespotter Stars](https://img.shields.io/github/stars/thumpersecure/Telespotter?style=for-the-badge&logo=github&label=Stars&color=gold)](https://github.com/thumpersecure/Telespotter/stargazers)
 
-The tool operates exclusively on publicly accessible information and optional third-party APIs supplied by the user. It is not suitable for accessing restricted, private, or closed-source databases.
+**Rust CLI** | 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
 
-### Workflow Integration
+<a href="https://github.com/thumpersecure/Telespotter">
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=Telespotter&theme=dark&hide_border=true&bg_color=0d1117&title_color=DEA584&icon_color=DEA584" alt="Telespotter" />
+</a>
 
-Telespot is designed to run early in an OSINT workflow, prior to deeper analysis with tools such as Maltego, SpiderFoot, breach analysis platforms, or manual research.
+---
 
-In this role, it fills a narrow but practical gap by helping analysts quickly decide whether a phone number is worth further investigative effort.
+### TelespotXX - The Web UI
 
-</details>
+[![TelespotXX Stars](https://img.shields.io/github/stars/thumpersecure/TelespotXX?style=for-the-badge&logo=github&label=Stars&color=gold)](https://github.com/thumpersecure/TelespotXX/stargazers)
+
+**Flask + WebSocket** | Real-time streaming | Dark theme | Export to JSON/CSV/TXT
+
+<a href="https://github.com/thumpersecure/TelespotXX">
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=TelespotXX&theme=dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF" alt="TelespotXX" />
+</a>
+
+</div>
+
+---
+
+## Ecosystem Architecture
