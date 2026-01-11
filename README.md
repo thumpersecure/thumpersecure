@@ -25,9 +25,19 @@
 
 ---
 
-## Projects
+<div align="center">
+
+## Read the Case Study
 
 <div align="center">
+
+[**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
+
+*Architecture decisions, performance optimization, and lessons learned*
+
+</div>
+
+---
 
 ### Telespot - The Original
 
@@ -89,19 +99,8 @@
 └─────────────────────────────────────────────────────────────────┘
 
 
-----
-
-## Read the Case Study
-
-<div align="center">
-
-[**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
-
-*Architecture decisions, performance optimization, and lessons learned*
-
-</div>
-
 ---
+
 
 ## Tech Stack
 
