@@ -5,9 +5,11 @@
 ## The Telespot Ecosystem
 (New for 2026)
 
-### Telespot, Telespotter, and TelespotXX
 <br><summary><strong>Read more</strong></summary>
 <details>
+
+### Telespot, Telespotter, and TelespotXX
+
 
 ---
 
