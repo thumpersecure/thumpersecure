@@ -2,9 +2,8 @@
 
 #  spin 💫 
 
-[![GitHub followers](https://img.shields.io/github/followers/thumpersecure?style=for-the-badge&logo=github&label=Followers)](https://github.com/thumpersecure)
 
-### Creator of the Telespot OSINT Ecosystem
+### The Telespot OSINT Ecosystem
 
 </div>
 
