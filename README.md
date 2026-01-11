@@ -23,31 +23,36 @@
 
 ### Telespot - The Original
 
+**Python CLI** | Multi-engine search | Pattern analysis | 10 format variations
+
+
 <a href="https://github.com/thumpersecure/Telespot" title="">
   <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
 </a>
 
-**Python CLI** | Multi-engine search | Pattern analysis | 10 format variations
 
 ---
 
 ### Telespotter - The Fast One
 
+**Rust CLI** | 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
+
+
 <a href="https://github.com/thumpersecure/Telespot" title="">
   <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
 </a>
 
-**Rust CLI** | 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
 
 ---
 
 ### TelespotXX - The Web UI
 
+**Flask + WebSocket** | Real-time streaming | Dark theme | Export to JSON/CSV/TXT
+
 <a href="https://github.com/thumpersecure/Telespot" title="Star this repository">
   <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
 </a>
 
-**Flask + WebSocket** | Real-time streaming | Dark theme | Export to JSON/CSV/TXT
 
 </div>
 
