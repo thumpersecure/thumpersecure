@@ -15,12 +15,6 @@
 
 *A complete toolkit for phone number intelligence*
 
-| | Stars |
-|---|:---:|
-| [![Telespot](https://img.shields.io/badge/Telespot-Python_CLI-3776AB?style=flat-square&logo=python&logoColor=white)](https://github.com/thumpersecure/Telespot) | [![](https://img.shields.io/github/stars/thumpersecure/Telespot?style=social)](https://github.com/thumpersecure/Telespot/stargazers) |
-| [![Telespotter](https://img.shields.io/badge/Telespotter-Rust_CLI-DEA584?style=flat-square&logo=rust&logoColor=white)](https://github.com/thumpersecure/Telespotter) | [![](https://img.shields.io/github/stars/thumpersecure/Telespotter?style=social)](https://github.com/thumpersecure/Telespotter/stargazers) |
-| [![TelespotXX](https://img.shields.io/badge/TelespotXX-Web_UI-00D9FF?style=flat-square&logo=flask&logoColor=white)](https://github.com/thumpersecure/TelespotXX) | [![](https://img.shields.io/github/stars/thumpersecure/TelespotXX?style=social)](https://github.com/thumpersecure/TelespotXX/stargazers) |
-
 </div>
 
 ---
