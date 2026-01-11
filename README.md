@@ -15,28 +15,8 @@
 
 *The complete phone number intelligence suite*
 
-<br>
-
-[![Telespot](https://img.shields.io/badge/TELESPOT-Python_CLI-00D9FF?style=for-the-badge&logo=python&logoColor=white)](https://github.com/thumpersecure/Telespot)
-[![Telespotter](https://img.shields.io/badge/TELESPOTTER-Rust_CLI-FF6B35?style=for-the-badge&logo=rust&logoColor=white)](https://github.com/thumpersecure/Telespotter)
-[![TelespotXX](https://img.shields.io/badge/TELESPOTXX-Web_UI-8B5CF6?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/thumpersecure/TelespotXX)
-
-</br>
 ---
 
-<div align="center">
-
-## STACK
-
-![Python](https://img.shields.io/badge/Python-0d1117?style=for-the-badge&logo=python&logoColor=00D9FF)
-![Rust](https://img.shields.io/badge/Rust-0d1117?style=for-the-badge&logo=rust&logoColor=FF6B35)
-![Flask](https://img.shields.io/badge/Flask-0d1117?style=for-the-badge&logo=flask&logoColor=8B5CF6)
-![Docker](https://img.shields.io/badge/Docker-0d1117?style=for-the-badge&logo=docker&logoColor=2496ED)
-![Linux](https://img.shields.io/badge/Linux-0d1117?style=for-the-badge&logo=linux&logoColor=FCC624)
-
-</div>
-
----
 ## Ecosystem Architecture
 
 ┌─────────────────────────────────────────────────────────────────┐
