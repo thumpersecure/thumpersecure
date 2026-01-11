@@ -2,17 +2,17 @@
 
 #  telephone 💫 numsint
 ---
-##Telespot 
+Telespot 
 (New for 2026)
----
+
 ## Read the Case Study
 
 [**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
 
-<br><summary><strong>Read more</strong></summary>
-<details>
----
 
+---
+<br><summary><strong></strong></summary>
+<details>
   
 ### Telespot, Telespotter, and TelespotXX
 
