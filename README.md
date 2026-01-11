@@ -23,14 +23,7 @@
 
 ### Telespot - The Original
 
-[![Telespot Stars](https://img.shields.io/github/stars/thumpersecure/Telespot?style=for-the-badge&logo=github&label=Stars&color=gold)](https://github.com/thumpersecure/Telespot/stargazers)
-<a href="https://github.com/thumpersecure/Telespot" title="Star Telespot" aria-label="Star Telespot" style="text-decoration:none;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#8b949e" style="vertical-align:middle;">
-    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-  </svg>
-</a>
-
-<a href="https://github.com/thumpersecure/Telespot" title="Star this repository">
+<a href="https://github.com/thumpersecure/Telespot" title="">
   <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
 </a>
 
@@ -40,14 +33,7 @@
 
 ### Telespotter - The Fast One
 
-[![Telespotter Stars](https://img.shields.io/github/stars/thumpersecure/Telespotter?style=for-the-badge&logo=github&label=Stars&color=gold)](https://github.com/thumpersecure/Telespotter/stargazers)
-<a href="https://github.com/thumpersecure/Telespotter" title="Star Telespotter" aria-label="Star Telespotter" style="text-decoration:none;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#8b949e" style="vertical-align:middle;">
-    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-  </svg>
-</a>
-
-<a href="https://github.com/thumpersecure/Telespot" title="Star this repository">
+<a href="https://github.com/thumpersecure/Telespot" title="">
   <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
 </a>
 
@@ -56,13 +42,6 @@
 ---
 
 ### TelespotXX - The Web UI
-
-[![TelespotXX Stars](https://img.shields.io/github/stars/thumpersecure/TelespotXX?style=for-the-badge&logo=github&label=Stars&color=gold)](https://github.com/thumpersecure/TelespotXX/stargazers)
-<a href="https://github.com/thumpersecure/TelespotXX" title="Star TelespotXX" aria-label="Star TelespotXX" style="text-decoration:none;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#8b949e" style="vertical-align:middle;">
-    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-  </svg>
-</a>
 
 <a href="https://github.com/thumpersecure/Telespot" title="Star this repository">
   <img src="https://img.shields.io/badge/☆%20Star-grey?style=flat&color=30363d" />
