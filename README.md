@@ -2,34 +2,22 @@
 
 #  telephone 💫 numsint
 
-
-### Telespot, Telespotter, and TelespotXX 
-
+### Telespot, Telespotter, and TelespotXX
 
 ---
 
 ## The Telespot Ecosystem
 (New for 2026)
 
-<div align="center">
-
 *A complete toolkit for phone number intelligence*
-
-</div>
 
 ---
 
-<div align="center">
-
 ## Read the Case Study
-
-<div align="center">
 
 [**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
 
 *Architecture decisions, performance optimization, and lessons learned*
-
-</div>
 
 ---
 
@@ -39,8 +27,6 @@
 
 **Python CLI** | Multi-engine search | Pattern analysis | 10 format variations
 
-</a>
-
 ---
 
 ### Telespotter - The Fast One
@@ -48,7 +34,6 @@
 [![Telespotter Stars](https://img.shields.io/github/stars/thumpersecure/Telespotter?style=for-the-badge&logo=github&label=Stars&color=gold)](https://github.com/thumpersecure/Telespotter/stargazers)
 
 **Rust CLI** | 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
-
 
 ---
 
@@ -58,12 +43,12 @@
 
 **Flask + WebSocket** | Real-time streaming | Dark theme | Export to JSON/CSV/TXT
 
-
-
 </div>
 
----
+<details>
+<summary><strong>Read more</strong></summary>
 
+<br>
 
 ## Tech Stack
 
@@ -76,15 +61,13 @@
 
 </div>
 
----
-
 <div align="center">
 
 *for the OSINT community*
 
-
 </div>
 
+---
 
 ## Philosophy
 
@@ -123,3 +106,5 @@ The tool operates exclusively on publicly accessible information and optional th
 Telespot is designed to run early in an OSINT workflow, prior to deeper analysis with tools such as Maltego, SpiderFoot, breach analysis platforms, or manual research.
 
 In this role, it fills a narrow but practical gap by helping analysts quickly decide whether a phone number is worth further investigative effort.
+
+</details>
