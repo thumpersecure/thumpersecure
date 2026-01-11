@@ -2,26 +2,24 @@
 
 #  telephone 💫 numsint
 ---
-## The Telespot Ecosystem
+##Telespot 
 (New for 2026)
+---
+## Read the Case Study
+
+[**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
 
 <br><summary><strong>Read more</strong></summary>
 <details>
+---
 
+  
 ### Telespot, Telespotter, and TelespotXX
 
 
 ---
 
-*A complete toolkit for phone number intelligence*
-
-
-
----
-
-## Read the Case Study
-
-[**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
+*A complete toolkit for phone number 
 
 *Architecture decisions, performance optimization, and lessons learned*
 
