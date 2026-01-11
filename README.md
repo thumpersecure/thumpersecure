@@ -1,6 +1,6 @@
 <div align="center">
 
-#  spin 💫 
+#  spin 💫 osint
 
 
 ### Telespot, Telespotter, and TelespotXX 
