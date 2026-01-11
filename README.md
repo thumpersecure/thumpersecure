@@ -35,8 +35,6 @@
 
 **Python CLI** | Multi-engine search | Pattern analysis | 10 format variations
 
-<a href="https://github.com/thumpersecure/Telespot">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=Telespot&theme=dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF" alt="Telespot" />
 </a>
 
 ---
@@ -47,9 +45,6 @@
 
 **Rust CLI** | 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
 
-<a href="https://github.com/thumpersecure/Telespotter">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=Telespotter&theme=dark&hide_border=true&bg_color=0d1117&title_color=DEA584&icon_color=DEA584" alt="Telespotter" />
-</a>
 
 ---
 
@@ -59,9 +54,7 @@
 
 **Flask + WebSocket** | Real-time streaming | Dark theme | Export to JSON/CSV/TXT
 
-<a href="https://github.com/thumpersecure/TelespotXX">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=TelespotXX&theme=dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF" alt="TelespotXX" />
-</a>
+
 
 </div>
 
@@ -110,16 +103,6 @@
 
 ---
 
-## GitHub Stats
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=thumpersecure&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=00D9FF&icon_color=00D9FF&text_color=ffffff&count_private=true" alt="GitHub Stats" />
-
-</div>
-
----
-
 ## Tech Stack
 
 <div align="center">
@@ -135,9 +118,8 @@
 
 <div align="center">
 
-* for the OSINT community *
+*for the OSINT community*
 
-[![GitHub](https://img.shields.io/badge/GitHub-@thumpersecure-181717?style=for-the-badge&logo=github)](https://github.com/thumpersecure)
 
 </div>
 
