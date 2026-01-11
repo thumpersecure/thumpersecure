@@ -5,7 +5,6 @@
 
 ### Telespot, Telespotter, and TelespotXX 
 
-</div>
 
 ---
 
