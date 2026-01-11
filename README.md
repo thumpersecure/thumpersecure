@@ -7,7 +7,7 @@
 <br>
 
 [![GitHub](https://img.shields.io/badge/thumpersecure-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/thumpersecure)
-[![Stars](https://img.shields.io/github/stars/thumpersecure?style=for-the-badge&logo=github&label=Total%20Stars&color=gold)](https://github.com/thumpersecure)
+
 
 </div>
 
