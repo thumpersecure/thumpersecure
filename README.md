@@ -19,39 +19,9 @@
 
 *Architecture decisions, performance optimization, and lessons learned*
 
----
-
-### Telespot - The Original
-
-**Python CLI** 
-| Multi-engine search | Pattern analysis | 10 format variations
 
 
 
-
-
----
-
-### Telespotter - The Fast One
-
-**Rust CLI** 
-| 3.6x faster | 6x less memory | People search databases | Auto-chain OSINT tools
-
-
-
-
-
----
-
-### TelespotXX - The Web UI
-
-**Flask + WebSocket** 
-| Real-time streaming | Dark theme | Export to JSON/CSV/TXT
-
-
-</div>
-
-<details>
 <summary><strong>Read more</strong></summary>
 
 <br>
@@ -67,17 +37,19 @@
 
 </div>
 
+<details>
+
 <div align="center">
 
-*for the OSINT community*
+**for the OSINT community**
 
 </div>
 
 ---
 
-## Philosophy
+## <a href="https://github.com/thumpersecure/telespot> Link to the Telespot Repo </a>
 
-Telespot is a phone number–focused OSINT reconnaissance tool designed for early-stage intelligence gathering. It automates multi-format phone number searches across multiple public search engines and correlates repeated identity indicators such as names, locations, and usernames.
+<b>Telespot</b> is a phone number–focused OSINT reconnaissance tool designed for early-stage intelligence gathering. It automates multi-format phone number searches across multiple public search engines and correlates repeated identity indicators such as names, locations, and usernames.
 
 Unlike general-purpose OSINT frameworks, Telespot treats the phone number as the primary investigative entity rather than secondary enrichment data. This approach allows analysts to quickly assess whether a number has meaningful public footprint before committing time to deeper investigation.
 
