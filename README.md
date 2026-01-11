@@ -5,13 +5,15 @@
 ### Telespot, Telespotter, and TelespotXX
 
 ---
-<br><summary><strong>Read more</strong></summary>
-<details>
+
 ## The Telespot Ecosystem
 (New for 2026)
 
 *A complete toolkit for phone number intelligence*
 
+
+<br><summary><strong>Read more</strong></summary>
+<details>
 ---
 
 ## Read the Case Study
@@ -19,6 +21,7 @@
 [**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
 
 *Architecture decisions, performance optimization, and lessons learned*
+
 
 
 
