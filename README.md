@@ -59,7 +59,8 @@ Telespot is designed to run early in an OSINT workflow, prior to deeper analysis
 In this role, it fills a narrow but practical gap by helping analysts quickly decide whether a phone number is worth further investigative effort.
 
 
-<img source="https://github.com/thumpersecure/thumpersecure/blob/main/Telespot-Graphic.png">
+
 </div>
 
+<img source="https://github.com/thumpersecure/thumpersecure/blob/main/Telespot-Graphic.png">
 
