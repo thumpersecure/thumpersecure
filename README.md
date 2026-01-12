@@ -14,9 +14,9 @@ Read the Case Study
 *Telespot🔎: A complete telephone intelligence suite*
 
 ---
-</div>
 
-for the OSINT community
+
+Made with ❤️ for the OSINT community
 
 Philosophy
 
@@ -55,4 +55,6 @@ Workflow Integration
 Telespot is designed to run early in an OSINT workflow, prior to deeper analysis with tools such as Maltego, SpiderFoot, breach analysis platforms, or manual research.
 
 In this role, it fills a narrow but practical gap by helping analysts quickly decide whether a phone number is worth further investigative effort.
+
+</div>
 
