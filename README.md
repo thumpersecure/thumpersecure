@@ -1,5 +1,5 @@
 <div align="center">
-## Read the Case Study
+Read the Case Study
 
 
 [**Building the Telespot Ecosystem: A Phone Number OSINT Case Study**](https://github.com/thumpersecure/Telespot/blob/main/CASE_STUDY.md)
