@@ -12,6 +12,7 @@ Read the Case Study
 
 
 *Telespot🔎: 
+
 A complete telephone intelligence suite*
 
 ---
