@@ -62,5 +62,5 @@ In this role, it fills a narrow but practical gap by helping analysts quickly de
 
 </div>
 
-<img source="https://github.com/thumpersecure/thumpersecure/Telespot-Graphic.png">
+<img source="/Telespot-Graphic.png">
 
