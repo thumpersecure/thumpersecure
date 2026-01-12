@@ -6,7 +6,7 @@
 
 *Architecture decisions, performance optimization, and lessons learned*
 
-</div>
+
 
 ---
 
