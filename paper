@@ -1,6 +1,4 @@
-Here is a tightened, more formal, PhD-level revision that improves clarity, flow, precision, and academic tone while preserving your structure and intent. I kept everything in plain text, no bullets, no indentation, and only paragraph spacing.
 
-⸻
 
 Research – Telespot
 
@@ -49,7 +47,3 @@ TeleSpotXX combines these capabilities within a client-server model. A Flask bac
 3.3 Evaluation Metrics
 
 The tools are evaluated along three primary dimensions: execution time, memory usage, and feature coverage. Execution time and memory metrics are derived from published documentation, as independent benchmarking is constrained by variable network conditions and live search-engine behavior. Feature coverage is assessed through analysis of the repositories’ documentation and case studies, focusing on supported engines, databases, and pattern types.
-
-⸻
-
-If you want, next steps could include tightening this further for an academic journal, adding figures and tables, or rewriting it in a Kali-Linux–style submission tone for tool acceptance.
