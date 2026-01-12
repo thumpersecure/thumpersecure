@@ -17,6 +17,6 @@
 
 
 
-*Telespot: The complete phone number intelligence suite*
+*Telespot: A complete telephone intelligence suite*
 
 ---
