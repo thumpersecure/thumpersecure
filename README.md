@@ -17,7 +17,7 @@ Read the Case Study
 
 
 
-*Telespot: A complete telephone intelligence suite*
+*Telespot🔎: A complete telephone intelligence suite*
 
 ---
 </div>
