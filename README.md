@@ -11,9 +11,9 @@ Read the Case Study
 [![GitHub](https://img.shields.io/badge/GitHub-@thumpersecure-181717?style=for-the-badge&logo=github)](https://github.com/thumpersecure)
 
 
-*Telespot🔎: 
+Telespot🔎
 
-A complete telephone intelligence suite*
+*A complete telephone intelligence suite*
 
 ---
 
