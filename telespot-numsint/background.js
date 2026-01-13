@@ -91,10 +91,8 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const digits = info.selectionText.replace(/\D/g, '');
 
     if (digits.length >= 7) {
-      // Open popup with pre-filled number
-      chrome.storage.local.set({ prefillNumber: digits }, () => {
-        chrome.action.openPopup();
-      });
+      // Store prefill number - user can click extension icon to search
+      chrome.storage.local.set({ prefillNumber: digits });
     }
   }
 });

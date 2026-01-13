@@ -309,4 +309,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set example placeholder on load
   phoneInput.placeholder = '555-555-1234';
+
+  // Check for prefilled number from context menu
+  chrome.storage.local.get(['prefillNumber'], (result) => {
+    if (result.prefillNumber) {
+      phoneInput.value = result.prefillNumber;
+      // Clear the prefill
+      chrome.storage.local.remove('prefillNumber');
+      // Trigger format preview
+      const digits = parsePhoneNumber(result.prefillNumber);
+      if (digits.length >= 7) {
+        const country = countryCode.value;
+        const formats = generateFormats(digits, country);
+        displayFormats(formats);
+      }
+    }
+  });
 });
