@@ -1,11 +1,10 @@
 {
   "manifest_version": 3,
   "name": "TELESPOT-NUMSINT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Phone number OSINT tool - Generate multiple phone number formats and search Google for intelligence gathering",
   "permissions": [
-    "tabs",
-    "storage"
+    "tabs"
   ],
   "host_permissions": [
     "https://www.google.com/*"
