@@ -46,7 +46,7 @@
 ## ⚡ Quick Install
 
 ```bash
-git clone https://github.com/yourrepo/spicy-cat.git && cd spicy-cat && ./spicy-cat.sh install
+git clone https://github.com/thumpersecure/spicy-cat.git && cd spicy-cat && ./spicy-cat.sh install
 ```
 
 ---
