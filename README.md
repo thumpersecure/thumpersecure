@@ -17,14 +17,12 @@
 <br />
 
 <div align="center">
-  <em>"We're all alike."</em>
+  <em>"current status:)"</em>
   <br />
-  <sub>— thementor</sub>
+  <sub>—  🇺🇸|AvailableForHire</sub>
 </div>
 
-<div align="center">
-  <sub><em>"I fight for the users"</em> — TRON &nbsp;|&nbsp; <em>"Hack the planet!"</em> — ZeroCool &nbsp;|&nbsp; <em>"password:swordfish"</em> — Swordfish</sub>
-</div>
+
 
 <br />
 
