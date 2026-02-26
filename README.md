@@ -4,27 +4,26 @@
 
 <div align="center">
 
-[![ENTER CODE COOKBOOK](https://img.shields.io/badge/%E2%96%B6_CODE_COOKBOOK-b0ffcc?style=for-the-badge&logo=github&logoColor=0601FF&labelColor=F5c540)](https://thumpersecure.github.io/thumpersecure/)
+### OSINT & SEO Specialist · Privacy-focused tooling
 
-[![Repositories](https://img.shields.io/badge/Repositories-12-00b8ff?style=for-the-badge&logo=github&labelColor=06060F)](https://github.com/thumpersecure?tab=repositories)
+*Building open-source tools for investigators, researchers, and anyone who values their digital footprint.*
 
-[![Followers](https://img.shields.io/badge/Followers-41-8b5cf6?style=for-the-badge&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=followers)
+<br />
+
+[![Explore Code Cookbook →](https://img.shields.io/badge/Explore_Code_Cookbook_→-b0ffcc?style=for-the-badge&logo=github&logoColor=0601FF&labelColor=06060F)](https://thumpersecure.github.io/thumpersecure/)
+
+[![Repositories](https://img.shields.io/badge/Repositories-12-00b8ff?style=flat-square&logo=github&labelColor=06060F)](https://github.com/thumpersecure?tab=repositories)
+[![Followers](https://img.shields.io/badge/Followers-41-8b5cf6?style=flat-square&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=followers)
+
+<br />
+
+<sub>🇺🇸 Available for hire — Let's build something together</sub>
 
 </div>
 
-<div align="center"><sub>OSINT &amp; SEO Specialist.</sub></div>
-
-<br />
+---
 
 <div align="center">
-  <em>"🇺🇸"</em>
-  <br />
-  <sub>— CurrentStatus:AvailableForHire </sub>
-</div>
-
-
-
-<br />
 
 ```typescript
 const thumpersecure = {
@@ -33,13 +32,15 @@ const thumpersecure = {
   tools:    12,
   stars:    529,
   featured: {
-    "palm-tree":       { stars: 139, lang: "Python/Bash", recipe: "traffic noise + privacy" },
-    "Telespot":        { stars: 260, lang: "Multi-lang",  recipe: "5-tool phone OSINT ecosystem" },
-    "Spin":            { stars: 74,  lang: "Rust",        recipe: "OSINT browser (v12 Jessica Jones)" },
-    "opt-out-manual":  { sites: 400, lang: "Markdown",    recipe: "largest DIY opt-out guide" },
+    "palm-tree":      { stars: 139, lang: "Python/Bash", recipe: "traffic noise + privacy" },
+    "Telespot":       { stars: 260, lang: "Multi-lang",  recipe: "5-tool phone OSINT ecosystem" },
+    "Spin":           { stars: 74,  lang: "Rust",       recipe: "OSINT browser (v12 Jessica Jones)" },
+    "opt-out-manual": { sites: 400, lang: "Markdown",   recipe: "largest DIY opt-out guide" },
   },
 } as const;
 ```
+
+</div>
 
 <details>
 <summary><code>// spin.versions — Dick Tracy to Jessica Jones</code></summary>
@@ -139,16 +140,18 @@ Largest DIY opt-out guide to date
 </p>
 </details>
 
-<div align="center">
-  <br />
-  Spin 2026 
-  <br />
-  <sub> code cookbook experience • live from GitHub API • OSINT &amp; SEO tools</sub>
-  <br /><br />
-</div>
+---
 
 <div align="center">
-  <a href="https://thumpersecure.github.io/thumpersecure/">
-    <img src="assets/neural-footer.svg" width="100%" alt="Enter Code Cookbook" />
-  </a>
+
+**Spin 2026** · *code cookbook experience · live from GitHub API · OSINT & SEO tools*
+
+<br />
+
+<a href="https://thumpersecure.github.io/thumpersecure/">
+  <img src="assets/neural-footer.svg" width="100%" alt="Enter Code Cookbook" />
+</a>
+
+*Click to explore the full Code Cookbook*
+
 </div>
