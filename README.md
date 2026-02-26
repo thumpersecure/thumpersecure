@@ -2,9 +2,11 @@
   <img src="assets/neural-header.svg" width="100%" alt="THUMPERSECURE Code Cookbook" />
 </div>
 
+> **GitHub Pages:** Set **Source** → Deploy from branch → **Branch:** `main` → **Folder:** `/docs`. See [docs/PAGES.md](docs/PAGES.md).
+
 <div align="center">
 
-[![ENTER CODE COOKBOOK](https://img.shields.io/badge/%E2%96%B6_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e)](https://thumpersecure.github.io/thumpersecure/docs/)
+[![ENTER CODE COOKBOOK](https://img.shields.io/badge/%E2%96%B6_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e)](https://thumpersecure.github.io/thumpersecure/)
 [![Repositories](https://img.shields.io/badge/Repositories-12-00b8ff?style=for-the-badge&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=repositories)
 [![Followers](https://img.shields.io/badge/Followers-41-8b5cf6?style=for-the-badge&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=followers)
 
@@ -141,7 +143,7 @@ Largest DIY opt-out guide to date
 
 <div align="center">
   <br />
-  <a href="https://thumpersecure.github.io/thumpersecure/docs/">
+  <a href="https://thumpersecure.github.io/thumpersecure/">
     <img src="https://img.shields.io/badge/%E2%96%B6_OPEN_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e" alt="Open Code Cookbook" />
   </a>
   <br />
@@ -150,7 +152,7 @@ Largest DIY opt-out guide to date
 </div>
 
 <div align="center">
-  <a href="https://thumpersecure.github.io/thumpersecure/docs/">
+  <a href="https://thumpersecure.github.io/thumpersecure/">
     <img src="assets/neural-footer.svg" width="100%" alt="Enter Code Cookbook" />
   </a>
 </div>
