@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/neural-header.svg" width="100%" alt="THUMPERSECURE Code Cookbook" />
+  <img src="assets/neural-header.svg" width="200%" alt="THUMPERSECURE Code Cookbook" />
 </div>
 
 <div align="center">
@@ -17,7 +17,7 @@
 <br />
 
 <div align="center">
-  <em>"current status:)"</em>
+  <em>"current status:"</em>
   <br />
   <sub>—  🇺🇸|AvailableForHire</sub>
 </div>
