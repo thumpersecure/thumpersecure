@@ -4,7 +4,7 @@
 
 <div align="center">
 
-[![ENTER CODE COOKBOOK](https://img.shields.io/badge/%E2%96%B6_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e)](https://thumpersecure.github.io/thumpersecure/)
+[![ENTER CODE COOKBOOK](https://img.shields.io/badge/%E2%96%B6_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060F&labelColor=36060e)](https://thumpersecure.github.io/thumpersecure/)
 [![Repositories](https://img.shields.io/badge/Repositories-12-00b8ff?style=for-the-badge&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=repositories)
 [![Followers](https://img.shields.io/badge/Followers-41-8b5cf6?style=for-the-badge&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=followers)
 
