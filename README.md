@@ -20,6 +20,10 @@
   <sub>— Mr. Robot</sub>
 </div>
 
+<div align="center">
+  <sub><em>"Hack the planet!"</em> — Hackers (1995) &nbsp;|&nbsp; <em>"Password: swordfish"</em> — Swordfish (2001)</sub>
+</div>
+
 <br />
 
 ```typescript
@@ -37,7 +41,7 @@ const thumpersecure = {
 ```
 
 <details>
-<summary><code>// the_archives — VB6 era</code></summary>
+<summary><code>// the_archives — AOHell, Hackers, Swordfish</code></summary>
 <br />
 
 ```vb

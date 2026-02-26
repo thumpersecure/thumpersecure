@@ -172,12 +172,31 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--dim);border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite;margin-right:0.5rem;vertical-align:middle}
 
+.cinema-section{padding:3rem 0 4rem}
+.cinema-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;max-width:920px;margin:0 auto}
+@media(max-width:768px){.cinema-grid{grid-template-columns:1fr;gap:1.5rem}}
+.movie-quote{padding:1.5rem 1.8rem;font-family:var(--mono)}
+.movie-quote .qt{font-size:clamp(0.95rem,1.8vw,1.2rem);color:var(--text);font-style:italic;line-height:1.6;margin-bottom:0.7rem}
+.movie-quote .src{font-size:0.75rem;color:var(--muted)}.movie-quote .src em{color:var(--cyan);font-style:normal}
+.wireframe-wrap{width:160px;height:160px;margin:0 auto}
+@media(max-width:768px){.wireframe-wrap{width:120px;height:120px}}
+
+.multimon{max-width:920px;margin:2.5rem auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:3px;border:2px solid var(--dim);border-radius:4px;overflow:hidden;background:var(--dim)}
+@media(max-width:640px){.multimon{grid-template-columns:repeat(2,1fr)}}
+.mon{background:#000;padding:0.5rem 0.6rem;font-family:var(--mono);font-size:0.58rem;line-height:1.5;color:var(--green);height:130px;overflow:hidden;position:relative}
+.mon::after{content:'';position:absolute;bottom:0;left:0;right:0;height:35px;background:linear-gradient(transparent,#000);pointer-events:none}
+.mon.mc{color:var(--cyan)}.mon.mm{color:var(--magenta)}.mon.ma{color:var(--amber)}
+.mon-label{font-size:0.5rem;color:var(--muted);margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.12em;border-bottom:1px solid var(--dim);padding-bottom:0.2rem}
+@keyframes scrollUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.mon-scroll{animation:scrollUp 25s linear infinite}
+
 @media(max-width:640px){
   .hero{padding:3rem 0 2rem}.hero-inner{padding:1.5rem}
   .glitch{font-size:clamp(1.8rem,10vw,2.5rem)}
   .quote-block{padding:1.2rem}
   .vb6-code{font-size:0.68rem}.nfo{font-size:0.55rem;padding:1rem}
   .btn{min-height:44px;padding:0.75rem 1.6rem;display:inline-flex;align-items:center;justify-content:center}
+  .mon{height:100px;font-size:0.52rem}
 }
 </style>
 </head>
@@ -233,10 +252,39 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 
     <div class="ascii-div" aria-hidden="true">═══════════════════════════════════════════</div>
 
+    <section class="cinema-section reveal" aria-label="Cinema references">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> cinema</h2>
+        <div class="cinema-grid">
+          <blockquote class="movie-quote glass">
+            <p class="qt">"Hack the planet!"</p>
+            <div class="src">&mdash; Dade Murphy / Zero Cool<br><em>Hackers</em> (1995)</div>
+          </blockquote>
+          <div class="wireframe-wrap"><canvas id="wireframeCanvas" aria-hidden="true"></canvas></div>
+          <blockquote class="movie-quote glass">
+            <p class="qt">"War isn't about who's right. It's about who's left."</p>
+            <div class="src">&mdash; Gabriel Shear<br><em>Swordfish</em> (2001)</div>
+          </blockquote>
+        </div>
+        <div class="multimon reveal" aria-label="Multi-monitor display inspired by Swordfish">
+          <div class="mon"><div class="mon-label">gibson.sys</div><div class="mon-scroll" id="mon1"></div></div>
+          <div class="mon mc"><div class="mon-label">net.trace</div><div class="mon-scroll" id="mon2"></div></div>
+          <div class="mon mm"><div class="mon-label">crypto.dec</div><div class="mon-scroll" id="mon3"></div></div>
+          <div class="mon ma"><div class="mon-label">swordfish</div><div class="mon-scroll" id="mon4"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">═══════════════════════════════════════════</div>
+
     <section class="archives-section reveal" id="archives" aria-label="The Archives">
       <div class="container">
         <h2 class="section-head"><span>//</span> the_archives</h2>
-        <p class="archives-text">Before OSINT had a name, there were <em>progz</em> and <em>warez</em>. In 1995, a Visual Basic app called <em>AOHell</em> taught an entire generation that software could pry open any system &mdash; and that the line between tool and weapon was drawn by the person holding it. The underground BBS scene, NFO files, and ASCII art weren't just aesthetics &mdash; they were a culture. Today's OSINT and SEO tools carry that same DNA: information is leverage, and code is the skeleton key.</p>
+        <p class="archives-text">Before OSINT had a name, there were <em>progz</em> and <em>warez</em>. In 1995, a Visual Basic app called <em>AOHell</em> taught an entire generation that software could pry open any system &mdash; and that the line between tool and weapon was drawn by the person holding it. The underground BBS scene, NFO files, and ASCII art weren't just aesthetics &mdash; they were a culture.</p>
+
+        <p class="archives-text">Hollywood caught on. That same year, <em>Hackers</em> turned "The Gibson" into a neon fever dream &mdash; wireframe cities, flying through cyberspace, <em>Zero Cool</em> and <em>Acid Burn</em> proving that information wants to be free. In 2001, <em>Swordfish</em> gave us the multi-monitor fantasy: 60 seconds to crack the DOD, screens stacked like weapons, the password always just out of reach. The tech was fiction. The spirit was real.</p>
+
+        <p class="archives-text">Today's OSINT and SEO tools carry that same DNA: <em>information is leverage, and code is the skeleton key.</em></p>
 
         <div class="vb6-win reveal">
           <div class="vb6-bar">AOHell.frm &mdash; Visual Basic 6</div>
@@ -368,6 +416,8 @@ function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
     {t:'[OK]   Code rain shader',c:'#00ffcc'},
     {t:'[OK]   Glitch engine',c:'#00ffcc'},
     {t:'[OK]   CRT overlay',c:'#00ffcc'},
+    {t:'[OK]   Wireframe renderer (Gibson)',c:'#00ffcc'},
+    {t:'[OK]   Password: swordfish',c:'#00ffcc'},
     {t:'[INIT] Connecting to recipe index...',c:null},
     {t:'[OK]   12 recipes loaded',c:'#00ffcc'},
     {t:'[OK]   529+ stars verified',c:'#00ffcc'},
@@ -485,6 +535,118 @@ async function rT(){
   }var cur=document.createElement('span');cur.className='term-cursor-end';cur.innerHTML='&nbsp;';tB.appendChild(cur);
 }
 function tpL(el,text,spd){return new Promise(function(res){el.classList.add('typed');var i=0,iv=setInterval(function(){el.textContent=text.slice(0,i+1);i++;if(i>=text.length){clearInterval(iv);res()}},spd)})}
+
+/* ====== WIREFRAME CUBE (Hackers Gibson / Swordfish) ====== */
+var wC=document.getElementById('wireframeCanvas');
+if(wC){
+  var wX=wC.getContext('2d'),wAng=0;
+  function rWC(){var s=wC.parentElement;wC.width=s.clientWidth;wC.height=s.clientHeight}
+  rWC();
+  var cube=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
+  var edg=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+  function pr(p,a){
+    var ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(a*0.7),sb=Math.sin(a*0.7);
+    var x1=p[0]*ca-p[2]*sa,z1=p[0]*sa+p[2]*ca;
+    var y1=p[1]*cb-z1*sb,z2=p[1]*sb+z1*cb;
+    var sc=wC.width*0.28,d=3+z2;
+    return[x1/d*sc+wC.width/2,y1/d*sc+wC.height/2,z2];
+  }
+  function dW(){
+    wX.clearRect(0,0,wC.width,wC.height);
+    var p2=cube.map(function(p){return pr(p,wAng)});
+    wX.shadowColor='#00ffcc';wX.shadowBlur=8;wX.lineWidth=1.5;
+    edg.forEach(function(e){
+      var a=p2[e[0]],b=p2[e[1]];
+      wX.globalAlpha=0.25+Math.max(0,(a[2]+b[2])/4)*0.25;
+      wX.strokeStyle='#00ffcc';
+      wX.beginPath();wX.moveTo(a[0],a[1]);wX.lineTo(b[0],b[1]);wX.stroke();
+    });
+    p2.forEach(function(p){
+      wX.globalAlpha=0.4+Math.max(0,p[2]/2)*0.4;
+      wX.fillStyle='#00ffcc';wX.beginPath();wX.arc(p[0],p[1],2.5,0,Math.PI*2);wX.fill();
+    });
+    wX.globalAlpha=1;wX.shadowBlur=0;
+    wAng+=0.008;requestAnimationFrame(dW);
+  }
+  dW();
+  window.addEventListener('resize',function(){rWC()});
+}
+
+/* ====== MULTI-MONITOR DATA STREAMS (Swordfish / Hackers) ====== */
+function fillMon(id,lines){
+  var el=document.getElementById(id);if(!el)return;
+  var txt=lines.join('\n');el.textContent=txt+'\n'+txt;
+}
+fillMon('mon1',[
+  '> hack the gibson',
+  'CONNECT 192.168.1.1',
+  'AUTH: root@gibson',
+  'GRANTED','ls /secret/',
+  'garbage.dat   2.1K',
+  'worm.dat      8.4K',
+  'da_vinci.exe  41K',
+  '> cat da_vinci.exe',
+  '4F 50 45 4E 20 48',
+  '41 43 4B 20 54 48',
+  '45 20 50 4C 41 4E',
+  'TRACE DETECTED',
+  '> evade --stealth',
+  'Routing thru 7 proxies',
+  'Connection masked'
+]);
+fillMon('mon2',[
+  'TRACE: 10.0.0.1',
+  '  > 172.16.0.1',
+  'HOP 1: 52ms  NYC',
+  'HOP 2: 89ms  LON',
+  'HOP 3: 134ms TYO',
+  'HOP 4: 201ms SYD',
+  'PKT LOSS: 0.2%',
+  'TTL: 64',
+  'PROTO: TCP/443',
+  'CIPHER: AES-256-GCM',
+  'TLS 1.3 OK',
+  'CERT: *.gibson.corp',
+  'OSINT SCAN: ACTIVE',
+  'PORTS: 22,80,443',
+  'PORT 5190: OPEN',
+  'AOL-TCP: DETECTED'
+]);
+fillMon('mon3',[
+  'DECRYPTING...',
+  String.fromCharCode(9619).repeat(8)+String.fromCharCode(9617).repeat(4)+' 67%',
+  'KEY: 2048-bit RSA',
+  'BLOCK: 16 bytes',
+  'MODE: CBC',
+  'IV: a3f2c881...',
+  'ROUND  1/14: OK',
+  'ROUND  2/14: OK',
+  'ROUND  3/14: OK',
+  'SUBSTITUTION: DONE',
+  'PERMUTATION: DONE',
+  'XOR: COMPLETE',
+  String.fromCharCode(9619).repeat(11)+String.fromCharCode(9617)+' 92%',
+  'PLAINTEXT READY',
+  'PASSWORD: *********',
+  'PASSWORD: swordfish'
+]);
+fillMon('mon4',[
+  '$ ./swordfish --crack',
+  'TARGET: DOD.GOV',
+  'TIME: 60s',
+  String.fromCharCode(9608).repeat(4)+String.fromCharCode(9617).repeat(8)+' 33%',
+  'Brute force: 2^28',
+  'Rainbow table: LOADED',
+  'Hash collision: FOUND',
+  String.fromCharCode(9608).repeat(8)+String.fromCharCode(9617).repeat(4)+' 67%',
+  'Firewall bypass: OK',
+  'IDS evasion: ACTIVE',
+  'Rootkit: DEPLOYED',
+  String.fromCharCode(9608).repeat(12)+' 100%',
+  'ACCESS: GRANTED',
+  'Elapsed: 58.7s',
+  '> You got the job.'
+]);
 
 })();
 </script>
