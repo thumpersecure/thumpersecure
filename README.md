@@ -10,7 +10,7 @@
 
 </div>
 
-<div align="center"><sub>OSINT &amp; SEO Specialist</sub></div>
+<div align="center"><sub>OSINT &amp; SEO Specialist.</sub></div>
 
 <br />
 

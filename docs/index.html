@@ -123,7 +123,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 
 .recipes-section{padding:3rem 0 4rem}
 .recipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-@media(max-width:900px){.recipe-grid{grid-template-columns:1fr}}
+@media(max-width:1024px){.recipe-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.recipe-grid{grid-template-columns:1fr}}
 .recipe-card{border:1px solid var(--border);border-radius:8px;background:var(--panel);overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s;will-change:transform}
 .recipe-card:hover{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 0 30px rgba(0,255,204,0.1)}
 .recipe-header{padding:1rem 1.2rem 0.5rem;border-bottom:1px solid var(--border)}
@@ -247,7 +248,7 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 <span class="kw">Private Sub</span> <span class="fn">Form_Load</span>()
     Me.Caption = <span class="st">"AOHell v4.0"</span>
     txtStatus.Text = <span class="st">"Initializing..."</span>
-    <span class="kw">Call</span> Winsock1.Connect(target$, <span class="st">5190</span>)
+    <span class="kw">Call</span> Winsock1.Connect(target$, 5190)
 <span class="kw">End Sub</span>
 
 <span class="kw">Private Sub</span> <span class="fn">cmdExecute_Click</span>()
@@ -432,7 +433,7 @@ document.querySelectorAll('.reveal').forEach(function(el){rO.observe(el)});
 
 var sC=false,sS=document.querySelector('.stats-section');
 var sO=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!sC){sC=true;document.querySelectorAll('.stat-val').forEach(function(el){cU(el,parseInt(el.dataset.target,10))});sO.unobserve(en.target)}})},{threshold:0.3});
-sO.observe(sS);
+if(sS)sO.observe(sS);
 function cU(el,t){var c=0,s=Math.max(1,Math.floor(t/50)),iv=setInterval(function(){c+=s;if(c>=t){c=t;clearInterval(iv)}el.textContent=c},30)}
 
 /* ====== FETCH REPOS ====== */
@@ -444,10 +445,12 @@ async function fR(){
   }catch(e){console.warn('API fallback:',e);return FB.map(function(n){return{name:n,description:'OSINT & SEO tool by THUMPERSECURE',html_url:'https://github.com/thumpersecure/'+n,stargazers_count:0,language:null,updated_at:new Date().toISOString()}})}
 }
 function rD(iso){var d=Math.floor((Date.now()-new Date(iso).getTime())/864e5);if(d<1)return'today';if(d<30)return d+'d ago';if(d<365)return Math.floor(d/30)+'mo ago';return Math.floor(d/365)+'y ago'}
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function safeUrl(u){try{var h=new URL(u);return h.protocol==='https:'&&(h.hostname==='github.com'||h.hostname.endsWith('.github.com'))?u:'#'}catch(e){return'#'}}
 function bC(repo,idx){
   var c=document.createElement('article');c.className='project-card';c.style.transitionDelay=(idx*0.06)+'s';
-  var sN=repo.name.replace(/</g,'&lt;').replace(/>/g,'&gt;'),sD=(repo.description||'OSINT & SEO tool by THUMPERSECURE').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  c.innerHTML='<div class="card-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="card-filename">'+sN+'.ts</span></div><div class="card-body"><h3 class="card-name"><a href="'+repo.html_url+'" target="_blank" rel="noopener noreferrer">'+sN+'</a></h3><p class="card-desc">'+sD+'</p></div><div class="card-meta">'+(repo.stargazers_count>0?'<span class="pill pill-stars">&#9733; '+repo.stargazers_count+'</span>':'')+(repo.language?'<span class="pill pill-lang">'+repo.language+'</span>':'')+'<span class="pill pill-date">'+rD(repo.updated_at)+'</span></div>';
+  var sN=esc(repo.name),sD=esc(repo.description||'OSINT & SEO tool by THUMPERSECURE'),sL=esc(repo.language),sU=safeUrl(repo.html_url);
+  c.innerHTML='<div class="card-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="card-filename">'+sN+'.ts</span></div><div class="card-body"><h3 class="card-name"><a href="'+sU+'" target="_blank" rel="noopener noreferrer">'+sN+'</a></h3><p class="card-desc">'+sD+'</p></div><div class="card-meta">'+(repo.stargazers_count>0?'<span class="pill pill-stars">&#9733; '+repo.stargazers_count+'</span>':'')+(sL?'<span class="pill pill-lang">'+sL+'</span>':'')+'<span class="pill pill-date">'+rD(repo.updated_at)+'</span></div>';
   return c;
 }
 (async function(){
@@ -475,7 +478,7 @@ var tLines=[
 ];
 var tB=document.getElementById('termBody'),tS=false,tSec=document.querySelector('.terminal-section');
 var tO=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!tS){tS=true;rT();tO.unobserve(en.target)}})},{threshold:0.25});
-tO.observe(tSec);
+if(tSec)tO.observe(tSec);
 async function rT(){
   for(var i=0;i<tLines.length;i++){var ln=tLines[i],el=document.createElement('div');el.className='term-line';tB.appendChild(el);
     if(ln.type==='cmd'){await tpL(el,ln.text,30)}else{el.innerHTML='<span class="output">'+ln.text+'</span>';el.classList.add('typed')}await sleep(250);
