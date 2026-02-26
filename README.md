@@ -17,13 +17,13 @@
 <br />
 
 <div align="center">
-  <em>"Give a man a gun and he can rob a bank, but give a man a bank, and he can rob the world."</em>
+  <em>"We're all alike."</em>
   <br />
-  <sub>— Mr. Robot</sub>
+  <sub>— thementor</sub>
 </div>
 
 <div align="center">
-  <sub><em>"I fight for the users"</em> — TRON &nbsp;|&nbsp; <em>"Hack the planet!"</em> — Hackers &nbsp;|&nbsp; <em>"Password: swordfish"</em> — Swordfish</sub>
+  <sub><em>"I fight for the users"</em> — TRON &nbsp;|&nbsp; <em>"Hack the planet!"</em> — ZeroCool &nbsp;|&nbsp; <em>"password:swordfish"</em> — Swordfish</sub>
 </div>
 
 <br />
