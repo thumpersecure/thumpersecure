@@ -17,9 +17,9 @@
 <br />
 
 <div align="center">
-  <em>"current status:"</em>
+  <em>"CurrentStatus:AvailableForHire"</em>
   <br />
-  <sub>—  🇺🇸|AvailableForHire</sub>
+  <sub>— 🇺🇸</sub>
 </div>
 
 
