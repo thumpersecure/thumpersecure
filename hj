@@ -1,0 +1,11 @@
+# Justin-Horn Encoding & Decoding Summary
+
+data = {
+    
+    "base64": "SnVzdGluLUhvcm4=",
+    "base64_no_hyphen": "SnVzdGluIEhvcm4=",
+    "hex": "4a757374696e2d486f726e",
+    "binary": "01001010 01110101 01110011 01110100 01101001 01101110 00101101 01001000 01101111 01110010 01101110"
+}
+
+print(f"Data for: {data['original']}")
