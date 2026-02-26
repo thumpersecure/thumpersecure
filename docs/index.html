@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="description" content="Codebook — Public repos built from scratch by THUMPERSECURE. Privacy, OSINT, and public tooling."/>
 <meta name="theme-color" content="#0a0e17"/>
+<meta property="og:title" content="THUMPERSECURE | Codebook"/>
+<meta property="og:description" content="Public repos built from scratch. Privacy, OSINT, and public tooling."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://thumpersecure.github.io/thumpersecure/docs/"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>"/>
 <title>THUMPERSECURE | Codebook</title>
 <style>
 :root{
@@ -39,8 +44,19 @@ body{
 }
 #rainCanvas{z-index:1;opacity:0.04}
 
-/* --- Main content wrapper --- */
-.page-wrap{position:relative;z-index:2}
+/* --- Ambient glow --- */
+.ambient-glow{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 600px 400px at 15% 20%,rgba(0,255,159,0.06),transparent),
+    radial-gradient(ellipse 500px 500px at 85% 15%,rgba(0,184,255,0.05),transparent),
+    radial-gradient(ellipse 700px 400px at 50% 90%,rgba(124,58,237,0.06),transparent);
+}
+
+/* --- Page load animation --- */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.page-wrap{position:relative;z-index:2;animation:fadeInUp 0.8s ease-out}
 
 /* --- Utility --- */
 .container{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
@@ -52,6 +68,12 @@ body{
   border-radius:16px;
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 0 60px rgba(0,255,159,0.04),0 0 120px rgba(0,184,255,0.03);
+  transition:border-color 0.4s ease,box-shadow 0.4s ease;
+}
+.glass:hover{
+  border-color:rgba(0,255,159,0.25);
+  box-shadow:0 0 80px rgba(0,255,159,0.08),0 0 160px rgba(0,184,255,0.05);
 }
 
 /* --- Hero Section --- */
@@ -84,6 +106,7 @@ body{
   -webkit-text-fill-color:transparent;
   background-clip:text;
   margin-bottom:1rem;
+  filter:drop-shadow(0 0 40px rgba(0,255,159,0.15));
 }
 .hero-sub{
   color:var(--muted);
@@ -307,6 +330,7 @@ footer a:hover{text-decoration:underline}
 </head>
 <body>
 
+<div class="ambient-glow" aria-hidden="true"></div>
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
 <canvas id="rainCanvas" aria-hidden="true"></canvas>
 

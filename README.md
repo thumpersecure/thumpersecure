@@ -27,20 +27,22 @@ const thumpersecure = {
 
 <details>
 <summary><code>// all_projects.map()</code></summary>
-
-[![palm-tree](https://img.shields.io/badge/palm--tree-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/palm-tree)
-[![Telespot](https://img.shields.io/badge/Telespot-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/Telespot)
-[![Spin](https://img.shields.io/badge/Spin-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/Spin)
-[![Telespotter](https://img.shields.io/badge/Telespotter-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/Telespotter)
-[![xTELENUMSINT](https://img.shields.io/badge/xTELENUMSINT-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/xTELENUMSINT)
-[![TeleSTOP](https://img.shields.io/badge/TeleSTOP-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/TeleSTOP)
-[![opt-out-manual-2026](https://img.shields.io/badge/opt--out--manual--2026-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/opt-out-manual-2026)
-[![spicy-cat](https://img.shields.io/badge/spicy--cat-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/spicy-cat)
-[![TelespotXX](https://img.shields.io/badge/TelespotXX-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/TelespotXX)
-[![bluettool](https://img.shields.io/badge/bluettool-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/bluettool)
-[![LOVE-BOMB](https://img.shields.io/badge/LOVE--BOMB-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/LOVE-BOMB)
-[![zweather](https://img.shields.io/badge/zweather-00b8ff?style=for-the-badge&labelColor=0a0e17)](https://github.com/thumpersecure/zweather)
-
+<br />
+<p align="center">
+  <a href="https://github.com/thumpersecure/palm-tree"><img src="https://img.shields.io/badge/palm--tree-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="palm-tree" /></a>
+  <a href="https://github.com/thumpersecure/Telespot"><img src="https://img.shields.io/badge/Telespot-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="Telespot" /></a>
+  <a href="https://github.com/thumpersecure/Spin"><img src="https://img.shields.io/badge/Spin-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="Spin" /></a>
+  <a href="https://github.com/thumpersecure/Telespotter"><img src="https://img.shields.io/badge/Telespotter-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="Telespotter" /></a>
+  <a href="https://github.com/thumpersecure/xTELENUMSINT"><img src="https://img.shields.io/badge/xTELENUMSINT-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="xTELENUMSINT" /></a>
+  <a href="https://github.com/thumpersecure/TeleSTOP"><img src="https://img.shields.io/badge/TeleSTOP-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="TeleSTOP" /></a>
+  <br />
+  <a href="https://github.com/thumpersecure/opt-out-manual-2026"><img src="https://img.shields.io/badge/opt--out--manual--2026-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="opt-out-manual-2026" /></a>
+  <a href="https://github.com/thumpersecure/spicy-cat"><img src="https://img.shields.io/badge/spicy--cat-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="spicy-cat" /></a>
+  <a href="https://github.com/thumpersecure/TelespotXX"><img src="https://img.shields.io/badge/TelespotXX-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="TelespotXX" /></a>
+  <a href="https://github.com/thumpersecure/bluettool"><img src="https://img.shields.io/badge/bluettool-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="bluettool" /></a>
+  <a href="https://github.com/thumpersecure/LOVE-BOMB"><img src="https://img.shields.io/badge/LOVE--BOMB-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="LOVE-BOMB" /></a>
+  <a href="https://github.com/thumpersecure/zweather"><img src="https://img.shields.io/badge/zweather-00b8ff?style=for-the-badge&labelColor=0a0e17" alt="zweather" /></a>
+</p>
 </details>
 
 <div align="center">
