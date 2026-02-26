@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/neural-header.svg" width="200%" alt="THUMPERSECURE Code Cookbook" />
+  <img src="assets/neural-header.svg" width="99%" alt="THUMPERSECURE Code Cookbook" />
 </div>
 
 <div align="center">
