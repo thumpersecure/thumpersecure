@@ -33,12 +33,33 @@ const thumpersecure = {
   tools:    12,
   stars:    529,
   featured: {
-    "palm-tree":  { stars: 139, lang: "Python",     recipe: "OSINT reconnaissance" },
-    "Telespot":   { stars: 99,  lang: "JavaScript", recipe: "phone intelligence" },
-    "Spin":       { stars: 74,  lang: "Python",     recipe: "SEO optimization" },
+    "palm-tree":  { stars: 139, lang: "Python/Bash", recipe: "traffic noise + privacy" },
+    "Telespot":   { stars: 99,  lang: "JavaScript",  recipe: "phone intelligence" },
+    "Spin":       { stars: 74,  lang: "Rust",        recipe: "OSINT browser (v12 Jessica Jones)" },
   },
 } as const;
 ```
+
+<details>
+<summary><code>// spin.versions — Dick Tracy to Jessica Jones</code></summary>
+<br />
+
+```
+SPIN BROWSER — VERSION HISTORY
+═══════════════════════════════════════
+v1.0   "Dick Tracy"       Classic Detective Yellow
+v2.0   "Tracey Edition"   Hollywood Noir
+v3.x   "Carmen Sandiego"  International Red
+v4.x   "Exorcist's Edge"  Electron + Svelte
+v5.0   "The Multiple Man" Tauri + React
+v12    "Jessica Jones"    Pure Rust (iced + wry)
+═══════════════════════════════════════
+CURRENT: v12.1.3 — 100% Rust, zero NPM
+```
+
+> *palm-tree: One Reddit post → 139 stars. "If you can't hide, overwhelm."*
+
+</details>
 
 <details>
 <summary><code>// the_archives — AOHell, Hackers, Swordfish</code></summary>
