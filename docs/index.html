@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THUMPERSECURE | Immersive Mode</title>
+  <style>
+    :root {
+      --bg: #05070f;
+      --panel: rgba(13, 17, 23, 0.8);
+      --line: rgba(88, 166, 255, 0.25);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --blue: #58a6ff;
+      --pink: #f778ba;
+      --violet: #7c3aed;
+      --green: #34d399;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(88, 166, 255, 0.18), transparent 35%),
+        radial-gradient(circle at 90% 10%, rgba(247, 120, 186, 0.16), transparent 35%),
+        radial-gradient(circle at 50% 100%, rgba(124, 58, 237, 0.18), transparent 40%);
+    }
+
+    .ambient::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(1080px, 100% - 2rem);
+      margin: 0 auto;
+      padding: 1rem 0 2.5rem;
+    }
+
+    .hero,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 48px rgba(2, 6, 23, 0.45);
+    }
+
+    .hero {
+      padding: 1.1rem 1rem 1.2rem;
+      margin: 0.65rem 0 1rem;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--blue);
+      letter-spacing: 0.11em;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0.35rem 0 0.45rem;
+      font-size: clamp(1.55rem, 6vw, 3rem);
+      line-height: 1.06;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .actions {
+      margin-top: 0.95rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.52rem 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: transform 0.16s ease, border-color 0.16s ease;
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(88, 166, 255, 0.55);
+    }
+
+    .panel {
+      padding: 1rem;
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .panel-top h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #dbeafe;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 0.72rem;
+    }
+
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 16px;
+      background: linear-gradient(160deg, rgba(17, 24, 39, 0.92), rgba(15, 23, 42, 0.85));
+      padding: 0.78rem 0.82rem;
+      min-height: 138px;
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(88, 166, 255, 0.48);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .desc {
+      margin: 0.55rem 0 0.66rem;
+      font-size: 0.84rem;
+      line-height: 1.35;
+      color: var(--muted);
+      min-height: 2.3em;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.36rem;
+      align-items: center;
+    }
+
+    .pill {
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 999px;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.74rem;
+      color: #cbd5e1;
+      background: rgba(15, 23, 42, 0.65);
+    }
+
+    .pill.star {
+      border-color: rgba(88, 166, 255, 0.48);
+      color: #bfdbfe;
+    }
+
+    .pill.lang {
+      border-color: rgba(52, 211, 153, 0.4);
+      color: #bbf7d0;
+    }
+
+    .pill.time {
+      border-color: rgba(247, 120, 186, 0.35);
+      color: #fbcfe8;
+    }
+
+    .foot {
+      margin-top: 1rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(1080px, 100% - 1rem);
+        padding-top: 0.6rem;
+      }
+
+      .hero,
+      .panel {
+        border-radius: 16px;
+      }
+
+      .hero {
+        padding: 0.95rem 0.85rem 1rem;
+      }
+
+      .panel {
+        padding: 0.82rem;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient"></div>
+  <main class="wrap">
+    <section class="hero" aria-label="Immersive hero">
+      <p class="eyebrow">THUMPERSECURE</p>
+      <h1>Immersive Build Surface</h1>
+      <p class="lead">Public repos built from scratch. No forks.</p>
+      <div class="actions">
+        <a class="btn" href="https://github.com/thumpersecure">GitHub Profile</a>
+        <a class="btn" href="https://github.com/thumpersecure?tab=repositories">All Repositories</a>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Project matrix">
+      <div class="panel-top">
+        <h2>Project Matrix</h2>
+        <span class="count" id="count">Loading...</span>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <p class="foot">Mobile-first. Generated live from GitHub API.</p>
+  </main>
+
+  <script>
+    const USER = "thumpersecure";
+    const EXCLUDED = new Set(["thumpersecure", "pineapple-picopager"]);
+
+    const FALLBACK = [
+      "palm-tree",
+      "Telespot",
+      "Spin",
+      "Telespotter",
+      "xTELENUMSINT",
+      "TeleSTOP",
+      "opt-out-manual-2026",
+      "spicy-cat",
+      "TelespotXX",
+      "bluettool",
+      "LOVE-BOMB",
+      "zweather"
+    ];
+
+    const truncate = (text, max = 88) => {
+      if (!text) return "No description.";
+      return text.length > max ? `${text.slice(0, max - 1)}...` : text;
+    };
+
+    const prettyDate = (isoDate) => {
+      const d = new Date(isoDate);
+      if (Number.isNaN(d.getTime())) return "updated recently";
+      return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    };
+
+    const createCard = (repo) => {
+      const a = document.createElement("a");
+      a.className = "card";
+      a.href = repo.html_url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.setAttribute("aria-label", `Open ${repo.name} repository`);
+
+      a.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p class="desc">${truncate(repo.description)}</p>
+        <div class="meta">
+          <span class="pill star">stars ${repo.stargazers_count}</span>
+          <span class="pill lang">${repo.language || "n/a"}</span>
+          <span class="pill time">${prettyDate(repo.updated_at)}</span>
+        </div>
+      `;
+      return a;
+    };
+
+    const render = (repos) => {
+      const grid = document.getElementById("grid");
+      const count = document.getElementById("count");
+      grid.innerHTML = "";
+      repos.forEach((repo) => grid.appendChild(createCard(repo)));
+      count.textContent = `${repos.length} projects`;
+    };
+
+    const fallbackRender = () => {
+      const repos = FALLBACK.map((name) => ({
+        name,
+        description: "Open on GitHub",
+        stargazers_count: "-",
+        language: "n/a",
+        updated_at: new Date().toISOString(),
+        html_url: `https://github.com/${USER}/${name}`
+      }));
+      render(repos);
+    };
+
+    const load = async () => {
+      try {
+        const endpoint = `https://api.github.com/users/${USER}/repos?per_page=100&type=owner&sort=updated`;
+        const response = await fetch(endpoint);
+        if (!response.ok) throw new Error(`GitHub API ${response.status}`);
+        const data = await response.json();
+
+        const repos = data
+          .filter((repo) => !repo.fork && !repo.private && !EXCLUDED.has(repo.name))
+          .sort((a, b) => b.stargazers_count - a.stargazers_count || new Date(b.updated_at) - new Date(a.updated_at));
+
+        if (!repos.length) throw new Error("No repos returned");
+        render(repos);
+      } catch (error) {
+        console.error(error);
+        fallbackRender();
+      }
+    };
+
+    load();
+  </script>
+</body>
+</html>
