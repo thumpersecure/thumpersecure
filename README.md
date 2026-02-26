@@ -50,9 +50,6 @@
   <a href="https://github.com/thumpersecure/LOVE-BOMB"><img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=LOVE-BOMB&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=f778ba&text_color=c9d1d9" alt="LOVE-BOMB" /></a>
 </p>
 <p align="center">
-  <a href="https://github.com/thumpersecure/pineapple-picopager"><img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=pineapple-picopager&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=f778ba&text_color=c9d1d9" alt="pineapple-picopager" /></a>
-</p>
-<p align="center">
   <a href="https://github.com/thumpersecure/zweather"><img src="https://github-readme-stats.vercel.app/api/pin/?username=thumpersecure&repo=zweather&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=f778ba&text_color=c9d1d9" alt="zweather" /></a>
 </p>
 
