@@ -120,6 +120,12 @@
   <rect x="382" y="258" width="8" height="15" fill="#00ffcc" class="cursor"/>
   <rect x="30" y="0" width="1140" height="1" fill="#00ffcc" opacity="0.06" class="scan"/>
 
+  <!-- TRON circuit traces -->
+  <line x1="30" y1="288" x2="200" y2="288" stroke="#18dcff" stroke-width="1" opacity="0.08"/>
+  <line x1="200" y1="288" x2="200" y2="270" stroke="#18dcff" stroke-width="1" opacity="0.06"/>
+  <line x1="1000" y1="288" x2="1170" y2="288" stroke="#18dcff" stroke-width="1" opacity="0.08"/>
+  <line x1="1000" y1="288" x2="1000" y2="270" stroke="#18dcff" stroke-width="1" opacity="0.06"/>
+
   <circle cx="950" cy="80" r="1.5" fill="#00ffcc" opacity="0.4" class="p1"/>
   <circle cx="1050" cy="150" r="1" fill="#00b8ff" opacity="0.3" class="p2"/>
   <circle cx="850" cy="200" r="1.2" fill="#8b5cf6" opacity="0.35" class="p3"/>

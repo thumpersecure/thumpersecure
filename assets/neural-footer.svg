@@ -42,7 +42,8 @@
   <text x="600" y="56" text-anchor="middle" font-size="20" fill="#00ffcc" filter="url(#textGlow)" class="glow-text">// enter code cookbook &#8594;</text>
   <rect x="746" y="42" width="10" height="17" fill="#00ffcc" opacity="0.9" class="cursor"/>
 
-  <text x="600" y="84" text-anchor="middle" font-size="12" fill="#44475a">thumpersecure.github.io &bull; OSINT &amp; SEO Specialist</text>
+  <text x="600" y="82" text-anchor="middle" font-size="12" fill="#44475a">thumpersecure.github.io &bull; OSINT &amp; SEO Specialist</text>
+  <text x="600" y="100" text-anchor="middle" font-size="9" fill="#2a2d3a" opacity="0.6">end of line</text>
 
   <circle cx="150" cy="50" r="1.2" fill="#00ffcc" opacity="0.3" class="f1"/>
   <circle cx="300" cy="90" r="0.9" fill="#00b8ff" opacity="0.25" class="f2"/>

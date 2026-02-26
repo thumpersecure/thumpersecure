@@ -21,7 +21,7 @@
 </div>
 
 <div align="center">
-  <sub><em>"Hack the planet!"</em> — Hackers (1995) &nbsp;|&nbsp; <em>"Password: swordfish"</em> — Swordfish (2001)</sub>
+  <sub><em>"I fight for the users"</em> — TRON &nbsp;|&nbsp; <em>"Hack the planet!"</em> — Hackers &nbsp;|&nbsp; <em>"Password: swordfish"</em> — Swordfish</sub>
 </div>
 
 <br />

@@ -20,7 +20,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9F%A9%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <title>THUMPERSECURE | Code Cookbook</title>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfilePage","url":"https://thumpersecure.github.io/thumpersecure/docs/","mainEntity":{"@type":"Person","name":"THUMPERSECURE","url":"https://github.com/thumpersecure","jobTitle":"OSINT & SEO Specialist","knowsAbout":["Open Source Intelligence","Search Engine Optimization","Privacy Tools","Security Research","Phone Intelligence","Data Aggregation"]}}
@@ -28,7 +28,7 @@
 <style>
 :root{
   --bg:#06060e;--panel:rgba(8,8,20,0.92);
-  --cyan:#00ffcc;--magenta:#ff00aa;--green:#00ff41;
+  --cyan:#00ffcc;--magenta:#ff00aa;--green:#00ff41;--tron:#18dcff;
   --amber:#ffaa00;--violet:#8b5cf6;--red:#ff3e3e;
   --text:#b8c0d0;--muted:#44475a;--dim:#2a2d3a;
   --border:rgba(0,255,204,0.12);
@@ -53,6 +53,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
   background:radial-gradient(ellipse 600px 400px at 10% 15%,rgba(0,255,204,0.05),transparent),
   radial-gradient(ellipse 500px 500px at 85% 10%,rgba(255,0,170,0.04),transparent),
   radial-gradient(ellipse 700px 400px at 50% 95%,rgba(139,92,246,0.05),transparent)}
+.tron-grid{position:fixed;bottom:0;left:0;width:100%;height:35vh;pointer-events:none;z-index:0;
+  background:linear-gradient(0deg,rgba(24,220,255,0.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(24,220,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:linear-gradient(to top,rgba(0,0,0,0.4),transparent);
+  -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,0.4),transparent)}
 
 .boot{position:fixed;inset:0;z-index:10000;background:#000;padding:clamp(1rem,4vw,2.5rem);
   font-family:var(--mono);font-size:clamp(0.65rem,1.1vw,0.82rem);color:var(--green);overflow-y:auto;
@@ -66,8 +72,13 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 
 .glass{background:var(--panel);border:1px solid var(--border);border-radius:16px;
   backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  box-shadow:0 0 60px rgba(0,255,204,0.03);transition:border-color .4s,box-shadow .4s}
-.glass:hover{border-color:rgba(0,255,204,0.22);box-shadow:0 0 80px rgba(0,255,204,0.06)}
+  box-shadow:0 0 60px rgba(0,255,204,0.03);transition:border-color .4s,box-shadow .4s;
+  position:relative;overflow:hidden}
+.glass::before{content:'';position:absolute;top:-1px;left:-60px;width:60px;height:2px;
+  background:var(--tron);box-shadow:0 0 8px var(--tron),0 0 20px rgba(24,220,255,0.4);
+  border-radius:2px;animation:tronTrace 4s linear infinite;opacity:0.6;z-index:1}
+@keyframes tronTrace{0%{left:-60px}100%{left:calc(100% + 60px)}}
+.glass:hover{border-color:rgba(24,220,255,0.25);box-shadow:0 0 80px rgba(24,220,255,0.06)}
 
 .glitch{font-family:var(--mono);font-size:clamp(2.4rem,7vw,5rem);font-weight:900;
   color:var(--cyan);text-shadow:0 0 7px var(--cyan),0 0 20px var(--cyan),0 0 42px rgba(0,179,170,0.4);
@@ -143,7 +154,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 @media(max-width:640px){.project-grid{grid-template-columns:1fr}}
 .project-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s;will-change:transform;opacity:0;transform:translateY(30px)}
 .project-card.visible{opacity:1;transform:translateY(0);transition:opacity .5s,transform .5s,box-shadow .35s,border-color .35s}
-.project-card:hover{transform:translateY(-4px) scale(1.01);border-color:var(--cyan);box-shadow:0 0 25px rgba(0,255,204,0.1)}
+.project-card:hover{transform:translateY(-4px) scale(1.01);border-color:var(--tron);box-shadow:0 0 25px rgba(24,220,255,0.12),inset 0 1px 0 rgba(24,220,255,0.1)}
 .card-bar{display:flex;align-items:center;gap:6px;padding:0.55rem 0.9rem;background:rgba(0,0,0,0.4);border-bottom:1px solid var(--border)}
 .dot{width:9px;height:9px;border-radius:50%}.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
 .card-filename{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-left:0.4rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -207,6 +218,7 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 <div class="crt" aria-hidden="true"></div>
 <div class="sweep" aria-hidden="true"></div>
 <div class="ambient" aria-hidden="true"></div>
+<div class="tron-grid" aria-hidden="true"></div>
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
 <canvas id="rainCanvas" aria-hidden="true"></canvas>
 
@@ -282,7 +294,7 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
         <h2 class="section-head"><span>//</span> the_archives</h2>
         <p class="archives-text">Before OSINT had a name, there were <em>progz</em> and <em>warez</em>. In 1995, a Visual Basic app called <em>AOHell</em> taught an entire generation that software could pry open any system &mdash; and that the line between tool and weapon was drawn by the person holding it. The underground BBS scene, NFO files, and ASCII art weren't just aesthetics &mdash; they were a culture.</p>
 
-        <p class="archives-text">Hollywood caught on. That same year, <em>Hackers</em> turned "The Gibson" into a neon fever dream &mdash; wireframe cities, flying through cyberspace, <em>Zero Cool</em> and <em>Acid Burn</em> proving that information wants to be free. In 2001, <em>Swordfish</em> gave us the multi-monitor fantasy: 60 seconds to crack the DOD, screens stacked like weapons, the password always just out of reach. The tech was fiction. The spirit was real.</p>
+        <p class="archives-text">The blueprint came earlier than most realize. In 1982, <em>TRON</em> imagined a world inside the machine &mdash; programs as people, a luminous grid stretching to infinity, identity discs carrying everything you are. <em>"I fight for the users"</em> wasn't just a line; it was a thesis. Then <em>Hackers</em> turned "The Gibson" into a neon fever dream &mdash; wireframe cities, flying through cyberspace, <em>Zero Cool</em> and <em>Acid Burn</em> proving that information wants to be free. In 2001, <em>Swordfish</em> gave us the multi-monitor fantasy: 60 seconds to crack the DOD, screens stacked like weapons, the password always just out of reach. The tech was fiction. The spirit was real.</p>
 
         <p class="archives-text">Today's OSINT and SEO tools carry that same DNA: <em>information is leverage, and code is the skeleton key.</em></p>
 
@@ -474,6 +486,7 @@ function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
     {t:'[OK]   CRT overlay',c:'#00ffcc'},
     {t:'[OK]   Wireframe renderer (Gibson)',c:'#00ffcc'},
     {t:'[OK]   Password: swordfish',c:'#00ffcc'},
+    {t:'[OK]   Grid: online',c:'#18dcff'},
     {t:'[INIT] Connecting to recipe index...',c:null},
     {t:'[OK]   12 recipes loaded',c:'#00ffcc'},
     {t:'[OK]   529+ stars verified',c:'#00ffcc'},
@@ -497,7 +510,7 @@ function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
 
 /* ====== PARTICLE CANVAS ====== */
 var pC=document.getElementById('particleCanvas'),pX=pC.getContext('2d'),pts=[],mouse={x:-9999,y:-9999};
-var COLS=['#00ffcc','#00ff41','#8b5cf6','#ff00aa'],LD=130,MR=110;
+var COLS=['#00ffcc','#00ff41','#8b5cf6','#ff00aa','#18dcff'],LD=130,MR=110;
 function isMob(){return window.innerWidth<640}
 function rPC(){pC.width=window.innerWidth;pC.height=window.innerHeight}
 function mkP(){var n=isMob()?50:130;pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*pC.width,y:Math.random()*pC.height,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35,r:Math.random()*2+0.8,col:COLS[Math.floor(Math.random()*COLS.length)],a:Math.random()*0.4+0.2})}
@@ -576,9 +589,11 @@ var tLines=[
   {type:'cmd',text:'$ ls -la /tools/thumpersecure/'},
   {type:'out',text:'drwxr-xr-x  palm-tree/    139\u2605  Python'},
   {type:'out',text:'drwxr-xr-x  Telespot/      99\u2605  JavaScript'},
-  {type:'out',text:'drwxr-xr-x  Spin/          74\u2605  Python'},
+  {type:'out',text:'drwxr-xr-x  Spin/          74\u2605  Rust'},
   {type:'cmd',text:'$ echo $MISSION'},
   {type:'out',text:'OSINT & SEO \u2014 the code cookbook'},
+  {type:'cmd',text:'$ echo "I fight for the users."'},
+  {type:'out',text:'\u2014 Tron'},
   {type:'cmd',text:'$ ./cook --recipe=all --serve'},
   {type:'out',text:'[+] Code Cookbook served. Bon app\u00e9tit.'}
 ];
@@ -610,16 +625,18 @@ if(wC){
   function dW(){
     wX.clearRect(0,0,wC.width,wC.height);
     var p2=cube.map(function(p){return pr(p,wAng)});
-    wX.shadowColor='#00ffcc';wX.shadowBlur=8;wX.lineWidth=1.5;
+    var tronPulse=0.5+0.5*Math.sin(wAng*2);
+    var cubeColor=tronPulse>0.5?'#18dcff':'#00ffcc';
+    wX.shadowColor=cubeColor;wX.shadowBlur=8+tronPulse*6;wX.lineWidth=1.5;
     edg.forEach(function(e){
       var a=p2[e[0]],b=p2[e[1]];
       wX.globalAlpha=0.25+Math.max(0,(a[2]+b[2])/4)*0.25;
-      wX.strokeStyle='#00ffcc';
+      wX.strokeStyle=cubeColor;
       wX.beginPath();wX.moveTo(a[0],a[1]);wX.lineTo(b[0],b[1]);wX.stroke();
     });
     p2.forEach(function(p){
       wX.globalAlpha=0.4+Math.max(0,p[2]/2)*0.4;
-      wX.fillStyle='#00ffcc';wX.beginPath();wX.arc(p[0],p[1],2.5,0,Math.PI*2);wX.fill();
+      wX.fillStyle=cubeColor;wX.beginPath();wX.arc(p[0],p[1],2.5,0,Math.PI*2);wX.fill();
     });
     wX.globalAlpha=1;wX.shadowBlur=0;
     wAng+=0.008;requestAnimationFrame(dW);
