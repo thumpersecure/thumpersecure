@@ -33,9 +33,10 @@ const thumpersecure = {
   tools:    12,
   stars:    529,
   featured: {
-    "palm-tree":  { stars: 139, lang: "Python/Bash", recipe: "traffic noise + privacy" },
-    "Telespot":   { stars: 99,  lang: "JavaScript",  recipe: "phone intelligence" },
-    "Spin":       { stars: 74,  lang: "Rust",        recipe: "OSINT browser (v12 Jessica Jones)" },
+    "palm-tree":       { stars: 139, lang: "Python/Bash", recipe: "traffic noise + privacy" },
+    "Telespot":        { stars: 260, lang: "Multi-lang",  recipe: "5-tool phone OSINT ecosystem" },
+    "Spin":            { stars: 74,  lang: "Rust",        recipe: "OSINT browser (v12 Jessica Jones)" },
+    "opt-out-manual":  { sites: 400, lang: "Markdown",    recipe: "largest DIY opt-out guide" },
   },
 } as const;
 ```
@@ -94,6 +95,26 @@ End Sub
 ║    TOOLS : 12 public repositories   ║
 ║    STARS : 529+                     ║
 ╚══════════════════════════════════════╝
+```
+
+```
+TELESPOT ECOSYSTEM — 260★ across 5 tools
+═════════════════════════════════════════
+Telespot      Python CLI         99★
+TeleSpotter   Rust rewrite       53★
+TeleSpotXX    Web app            21★
+xTELENUMSINT  Chrome extension   54★
+TeleSTOP      Desktop opt-out    33★
+═════════════════════════════════════════
+Phone → OSINT → Opt-out pipeline
+```
+
+```
+opt-out-manual-2026
+═════════════════════════════════════════
+400+ data broker & people-search sites
+Largest DIY opt-out guide to date
+═════════════════════════════════════════
 ```
 
 </details>
