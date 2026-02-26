@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./assets/neural-header.svg" width="100%" alt="THUMPERSECURE immersive interface header" />
   <br />
-  <a href="https://thumpersecure.github.io/thumpersecure/"><img src="https://img.shields.io/badge/Launch_Immersive_Mode-7c3aed?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=0d1117" alt="Launch immersive mode on GitHub Pages" /></a>
+  <a href="https://thumpersecure.github.io/thumpersecure/docs/"><img src="https://img.shields.io/badge/Launch_Immersive_Mode-7c3aed?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=0d1117" alt="Launch immersive mode on GitHub Pages" /></a>
   <a href="https://github.com/thumpersecure?tab=repositories"><img src="https://img.shields.io/badge/Public_Projects-1f6feb?style=for-the-badge&logo=github&logoColor=white&labelColor=0d1117" alt="View public projects" /></a>
   <a href="https://github.com/thumpersecure?tab=followers"><img src="https://img.shields.io/github/followers/thumpersecure?style=for-the-badge&logo=github&label=Followers&labelColor=0d1117" alt="GitHub followers for thumpersecure" /></a>
 </div>
@@ -99,7 +99,7 @@
 </div>
 
 <div align="center">
-  <a href="https://thumpersecure.github.io/thumpersecure/">
+  <a href="https://thumpersecure.github.io/thumpersecure/docs/">
     <img src="./assets/neural-footer.svg" width="100%" alt="" />
   </a>
 </div>
