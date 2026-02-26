@@ -4,13 +4,13 @@
 
 <div align="center">
 
-[![ENTER CODE COOKBOOK](https://img.shields.io/badge/▶_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e)](https://thumpersecure.github.io/thumpersecure/docs/)
+[![ENTER CODE COOKBOOK](https://img.shields.io/badge/%E2%96%B6_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e)](https://thumpersecure.github.io/thumpersecure/docs/)
 [![Repositories](https://img.shields.io/badge/Repositories-12-00b8ff?style=for-the-badge&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=repositories)
 [![Followers](https://img.shields.io/badge/Followers-41-8b5cf6?style=for-the-badge&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=followers)
 
 </div>
 
-<div align="center"><sub>osint & seo specialist.</sub></div>
+<div align="center"><sub>OSINT &amp; SEO Specialist</sub></div>
 
 <br />
 
@@ -96,10 +96,10 @@ End Sub
 <div align="center">
   <br />
   <a href="https://thumpersecure.github.io/thumpersecure/docs/">
-    <img src="https://img.shields.io/badge/▶_OPEN_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e" alt="Open Code Cookbook" />
+    <img src="https://img.shields.io/badge/%E2%96%B6_OPEN_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e" alt="Open Code Cookbook" />
   </a>
   <br />
-  <sub>cyberpunk code cookbook experience • live from github api • osint & seo tools</sub>
+  <sub>cyberpunk code cookbook experience • live from GitHub API • OSINT &amp; SEO tools</sub>
   <br /><br />
 </div>
 
