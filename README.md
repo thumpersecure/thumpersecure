@@ -2,8 +2,6 @@
   <img src="assets/neural-header.svg" width="100%" alt="THUMPERSECURE Code Cookbook" />
 </div>
 
-> **GitHub Pages:** Set **Source** → Deploy from branch → **Branch:** `main` → **Folder:** `/docs`. See [docs/PAGES.md](docs/PAGES.md).
-
 <div align="center">
 
 [![ENTER CODE COOKBOOK](https://img.shields.io/badge/%E2%96%B6_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06060e&labelColor=06060e)](https://thumpersecure.github.io/thumpersecure/)
