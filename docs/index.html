@@ -1,361 +1,778 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>THUMPERSECURE | Immersive Mode</title>
-  <style>
-    :root {
-      --bg: #05070f;
-      --panel: rgba(13, 17, 23, 0.8);
-      --line: rgba(88, 166, 255, 0.25);
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --blue: #58a6ff;
-      --pink: #f778ba;
-      --violet: #7c3aed;
-      --green: #34d399;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Codebook — Public repos built from scratch by THUMPERSECURE. Privacy, OSINT, and public tooling."/>
+<meta name="theme-color" content="#0a0e17"/>
+<meta property="og:title" content="THUMPERSECURE | Codebook"/>
+<meta property="og:description" content="Public repos built from scratch. Privacy, OSINT, and public tooling."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://thumpersecure.github.io/thumpersecure/docs/"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>"/>
+<title>THUMPERSECURE | Codebook</title>
+<style>
+:root{
+  --bg:#0a0e17;
+  --panel:rgba(13,17,23,0.85);
+  --green:#00ff9f;
+  --blue:#00b8ff;
+  --violet:#7c3aed;
+  --pink:#ff3e8a;
+  --yellow:#ffd700;
+  --text:#e0e6ed;
+  --muted:#4a5568;
+  --border:rgba(0,255,159,0.12);
+  --mono:'JetBrains Mono','Fira Code','Courier New',monospace;
+  --sans:Inter,system-ui,-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  min-height:100vh;
+  line-height:1.6;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+/* --- Canvas layers --- */
+#particleCanvas,#rainCanvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+#rainCanvas{z-index:1;opacity:0.04}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
+/* --- Ambient glow --- */
+.ambient-glow{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 600px 400px at 15% 20%,rgba(0,255,159,0.06),transparent),
+    radial-gradient(ellipse 500px 500px at 85% 15%,rgba(0,184,255,0.05),transparent),
+    radial-gradient(ellipse 700px 400px at 50% 90%,rgba(124,58,237,0.06),transparent);
+}
 
-    .ambient {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(88, 166, 255, 0.18), transparent 35%),
-        radial-gradient(circle at 90% 10%, rgba(247, 120, 186, 0.16), transparent 35%),
-        radial-gradient(circle at 50% 100%, rgba(124, 58, 237, 0.18), transparent 40%);
-    }
+/* --- Page load animation --- */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.page-wrap{position:relative;z-index:2;animation:fadeInUp 0.8s ease-out}
 
-    .ambient::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(circle at center, black, transparent 78%);
-    }
+/* --- Utility --- */
+.container{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
 
-    .wrap {
-      position: relative;
-      z-index: 1;
-      width: min(1080px, 100% - 2rem);
-      margin: 0 auto;
-      padding: 1rem 0 2.5rem;
-    }
+/* --- Glassmorphism panel --- */
+.glass{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 0 60px rgba(0,255,159,0.04),0 0 120px rgba(0,184,255,0.03);
+  transition:border-color 0.4s ease,box-shadow 0.4s ease;
+}
+.glass:hover{
+  border-color:rgba(0,255,159,0.25);
+  box-shadow:0 0 80px rgba(0,255,159,0.08),0 0 160px rgba(0,184,255,0.05);
+}
 
-    .hero,
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: var(--panel);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 12px 48px rgba(2, 6, 23, 0.45);
-    }
+/* --- Hero Section --- */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:6rem 0 4rem;
+}
+.hero-inner{
+  text-align:center;
+  padding:clamp(2rem,5vw,3.5rem);
+  max-width:720px;
+  width:100%;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:clamp(0.65rem,1.2vw,0.8rem);
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--green);
+  margin-bottom:1rem;
+}
+.hero-title{
+  font-size:clamp(2.8rem,8vw,5.5rem);
+  font-weight:800;
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  background:linear-gradient(135deg,var(--green) 0%,var(--blue) 50%,var(--violet) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:1rem;
+  filter:drop-shadow(0 0 40px rgba(0,255,159,0.15));
+}
+.hero-sub{
+  color:var(--muted);
+  font-size:clamp(0.9rem,1.8vw,1.1rem);
+  max-width:480px;
+  margin:0 auto 1.8rem;
+}
+.typer-wrap{
+  font-family:var(--mono);
+  font-size:clamp(0.8rem,1.5vw,1rem);
+  color:var(--green);
+  height:1.8em;
+  margin-bottom:2.4rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.typer-cursor{
+  display:inline-block;width:2px;height:1.2em;
+  background:var(--green);
+  margin-left:2px;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-    .hero {
-      padding: 1.1rem 1rem 1.2rem;
-      margin: 0.65rem 0 1rem;
-    }
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);
+  font-size:0.85rem;
+  padding:0.7rem 1.8rem;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:600;
+  transition:all 0.3s ease;
+  cursor:pointer;
+  border:none;
+}
+.btn-primary{
+  background:var(--green);color:var(--bg);
+  box-shadow:0 0 20px rgba(0,255,159,0.25);
+}
+.btn-primary:hover{
+  box-shadow:0 0 35px rgba(0,255,159,0.45);
+  transform:translateY(-2px);
+}
+.btn-secondary{
+  background:transparent;color:var(--green);
+  border:1px solid var(--green);
+}
+.btn-secondary:hover{
+  background:rgba(0,255,159,0.08);
+  transform:translateY(-2px);
+}
 
-    .eyebrow {
-      margin: 0;
-      color: var(--blue);
-      letter-spacing: 0.11em;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-    }
+/* --- Stats Bar --- */
+.stats-bar{
+  padding:2.5rem 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  margin-bottom:4rem;
+}
+.stats-inner{
+  display:flex;justify-content:center;align-items:center;
+  gap:clamp(1rem,3vw,2.5rem);
+  flex-wrap:wrap;
+  font-family:var(--mono);
+  font-size:clamp(0.75rem,1.4vw,0.95rem);
+  color:var(--green);
+}
+.stat-item{display:flex;align-items:center;gap:0.4rem}
+.stat-label{color:var(--muted)}
+.stat-val{font-weight:700;min-width:2ch}
+.stat-sep{color:var(--muted);user-select:none}
 
-    h1 {
-      margin: 0.35rem 0 0.45rem;
-      font-size: clamp(1.55rem, 6vw, 3rem);
-      line-height: 1.06;
-    }
+/* --- Section headers --- */
+.section-head{
+  font-family:var(--mono);
+  font-size:clamp(1rem,2vw,1.3rem);
+  color:var(--muted);
+  margin-bottom:2.5rem;
+  padding-left:0.5rem;
+  border-left:3px solid var(--green);
+}
+.section-head span{color:var(--green)}
 
-    .lead {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
+/* --- Project Matrix --- */
+.projects-section{padding:3rem 0 5rem}
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+@media(max-width:1024px){.project-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.project-grid{grid-template-columns:1fr}}
 
-    .actions {
-      margin-top: 0.95rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
+.project-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;
+  will-change:transform;
+  opacity:0;
+  transform:translateY(30px);
+}
+.project-card.visible{
+  opacity:1;transform:translateY(0);
+  transition:opacity 0.5s ease,transform 0.5s ease,box-shadow 0.35s ease,border-color 0.35s ease;
+}
+.project-card:hover{
+  transform:translateY(-6px) scale(1.015);
+  border-color:var(--green);
+  box-shadow:0 0 30px rgba(0,255,159,0.12);
+}
+.card-bar{
+  display:flex;align-items:center;gap:6px;
+  padding:0.65rem 1rem;
+  background:rgba(0,0,0,0.35);
+  border-bottom:1px solid var(--border);
+}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.card-filename{
+  font-family:var(--mono);font-size:0.78rem;color:var(--muted);
+  margin-left:0.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.card-body{padding:1.2rem 1rem 0.8rem}
+.card-name{
+  font-family:var(--mono);font-weight:700;font-size:1rem;
+  color:var(--text);margin-bottom:0.5rem;
+}
+.card-name a{
+  color:inherit;text-decoration:none;
+  transition:color 0.2s;
+}
+.card-name a:hover{color:var(--green)}
+.card-desc{
+  font-size:0.85rem;color:var(--muted);
+  line-height:1.5;
+  min-height:2.5em;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-meta{
+  display:flex;flex-wrap:wrap;gap:0.5rem;
+  padding:0.8rem 1rem 1rem;
+}
+.pill{
+  font-family:var(--mono);font-size:0.7rem;
+  padding:0.2rem 0.6rem;border-radius:999px;
+  border:1px solid;
+  display:inline-flex;align-items:center;gap:0.3rem;
+}
+.pill-stars{border-color:var(--yellow);color:var(--yellow)}
+.pill-lang{border-color:var(--green);color:var(--green)}
+.pill-date{border-color:var(--blue);color:var(--blue)}
 
-    .btn {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.52rem 0.9rem;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: transform 0.16s ease, border-color 0.16s ease;
-      background: rgba(15, 23, 42, 0.6);
-    }
+/* --- Terminal --- */
+.terminal-section{padding:0 0 5rem}
+.terminal{
+  max-width:680px;margin:0 auto;
+  border-radius:12px;overflow:hidden;
+  border:1px solid var(--border);
+  background:rgba(5,8,14,0.95);
+}
+.term-bar{
+  display:flex;align-items:center;gap:6px;
+  padding:0.65rem 1rem;
+  background:rgba(0,0,0,0.5);
+  border-bottom:1px solid var(--border);
+}
+.term-title{
+  font-family:var(--mono);font-size:0.75rem;color:var(--muted);
+  margin-left:0.6rem;
+}
+.term-body{
+  padding:1.2rem 1.2rem 1.6rem;
+  font-family:var(--mono);font-size:clamp(0.75rem,1.3vw,0.88rem);
+  color:var(--green);
+  line-height:1.8;
+  min-height:180px;
+}
+.term-line{opacity:0;white-space:pre-wrap}
+.term-line.typed{opacity:1}
+.term-line .prompt{color:var(--green)}
+.term-line .output{color:var(--muted)}
+.term-cursor-end{
+  display:inline-block;width:8px;height:1.1em;
+  background:var(--green);
+  animation:blink 1s step-end infinite;
+  vertical-align:text-bottom;
+}
 
-    .btn:hover {
-      transform: translateY(-1px);
-      border-color: rgba(88, 166, 255, 0.55);
-    }
+/* --- Footer --- */
+footer{
+  text-align:center;
+  padding:2.5rem 1rem;
+  font-size:0.78rem;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  font-family:var(--mono);
+}
+footer a{color:var(--green);text-decoration:none}
+footer a:hover{text-decoration:underline}
 
-    .panel {
-      padding: 1rem;
-    }
+/* --- Scroll reveal generic --- */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-    .panel-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.7rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .panel-top h2 {
-      margin: 0;
-      font-size: 1rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #dbeafe;
-    }
-
-    .count {
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 0.72rem;
-    }
-
-    .card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 16px;
-      background: linear-gradient(160deg, rgba(17, 24, 39, 0.92), rgba(15, 23, 42, 0.85));
-      padding: 0.78rem 0.82rem;
-      min-height: 138px;
-      transition: transform 0.16s ease, border-color 0.16s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(88, 166, 255, 0.48);
-    }
-
-    .card h3 {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.2;
-    }
-
-    .desc {
-      margin: 0.55rem 0 0.66rem;
-      font-size: 0.84rem;
-      line-height: 1.35;
-      color: var(--muted);
-      min-height: 2.3em;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.36rem;
-      align-items: center;
-    }
-
-    .pill {
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      border-radius: 999px;
-      padding: 0.2rem 0.5rem;
-      font-size: 0.74rem;
-      color: #cbd5e1;
-      background: rgba(15, 23, 42, 0.65);
-    }
-
-    .pill.star {
-      border-color: rgba(88, 166, 255, 0.48);
-      color: #bfdbfe;
-    }
-
-    .pill.lang {
-      border-color: rgba(52, 211, 153, 0.4);
-      color: #bbf7d0;
-    }
-
-    .pill.time {
-      border-color: rgba(247, 120, 186, 0.35);
-      color: #fbcfe8;
-    }
-
-    .foot {
-      margin-top: 1rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(1080px, 100% - 1rem);
-        padding-top: 0.6rem;
-      }
-
-      .hero,
-      .panel {
-        border-radius: 16px;
-      }
-
-      .hero {
-        padding: 0.95rem 0.85rem 1rem;
-      }
-
-      .panel {
-        padding: 0.82rem;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+/* --- Loading spinner for cards --- */
+.loading-msg{
+  text-align:center;font-family:var(--mono);color:var(--muted);
+  font-size:0.9rem;padding:3rem 0;
+  grid-column:1/-1;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{
+  display:inline-block;width:20px;height:20px;
+  border:2px solid var(--border);border-top-color:var(--green);
+  border-radius:50%;animation:spin 0.8s linear infinite;
+  margin-right:0.6rem;vertical-align:middle;
+}
+</style>
 </head>
 <body>
-  <div class="ambient"></div>
-  <main class="wrap">
-    <section class="hero" aria-label="Immersive hero">
+
+<div class="ambient-glow" aria-hidden="true"></div>
+<canvas id="particleCanvas" aria-hidden="true"></canvas>
+<canvas id="rainCanvas" aria-hidden="true"></canvas>
+
+<div class="page-wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" role="banner">
+    <div class="hero-inner glass">
       <p class="eyebrow">THUMPERSECURE</p>
-      <h1>Immersive Build Surface</h1>
-      <p class="lead">Public repos built from scratch. No forks.</p>
-      <div class="actions">
-        <a class="btn" href="https://github.com/thumpersecure">GitHub Profile</a>
-        <a class="btn" href="https://github.com/thumpersecure?tab=repositories">All Repositories</a>
+      <h1 class="hero-title">Codebook</h1>
+      <p class="hero-sub">Public repos built from scratch. No forks. No templates.</p>
+      <div class="typer-wrap" aria-live="polite">
+        <span id="typerText"></span><span class="typer-cursor"></span>
+      </div>
+      <nav class="hero-btns" aria-label="Primary navigation">
+        <a href="https://github.com/thumpersecure" class="btn btn-primary" target="_blank" rel="noopener" aria-label="View GitHub Profile">GitHub Profile</a>
+        <a href="https://github.com/thumpersecure?tab=repositories" class="btn btn-secondary" target="_blank" rel="noopener" aria-label="View All Repositories">All Repositories</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ STATS ============ -->
+    <section class="stats-bar reveal" aria-label="Repository statistics">
+      <div class="container">
+        <div class="stats-inner">
+          <div class="stat-item"><span class="stat-label">projects:</span><span class="stat-val" data-target="12" id="statProjects">0</span></div>
+          <span class="stat-sep">|</span>
+          <div class="stat-item"><span class="stat-label">stars:</span><span class="stat-val" data-target="529" id="statStars">0</span></div>
+          <span class="stat-sep">|</span>
+          <div class="stat-item"><span class="stat-label">featured:</span><span class="stat-val" data-target="312" id="statFeatured">0</span></div>
+          <span class="stat-sep">|</span>
+          <div class="stat-item"><span class="stat-label">followers:</span><span class="stat-val" data-target="41" id="statFollowers">0</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="panel" aria-label="Project matrix">
-      <div class="panel-top">
-        <h2>Project Matrix</h2>
-        <span class="count" id="count">Loading...</span>
+    <!-- ============ PROJECTS ============ -->
+    <section class="projects-section" aria-label="Project matrix">
+      <div class="container">
+        <h2 class="section-head reveal"><span>//</span> project_matrix</h2>
+        <div class="project-grid" id="projectGrid">
+          <div class="loading-msg"><span class="spinner"></span>Fetching repositories...</div>
+        </div>
       </div>
-      <div class="grid" id="grid"></div>
     </section>
 
-    <p class="foot">Mobile-first. Generated live from GitHub API.</p>
+    <!-- ============ TERMINAL ============ -->
+    <section class="terminal-section reveal" aria-label="Terminal demo">
+      <div class="container">
+        <h2 class="section-head reveal"><span>//</span> terminal</h2>
+        <div class="terminal">
+          <div class="term-bar">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+            <span class="term-title">codebook &mdash; bash</span>
+          </div>
+          <div class="term-body" id="termBody"></div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script>
-    const USER = "thumpersecure";
-    const EXCLUDED = new Set(["thumpersecure", "pineapple-picopager"]);
+  <!-- ============ FOOTER ============ -->
+  <footer role="contentinfo">
+    <p>Codebook &bull; <a href="https://github.com/thumpersecure" target="_blank" rel="noopener">THUMPERSECURE</a> &bull; Generated live from GitHub API</p>
+  </footer>
 
-    const FALLBACK = [
-      "palm-tree",
-      "Telespot",
-      "Spin",
-      "Telespotter",
-      "xTELENUMSINT",
-      "TeleSTOP",
-      "opt-out-manual-2026",
-      "spicy-cat",
-      "TelespotXX",
-      "bluettool",
-      "LOVE-BOMB",
-      "zweather"
-    ];
+</div>
 
-    const truncate = (text, max = 88) => {
-      if (!text) return "No description.";
-      return text.length > max ? `${text.slice(0, max - 1)}...` : text;
-    };
+<script>
+(function(){
+"use strict";
 
-    const prettyDate = (isoDate) => {
-      const d = new Date(isoDate);
-      if (Number.isNaN(d.getTime())) return "updated recently";
-      return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-    };
+/* ============================================================
+   1. PARTICLE CANVAS
+   ============================================================ */
+const pCanvas = document.getElementById('particleCanvas');
+const pCtx = pCanvas.getContext('2d');
+let particles = [];
+let mouse = {x:-9999,y:-9999};
+const COLORS = ['#00ff9f','#00b8ff','#7c3aed'];
+const LINK_DIST = 140;
+const MOUSE_RADIUS = 120;
 
-    const createCard = (repo) => {
-      const a = document.createElement("a");
-      a.className = "card";
-      a.href = repo.html_url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.setAttribute("aria-label", `Open ${repo.name} repository`);
+function isMobile(){return window.innerWidth < 640}
 
-      a.innerHTML = `
-        <h3>${repo.name}</h3>
-        <p class="desc">${truncate(repo.description)}</p>
-        <div class="meta">
-          <span class="pill star">stars ${repo.stargazers_count}</span>
-          <span class="pill lang">${repo.language || "n/a"}</span>
-          <span class="pill time">${prettyDate(repo.updated_at)}</span>
-        </div>
-      `;
-      return a;
-    };
+function resizeParticleCanvas(){
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+}
 
-    const render = (repos) => {
-      const grid = document.getElementById("grid");
-      const count = document.getElementById("count");
-      grid.innerHTML = "";
-      repos.forEach((repo) => grid.appendChild(createCard(repo)));
-      count.textContent = `${repos.length} projects`;
-    };
+function createParticles(){
+  const count = isMobile() ? 60 : 150;
+  particles = [];
+  for(let i=0;i<count;i++){
+    particles.push({
+      x: Math.random()*pCanvas.width,
+      y: Math.random()*pCanvas.height,
+      vx:(Math.random()-0.5)*0.4,
+      vy:(Math.random()-0.5)*0.4,
+      r: Math.random()*2+1,
+      color: COLORS[Math.floor(Math.random()*COLORS.length)],
+      alpha: Math.random()*0.5+0.3
+    });
+  }
+}
 
-    const fallbackRender = () => {
-      const repos = FALLBACK.map((name) => ({
-        name,
-        description: "Open on GitHub",
-        stargazers_count: "-",
-        language: "n/a",
-        updated_at: new Date().toISOString(),
-        html_url: `https://github.com/${USER}/${name}`
-      }));
-      render(repos);
-    };
+function drawParticles(){
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  const len = particles.length;
 
-    const load = async () => {
-      try {
-        const endpoint = `https://api.github.com/users/${USER}/repos?per_page=100&type=owner&sort=updated`;
-        const response = await fetch(endpoint);
-        if (!response.ok) throw new Error(`GitHub API ${response.status}`);
-        const data = await response.json();
+  for(let i=0;i<len;i++){
+    const a = particles[i];
+    /* mouse repel */
+    const dx = a.x - mouse.x;
+    const dy = a.y - mouse.y;
+    const dist = Math.sqrt(dx*dx+dy*dy);
+    if(dist < MOUSE_RADIUS && dist > 0){
+      const force = (MOUSE_RADIUS - dist)/MOUSE_RADIUS * 0.8;
+      a.vx += (dx/dist)*force*0.3;
+      a.vy += (dy/dist)*force*0.3;
+    }
 
-        const repos = data
-          .filter((repo) => !repo.fork && !repo.private && !EXCLUDED.has(repo.name))
-          .sort((a, b) => b.stargazers_count - a.stargazers_count || new Date(b.updated_at) - new Date(a.updated_at));
+    a.vx *= 0.99; a.vy *= 0.99;
+    a.x += a.vx; a.y += a.vy;
 
-        if (!repos.length) throw new Error("No repos returned");
-        render(repos);
-      } catch (error) {
-        console.error(error);
-        fallbackRender();
+    if(a.x < 0) a.x = pCanvas.width;
+    if(a.x > pCanvas.width) a.x = 0;
+    if(a.y < 0) a.y = pCanvas.height;
+    if(a.y > pCanvas.height) a.y = 0;
+
+    pCtx.beginPath();
+    pCtx.arc(a.x,a.y,a.r,0,Math.PI*2);
+    pCtx.fillStyle = a.color;
+    pCtx.globalAlpha = a.alpha;
+    pCtx.fill();
+
+    for(let j=i+1;j<len;j++){
+      const b = particles[j];
+      const lx = a.x-b.x, ly = a.y-b.y;
+      const ld = Math.sqrt(lx*lx+ly*ly);
+      if(ld < LINK_DIST){
+        pCtx.beginPath();
+        pCtx.moveTo(a.x,a.y);
+        pCtx.lineTo(b.x,b.y);
+        pCtx.strokeStyle = a.color;
+        pCtx.globalAlpha = (1 - ld/LINK_DIST)*0.15;
+        pCtx.lineWidth = 0.5;
+        pCtx.stroke();
       }
-    };
+    }
+  }
+  pCtx.globalAlpha = 1;
+  requestAnimationFrame(drawParticles);
+}
 
-    load();
-  </script>
+resizeParticleCanvas();
+createParticles();
+drawParticles();
+
+document.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY});
+document.addEventListener('mouseleave',function(){mouse.x=-9999;mouse.y=-9999});
+
+let resizeTimer;
+window.addEventListener('resize',function(){
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function(){
+    resizeParticleCanvas();
+    createParticles();
+    resizeRainCanvas();
+    initRain();
+  },200);
+});
+
+
+/* ============================================================
+   2. CODE RAIN
+   ============================================================ */
+const rCanvas = document.getElementById('rainCanvas');
+const rCtx = rCanvas.getContext('2d');
+const RAIN_CHARS = '01{}[];:<>?/\\|abcdef0123456789';
+let columns, drops;
+const FONT_SIZE = 14;
+
+function resizeRainCanvas(){
+  rCanvas.width = window.innerWidth;
+  rCanvas.height = window.innerHeight;
+}
+
+function initRain(){
+  columns = Math.floor(rCanvas.width / FONT_SIZE);
+  drops = new Array(columns).fill(1);
+}
+
+function drawRain(){
+  rCtx.fillStyle = 'rgba(10,14,23,0.12)';
+  rCtx.fillRect(0,0,rCanvas.width,rCanvas.height);
+  rCtx.fillStyle = '#00ff9f';
+  rCtx.font = FONT_SIZE + 'px monospace';
+
+  for(let i=0;i<columns;i++){
+    const char = RAIN_CHARS[Math.floor(Math.random()*RAIN_CHARS.length)];
+    rCtx.fillText(char, i*FONT_SIZE, drops[i]*FONT_SIZE);
+    if(drops[i]*FONT_SIZE > rCanvas.height && Math.random()>0.975){
+      drops[i]=0;
+    }
+    drops[i]++;
+  }
+  requestAnimationFrame(drawRain);
+}
+
+resizeRainCanvas();
+initRain();
+drawRain();
+
+
+/* ============================================================
+   3. TYPEWRITER
+   ============================================================ */
+const phrases = ['$ focus: privacy','$ focus: osint','$ focus: public tooling'];
+const typerEl = document.getElementById('typerText');
+let phraseIdx = 0, charIdx = 0, deleting = false;
+
+function typeLoop(){
+  const current = phrases[phraseIdx];
+  if(!deleting){
+    typerEl.textContent = current.slice(0,charIdx+1);
+    charIdx++;
+    if(charIdx >= current.length){
+      setTimeout(function(){deleting=true;typeLoop()},1800);
+      return;
+    }
+    setTimeout(typeLoop, 60 + Math.random()*40);
+  } else {
+    typerEl.textContent = current.slice(0,charIdx);
+    charIdx--;
+    if(charIdx < 0){
+      deleting = false;
+      charIdx = 0;
+      phraseIdx = (phraseIdx+1) % phrases.length;
+      setTimeout(typeLoop, 400);
+      return;
+    }
+    setTimeout(typeLoop, 30);
+  }
+}
+typeLoop();
+
+
+/* ============================================================
+   4. INTERSECTION OBSERVER (scroll reveals & count-up)
+   ============================================================ */
+const revealObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+},{threshold:0.15});
+
+document.querySelectorAll('.reveal').forEach(function(el){revealObserver.observe(el)});
+
+/* count-up */
+let statsCounted = false;
+const statsBar = document.querySelector('.stats-bar');
+const statsObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !statsCounted){
+      statsCounted = true;
+      document.querySelectorAll('.stat-val').forEach(function(el){
+        countUp(el, parseInt(el.dataset.target,10));
+      });
+      statsObserver.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+statsObserver.observe(statsBar);
+
+function countUp(el, target){
+  let current = 0;
+  const step = Math.max(1, Math.floor(target / 60));
+  const interval = setInterval(function(){
+    current += step;
+    if(current >= target){current=target;clearInterval(interval)}
+    el.textContent = current;
+  },25);
+}
+
+
+/* ============================================================
+   5. FETCH REPOS & BUILD CARDS
+   ============================================================ */
+const EXCLUDED = new Set(['thumpersecure','pineapple-picopager']);
+const FALLBACK_NAMES = ['palm-tree','Telespot','Spin','Telespotter','xTELENUMSINT','TeleSTOP','opt-out-manual-2026','spicy-cat','TelespotXX','bluettool','LOVE-BOMB','zweather'];
+const grid = document.getElementById('projectGrid');
+
+async function fetchRepos(){
+  try{
+    const res = await fetch('https://api.github.com/users/thumpersecure/repos?per_page=100&sort=updated');
+    if(!res.ok) throw new Error('API ' + res.status);
+    let repos = await res.json();
+    repos = repos.filter(function(r){
+      return !r.fork && !r.private && !EXCLUDED.has(r.name);
+    });
+    repos.sort(function(a,b){
+      if(b.stargazers_count !== a.stargazers_count) return b.stargazers_count - a.stargazers_count;
+      return new Date(b.updated_at) - new Date(a.updated_at);
+    });
+    return repos;
+  } catch(err){
+    console.warn('GitHub API error, using fallback', err);
+    return FALLBACK_NAMES.map(function(name){
+      return {name:name,description:'Repository by THUMPERSECURE',html_url:'https://github.com/thumpersecure/'+name,stargazers_count:0,language:null,updated_at:new Date().toISOString()};
+    });
+  }
+}
+
+function relativeDate(iso){
+  const diff = Date.now() - new Date(iso).getTime();
+  const days = Math.floor(diff/86400000);
+  if(days < 1) return 'today';
+  if(days < 30) return days + 'd ago';
+  if(days < 365) return Math.floor(days/30) + 'mo ago';
+  return Math.floor(days/365) + 'y ago';
+}
+
+function buildCard(repo, idx){
+  const card = document.createElement('article');
+  card.className = 'project-card';
+  card.style.transitionDelay = (idx * 0.07) + 's';
+  card.innerHTML =
+    '<div class="card-bar">' +
+      '<span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>' +
+      '<span class="card-filename">' + repo.name + '.md</span>' +
+    '</div>' +
+    '<div class="card-body">' +
+      '<h3 class="card-name"><a href="' + repo.html_url + '" target="_blank" rel="noopener">' + repo.name + '</a></h3>' +
+      '<p class="card-desc">' + (repo.description || 'No description provided.') + '</p>' +
+    '</div>' +
+    '<div class="card-meta">' +
+      (repo.stargazers_count > 0 ? '<span class="pill pill-stars">\u2605 ' + repo.stargazers_count + '</span>' : '') +
+      (repo.language ? '<span class="pill pill-lang">' + repo.language + '</span>' : '') +
+      '<span class="pill pill-date">' + relativeDate(repo.updated_at) + '</span>' +
+    '</div>';
+  return card;
+}
+
+(async function(){
+  const repos = await fetchRepos();
+  grid.innerHTML = '';
+
+  if(repos.length === 0){
+    grid.innerHTML = '<div class="loading-msg">No repositories found.</div>';
+    return;
+  }
+
+  /* update stats with real data */
+  const totalStars = repos.reduce(function(s,r){return s + r.stargazers_count},0);
+  const projectsTarget = repos.length;
+  document.getElementById('statProjects').dataset.target = projectsTarget;
+  if(totalStars > 0) document.getElementById('statStars').dataset.target = totalStars;
+
+  const cardObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        cardObserver.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08});
+
+  repos.forEach(function(repo, idx){
+    const card = buildCard(repo, idx);
+    grid.appendChild(card);
+    cardObserver.observe(card);
+  });
+})();
+
+
+/* ============================================================
+   6. TERMINAL ANIMATION
+   ============================================================ */
+const termLines = [
+  {type:'cmd', text:'$ git clone thumpersecure/codebook'},
+  {type:'cmd', text:'$ cat README.md'},
+  {type:'out', text:'> original work only'},
+  {type:'out', text:'> privacy + osint + public tooling'},
+  {type:'cmd', text:'$ echo "built from scratch"'},
+  {type:'out', text:'built from scratch'},
+];
+const termBody = document.getElementById('termBody');
+
+let termStarted = false;
+const termSection = document.querySelector('.terminal-section');
+const termObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !termStarted){
+      termStarted = true;
+      runTerminal();
+      termObserver.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+termObserver.observe(termSection);
+
+async function runTerminal(){
+  for(let i=0;i<termLines.length;i++){
+    const line = termLines[i];
+    const el = document.createElement('div');
+    el.className = 'term-line';
+    termBody.appendChild(el);
+
+    if(line.type === 'cmd'){
+      await typeLine(el, line.text, 35);
+    } else {
+      el.innerHTML = '<span class="output">' + line.text + '</span>';
+      el.classList.add('typed');
+    }
+    await sleep(300);
+  }
+  const cursorSpan = document.createElement('span');
+  cursorSpan.className = 'term-cursor-end';
+  cursorSpan.innerHTML = '&nbsp;';
+  termBody.appendChild(cursorSpan);
+}
+
+function typeLine(el, text, speed){
+  return new Promise(function(resolve){
+    el.classList.add('typed');
+    let idx = 0;
+    const iv = setInterval(function(){
+      el.textContent = text.slice(0,idx+1);
+      idx++;
+      if(idx >= text.length){clearInterval(iv);resolve()}
+    },speed);
+  });
+}
+
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+
+})();
+</script>
 </body>
 </html>

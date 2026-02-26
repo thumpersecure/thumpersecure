@@ -1,17 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="160" viewBox="0 0 1200 160" role="img" aria-label="Decorative footer">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" width="1200" height="120" role="img" aria-label="THUMPERSECURE codebook footer">
   <defs>
-    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f43f5e" />
-      <stop offset="40%" stop-color="#7c3aed" />
-      <stop offset="70%" stop-color="#1f6feb" />
-      <stop offset="100%" stop-color="#0d1117" />
+    <linearGradient id="gradLine" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00ff9f"/>
+      <stop offset="33%" stop-color="#00b8ff"/>
+      <stop offset="66%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#ff3e8a"/>
     </linearGradient>
-    <pattern id="ticks" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M0 0 L20 0" stroke="#93c5fd" stroke-opacity="0.12" stroke-width="1" />
+    <filter id="textGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <pattern id="fGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2332" stroke-width="0.5" opacity="0.3"/>
     </pattern>
   </defs>
-  <rect width="1200" height="160" fill="#0d1117" />
-  <path d="M0 105 C160 10 350 150 550 82 C725 24 920 150 1200 76 L1200 160 L0 160 Z" fill="url(#fg)" opacity="0.9" />
-  <rect width="1200" height="160" fill="url(#ticks)" />
-  <text x="600" y="64" fill="#dbeafe" font-size="22" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">immersive mode available on github pages</text>
+
+  <style>
+    @keyframes slideGrad { 0%{transform:translateX(-1200px)} 100%{transform:translateX(1200px)} }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    @keyframes glow { 0%,100%{opacity:0.8} 50%{opacity:1} }
+    @keyframes f1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(6px,-4px)} }
+    @keyframes f2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-5px,3px)} }
+    @keyframes f3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(4px,5px)} }
+    .cursor { animation: blink 1s step-end infinite; }
+    .glow-text { animation: glow 3s ease-in-out infinite; }
+    .d1 { animation: f1 8s ease-in-out infinite; }
+    .d2 { animation: f2 10s ease-in-out infinite; }
+    .d3 { animation: f3 7s ease-in-out infinite; }
+    text { font-family: 'JetBrains Mono','Fira Code','Courier New',monospace; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1200" height="120" fill="#0a0e17"/>
+  <rect width="1200" height="120" fill="url(#fGrid)"/>
+
+  <!-- Animated gradient line at top -->
+  <rect x="0" y="0" width="1200" height="2" fill="url(#gradLine)"/>
+  <!-- Sliding highlight on the gradient line -->
+  <rect x="0" y="0" width="200" height="2" fill="white" opacity="0.15">
+    <animateTransform attributeName="transform" type="translate" values="-200,0;1200,0" dur="4s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Glow under gradient line -->
+  <rect x="0" y="0" width="1200" height="8" fill="url(#gradLine)" opacity="0.1" filter="url(#softBlur)"/>
+
+  <!-- Main CTA text -->
+  <text x="600" y="58" text-anchor="middle" font-size="20" fill="#00ff9f" filter="url(#textGlow)" class="glow-text">// enter codebook →</text>
+
+  <!-- Blinking cursor after arrow -->
+  <rect x="722" y="44" width="10" height="17" fill="#00ff9f" opacity="0.9" class="cursor"/>
+
+  <!-- Subtitle -->
+  <text x="600" y="86" text-anchor="middle" font-size="12" fill="#4a5568">thumpersecure.github.io</text>
+
+  <!-- Floating particles -->
+  <circle cx="150" cy="50" r="1.2" fill="#00ff9f" opacity="0.3" class="d1"/>
+  <circle cx="300" cy="90" r="0.9" fill="#00b8ff" opacity="0.25" class="d2"/>
+  <circle cx="1050" cy="45" r="1" fill="#7c3aed" opacity="0.3" class="d3"/>
+  <circle cx="900" cy="85" r="1.3" fill="#ff3e8a" opacity="0.2" class="d1"/>
+  <circle cx="450" cy="30" r="0.8" fill="#00ff9f" opacity="0.2" class="d2"/>
+  <circle cx="750" cy="100" r="1.1" fill="#00b8ff" opacity="0.25" class="d3"/>
 </svg>
