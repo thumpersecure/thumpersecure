@@ -142,7 +142,7 @@ Largest DIY opt-out guide to date
 <div align="center">
   <br />
   <a href="https://thumpersecure.github.io/thumpersecure/">
-    <img src="https://img.shields.io/badge/%E2%96%B6_OPEN_CODE_COOKBOOK-00ffcc?style=for-the-badge&logo=github&logoColor=06F10e&labelColor=FF060e" alt="Open Code Cookbook" />
+    <img src="https://img.shields.io/badge/%E2%96%B6_OPEN_CODE_COOKBOOK-1Fffcc?style=for-the-badge&logo=github&logoColor=06F10e&labelColor=F8060e" alt="Open Code Cookbook" />
   </a>
   <br />
   <sub>cyberpunk code cookbook experience • live from GitHub API • OSINT &amp; SEO tools</sub>
