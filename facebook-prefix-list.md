@@ -1,7 +1,17 @@
 # Facebook.com Subdomain Enumeration
 
 **Date:** February 10, 2026  
-**Method:** DNS lookup + HTTP response testing (curl) + OSINT source aggregation
+**Method:** DNS lookup + HTTP response testing (curl) + OSINT source aggregation. Prefix enumeration — not scraping — to discover new surfaces and OSINT methods.
+
+---
+
+## Why This Approach Matters
+
+Most Facebook OSINT tools rely on **scraping** — they target `www.facebook.com` or `m.facebook.com`, parse the DOM, and extract whatever the main site exposes. That approach is fragile: layout changes break scrapers, anti-bot measures block them, and you only ever see what the primary surface chooses to show.
+
+This document takes a different path: **prefix enumeration**. Instead of scraping a single surface, we systematically enumerate Facebook’s subdomains (the “prefixes” before `.facebook.com`) to discover alternative endpoints, lightweight variants, and lesser-known surfaces. Each prefix can expose different data structures, different APIs, and different OSINT opportunities. No other Facebook OSINT methodology does this at scale — they scrape; we enumerate to find new methods.
+
+**Example: `o.facebook.com` (ofacebook)** — The “o” prefix serves an optimized, alternative mobile experience. It often uses simpler markup, fewer client-side obfuscations, and different request patterns than the main site. For OSINT, that can mean easier parsing, different metadata exposure, and access paths that scraping-only tools never see. Discovering and documenting prefixes like `o.facebook.com` is exactly how enumeration leads to new OSINT methods: you find a surface nobody else is targeting, then you build techniques around it.
 
 ---
 
@@ -18,7 +28,7 @@ Tested all 26 letters + digits 0-9. These responded with HTTP status codes:
 | **l.facebook.com** | ✅ Active | Link shim (outbound link safety checker) |
 | **m.facebook.com** | ✅ Active | Mobile site (primary mobile subdomain) |
 | **n.facebook.com** | ✅ Active | Notifications / internal |
-| **o.facebook.com** | ✅ Active | Optimized / alternative mobile |
+| **o.facebook.com** | ✅ Active | Optimized / alternative mobile — simpler markup, different request patterns; high-value OSINT surface (see intro) |
 | **p.facebook.com** | ✅ Active | Internal / platform |
 | **t.facebook.com** | ✅ Active | Tracking / shortened URLs |
 | **w.facebook.com** | ✅ Active | Web / alternative access |
@@ -45,10 +55,12 @@ Tested all 26 letters + digits 0-9. These responded with HTTP status codes:
 
 ## Mobile & Alternative Access Points (Live)
 
+These prefixes serve mobile or lightweight variants. They often expose simpler markup and different data flows than `www` — ideal for OSINT because they’re less obfuscated and easier to parse than the main site. Scraping tools rarely target these; enumeration surfaces them.
+
 | Subdomain | Status | Purpose |
 |-----------|--------|---------|
 | **m.facebook.com** | ✅ Active | Primary mobile site |
-| **mbasic.facebook.com** | ✅ Active | Ultra-lightweight text-only mobile |
+| **mbasic.facebook.com** | ✅ Active | Ultra-lightweight text-only mobile — minimal JS, high OSINT value |
 | **mobile.facebook.com** | ✅ Active | Mobile redirect |
 | **touch.facebook.com** | ✅ Active | Touch-optimized mobile |
 | **iphone.facebook.com** | ✅ Active | iPhone-specific mobile |
@@ -60,6 +72,8 @@ Tested all 26 letters + digits 0-9. These responded with HTTP status codes:
 ---
 
 ## Developer & API Subdomains (Live)
+
+API and developer prefixes can expose structured data, OAuth flows, and metadata that scraping the main site never reaches. Enumeration surfaces these; scraping typically ignores them.
 
 | Subdomain | Status | Purpose |
 |-----------|--------|---------|
@@ -220,8 +234,20 @@ Short language codes also work: es, fr, it, nl, ro, tr
 
 ## Notes
 
-- All "Active" subdomains returned HTTP 200→403 (Facebook's envoy proxy accepts the connection, then returns 403 since we're not sending browser cookies/headers). This confirms the subdomain resolves and is served by Facebook's infrastructure.
-- Subdomains marked "TIMEOUT/NO RESPONSE" either don't exist in DNS or are purely internal.
-- Facebook uses a wildcard-like DNS configuration through their CDN (envoy proxy), so some subdomains may accept connections without serving meaningful content.
-- Many subdomains from OSINT lists (like `nsa.facebook.com`, `nova.facebook.com`, `pacific.facebook.com`) no longer respond — these may have been decommissioned.
-- The `l.facebook.com` and `lm.facebook.com` subdomains are commonly seen in Google Analytics as referral sources (link shim system).
+- **Active subdomains:** All "Active" entries returned HTTP 200→403 (Facebook's envoy proxy accepts the connection, then returns 403 when browser cookies/headers are missing). That confirms the subdomain resolves and is served by Facebook's infrastructure — a valid OSINT target.
+- **Timeouts:** Subdomains marked "TIMEOUT/NO RESPONSE" either don't exist in DNS or are purely internal. They're still worth re-checking periodically; infrastructure changes.
+- **Wildcard behavior:** Facebook uses a wildcard-like DNS configuration through their CDN (envoy proxy). Some subdomains may accept connections without serving meaningful content; probe with real requests to confirm value.
+- **Decommissioned prefixes:** Many subdomains from older OSINT lists (e.g. `nsa.facebook.com`, `nova.facebook.com`, `pacific.facebook.com`) no longer respond — likely decommissioned. Enumeration helps keep lists current.
+- **Referral patterns:** `l.facebook.com` and `lm.facebook.com` are link shims (outbound link safety checkers) and commonly appear in Google Analytics as referral sources — useful for attribution and traffic analysis.
+- **From enumeration to method:** Each live prefix is a potential OSINT surface. Document what it serves, how it differs from `www`/`m`, and what data structures it exposes. That’s how enumerated prefixes turn into new OSINT methods — not by scraping the same surface everyone else scrapes.
+
+---
+
+## Next Steps for OSINT Practitioners
+
+Use this list as a starting point. For each prefix of interest:
+
+1. **Probe it** — Send requests with appropriate headers; note response structure, redirects, and any exposed metadata.
+2. **Compare** — How does `o.facebook.com` differ from `m.facebook.com`? Does `mbasic` expose profile data differently?
+3. **Document** — Record what each prefix serves and under what conditions. Share findings to expand the methodology.
+4. **Build** — Turn discovered surfaces into tools and techniques. Enumeration finds the targets; you design the methods.
