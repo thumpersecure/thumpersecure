@@ -34,7 +34,6 @@ OSINT, privacy, and utility tooling for investigators, researchers, and people w
 | [LOVE-BOMB](https://github.com/thumpersecure/LOVE-BOMB) | Experimental utility project. |
 | [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) | Manual and walkthroughs for opting out of 400+ data-broker and people-search sites. |
 | [palm-tree](https://github.com/thumpersecure/palm-tree) | Randomized traffic-noise generator for privacy and behavioral obfuscation. |
-| [pineapple-picopager](https://github.com/thumpersecure/pineapple-picopager) | PicoCalc companion project for Hak5 WiFi Pineapple Pager workflows. |
 | [spicy-cat](https://github.com/thumpersecure/spicy-cat) | Privacy tool that creates realistic personas and activity noise. |
 | [Spin](https://github.com/thumpersecure/Spin) | Desktop OSINT and privacy browser application. |
 | [TeleSTOP](https://github.com/thumpersecure/TeleSTOP) | Local desktop app for removing personal data from 50+ people-search sites. |
@@ -42,7 +41,6 @@ OSINT, privacy, and utility tooling for investigators, researchers, and people w
 | [Telespotter](https://github.com/thumpersecure/Telespotter) | Rust implementation of Telespot for faster and lighter phone OSINT workflows. |
 | [TelespotXX](https://github.com/thumpersecure/TelespotXX) | Web app that combines Telespot, TelespotX, and Telespotter workflows. |
 | [thumpersecure](https://github.com/thumpersecure/thumpersecure) | Profile and landing repository for the Code Cookbook experience. |
-| [user-scanner](https://github.com/thumpersecure/user-scanner) | Username and email presence scanner for investigation and security research. |
 | [xTELENUMSINT](https://github.com/thumpersecure/xTELENUMSINT) | Chrome extension that runs phone OSINT searches in 10 number formats. |
 | [zweather](https://github.com/thumpersecure/zweather) | Weather app that compares current forecasts with prior forecast changes. |
 
