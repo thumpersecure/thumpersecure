@@ -80,7 +80,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 @keyframes tronTrace{0%{left:-60px}100%{left:calc(100% + 60px)}}
 .glass:hover{border-color:rgba(24,220,255,0.25);box-shadow:0 0 80px rgba(24,220,255,0.06)}
 
-.glitch{font-family:var(--mono);font-size:clamp(2.4rem,7vw,5rem);font-weight:900;
+.glitch{font-family:var(--mono);font-size:clamp(2.9rem,8vw,6rem);font-weight:900;
   color:var(--cyan);text-shadow:0 0 7px var(--cyan),0 0 20px var(--cyan),0 0 42px rgba(0,179,170,0.4);
   position:relative;display:inline-block;letter-spacing:-0.02em}
 .glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}
@@ -89,37 +89,38 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 @keyframes g1{0%{clip-path:inset(0 0 85% 0);transform:translate(0)}10%{clip-path:inset(15% 0 60% 0);transform:translate(-3px,1px)}20%{clip-path:inset(50% 0 20% 0);transform:translate(3px,-1px)}30%{clip-path:inset(10% 0 70% 0);transform:translate(0)}40%{clip-path:inset(60% 0 10% 0);transform:translate(-2px,2px)}50%{clip-path:inset(30% 0 40% 0);transform:translate(2px)}60%{clip-path:inset(70% 0 5% 0);transform:translate(-1px)}70%{clip-path:inset(5% 0 80% 0);transform:translate(0)}80%{clip-path:inset(40% 0 30% 0);transform:translate(3px,-2px)}90%{clip-path:inset(80% 0 0 0);transform:translate(-3px,1px)}100%{clip-path:inset(0 0 85% 0);transform:translate(0)}}
 @keyframes g2{0%{clip-path:inset(85% 0 0 0);transform:translate(0)}10%{clip-path:inset(60% 0 15% 0);transform:translate(2px,-1px)}20%{clip-path:inset(20% 0 50% 0);transform:translate(-2px,1px)}30%{clip-path:inset(70% 0 10% 0);transform:translate(0)}40%{clip-path:inset(10% 0 60% 0);transform:translate(1px,2px)}50%{clip-path:inset(40% 0 30% 0);transform:translate(-2px)}60%{clip-path:inset(5% 0 70% 0);transform:translate(1px)}70%{clip-path:inset(80% 0 5% 0);transform:translate(0)}80%{clip-path:inset(30% 0 40% 0);transform:translate(-3px,2px)}90%{clip-path:inset(0 0 80% 0);transform:translate(2px,-1px)}100%{clip-path:inset(85% 0 0 0);transform:translate(0)}}
 
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:5rem 0 3rem}
-.hero-inner{text-align:center;padding:clamp(2rem,5vw,3.5rem);max-width:760px;width:100%}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:7.6rem 0 3rem}
+.hero-inner{text-align:center;padding:clamp(2.2rem,5vw,3.8rem);max-width:860px;width:100%}
 .eyebrow{font-family:var(--mono);font-size:clamp(0.6rem,1.1vw,0.75rem);letter-spacing:0.4em;text-transform:uppercase;color:var(--magenta);margin-bottom:0.8rem}
 .hero-sub{color:var(--muted);font-family:var(--mono);font-size:clamp(0.8rem,1.4vw,0.95rem);margin-top:1rem}
 .typer-wrap{font-family:var(--mono);font-size:clamp(0.8rem,1.4vw,1rem);color:var(--green);height:1.8em;margin:1.5rem 0 2rem;display:flex;align-items:center;justify-content:center}
 .typer-cursor{display:inline-block;width:2px;height:1.2em;background:var(--green);margin-left:2px;animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-.music-deck{max-width:700px;margin:0 auto 1.1rem;padding:0.7rem 0.8rem;border:1px solid var(--border);border-radius:10px;background:rgba(3,8,18,0.72);position:relative;overflow:hidden}
-.music-deck::before{content:'';position:absolute;top:0;left:-35%;width:35%;height:100%;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.16),transparent);animation:musicSweep 4.8s linear infinite}
-@keyframes musicSweep{to{left:135%}}
-.music-top{display:flex;justify-content:space-between;align-items:center;gap:0.8rem;flex-wrap:wrap;margin-bottom:0.55rem;font-family:var(--mono)}
-.music-title{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--magenta)}
-.music-status{font-size:0.66rem;color:var(--muted)}
+.music-toolbar-wrap{position:fixed;top:0.55rem;left:0;right:0;z-index:26;padding:0 0.8rem;pointer-events:none}
+.music-toolbar{max-width:1120px;margin:0 auto;position:relative;padding:0.34rem 0.42rem;border-radius:999px;border:1px solid var(--border);background:rgba(5,10,20,0.86);display:flex;align-items:center;gap:0.4rem;overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:auto}
+.music-toolbar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.14),transparent);transform:translateX(-120%);animation:musicSweep 5s linear infinite}
+@keyframes musicSweep{to{transform:translateX(120%)}}
+.music-toolbar-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--magenta);padding:0 0.35rem;white-space:nowrap}
+.music-btns{display:flex;gap:0.35rem;flex-wrap:wrap;flex:1;min-width:0}
+.music-btn{position:relative;border:1px solid rgba(24,220,255,0.18);border-radius:999px;background:rgba(2,9,18,0.85);color:var(--text);padding:0.34rem 0.68rem;display:inline-flex;align-items:center;gap:0.42rem;font-family:var(--mono);font-size:0.6rem;line-height:1.2;text-transform:uppercase;letter-spacing:0.04em;cursor:pointer;transition:transform .2s,border-color .22s,box-shadow .22s,background .22s;white-space:nowrap}
+.music-btn:hover{transform:translateY(-1px);border-color:var(--cyan);box-shadow:0 0 12px rgba(24,220,255,0.16)}
+.music-btn.active{border-color:var(--cyan);background:rgba(0,255,204,0.1);box-shadow:0 0 15px rgba(0,255,204,0.18)}
+.music-name{display:block;text-align:left}
+.music-eq{display:inline-flex;align-items:flex-end;gap:2px;height:10px;min-width:9px}
+.music-eq span{width:2px;background:var(--tron);border-radius:2px;height:3px;opacity:0.55}
+.music-btn.active .music-eq span:nth-child(1){animation:eqA .68s linear infinite}
+.music-btn.active .music-eq span:nth-child(2){animation:eqB .52s linear infinite}
+.music-btn.active .music-eq span:nth-child(3){animation:eqC .78s linear infinite}
+@keyframes eqA{0%,100%{height:3px}50%{height:9px}}
+@keyframes eqB{0%,100%{height:4px}50%{height:10px}}
+@keyframes eqC{0%,100%{height:3px}50%{height:8px}}
+.music-meta{display:flex;align-items:center;gap:0.55rem;padding:0 0.3rem;font-family:var(--mono);white-space:nowrap}
+.music-status{font-size:0.61rem;color:var(--muted)}
 .music-status.playing{color:var(--green);text-shadow:0 0 8px rgba(0,255,65,0.4)}
 .music-status.error{color:var(--amber)}
-.music-fallback{font-size:0.65rem;color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan)}
+.music-fallback{font-size:0.61rem;color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan)}
 .music-fallback:hover{color:var(--tron)}
-.music-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.5rem}
-.music-btn{border:1px solid rgba(24,220,255,0.2);border-radius:7px;background:rgba(4,12,24,0.9);color:var(--text);padding:0.62rem 0.52rem;display:flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.63rem;line-height:1.35;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:transform .22s,border-color .25s,box-shadow .25s,background .25s}
-.music-btn:hover{transform:translateY(-1px);border-color:var(--cyan);box-shadow:0 0 14px rgba(24,220,255,0.2)}
-.music-btn.active{border-color:var(--cyan);background:rgba(0,255,204,0.08);box-shadow:0 0 18px rgba(0,255,204,0.24)}
-.music-name{display:block;text-align:left}
-.music-eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px;min-width:10px}
-.music-eq span{width:2px;background:var(--tron);border-radius:2px;height:3px;opacity:0.55}
-.music-btn.active .music-eq span:nth-child(1){animation:eqA .7s linear infinite}
-.music-btn.active .music-eq span:nth-child(2){animation:eqB .55s linear infinite}
-.music-btn.active .music-eq span:nth-child(3){animation:eqC .8s linear infinite}
-@keyframes eqA{0%,100%{height:3px}50%{height:11px}}
-@keyframes eqB{0%,100%{height:5px}50%{height:12px}}
-@keyframes eqC{0%,100%{height:4px}50%{height:10px}}
 
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .btn{font-family:var(--mono);font-size:0.82rem;padding:0.65rem 1.6rem;border-radius:4px;text-decoration:none;font-weight:600;transition:all .3s;cursor:pointer;border:none;text-transform:uppercase;letter-spacing:0.05em}
@@ -187,6 +188,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .card-name a{color:inherit;text-decoration:none;transition:color .2s}.card-name a:hover{color:var(--cyan)}
 .card-desc{font-size:0.82rem;color:var(--muted);line-height:1.4;min-height:2em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .card-meta{display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.6rem 0.9rem 0.8rem}
+.project-link{display:block;color:inherit;text-decoration:none;height:100%}
+.project-link:hover .card-name{color:var(--cyan)}
 .pill{font-family:var(--mono);font-size:0.68rem;padding:0.15rem 0.5rem;border-radius:999px;border:1px solid;display:inline-flex;align-items:center;gap:0.25rem}
 .pill-stars{border-color:var(--amber);color:var(--amber)}.pill-lang{border-color:var(--green);color:var(--green)}.pill-date{border-color:var(--cyan);color:var(--cyan)}
 
@@ -199,7 +202,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .term-line .output{color:var(--muted)}.term-line .hl{color:var(--cyan)}
 .term-cursor-end{display:inline-block;width:8px;height:1.1em;background:var(--green);animation:blink 1s step-end infinite;vertical-align:text-bottom}
 
-footer{text-align:center;padding:2.5rem 1rem;font-size:0.75rem;color:var(--muted);border-top:1px solid var(--border);font-family:var(--mono)}
+footer{text-align:center;padding:2rem 1rem 2.3rem;font-size:0.74rem;color:var(--muted);border-top:1px solid var(--border);font-family:var(--mono)}
+footer p{max-width:980px;margin:0.25rem auto;line-height:1.65}
+footer .foot-main{color:var(--text)}
+footer .foot-sub{font-size:0.69rem;color:var(--muted)}
 footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:underline}
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.reveal.visible{opacity:1;transform:translateY(0)}
@@ -242,15 +248,69 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .ingredient-code{margin:0.55rem 1rem 1rem;padding:0.8rem 0.9rem;border-radius:6px;border:1px solid rgba(0,255,204,0.14);background:#05050b;font-family:var(--mono);font-size:0.72rem;line-height:1.6;color:var(--green);overflow-x:auto;white-space:pre}
 .ingredient-code .cm{color:var(--muted)}.ingredient-code .kw{color:var(--cyan)}.ingredient-code .tx{color:var(--amber)}.ingredient-code .ok{color:var(--magenta)}
 
+.legend-quotes-section{padding:3rem 0 4rem}
+.quote-signal{max-width:920px;margin:0 auto 1.3rem;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:rgba(0,0,0,0.38)}
+#quoteSignalCanvas{display:block;width:100%;height:130px}
+.quote-wall{max-width:920px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem}
+@media(max-width:1024px){.quote-wall{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.quote-wall{grid-template-columns:1fr}}
+.legend-quote-card{position:relative;padding:1rem 1.05rem;border:1px solid var(--border);border-radius:10px;background:linear-gradient(160deg,rgba(8,14,28,0.92),rgba(8,8,20,0.92));overflow:hidden;transition:transform .32s,border-color .3s,box-shadow .3s}
+.legend-quote-card::before{content:'';position:absolute;left:-35%;top:0;width:35%;height:100%;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.12),transparent);transform:skewX(-18deg)}
+.legend-quote-card:hover{transform:translateY(-4px);border-color:rgba(24,220,255,0.45);box-shadow:0 0 24px rgba(24,220,255,0.11)}
+.legend-quote-card.hot{border-color:rgba(0,255,204,0.55);box-shadow:0 0 24px rgba(0,255,204,0.16)}
+.legend-quote-card.hot::before{animation:legendSweep 2.8s linear infinite}
+@keyframes legendSweep{to{left:140%}}
+.lq-text{font-size:0.9rem;color:var(--text);line-height:1.65;font-style:italic}
+.lq-meta{margin-top:0.65rem;font-family:var(--mono);font-size:0.68rem;color:var(--magenta);letter-spacing:0.06em;text-transform:uppercase}
+
+.glossary-section{padding:3rem 0 4rem}
+.glossary-grid{max-width:920px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:0.9rem}
+@media(max-width:640px){.glossary-grid{grid-template-columns:1fr}}
+.term-card{border:1px solid var(--border);border-radius:10px;background:rgba(6,9,17,0.88);padding:0.9rem 1rem;transition:border-color .28s,box-shadow .28s,transform .28s}
+.term-card:hover{border-color:rgba(24,220,255,0.45);box-shadow:0 0 21px rgba(24,220,255,0.1);transform:translateY(-2px)}
+.term-top{display:flex;align-items:center;gap:0.55rem;margin-bottom:0.5rem}
+.term-icon{width:1.9rem;height:1.9rem;display:inline-flex;align-items:center;justify-content:center;border-radius:5px;font-family:var(--mono);font-size:0.74rem;border:1px solid;letter-spacing:0.03em}
+.ti-malware{color:#ff6b6b;border-color:#ff6b6b}
+.ti-adware{color:#ffd166;border-color:#ffd166}
+.ti-trojan{color:#ff9f1c;border-color:#ff9f1c}
+.ti-shoulder{color:#b8c0d0;border-color:#b8c0d0}
+.ti-phishing{color:#00d4ff;border-color:#00d4ff}
+.ti-ransom{color:#ff3e3e;border-color:#ff3e3e}
+.ti-spyware{color:#8b5cf6;border-color:#8b5cf6}
+.ti-zeroday{color:#18dcff;border-color:#18dcff}
+.ti-botnet{color:#00ff41;border-color:#00ff41}
+.term-name{font-family:var(--mono);font-size:0.78rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.08em}
+.term-def{font-size:0.84rem;color:var(--text);line-height:1.6}
+.term-visual{margin-top:0.5rem;padding:0.5rem 0.6rem;border-radius:6px;background:#05050b;border:1px solid rgba(0,255,204,0.12);font-family:var(--mono);font-size:0.67rem;color:var(--green);overflow-x:auto}
+
+.zines-section{padding:3rem 0 4rem}
+.zine-grid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem}
+@media(max-width:1024px){.zine-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.zine-grid{grid-template-columns:1fr}}
+.zine-card{border:1px solid var(--border);border-radius:10px;background:rgba(7,10,18,0.9);padding:0.9rem 1rem;transition:transform .3s,border-color .3s,box-shadow .3s}
+.zine-card:hover{transform:translateY(-3px);border-color:rgba(24,220,255,0.4);box-shadow:0 0 22px rgba(24,220,255,0.12)}
+.zine-head{display:flex;justify-content:space-between;gap:0.5rem;align-items:center;margin-bottom:0.45rem}
+.zine-rank{font-family:var(--mono);font-size:0.67rem;color:var(--magenta)}
+.zine-cat{font-family:var(--mono);font-size:0.62rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em}
+.zine-name{font-family:var(--mono);font-size:0.95rem;color:var(--cyan);margin-bottom:0.35rem}
+.zine-name a{color:inherit;text-decoration:none}
+.zine-name a:hover{text-shadow:0 0 8px var(--cyan)}
+.zine-desc{font-size:0.82rem;color:var(--text);line-height:1.55}
+
 @media(max-width:640px){
-  .hero{padding:3rem 0 2rem}.hero-inner{padding:1.5rem}
-  .glitch{font-size:clamp(1.8rem,10vw,2.5rem)}
-  .music-btns{grid-template-columns:1fr}
-  .music-btn{font-size:0.65rem}
+  .hero{padding:7.2rem 0 2rem}.hero-inner{padding:1.8rem 1.2rem}
+  .glitch{font-size:clamp(2.2rem,10vw,3.2rem)}
+  .music-toolbar-wrap{top:0.35rem;padding:0 0.45rem}
+  .music-toolbar{border-radius:14px;padding:0.4rem 0.45rem}
+  .music-toolbar-label{display:none}
+  .music-btns{gap:0.3rem}
+  .music-btn{font-size:0.56rem;padding:0.33rem 0.5rem}
+  .music-meta{width:100%;justify-content:space-between;padding:0.15rem 0.2rem 0}
   .quote-block{padding:1.2rem}
   .vb6-code{font-size:0.68rem}.nfo{font-size:0.55rem;padding:1rem}
   .btn{min-height:44px;padding:0.75rem 1.6rem;display:inline-flex;align-items:center;justify-content:center}
   .mon{height:100px;font-size:0.52rem}
+  #quoteSignalCanvas{height:110px}
   #ingredientsCanvas{height:130px}
 }
 </style>
@@ -268,31 +328,34 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 
 <div class="page-wrap">
 
+  <div class="music-toolbar-wrap" aria-label="Music selector">
+    <div class="music-toolbar">
+      <span class="music-toolbar-label">soundtrack deck</span>
+      <div class="music-btns" id="musicDeck">
+        <button type="button" class="music-btn" data-query="Tron soundtrack Wendy Carlos" data-label="Soundtrack from Tron" aria-pressed="false">
+          <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="music-name">Soundtrack from Tron</span>
+        </button>
+        <button type="button" class="music-btn" data-query="High Voltage Frank Popp Ensemble" data-label="High Voltage by Frank Popp Ensemble" aria-pressed="false">
+          <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="music-name">High Voltage by Frank Popp Ensemble</span>
+        </button>
+        <button type="button" class="music-btn" data-query="Turn Up the Radio Go" data-label="Turn Up the Radio by Go" aria-pressed="false">
+          <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="music-name">Turn Up the Radio by Go</span>
+        </button>
+      </div>
+      <div class="music-meta">
+        <span class="music-status" id="musicStatus">select a track</span>
+        <a id="musicFallback" class="music-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden>open source</a>
+      </div>
+      <audio id="musicPlayer" preload="none" crossorigin="anonymous"></audio>
+    </div>
+  </div>
+
   <header class="hero" role="banner">
     <div class="hero-inner glass">
       <p class="eyebrow">THUMPERSECURE</p>
-      <div class="music-deck" aria-label="Music selector">
-        <div class="music-top">
-          <span class="music-title">music selector</span>
-          <span class="music-status" id="musicStatus">select a track</span>
-          <a id="musicFallback" class="music-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden>open source</a>
-        </div>
-        <div class="music-btns" id="musicDeck">
-          <button type="button" class="music-btn" data-query="Tron soundtrack Wendy Carlos" data-label="Soundtrack from Tron" aria-pressed="false">
-            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="music-name">Soundtrack from Tron</span>
-          </button>
-          <button type="button" class="music-btn" data-query="High Voltage Frank Popp Ensemble" data-label="High Voltage by Frank Popp Ensemble" aria-pressed="false">
-            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="music-name">High Voltage by Frank Popp Ensemble</span>
-          </button>
-          <button type="button" class="music-btn" data-query="Turn Up the Radio Go" data-label="Turn Up the Radio by Go" aria-pressed="false">
-            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="music-name">Turn Up the Radio by Go</span>
-          </button>
-        </div>
-        <audio id="musicPlayer" preload="none" crossorigin="anonymous"></audio>
-      </div>
       <h1 class="glitch" data-text="CODE COOKBOOK">CODE COOKBOOK</h1>
       <p class="hero-sub">// OSINT &amp; SEO SPECIALIST</p>
       <div class="typer-wrap" aria-live="polite"><span id="typerText"></span><span class="typer-cursor"></span></div>
@@ -585,8 +648,8 @@ PAIRS WITH:
 
     <section class="history-cookbook-section reveal" id="ingredients" aria-label="Historical cookbook ingredients">
       <div class="container">
-        <h2 class="section-head"><span>//</span> ingredients_1996_to_2026</h2>
-        <p class="history-intro">If this site is a cookbook, these are the staple ingredients that cooked hacker culture into modern OSINT tooling. Same kitchen, new utensils: from dial-up recon to async Rust pipelines. <em>Minimal surface, maximum signal.</em></p>
+        <h2 class="section-head"><span>//</span> ingredients_1986_to_2026</h2>
+        <p class="history-intro">The long recipe starts in the floppy-and-dial-up years. From BBS scripts and worm-era wake-up calls to modern async intelligence pipelines, every decade added one more ingredient to today's privacy-first OSINT stack. <em>Same mission, sharper tools.</em></p>
 
         <div class="ingredients-visual glass" aria-hidden="true">
           <canvas id="ingredientsCanvas"></canvas>
@@ -594,8 +657,27 @@ PAIRS WITH:
 
         <ol class="ingredient-list">
           <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">1986</span><span class="ingredient-name">dial-up bbs foundations</span></div>
+            <p class="ingredient-desc">Before web apps and cloud APIs, communities traded code over modems. Scripted dial-up sessions were the first automation layer for many early hackers.</p>
+            <pre class="ingredient-code"><span class="cm"># modem-era connection ritual</span>
+<span class="kw">ATZ</span>
+<span class="kw">ATDT</span> <span class="tx">5550137</span>
+<span class="ok">CONNECT</span> 2400
+login: <span class="tx">guest</span></pre>
+          </li>
+
+          <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">1988</span><span class="ingredient-name">worm-era secure coding shift</span></div>
+            <p class="ingredient-desc">The Morris Worm era highlighted how small C mistakes could scale into systemic incidents. Input safety became a mainstream operational concern.</p>
+            <pre class="ingredient-code"><span class="cm">/* unsafe input was common */</span>
+<span class="kw">char</span> buf[128];
+<span class="cm">/* gets(buf); */</span>
+<span class="kw">fgets</span>(buf, <span class="tx">sizeof(buf)</span>, stdin);</pre>
+          </li>
+
+          <li class="ingredient-card reveal">
             <div class="ingredient-head"><span class="year-pill">1996</span><span class="ingredient-name">network recon mise en place</span></div>
-            <p class="ingredient-desc">Before dashboards, there was terminal prep. Whois, DNS, and route mapping were the opening moves for understanding any target's footprint.</p>
+            <p class="ingredient-desc">Whois, DNS, and route mapping became the opening moves for understanding any target footprint.</p>
             <pre class="ingredient-code"><span class="cm"># classic recon prep</span>
 <span class="kw">whois</span> <span class="tx">example.com</span>
 <span class="kw">nslookup</span> <span class="tx">example.com</span>
@@ -604,14 +686,14 @@ PAIRS WITH:
 
           <li class="ingredient-card reveal">
             <div class="ingredient-head"><span class="year-pill">2001</span><span class="ingredient-name">service fingerprinting era</span></div>
-            <p class="ingredient-desc">Nmap became a universal ingredient. One command could sketch operating system hints, exposed ports, and service versions in seconds.</p>
+            <p class="ingredient-desc">Nmap became a universal ingredient: ports, service versions, and host hints in one pass.</p>
             <pre class="ingredient-code"><span class="cm"># map services + OS hints</span>
 <span class="kw">nmap</span> -sV -O -Pn <span class="tx">target.example</span></pre>
           </li>
 
           <li class="ingredient-card reveal">
             <div class="ingredient-head"><span class="year-pill">2007</span><span class="ingredient-name">input-validation wake-up call</span></div>
-            <p class="ingredient-desc">The SQL injection boom forced everyone to cook safer. Parameterized queries became the difference between a recipe and a breach.</p>
+            <p class="ingredient-desc">The SQL injection wave made parameterized queries non-negotiable for responsible builders.</p>
             <pre class="ingredient-code"><span class="cm"># safer query pattern (PHP/PDO)</span>
 <span class="kw">$stmt</span> = $pdo->prepare(<span class="tx">'SELECT * FROM users WHERE username = :u'</span>);
 <span class="kw">$stmt</span>->execute([<span class="tx">'u'</span> =&gt; $_GET[<span class="tx">'user'</span>]]);</pre>
@@ -619,7 +701,7 @@ PAIRS WITH:
 
           <li class="ingredient-card reveal">
             <div class="ingredient-head"><span class="year-pill">2013</span><span class="ingredient-name">python osint automation</span></div>
-            <p class="ingredient-desc">Python + requests normalized repeatable intelligence gathering. Scraping, enrichment, and reporting became scriptable in one sitting.</p>
+            <p class="ingredient-desc">Python + requests normalized repeatable intelligence collection in compact scripts.</p>
             <pre class="ingredient-code"><span class="cm"># quick OSINT extract</span>
 <span class="kw">import</span> requests
 r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, timeout=10)
@@ -628,7 +710,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
 
           <li class="ingredient-card reveal">
             <div class="ingredient-head"><span class="year-pill">2019</span><span class="ingredient-name">api-first recon pipelines</span></div>
-            <p class="ingredient-desc">Shell + JSON tooling turned reconnaissance into composable pipelines. Curl and jq became a lingua franca for rapid data fusion.</p>
+            <p class="ingredient-desc">CLI tools and JSON processors made intelligence assembly composable and fast.</p>
             <pre class="ingredient-code"><span class="cm"># chain API output into structured fields</span>
 <span class="kw">curl</span> -s "https://api.github.com/users/thumpersecure/repos?per_page=5" \
   | <span class="kw">jq</span> '.[] | {name, language, stars: .stargazers_count}'</pre>
@@ -636,7 +718,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
 
           <li class="ingredient-card reveal">
             <div class="ingredient-head"><span class="year-pill">2026</span><span class="ingredient-name">async rust intelligence kitchen</span></div>
-            <p class="ingredient-desc">Modern privacy tooling favors speed, locality, and reliability. Rust + async collectors now replace sprawling ad-hoc scripts.</p>
+            <p class="ingredient-desc">Modern tooling prioritizes local execution, typed reliability, and parallel source fusion.</p>
             <pre class="ingredient-code"><span class="cm">// parallel source pulls, one typed output</span>
 <span class="kw">let</span> (a, b, c) = tokio::join!(source_a(q), source_b(q), source_c(q));
 <span class="kw">let</span> report = fuse(a?, b?, c?);
@@ -646,10 +728,69 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
       </div>
     </section>
 
+    <div class="ascii-div" aria-hidden="true">═══════════════════════════════════════════</div>
+
+    <section class="legend-quotes-section reveal" id="quotes" aria-label="Legend quotes">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> legendary_quotes</h2>
+        <p class="history-intro">A wall of lines that shaped engineering and hacker culture: concise, sharp, and still relevant when writing code under pressure.</p>
+        <div class="quote-signal glass" aria-hidden="true"><canvas id="quoteSignalCanvas"></canvas></div>
+        <div class="quote-wall" id="legendQuoteWall">
+          <article class="legend-quote-card reveal hot"><p class="lq-text">"Talk is cheap. Show me the code."</p><p class="lq-meta">Linus Torvalds &middot; Linux</p></article>
+          <article class="legend-quote-card reveal"><p class="lq-text">"The most dangerous phrase in the language is, 'We've always done it this way.'"</p><p class="lq-meta">Grace Hopper &middot; Computing pioneer</p></article>
+          <article class="legend-quote-card reveal"><p class="lq-text">"Premature optimization is the root of all evil."</p><p class="lq-meta">Donald Knuth &middot; Computer scientist</p></article>
+          <article class="legend-quote-card reveal"><p class="lq-text">"The best way to predict the future is to invent it."</p><p class="lq-meta">Alan Kay &middot; Computer scientist</p></article>
+          <article class="legend-quote-card reveal"><p class="lq-text">"The human element is truly security's weakest link."</p><p class="lq-meta">Kevin Mitnick &middot; Security author</p></article>
+          <article class="legend-quote-card reveal"><p class="lq-text">"Simplicity is prerequisite for reliability."</p><p class="lq-meta">Edsger W. Dijkstra &middot; Computer scientist</p></article>
+        </div>
+      </div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">═══════════════════════════════════════════</div>
+
+    <section class="glossary-section reveal" id="glossary" aria-label="Cyber glossary">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> threat_glossary</h2>
+        <p class="history-intro">Minimalist field notes for common security terms, with tiny visual signatures to make each concept sticky.</p>
+        <div class="glossary-grid">
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-malware">MAL</span><span class="term-name">malware</span></div><p class="term-def">Any malicious software built to disrupt systems, steal data, or gain unauthorized control.</p><pre class="term-visual">payload -> execute -> compromise</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-adware">ADS</span><span class="term-name">adware</span></div><p class="term-def">Software that injects or forces advertising behavior, often tracking user actions for targeting.</p><pre class="term-visual">tracking id -> profile -> ad blast</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-trojan">TRJ</span><span class="term-name">trojan</span></div><p class="term-def">A malicious program disguised as legitimate software, delivering hidden actions after install.</p><pre class="term-visual">looks safe -> install -> hidden run</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-shoulder">EYE</span><span class="term-name">shoulder surfing</span></div><p class="term-def">Stealing credentials by visually observing someone entering sensitive information.</p><pre class="term-visual">user -> screen <- observer</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-phishing">PHI</span><span class="term-name">phishing</span></div><p class="term-def">Social engineering messages that imitate trusted brands to trick targets into revealing secrets.</p><pre class="term-visual">inbox -> fake login -> stolen creds</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-ransom">RAN</span><span class="term-name">ransomware</span></div><p class="term-def">Malware that encrypts data and demands payment for a decryption key.</p><pre class="term-visual">files -> encrypted -> ransom note</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-spyware">SPY</span><span class="term-name">spyware</span></div><p class="term-def">Software that silently monitors activity and exfiltrates data without informed consent.</p><pre class="term-visual">collect -> beacon -> exfiltrate</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-zeroday">0D</span><span class="term-name">zero-day</span></div><p class="term-def">A vulnerability exploited before defenders have an official fix or mitigation available.</p><pre class="term-visual">new vuln -> no patch -> active exploit</pre></article>
+          <article class="term-card reveal"><div class="term-top"><span class="term-icon ti-botnet">BOT</span><span class="term-name">botnet</span></div><p class="term-def">A network of compromised machines remotely controlled for spam, fraud, DDoS, or proxy abuse.</p><pre class="term-visual">infected nodes -> c2 -> synchronized action</pre></article>
+        </div>
+      </div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">═══════════════════════════════════════════</div>
+
+    <section class="zines-section reveal" id="zines" aria-label="Popular zines 2025 and 2026">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> zines_2025_2026</h2>
+        <p class="history-intro">Nine widely followed coding, tech, and cybersecurity newsletter/zine picks across practitioner communities in 2025 and 2026.</p>
+        <div class="zine-grid">
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#01</span><span class="zine-cat">coding+tech</span></div><h3 class="zine-name"><a href="https://tldr.tech/" target="_blank" rel="noopener noreferrer">TLDR</a></h3><p class="zine-desc">High-signal daily digest for engineering, startups, tools, and product launches.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#02</span><span class="zine-cat">coding</span></div><h3 class="zine-name"><a href="https://javascriptweekly.com/" target="_blank" rel="noopener noreferrer">JavaScript Weekly</a></h3><p class="zine-desc">Weekly curation of JavaScript ecosystem news, releases, and architecture writeups.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#03</span><span class="zine-cat">coding</span></div><h3 class="zine-name"><a href="https://www.pythonweekly.com/" target="_blank" rel="noopener noreferrer">Python Weekly</a></h3><p class="zine-desc">Python tutorials, tooling updates, and production engineering references.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#04</span><span class="zine-cat">tech culture</span></div><h3 class="zine-name"><a href="https://www.hackernewsletter.com/" target="_blank" rel="noopener noreferrer">Hacker Newsletter</a></h3><p class="zine-desc">Handpicked high-quality links from the Hacker News ecosystem each week.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#05</span><span class="zine-cat">engineering</span></div><h3 class="zine-name"><a href="https://newsletter.pragmaticengineer.com/" target="_blank" rel="noopener noreferrer">The Pragmatic Engineer</a></h3><p class="zine-desc">Deep dives on software engineering strategy, systems, and tech-company execution.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#06</span><span class="zine-cat">cybersecurity</span></div><h3 class="zine-name"><a href="https://www.sans.org/newsletters/newsbites/" target="_blank" rel="noopener noreferrer">SANS NewsBites</a></h3><p class="zine-desc">Curated security news with context for defenders, responders, and policy teams.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#07</span><span class="zine-cat">cybersecurity</span></div><h3 class="zine-name"><a href="https://thehackernews.com/" target="_blank" rel="noopener noreferrer">The Hacker News</a></h3><p class="zine-desc">High-velocity cyber threat coverage and vulnerability disclosure updates.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#08</span><span class="zine-cat">cybersecurity</span></div><h3 class="zine-name"><a href="https://www.darkreading.com/" target="_blank" rel="noopener noreferrer">Dark Reading</a></h3><p class="zine-desc">Enterprise security reporting with threat intelligence and operations focus.</p></article>
+          <article class="zine-card reveal"><div class="zine-head"><span class="zine-rank">#09</span><span class="zine-cat">security analysis</span></div><h3 class="zine-name"><a href="https://krebsonsecurity.com/" target="_blank" rel="noopener noreferrer">Krebs on Security</a></h3><p class="zine-desc">Investigative security journalism on breaches, fraud infrastructure, and abuse markets.</p></article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer role="contentinfo">
-    <p>Code Cookbook &bull; <a href="https://github.com/thumpersecure" target="_blank" rel="noopener noreferrer">THUMPERSECURE</a> &bull; OSINT &amp; SEO Specialist &bull; Live from GitHub API</p>
+    <p class="foot-main">Code Cookbook by <a href="https://github.com/thumpersecure" target="_blank" rel="noopener noreferrer">THUMPERSECURE</a> &mdash; a living blend of OSINT workflows, privacy tooling, and hacker-culture archives, rendered as a minimal neon technical atlas.</p>
+    <p class="foot-sub">Built from GitHub API signals and curated historical references. Explore <a href="#ingredients">ingredients</a>, <a href="#quotes">quotes</a>, <a href="#glossary">glossary</a>, and <a href="#zines">zines</a> to move from context to execution.</p>
   </footer>
 
 </div>
@@ -829,7 +970,7 @@ function safeUrl(u){try{var h=new URL(u);return h.protocol==='https:'&&(h.hostna
 function bC(repo,idx){
   var c=document.createElement('article');c.className='project-card';c.style.transitionDelay=(idx*0.06)+'s';
   var sN=esc(repo.name),sD=esc(repo.description||'OSINT & SEO tool by THUMPERSECURE'),sL=esc(repo.language),sU=safeUrl(repo.html_url);
-  c.innerHTML='<div class="card-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="card-filename">'+sN+'.ts</span></div><div class="card-body"><h3 class="card-name"><a href="'+sU+'" target="_blank" rel="noopener noreferrer">'+sN+'</a></h3><p class="card-desc">'+sD+'</p></div><div class="card-meta">'+(repo.stargazers_count>0?'<span class="pill pill-stars">&#9733; '+repo.stargazers_count+'</span>':'')+(sL?'<span class="pill pill-lang">'+sL+'</span>':'')+'<span class="pill pill-date">'+rD(repo.updated_at)+'</span></div>';
+  c.innerHTML='<a class="project-link" href="'+sU+'" target="_blank" rel="noopener noreferrer"><div class="card-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="card-filename">'+sN+'.ts</span></div><div class="card-body"><h3 class="card-name">'+sN+'</h3><p class="card-desc">'+sD+'</p></div><div class="card-meta">'+(repo.stargazers_count>0?'<span class="pill pill-stars">&#9733; '+repo.stargazers_count+'</span>':'')+(sL?'<span class="pill pill-lang">'+sL+'</span>':'')+'<span class="pill pill-date">'+rD(repo.updated_at)+'</span></div></a>';
   return c;
 }
 (async function(){
@@ -984,7 +1125,7 @@ fillMon('mon4',[
 /* ====== INGREDIENTS TIMELINE ====== */
 var iCv=document.getElementById('ingredientsCanvas');
 if(iCv){
-  var iX=iCv.getContext('2d'),iTick=0,iYears=[1996,2001,2007,2013,2019,2026];
+  var iX=iCv.getContext('2d'),iTick=0,iYears=[1986,1988,1996,2001,2007,2013,2019,2026];
   function rIC(){
     var dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
     var w=iCv.clientWidth,h=iCv.clientHeight;
@@ -1013,6 +1154,50 @@ if(iCv){
     iTick+=1;requestAnimationFrame(dIC);
   }
   rIC();dIC();window.addEventListener('resize',rIC);
+}
+
+/* ====== QUOTE SIGNAL + CARD CYCLER ====== */
+var qCv=document.getElementById('quoteSignalCanvas');
+if(qCv){
+  var qX=qCv.getContext('2d'),qT=0;
+  function rQC(){
+    var dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+    var w=qCv.clientWidth,h=qCv.clientHeight;
+    qCv.width=Math.floor(w*dpr);qCv.height=Math.floor(h*dpr);
+    qX.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function dQC(){
+    var w=qCv.clientWidth,h=qCv.clientHeight;
+    qX.clearRect(0,0,w,h);
+    qX.fillStyle='rgba(6,8,14,0.26)';
+    qX.fillRect(0,0,w,h);
+    for(var i=0;i<3;i++){
+      var amp=12+i*8,off=(i+1)*0.011,yy=h*(0.28+i*0.18);
+      qX.strokeStyle=i===1?'rgba(24,220,255,0.45)':'rgba(0,255,204,0.22)';
+      qX.lineWidth=i===1?1.4:1;
+      qX.beginPath();
+      for(var x=0;x<=w;x+=3){
+        var y=yy+Math.sin((x*off)+qT*(0.03+i*0.01))*amp;
+        if(x===0)qX.moveTo(x,y);else qX.lineTo(x,y);
+      }
+      qX.stroke();
+    }
+    var px=((Math.sin(qT*0.017)+1)/2)*(w-48)+24;
+    var pg=qX.createRadialGradient(px,h*0.5,2,px,h*0.5,28);
+    pg.addColorStop(0,'rgba(255,0,170,0.75)');
+    pg.addColorStop(1,'rgba(255,0,170,0)');
+    qX.fillStyle=pg;qX.beginPath();qX.arc(px,h*0.5,28,0,Math.PI*2);qX.fill();
+    qT+=1;requestAnimationFrame(dQC);
+  }
+  rQC();dQC();window.addEventListener('resize',rQC);
+}
+var lQ=[].slice.call(document.querySelectorAll('.legend-quote-card')),lQi=0;
+if(lQ.length){
+  setInterval(function(){
+    lQ.forEach(function(c){c.classList.remove('hot')});
+    lQ[lQi].classList.add('hot');
+    lQi=(lQi+1)%lQ.length;
+  },2400);
 }
 
 })();
