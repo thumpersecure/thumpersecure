@@ -2,11 +2,11 @@
   <img src="assets/neural-header.svg" width="99%" alt="THUMPERSECURE Code Cookbook" />
 </div>
 
-# THUMPERSECURE Code Cookbook
+# THUMPERSECURE | THUMPERSEO 
 
-OSINT, privacy, and utility tooling for investigators, researchers, and people who care about their digital footprint.
+OSINT, SEO, privacy, and utility tooling for investigators, researchers, marketers, and people who care about their digital footprint.
 
-[![Explore Code Cookbook](https://img.shields.io/badge/Explore_Code_Cookbook-b0ffcc?style=for-the-badge&logo=github&logoColor=0601FF&labelColor=06060F)](https://thumpersecure.github.io/thumpersecure/)
+[![Explore The CODE Cookbook](https://img.shields.io/badge/Explore_Code_Cookbook-b0ffcc?style=for-the-badge&logo=github&logoColor=0601FF&labelColor=06060F)](https://thumpersecure.github.io/thumpersecure/)
 [![Repositories](https://img.shields.io/badge/Public_Repositories-15-00b8ff?style=flat-square&logo=github&labelColor=06060F)](https://github.com/thumpersecure?tab=repositories)
 [![Followers](https://img.shields.io/badge/Followers-41-8b5cf6?style=flat-square&logo=github&labelColor=06060e)](https://github.com/thumpersecure?tab=followers)
 
