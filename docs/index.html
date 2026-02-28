@@ -111,7 +111,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .music-btn:focus-visible{outline:none;border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,255,204,0.24),0 0 14px rgba(24,220,255,0.2)}
 .music-btn.active{border-color:var(--cyan);background:linear-gradient(150deg,rgba(5,18,31,0.96),rgba(8,12,24,0.9));box-shadow:0 0 16px rgba(0,255,204,0.22)}
 .music-btn.active::after{height:2px;opacity:1;box-shadow:0 0 8px rgba(24,220,255,0.7)}
-.music-btn[data-theme="hacker"]{--eq-hi:#18dcff;--eq-mid:#00ffcc;--eq-low:rgba(24,220,255,0.24);--eq-glow:rgba(24,220,255,0.45);border-color:rgba(24,220,255,0.38)}
+.music-btn[data-theme="tron"]{--eq-hi:#18dcff;--eq-mid:#00ffcc;--eq-low:rgba(24,220,255,0.24);--eq-glow:rgba(24,220,255,0.45);border-color:rgba(24,220,255,0.38)}
 .music-btn[data-theme="robot"]{--eq-hi:#ff00aa;--eq-mid:#8b5cf6;--eq-low:rgba(255,0,170,0.24);--eq-glow:rgba(255,0,170,0.44);border-color:rgba(255,0,170,0.34)}
 .music-btn[data-theme="swordfish"]{--eq-hi:#00ff41;--eq-mid:#ffaa00;--eq-low:rgba(0,255,65,0.22);--eq-glow:rgba(0,255,65,0.42);border-color:rgba(0,255,65,0.34)}
 .music-name{display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left}
@@ -475,11 +475,11 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 
   <div class="music-toolbar-wrap" aria-label="Music selector">
     <div class="music-toolbar">
-      <span class="music-toolbar-label">signal deck // hackers · mr robot · swordfish</span>
+      <span class="music-toolbar-label">signal deck // tron · mr robot · swordfish</span>
       <div class="music-btns" id="musicDeck">
-        <button type="button" class="music-btn" data-theme="hacker" data-query="Hackers soundtrack Halcyon and On and On Orbital" data-label="Hackers Halcyon" aria-pressed="false">
+        <button type="button" class="music-btn" data-theme="tron" data-query="Tron Legacy soundtrack Daft Punk The Grid" data-label="Tron The Grid" aria-pressed="false">
           <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-          <span class="music-name"><span class="music-track">HACKERS // HALCYON</span><span class="music-vibe">neon packet run</span></span>
+          <span class="music-name"><span class="music-track">TRON // THE GRID</span><span class="music-vibe">digital frontier</span></span>
         </button>
         <button type="button" class="music-btn" data-theme="robot" data-query="Mr Robot soundtrack Mac Quayle 3.0_5-da3m0nsneverstop" data-label="Mr Robot Daemons" aria-pressed="false">
           <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
