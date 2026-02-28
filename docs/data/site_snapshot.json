@@ -1,0 +1,208 @@
+{
+  "last_updated_utc": "2026-02-28T15:55:22.754Z",
+  "stats": {
+    "tools_count": 13,
+    "stars_total": 541,
+    "featured_count": 4,
+    "followers": 43
+  },
+  "repos": [
+    {
+      "name": "palm-tree",
+      "description": "🌴 A tool to generate a ton of randomized traffic noise using 30+ personas, 10 parallel generators, chaos modes, live headlines, and more! Bash, Python, or both!",
+      "topics": [],
+      "stars": 139,
+      "last_updated": "2026-02-26T21:47:22Z",
+      "language": "Python",
+      "homepage": "https://thumpersecure.github.io/palm-tree/",
+      "html_url": "https://github.com/thumpersecure/palm-tree",
+      "featured": true
+    },
+    {
+      "name": "Telespot",
+      "description": "🔭TeleSpot OSINT lookup from Telephone number using DDGR + BING + GOOGLE + DEHASHED and uses pattern recognition correlations. NOW with TelespotX!",
+      "topics": [
+        "2026",
+        "osint",
+        "osint-kali",
+        "osint-phonenumbers",
+        "osint-python",
+        "osint-reconnaissance",
+        "osint-tools",
+        "osinttool",
+        "phone-number",
+        "telephone-number"
+      ],
+      "stars": 99,
+      "last_updated": "2026-02-27T00:33:38Z",
+      "language": "Python",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/Telespot",
+      "featured": true
+    },
+    {
+      "name": "Spin",
+      "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
+      "topics": [],
+      "stars": 77,
+      "last_updated": "2026-02-28T12:04:39Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/Spin/",
+      "html_url": "https://github.com/thumpersecure/Spin",
+      "featured": true
+    },
+    {
+      "name": "xTELENUMSINT",
+      "description": "☎️ xTELENUMSINT - A powerful new Chrome extension for Telephone OSINT (NUMSINT) that automates searches in Google using 10 different formats. It then generates an extensive report using pattern analysis with advanced options. No coding required.",
+      "topics": [
+        "osint-phonenumbers",
+        "osint-tool",
+        "phone-number",
+        "telephone-number"
+      ],
+      "stars": 56,
+      "last_updated": "2026-02-28T10:01:53Z",
+      "language": "JavaScript",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
+      "featured": false
+    },
+    {
+      "name": "Telespotter",
+      "description": "🦀 A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
+      "topics": [
+        "osint",
+        "osint-phonenumbers",
+        "osint-python",
+        "osint-tool",
+        "osint-tools"
+      ],
+      "stars": 53,
+      "last_updated": "2026-02-27T00:02:14Z",
+      "language": "Rust",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/Telespotter",
+      "featured": false
+    },
+    {
+      "name": "TeleSTOP",
+      "description": "📵 A windows desktop program designed for one thing; to help you remove your data from 50+ people-search sites at the source. No cloud, no APIs, 100% local. Pairs with xTELENUMSINT for faster detection/reporting. Reduce spam calls. Lower your risk for identity theft. Take back control. NO coding required. 100% free.",
+      "topics": [],
+      "stars": 34,
+      "last_updated": "2026-02-28T01:24:18Z",
+      "language": "TypeScript",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/TeleSTOP",
+      "featured": false
+    },
+    {
+      "name": "opt-out-manual-2026",
+      "description": "🫆 2026 DIY Opt-Out Manual For Removal From Over 400 Sites. The guide shows difficulty rating, an estimate of how long it will take, and the exact instructions to opt-out per site in an easy to read user manual.",
+      "topics": [
+        "guide",
+        "opt-out"
+      ],
+      "stars": 27,
+      "last_updated": "2026-02-28T00:55:59Z",
+      "language": null,
+      "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
+      "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
+      "featured": true
+    },
+    {
+      "name": "spicy-cat",
+      "description": "💋 An online privacy tool that generates realistic digital personas and human-like behavioral noise to disrupt profiling, correlation, and attribution. For best results use TOR and Firefox. Coded in Python.",
+      "topics": [],
+      "stars": 22,
+      "last_updated": "2026-02-26T23:49:13Z",
+      "language": "Python",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/spicy-cat",
+      "featured": false
+    },
+    {
+      "name": "TelespotXX",
+      "description": "👁️‍🗨️ Telespot , TelespotX, and Telespotter ... all in ONE web app for easier use for all OSINT Specialists.",
+      "topics": [
+        "osint",
+        "osint-2026",
+        "osint-phonenumbers",
+        "osint-tool",
+        "phone-numbers"
+      ],
+      "stars": 21,
+      "last_updated": "2026-02-27T00:38:33Z",
+      "language": "Python",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/TelespotXX",
+      "featured": false
+    },
+    {
+      "name": "blueTTool",
+      "description": "🩵blueTTool is an easy to use web-based testing and management utility designed for Bluetooth Low Energy (BLE) devices. It is used with the Bluefy browser on iOS devices to bypass Apple's native Web Bluetooth restrictions.",
+      "topics": [
+        "2026",
+        "app",
+        "ble",
+        "bluetooth",
+        "bluetooth-low-energy",
+        "educational-project",
+        "ios",
+        "iphone",
+        "iphone-app",
+        "open-source",
+        "research-tool",
+        "security-tools",
+        "web",
+        "webapp",
+        "wireless"
+      ],
+      "stars": 8,
+      "last_updated": "2026-02-27T20:53:08Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/blueTTool/",
+      "html_url": "https://github.com/thumpersecure/blueTTool",
+      "featured": false
+    },
+    {
+      "name": "LOVE-BOMB",
+      "description": "❤️‍🔥LOVEBOMB",
+      "topics": [],
+      "stars": 2,
+      "last_updated": "2026-02-27T00:34:08Z",
+      "language": "HTML",
+      "homepage": "https://thumpersecure.github.io/LOVE-BOMB/",
+      "html_url": "https://github.com/thumpersecure/LOVE-BOMB",
+      "featured": false
+    },
+    {
+      "name": "ofacebook",
+      "description": "🪬A Facebook OSINT tool that uses prefixes. Designed as simple mobile web app. ",
+      "topics": [
+        "osint-facebook",
+        "osint-tool"
+      ],
+      "stars": 2,
+      "last_updated": "2026-02-28T00:56:52Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/ofacebook/",
+      "html_url": "https://github.com/thumpersecure/ofacebook",
+      "featured": false
+    },
+    {
+      "name": "zweather",
+      "description": "⚡️Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
+      "topics": [
+        "weather",
+        "weather-app",
+        "weather-forecast"
+      ],
+      "stars": 1,
+      "last_updated": "2026-02-27T00:40:16Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/zweather/",
+      "html_url": "https://github.com/thumpersecure/zweather",
+      "featured": false
+    }
+  ]
+}
