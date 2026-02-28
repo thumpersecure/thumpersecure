@@ -206,21 +206,33 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 
 /* ====== COLLAPSIBLE MODULES (Phase 4) ====== */
 .ts-module{margin-bottom:0.5rem}
-.ts-module-header{display:flex;align-items:center;gap:0.8rem;width:100%;background:none;border:1px solid var(--border);border-radius:12px;padding:0.8rem 1.2rem;cursor:pointer;text-align:left;transition:border-color .3s,box-shadow .3s,background .3s;font-family:inherit;color:inherit}
-.ts-module-header:hover{border-color:rgba(24,220,255,0.35);box-shadow:0 0 20px rgba(24,220,255,0.06);background:rgba(24,220,255,0.03)}
+.ts-module-header{display:flex;align-items:center;gap:0.8rem;width:100%;background:none;border:2px solid rgba(24,220,255,0.3);border-radius:12px;padding:0.8rem 1.2rem;cursor:pointer;text-align:left;transition:border-color .3s,box-shadow .3s,background .3s,transform .24s;font-family:inherit;color:inherit;position:relative;overflow:hidden}
+.ts-module-header::before{content:'';position:absolute;top:0;left:-110%;width:70%;height:100%;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.12),transparent);pointer-events:none;transition:left .55s ease}
+.ts-module-header::after{content:'';position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--tron),var(--cyan));box-shadow:0 0 8px rgba(24,220,255,0.35);transition:width .35s ease;pointer-events:none}
+.ts-module-header:hover{border-color:rgba(24,220,255,0.62);box-shadow:0 0 24px rgba(24,220,255,0.13),inset 0 0 16px rgba(24,220,255,0.06);background:rgba(24,220,255,0.06);transform:translateY(-1px)}
+.ts-module-header:hover::before{left:125%}
+.ts-module-header:hover::after,.ts-module-header[aria-expanded="true"]::after{width:100%}
 .ts-module-header:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.ts-module-header[aria-expanded="true"]{border-color:rgba(24,220,255,0.52);box-shadow:0 0 22px rgba(24,220,255,0.12),inset 0 0 20px rgba(24,220,255,0.05)}
 .ts-module-header .section-head{margin-bottom:0;flex:0 0 auto;font-size:clamp(0.9rem,1.8vw,1.15rem)}
-.ts-module-summary{flex:1;min-width:0;font-family:var(--mono);font-size:0.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ts-module-summary{flex:1;min-width:0;font-family:var(--mono);font-size:0.76rem;font-weight:700;color:#8ad8f0;letter-spacing:0.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ts-module-chevron{font-family:var(--mono);font-size:0.8rem;color:var(--cyan);transition:transform .3s;flex:0 0 auto}
 .ts-module-header[aria-expanded="true"] .ts-module-chevron{transform:rotate(180deg)}
 .ts-module-header[aria-expanded="true"] .ts-module-summary{display:none}
 .ts-module-body{overflow:hidden;transition:max-height .5s ease,opacity .4s ease;max-height:0;opacity:0}
 .ts-module-body.open{opacity:1}
 .ts-module-body>div{padding-top:1rem}
-.module-controls{display:flex;justify-content:center;gap:0.8rem;padding:1rem 0;flex-wrap:wrap}
-.module-ctrl-btn{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);background:none;border:1px solid var(--border);border-radius:999px;padding:0.4rem 1rem;cursor:pointer;transition:all .22s}
-.module-ctrl-btn:hover{border-color:var(--cyan);box-shadow:0 0 12px rgba(0,255,204,0.12)}
+.module-controls{display:flex;justify-content:center;gap:0.8rem;padding:1rem 1.2rem;flex-wrap:wrap;position:relative;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:rgba(3,12,24,0.62)}
+.module-controls::before{content:'';position:absolute;top:-1px;left:-90px;width:90px;height:2px;background:linear-gradient(90deg,transparent,var(--tron),var(--cyan));box-shadow:0 0 10px var(--tron);opacity:0.75;animation:moduleCtrlTrace 4.8s linear infinite;pointer-events:none}
+.module-ctrl-btn{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);background:none;border:2px solid rgba(24,220,255,0.35);border-radius:999px;padding:0.45rem 1.05rem;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.module-ctrl-btn::before{content:'';position:absolute;top:0;left:-100%;width:65%;height:100%;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.26),transparent);pointer-events:none}
+.module-ctrl-btn:hover{border-color:var(--tron);box-shadow:0 0 16px rgba(24,220,255,0.25),0 0 30px rgba(24,220,255,0.09);color:var(--tron)}
+.module-ctrl-btn:hover::before{animation:moduleBtnSweep .6s ease-out}
 .module-ctrl-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.module-ctrl-btn.tron-pulse{animation:moduleCtrlPulse .45s ease-out}
+@keyframes moduleCtrlTrace{0%{left:-90px}100%{left:calc(100% + 90px)}}
+@keyframes moduleBtnSweep{0%{left:-100%}100%{left:140%}}
+@keyframes moduleCtrlPulse{0%{box-shadow:0 0 0 rgba(24,220,255,0)}50%{box-shadow:0 0 22px rgba(24,220,255,0.35),0 0 40px rgba(24,220,255,0.2)}100%{box-shadow:0 0 0 rgba(24,220,255,0)}}
 
 /* ====== SEARCH/FILTER (Phase 2) ====== */
 .search-wrap{max-width:480px;margin:0 auto 2rem;position:relative}
@@ -426,6 +438,13 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .dial-input{width:60px;text-align:center;padding:0.4rem;border-radius:8px;border:1px solid var(--border);background:rgba(5,5,15,0.9);color:var(--cyan);font-family:var(--mono);font-size:0.9rem;outline:none}
 .dial-input:focus{border-color:rgba(0,255,204,0.5);box-shadow:0 0 12px rgba(0,255,204,0.1)}
 .dial-target{font-family:var(--mono);font-size:0.78rem;color:var(--amber);margin-bottom:0.5rem}
+/* Puzzle D: port scan */
+.port-scan-row{display:flex;gap:0.6rem;justify-content:center;align-items:center;margin:0.8rem 0;flex-wrap:wrap}
+.port-btn{border:1px solid var(--border);border-radius:10px;background:rgba(5,5,15,0.9);padding:0.6rem 1rem;font-family:var(--mono);font-size:0.78rem;color:var(--muted);cursor:pointer;transition:all .2s;min-width:72px;text-align:center}
+.port-btn:hover{border-color:rgba(24,220,255,0.4);color:var(--text)}
+.port-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.port-btn.open{border-color:var(--green);background:rgba(0,255,65,0.12);color:var(--green);box-shadow:0 0 8px rgba(0,255,65,0.2)}
+.port-target{font-family:var(--mono);font-size:0.78rem;color:var(--amber);margin-bottom:0.5rem}
 
 /* ====== SETTINGS PANEL (Phase 9) ====== */
 .settings-overlay{position:fixed;inset:0;z-index:15000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
@@ -499,6 +518,8 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .cb-out{margin-top:0.75rem;border:1px solid rgba(0,255,204,0.12);border-radius:10px;background:rgba(0,0,0,0.28);padding:0.75rem 0.85rem;font-family:var(--mono);font-size:0.72rem;line-height:1.6;color:var(--text)}
 .cb-out .ok{color:var(--green)}.cb-out .warn{color:var(--amber)}.cb-out .bad{color:var(--red)}.cb-out .hl{color:var(--cyan)}
 .cb-fp{margin-top:0.55rem;color:var(--muted);font-family:var(--mono);font-size:0.68rem}
+.cb-contact{margin-top:0.8rem;padding-top:0.8rem;border-top:1px dashed rgba(24,220,255,0.2)}
+.cb-contact .cb-out{margin-top:0.55rem}
 .cb-body::-webkit-scrollbar{width:10px}
 .cb-body::-webkit-scrollbar-track{background:rgba(0,0,0,0.22)}
 .cb-body::-webkit-scrollbar-thumb{background:rgba(24,220,255,0.18);border-radius:10px}
@@ -564,6 +585,9 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}
   .cb-toast,.cb-modal,.fx-toast,.ts-module-body{transition:none}
   .cb-toast::before,.cb-modal::after,.fx-toast::before,.top-bar::before,.glass::before,.ingredients-visual::after{animation:none}
+  .module-controls::before,.module-ctrl-btn::before{animation:none;display:none}
+  .module-ctrl-btn.tron-pulse{animation:none}
+  .ts-module-header:hover{transform:none}
   .sweep,.mon-scroll{animation:none}
   .glitch::before,.glitch::after{animation:none;display:none}
   #rainCanvas{display:none}
@@ -652,23 +676,13 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
       <p class="hero-sub">// OSINT &amp; SEO SPECIALIST</p>
       <div class="typer-wrap" aria-live="polite"><span id="typerText"></span><span class="typer-cursor"></span></div>
       <nav class="hero-btns" aria-label="Primary navigation">
-        <a href="#recipes" class="btn btn-primary">View Recipes</a>
+        <a href="#recipes" class="btn btn-primary">ACCESS GRANTED</a>
         <a href="https://github.com/thumpersecure" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
       </nav>
     </div>
   </header>
 
   <main>
-
-    <!-- ====== OPENING QUOTE ====== -->
-    <section class="quote-section reveal" aria-label="Quote">
-      <div class="container">
-        <blockquote class="quote-block glass">
-          <p class="quote-text">"Turn up the radio. And turn out the lights."</p>
-          <cite class="quote-cite">&mdash; Mr. Robot</cite>
-        </blockquote>
-      </div>
-    </section>
 
     <!-- ====== STATS ====== -->
     <section class="stats-section reveal" aria-label="Statistics">
@@ -688,8 +702,9 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 
     <!-- ====== MODULE CONTROLS ====== -->
     <div class="module-controls">
-      <button type="button" class="module-ctrl-btn" id="expandAllBtn">&#9660; Expand All</button>
-      <button type="button" class="module-ctrl-btn" id="collapseAllBtn">&#9650; Collapse All</button>
+      <button type="button" class="module-ctrl-btn" id="expandAllBtn" aria-label="Expand all modules">&#9660; Expand All</button>
+      <button type="button" class="module-ctrl-btn" id="collapseAllBtn" aria-label="Collapse all modules">&#9650; Collapse All</button>
+      <span id="moduleCtrlStatus" class="sr-only" aria-live="polite"></span>
     </div>
 
     <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
@@ -1009,8 +1024,34 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
             <article class="zine-card"><div class="zine-head"><span class="zine-rank">#08</span><span class="zine-cat">cybersecurity</span></div><h3 class="zine-name"><a href="https://www.darkreading.com/" target="_blank" rel="noopener noreferrer">Dark Reading</a></h3><p class="zine-desc">Enterprise security reporting with threat intelligence and operations focus.</p></article>
             <article class="zine-card"><div class="zine-head"><span class="zine-rank">#09</span><span class="zine-cat">security analysis</span></div><h3 class="zine-name"><a href="https://krebsonsecurity.com/" target="_blank" rel="noopener noreferrer">Krebs on Security</a></h3><p class="zine-desc">Investigative security journalism on breaches, fraud infrastructure, and abuse markets.</p></article>
           </div>
+          <div class="puzzle-unlock-area" id="puzzleD" data-puzzle="portscan" style="margin-top:2rem">
+            <div class="puzzle-solved-badge">&#10003; PORT MAP VERIFIED</div>
+            <div class="puzzle-game">
+              <div class="puzzle-title">&#128274; Port Scan Challenge</div>
+              <div class="puzzle-desc">Toggle the ports to match the secure target map. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('portscan')">Skip</button></div>
+              <div class="port-target" id="portTarget">Target: ---</div>
+              <div class="port-scan-row" id="portScanRow"></div>
+              <button class="cb-mini-btn" style="margin-top:0.5rem" onclick="TS.checkPortScan()">Verify</button>
+              <div class="checksum-status" id="portScanStatus">set the correct open ports</div>
+            </div>
+            <div class="puzzle-content">
+              <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Recon Bonus:</strong> Port context matters. Keep remote exposure minimal, validate open services, and treat every listening endpoint as a potential narrative leak.</p>
+            </div>
+          </div>
         </div>
       </div></div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
+
+    <!-- ====== CLOSING QUOTE ====== -->
+    <section class="quote-section reveal" aria-label="Quote">
+      <div class="container">
+        <blockquote class="quote-block glass">
+          <p class="quote-text">"Turn up the radio. And turn out the lights."</p>
+          <cite class="quote-cite">&mdash; Mr. Robot</cite>
+        </blockquote>
+      </div>
     </section>
 
     <div id="cbBottomSentinel" class="cb-bottom-sentinel" aria-hidden="true"></div>
@@ -1251,8 +1292,35 @@ function toggleModule(mod,forceOpen){
 
 var expandAllBtn=document.getElementById('expandAllBtn');
 var collapseAllBtn=document.getElementById('collapseAllBtn');
-if(expandAllBtn)expandAllBtn.addEventListener('click',function(){modules.forEach(function(m){toggleModule(m,true)})});
-if(collapseAllBtn)collapseAllBtn.addEventListener('click',function(){modules.forEach(function(m){toggleModule(m,false)})});
+var moduleCtrlStatus=document.getElementById('moduleCtrlStatus');
+function pulseModuleCtrl(btn){
+  if(!btn||reducedMotion)return;
+  btn.classList.remove('tron-pulse');
+  requestAnimationFrame(function(){
+    btn.classList.add('tron-pulse');
+    setTimeout(function(){btn.classList.remove('tron-pulse')},460);
+  });
+}
+function setModuleCtrlStatus(msg){
+  if(moduleCtrlStatus)moduleCtrlStatus.textContent=msg;
+}
+function toggleAllModules(forceOpen){
+  var step=reducedMotion?0:70;
+  modules.forEach(function(m,i){
+    if(step===0){toggleModule(m,forceOpen);return}
+    setTimeout(function(){toggleModule(m,forceOpen)},i*step);
+  });
+}
+if(expandAllBtn)expandAllBtn.addEventListener('click',function(){
+  pulseModuleCtrl(expandAllBtn);
+  toggleAllModules(true);
+  setModuleCtrlStatus('All modules expanded');
+});
+if(collapseAllBtn)collapseAllBtn.addEventListener('click',function(){
+  pulseModuleCtrl(collapseAllBtn);
+  toggleAllModules(false);
+  setModuleCtrlStatus('All modules collapsed');
+});
 
 /* ====== MUSIC CONTROLLER (Phase 5) ====== */
 var TRACK_CONFIG=[
@@ -1433,10 +1501,23 @@ var FX_EVENTS=[
   {icon:'&#128272;',label:'SIMULATION',msg:'Encrypted handshake completed \u2014 channel secure.'},
   {icon:'&#129302;',label:'DEMO',msg:'Bot swarm neutralized \u2014 0 breaches detected.'}
 ];
+var FX_SCROLL_EVENTS=[
+  {key:'cinema',selector:'#mod-cinema',icon:'&#127910;',label:'DEMO',msg:'Cinema grid entered \u2014 wireframe channels are live.'},
+  {key:'archives',selector:'#mod-archives',icon:'&#128190;',label:'SIMULATION',msg:'Archive lane opened \u2014 BBS artifacts loaded.'},
+  {key:'recipes',selector:'#mod-recipes',icon:'&#127860;',label:'DEMO',msg:'Featured recipes unlocked \u2014 signal quality high.'},
+  {key:'index',selector:'#recipe-index-section',icon:'&#128218;',label:'SIMULATION',msg:'Recipe index sweep complete \u2014 pattern map updated.'},
+  {key:'ingredients',selector:'#mod-ingredients',icon:'&#128197;',label:'DEMO',msg:'Timeline grid synced \u2014 legacy-to-modern bridge stable.'},
+  {key:'quotes',selector:'#mod-quotes',icon:'&#128172;',label:'SIMULATION',msg:'Legend quote wall energized \u2014 rotating hot feed active.'},
+  {key:'glossary',selector:'#mod-glossary',icon:'&#128295;',label:'DEMO',msg:'Threat glossary parsed \u2014 defensive vocabulary armed.'},
+  {key:'zines',selector:'#mod-zines',icon:'&#128240;',label:'SIMULATION',msg:'Deep-scroll achieved \u2014 zine relay now broadcasting.'}
+];
 var fxContainer=document.getElementById('fxToastContainer');
 var fxEnabled=getSetting('effects_enabled',reducedMotion?false:true);
 var fxTimer=null;
 var fxVisibleCount=0;
+var fxScrollObserver=null;
+var fxScrollMap={};
+var fxScrollSeen={};
 
 function fxShowToast(evt){
   if(!fxContainer||fxVisibleCount>=2)return;
@@ -1474,6 +1555,33 @@ function updateEffectsUI(){
   if(stBtn){stBtn.classList.toggle('on',fxEnabled);stBtn.setAttribute('aria-checked',fxEnabled?'true':'false')}
 }
 
+function fxShowScrollToast(key){
+  var evt=fxScrollMap[key];
+  if(!evt||!fxEnabled)return;
+  fxShowToast(evt);
+}
+
+function fxInitScrollToasts(){
+  if(!('IntersectionObserver' in window)||fxScrollObserver)return;
+  fxScrollObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting||!fxEnabled)return;
+      var key=en.target.getAttribute('data-fx-scroll-key');
+      if(!key||fxScrollSeen[key])return;
+      fxScrollSeen[key]=true;
+      fxShowScrollToast(key);
+      fxScrollObserver.unobserve(en.target);
+    });
+  },{threshold:0.22,rootMargin:'0px 0px -20% 0px'});
+  FX_SCROLL_EVENTS.forEach(function(evt){
+    var el=document.querySelector(evt.selector);
+    if(!el)return;
+    fxScrollMap[evt.key]=evt;
+    el.setAttribute('data-fx-scroll-key',evt.key);
+    fxScrollObserver.observe(el);
+  });
+}
+
 var toggleEffectsBtn=document.getElementById('toggleEffects');
 if(toggleEffectsBtn){
   toggleEffectsBtn.addEventListener('click',function(){if(fxEnabled)fxStop();else fxStart()});
@@ -1481,6 +1589,7 @@ if(toggleEffectsBtn){
 
 if(fxEnabled)fxScheduleNext();
 updateEffectsUI();
+fxInitScrollToasts();
 
 /* ====== PUZZLES (Phase 7) ====== */
 function getPuzzleState(id){return getSetting('puzzle_'+id,false)}
@@ -1575,6 +1684,36 @@ function updatePuzzleUI(id){
   updatePuzzleUI('decrypt');
 })();
 
+// Puzzle D: Port Scan
+(function(){
+  var container=document.getElementById('portScanRow');
+  var targetEl=document.getElementById('portTarget');
+  var statusEl=document.getElementById('portScanStatus');
+  if(!container||!targetEl)return;
+  var ports=[22,80,443,8080,3000];
+  var shuffled=ports.slice();
+  for(var i=shuffled.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=shuffled[i];shuffled[i]=shuffled[j];shuffled[j]=t;
+  }
+  var targetOpen=shuffled.slice(0,3).sort(function(a,b){return a-b});
+  targetEl.textContent='Target: open '+targetOpen.join(', ');
+  TS.portScanTarget=targetOpen.slice();
+  ports.forEach(function(port){
+    var btn=document.createElement('button');
+    btn.type='button';btn.className='port-btn';
+    btn.textContent=String(port);
+    btn.setAttribute('data-port',String(port));
+    btn.setAttribute('aria-label','Toggle port '+String(port));
+    btn.addEventListener('click',function(){
+      btn.classList.toggle('open');
+      if(statusEl)statusEl.textContent='open ports selected: '+document.querySelectorAll('#portScanRow .port-btn.open').length;
+    });
+    container.appendChild(btn);
+  });
+  updatePuzzleUI('portscan');
+})();
+
 TS.checkDecrypt=function(){
   var dA=document.getElementById('dialA'),dB=document.getElementById('dialB'),dC=document.getElementById('dialC');
   var statusEl=document.getElementById('decryptStatus');
@@ -1589,9 +1728,24 @@ TS.checkDecrypt=function(){
   }
 };
 
+TS.checkPortScan=function(){
+  var statusEl=document.getElementById('portScanStatus');
+  if(!TS.portScanTarget||!statusEl)return;
+  var selected=[].slice.call(document.querySelectorAll('#portScanRow .port-btn.open')).map(function(btn){
+    return parseInt(btn.getAttribute('data-port'),10);
+  }).sort(function(a,b){return a-b});
+  var ok=selected.length===TS.portScanTarget.length&&selected.every(function(v,i){return v===TS.portScanTarget[i]});
+  if(ok){
+    statusEl.textContent='port map verified. access granted.';
+    setPuzzleState('portscan',true);
+  }else{
+    statusEl.textContent='mismatch — adjust port states and retry';
+  }
+};
+
 TS.puzzleSkip=function(id){setPuzzleState(id,true)};
 TS.resetAllPuzzles=function(){
-  ['checksum','pattern','decrypt','bottom'].forEach(function(id){
+  ['checksum','pattern','decrypt','portscan','bottom'].forEach(function(id){
     setSetting('puzzle_'+id,false);updatePuzzleUI(id);
   });
   localStorage.removeItem('cb_puzzle_solved');
@@ -1899,6 +2053,7 @@ function cbBuildModal(){
   con.appendChild(mkStep('1','decode','Turn the packet from base64 into plain text.'));
   con.appendChild(mkStep('2','rot13','Transform the TOKEN line with ROT13.'));
   con.appendChild(mkStep('3','unlock','Enter the plaintext phrase to mint your fingerprint.'));
+  con.appendChild(mkStep('4','contact handshake','Use your fingerprint key to unlock the secure contact channel.'));
   var field=cbEl('div','cb-field');var lab=document.createElement('label');lab.setAttribute('for','cbPuzzleInput');lab.textContent='plaintext phrase';
   var input=cbEl('input','cb-input');input.id='cbPuzzleInput';input.autocomplete='off';input.spellcheck=false;input.placeholder='type the decrypted plaintext here';
   field.appendChild(lab);field.appendChild(input);
@@ -1909,11 +2064,20 @@ function cbBuildModal(){
   tools.appendChild(btnDecode);tools.appendChild(btnRot);tools.appendChild(btnUnlock);
   var out=cbEl('div','cb-out');out.innerHTML='<span class="warn">awaiting tools.</span> Click <span class="hl">decode base64</span> to begin.';
   var fp=cbEl('div','cb-fp');
-  con.appendChild(field);con.appendChild(tools);con.appendChild(out);con.appendChild(fp);
+  var contactWrap=cbEl('div','cb-contact');contactWrap.style.display='none';
+  var contactLabel=document.createElement('label');contactLabel.setAttribute('for','cbContactInput');contactLabel.textContent='fingerprint key';
+  var contactInput=cbEl('input','cb-input');contactInput.id='cbContactInput';contactInput.autocomplete='off';contactInput.spellcheck=false;contactInput.placeholder='enter 6-character key';
+  var contactTools=cbEl('div','cb-tools');
+  var contactBtn=cbEl('button','cb-mini-btn');contactBtn.type='button';contactBtn.textContent='reveal contact';
+  contactTools.appendChild(contactBtn);
+  var contactOut=cbEl('div','cb-out');contactOut.innerHTML='<span class="warn">awaiting unlock.</span> complete step 3 to arm this channel.';
+  contactWrap.appendChild(contactLabel);contactWrap.appendChild(contactInput);contactWrap.appendChild(contactTools);contactWrap.appendChild(contactOut);
+  con.appendChild(field);con.appendChild(tools);con.appendChild(out);con.appendChild(fp);con.appendChild(contactWrap);
   right.appendChild(rh);right.appendChild(con);
   body.appendChild(left);body.appendChild(right);modal.appendChild(head);modal.appendChild(body);
   backdrop.appendChild(modal);document.body.appendChild(backdrop);
-  var decoded=null,token=null,rot=null,done=false;
+  var decoded=null,token=null,rot=null,done=false,contactKey=null;
+  var contactB64='dGh1bXBlcnNlY3VyZUBwbS5tZQ==';
   function setOut(html){out.innerHTML=html}
   function parseToken(txt){var m=String(txt||'').match(/^\s*TOKEN:\s*(.+?)\s*$/mi);return m?m[1].trim():null}
   btnDecode.addEventListener('click',function(){
@@ -1933,9 +2097,31 @@ function cbBuildModal(){
     if(!got){setOut('<span class="warn">enter plaintext.</span>');return}
     if(got!==expectedPlain){setOut('<span class="bad">access denied.</span> plaintext mismatch.');return}
     var hx=await cbSha256Hex(got);
-    if(hx){var key=hx.slice(0,6).toUpperCase();setOut('<span class="ok">access granted.</span> fingerprint: <span class="hl">'+key+'</span>');fp.textContent='sha256: '+hx}
-    else{setOut('<span class="ok">access granted.</span> plaintext verified.')}
+    if(hx){
+      contactKey=hx.slice(0,6).toUpperCase();
+      setOut('<span class="ok">access granted.</span> fingerprint key: <span class="hl">'+contactKey+'</span>');
+      fp.textContent='sha256: '+hx;
+    }else{
+      contactKey=String(got).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase().padEnd(6,'X');
+      setOut('<span class="ok">access granted.</span> fallback key: <span class="hl">'+contactKey+'</span>');
+    }
+    contactWrap.style.display='block';
+    contactInput.value='';
+    contactOut.innerHTML='<span class="warn">final handshake required.</span> enter the fingerprint key above to reveal contact.';
+    contactInput.focus();
+  });
+  contactBtn.addEventListener('click',function(){
+    var typed=String(contactInput.value||'').trim().toUpperCase();
+    if(!typed){contactOut.innerHTML='<span class="warn">enter fingerprint key.</span>';return}
+    if(!contactKey||typed!==contactKey){contactOut.innerHTML='<span class="bad">handshake failed.</span> key mismatch.';return}
+    var email=cbTryAtob(contactB64)||'thumpersecure@pm.me';
+    contactOut.innerHTML='<span class="ok">channel unlocked.</span> contact: <a class="hl" href="mailto:'+email+'">'+email+'</a>';
+    setOut('<span class="ok">contact handshake complete.</span> secure channel delivered.');
     setSetting('puzzle_bottom',true);done=true;
+    contactBtn.disabled=true;contactBtn.textContent='channel open';
+  });
+  contactInput.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){e.preventDefault();contactBtn.click()}
   });
   function openM(){backdrop.classList.add('on');document.body.style.overflow='hidden';setTimeout(function(){input.focus()},40)}
   function closeM(){backdrop.classList.remove('on');document.body.style.overflow='';if(!done)setSetting('puzzle_bottom_dismissed',true);setTimeout(function(){backdrop.remove()},260)}
