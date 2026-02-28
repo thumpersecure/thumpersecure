@@ -313,6 +313,102 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   #quoteSignalCanvas{height:110px}
   #ingredientsCanvas{height:130px}
 }
+
+/* ====== CYBER PUZZLE (BOTTOM REVEAL) ====== */
+.cb-bottom-sentinel{height:1px}
+.cb-toast{position:fixed;right:clamp(0.8rem,2.5vw,1.4rem);bottom:clamp(0.8rem,2.5vw,1.4rem);z-index:11000;
+  width:min(420px,calc(100vw - 2rem));
+  background:linear-gradient(140deg,rgba(8,14,28,0.92),rgba(8,8,20,0.92));
+  border:1px solid rgba(0,255,204,0.22);border-radius:12px;overflow:hidden;
+  box-shadow:0 0 22px rgba(0,255,204,0.08),0 0 60px rgba(24,220,255,0.04);
+  transform:translateY(16px);opacity:0;pointer-events:none;
+  transition:transform .38s ease,opacity .38s ease,border-color .3s ease;contain:layout paint style}
+.cb-toast.on{transform:translateY(0);opacity:1;pointer-events:auto}
+.cb-toast::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(24,220,255,0.12),transparent);
+  transform:translateX(-120%);animation:cbSweep 3.8s linear infinite}
+@keyframes cbSweep{to{transform:translateX(120%)}}
+.cb-toast-inner{position:relative;padding:0.95rem 1rem 0.9rem;display:flex;gap:0.85rem;align-items:flex-start}
+.cb-toast-icon{width:34px;height:34px;border-radius:10px;flex:0 0 auto;
+  border:1px solid rgba(24,220,255,0.35);background:rgba(0,0,0,0.35);
+  box-shadow:0 0 18px rgba(24,220,255,0.08) inset;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);color:var(--tron);text-shadow:0 0 10px rgba(24,220,255,0.35)}
+.cb-toast-title{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--magenta);margin-bottom:0.2rem}
+.cb-toast-desc{font-size:0.82rem;color:var(--text);line-height:1.45}
+.cb-toast-actions{display:flex;gap:0.55rem;margin-top:0.7rem;flex-wrap:wrap}
+.cb-mini-btn{border:1px solid rgba(0,255,204,0.26);background:rgba(2,9,18,0.85);color:var(--cyan);
+  font-family:var(--mono);font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.45rem 0.7rem;border-radius:999px;cursor:pointer;transition:transform .18s,border-color .22s,box-shadow .22s}
+.cb-mini-btn:hover{transform:translateY(-1px);border-color:var(--cyan);box-shadow:0 0 12px rgba(0,255,204,0.16)}
+.cb-mini-btn.secondary{border-color:rgba(24,220,255,0.18);color:var(--tron)}
+.cb-mini-btn.secondary:hover{border-color:var(--tron);box-shadow:0 0 12px rgba(24,220,255,0.14)}
+
+.cb-backdrop{position:fixed;inset:0;z-index:12000;display:none;align-items:center;justify-content:center;
+  padding:clamp(0.9rem,3vw,2rem);background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.cb-backdrop.on{display:flex}
+.cb-modal{width:min(960px,100%);max-height:min(86vh,820px);overflow:hidden;border-radius:16px;
+  border:1px solid rgba(24,220,255,0.22);
+  background:linear-gradient(160deg,rgba(8,14,28,0.96),rgba(8,8,20,0.94));
+  box-shadow:0 0 60px rgba(0,255,204,0.06),0 0 120px rgba(255,0,170,0.03);
+  transform:translateY(16px) scale(0.985);opacity:0;
+  transition:transform .35s ease,opacity .35s ease,border-color .3s ease;will-change:transform,opacity;contain:layout paint style}
+.cb-backdrop.on .cb-modal{transform:translateY(0) scale(1);opacity:1}
+.cb-modal::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.05) 2px,rgba(0,0,0,0.05) 4px);opacity:0.55}
+.cb-modal::after{content:'';position:absolute;left:-35%;top:0;width:35%;height:100%;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(24,220,255,0.16),transparent);transform:skewX(-18deg);
+  animation:cbSweep2 3.2s linear infinite}
+@keyframes cbSweep2{to{left:140%}}
+.cb-head{position:relative;z-index:1;display:flex;align-items:center;gap:0.8rem;
+  padding:0.95rem 1.1rem;border-bottom:1px solid rgba(0,255,204,0.12);background:rgba(0,0,0,0.35)}
+.cb-head-title{flex:1;min-width:0}
+.cb-kicker{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--magenta)}
+.cb-title{font-family:var(--mono);font-size:1.02rem;font-weight:800;color:var(--cyan);letter-spacing:0.06em;margin-top:0.18rem;
+  text-shadow:0 0 10px rgba(0,255,204,0.25)}
+.cb-close{border:1px solid rgba(24,220,255,0.22);background:rgba(2,9,18,0.85);color:var(--tron);
+  width:40px;height:36px;border-radius:10px;cursor:pointer;transition:transform .18s,border-color .22s,box-shadow .22s}
+.cb-close:hover{transform:translateY(-1px);border-color:var(--tron);box-shadow:0 0 12px rgba(24,220,255,0.12)}
+
+.cb-body{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr 1fr;gap:1rem;padding:1rem 1.1rem 1.1rem;
+  overflow:auto;max-height:calc(min(86vh,820px) - 70px)}
+@media(max-width:860px){.cb-body{grid-template-columns:1fr}}
+.cb-panel{border:1px solid rgba(0,255,204,0.12);border-radius:12px;background:rgba(0,0,0,0.28);overflow:hidden}
+.cb-panel-h{display:flex;align-items:center;justify-content:space-between;gap:0.6rem;
+  padding:0.7rem 0.85rem;border-bottom:1px solid rgba(0,255,204,0.1);font-family:var(--mono);font-size:0.68rem}
+.cb-panel-h .l{color:var(--amber);letter-spacing:0.08em;text-transform:uppercase}
+.cb-panel-h .r{color:var(--muted)}
+.cb-code{padding:0.85rem 0.9rem;font-family:var(--mono);font-size:0.73rem;line-height:1.65;color:var(--green);
+  white-space:pre-wrap;word-break:break-word}
+.cb-code .dim{color:var(--muted)}
+.cb-console{padding:0.85rem 0.9rem}
+.cb-step{display:flex;gap:0.6rem;align-items:flex-start;margin-bottom:0.7rem}
+.cb-step-num{width:26px;height:26px;border-radius:8px;flex:0 0 auto;
+  border:1px solid rgba(0,255,204,0.22);background:rgba(0,255,204,0.08);
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.7rem;color:var(--cyan)}
+.cb-step-text{flex:1;min-width:0}
+.cb-step-text b{color:var(--cyan);font-family:var(--mono);font-size:0.74rem;letter-spacing:0.06em;text-transform:uppercase}
+.cb-step-text p{margin-top:0.2rem;font-size:0.82rem;color:var(--text);line-height:1.45}
+.cb-field{margin-top:0.75rem}
+.cb-field label{display:block;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--magenta);margin-bottom:0.4rem}
+.cb-input{width:100%;padding:0.78rem 0.9rem;border-radius:10px;outline:none;
+  background:#05050b;border:1px solid rgba(24,220,255,0.18);color:var(--cyan);
+  font-family:var(--mono);font-size:0.78rem;transition:border-color .22s,box-shadow .22s}
+.cb-input:focus{border-color:rgba(0,255,204,0.65);box-shadow:0 0 16px rgba(0,255,204,0.14)}
+.cb-tools{display:flex;gap:0.55rem;flex-wrap:wrap;margin-top:0.75rem}
+.cb-out{margin-top:0.75rem;border:1px solid rgba(0,255,204,0.12);border-radius:10px;background:rgba(0,0,0,0.28);
+  padding:0.75rem 0.85rem;font-family:var(--mono);font-size:0.72rem;line-height:1.6;color:var(--text)}
+.cb-out .ok{color:var(--green)}.cb-out .warn{color:var(--amber)}.cb-out .bad{color:var(--red)}.cb-out .hl{color:var(--cyan)}
+.cb-fp{margin-top:0.55rem;color:var(--muted);font-family:var(--mono);font-size:0.68rem}
+.cb-body::-webkit-scrollbar{width:10px}
+.cb-body::-webkit-scrollbar-track{background:rgba(0,0,0,0.22)}
+.cb-body::-webkit-scrollbar-thumb{background:rgba(24,220,255,0.18);border-radius:10px}
+.cb-body::-webkit-scrollbar-thumb:hover{background:rgba(0,255,204,0.24)}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .cb-toast,.cb-modal{transition:none}
+  .cb-toast::before,.cb-modal::after{animation:none}
+}
 </style>
 </head>
 <body>
@@ -786,6 +882,8 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
       </div>
     </section>
 
+    <div id="cbBottomSentinel" class="cb-bottom-sentinel" aria-hidden="true"></div>
+
   </main>
 
   <footer role="contentinfo">
@@ -1199,6 +1297,214 @@ if(lQ.length){
     lQi=(lQi+1)%lQ.length;
   },2400);
 }
+
+/* ====== CYBER PUZZLE (BOTTOM REVEAL) ====== */
+var cbPuzzleSeen=false;
+function cbRot13(s){
+  return String(s||'').replace(/[a-zA-Z]/g,function(ch){
+    var c=ch.charCodeAt(0);
+    var a=c>=97?97:65;
+    return String.fromCharCode(((c-a+13)%26)+a);
+  });
+}
+function cbTryAtob(b64){
+  try{return atob(String(b64||'').replace(/\s+/g,''))}catch(e){return null}
+}
+function cbBytes(s){return new TextEncoder().encode(String(s||''))}
+async function cbSha256Hex(s){
+  if(!window.crypto||!crypto.subtle)return null;
+  var buf=await crypto.subtle.digest('SHA-256',cbBytes(s));
+  var arr=[].slice.call(new Uint8Array(buf));
+  return arr.map(function(x){return x.toString(16).padStart(2,'0')}).join('');
+}
+function cbEl(tag,cls){
+  var el=document.createElement(tag);
+  if(cls)el.className=cls;
+  return el;
+}
+function cbMountToast(openFn){
+  var t=cbEl('div','cb-toast');
+  t.setAttribute('role','status');
+  t.setAttribute('aria-live','polite');
+  var inner=cbEl('div','cb-toast-inner');
+  var icon=cbEl('div','cb-toast-icon');icon.textContent='RX';
+  var copy=cbEl('div');
+  var title=cbEl('div','cb-toast-title');title.textContent='incoming transmission';
+  var desc=cbEl('div','cb-toast-desc');desc.textContent='You hit the bottom of the grid. An encrypted packet is waiting — crack it to unlock a fingerprint.';
+  var actions=cbEl('div','cb-toast-actions');
+  var open=cbEl('button','cb-mini-btn');open.type='button';open.textContent='open puzzle';
+  var dismiss=cbEl('button','cb-mini-btn secondary');dismiss.type='button';dismiss.textContent='dismiss';
+  actions.appendChild(open);actions.appendChild(dismiss);
+  copy.appendChild(title);copy.appendChild(desc);copy.appendChild(actions);
+  inner.appendChild(icon);inner.appendChild(copy);
+  t.appendChild(inner);
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){t.classList.add('on')});
+  function kill(){
+    t.classList.remove('on');
+    setTimeout(function(){t.remove()},240);
+  }
+  open.addEventListener('click',function(){kill();openFn()});
+  dismiss.addEventListener('click',function(){
+    sessionStorage.setItem('cb_puzzle_dismissed','1');
+    kill();
+  });
+  return {remove:kill};
+}
+function cbBuildModal(){
+  var payloadB64='UEhBU0VfMjogUk9UMTMKVE9LRU46IGZ2dGFueS1uZy1ndXItb2JnZ2J6Ck5FWFQ6IHNoYTI1NihwbGFpbnRleHQpIC0+IGZpcnN0IDYgaGV4Cg==';
+  var expectedPlain='signal-at-the-bottom';
+  var backdrop=cbEl('div','cb-backdrop');
+  backdrop.setAttribute('role','dialog');
+  backdrop.setAttribute('aria-modal','true');
+  backdrop.setAttribute('aria-label','Cyber puzzle modal');
+  var modal=cbEl('div','cb-modal');
+
+  var head=cbEl('div','cb-head');
+  var ht=cbEl('div','cb-head-title');
+  var kick=cbEl('div','cb-kicker');kick.textContent='futuristic puzzle protocol';
+  var h1=cbEl('div','cb-title');h1.textContent='TRANSMISSION INTERCEPTED — DECRYPT THE HANDSHAKE';
+  ht.appendChild(kick);ht.appendChild(h1);
+  var close=cbEl('button','cb-close');close.type='button';close.setAttribute('aria-label','Close');close.textContent='×';
+  head.appendChild(ht);head.appendChild(close);
+
+  var body=cbEl('div','cb-body');
+  var left=cbEl('div','cb-panel');
+  var lh=cbEl('div','cb-panel-h');
+  var lhl=cbEl('div','l');lhl.textContent='packet capture';
+  var lhr=cbEl('div','r');lhr.textContent='base64 payload';
+  lh.appendChild(lhl);lh.appendChild(lhr);
+  var code=cbEl('div','cb-code');
+  code.textContent=payloadB64+'\n\n';
+  var dim=cbEl('span','dim');
+  dim.textContent='hint: decode base64, extract TOKEN, apply ROT13, then compute sha256 fingerprint.';
+  code.appendChild(dim);
+  left.appendChild(lh);left.appendChild(code);
+
+  var right=cbEl('div','cb-panel');
+  var rh=cbEl('div','cb-panel-h');
+  var rhl=cbEl('div','l');rhl.textContent='challenge console';
+  var rhr=cbEl('div','r');rhr.textContent='zero-trust gate';
+  rh.appendChild(rhl);rh.appendChild(rhr);
+  var con=cbEl('div','cb-console');
+  var s1=cbEl('div','cb-step');
+  s1.appendChild((function(){var n=cbEl('div','cb-step-num');n.textContent='1';return n})());
+  s1.appendChild((function(){var t=cbEl('div','cb-step-text');var b=cbEl('b');b.textContent='decode';var p=cbEl('p');p.textContent='Turn the packet from base64 into plain text.';t.appendChild(b);t.appendChild(p);return t})());
+  var s2=cbEl('div','cb-step');
+  s2.appendChild((function(){var n=cbEl('div','cb-step-num');n.textContent='2';return n})());
+  s2.appendChild((function(){var t=cbEl('div','cb-step-text');var b=cbEl('b');b.textContent='rot13';var p=cbEl('p');p.textContent='Transform the TOKEN line with ROT13.';t.appendChild(b);t.appendChild(p);return t})());
+  var s3=cbEl('div','cb-step');
+  s3.appendChild((function(){var n=cbEl('div','cb-step-num');n.textContent='3';return n})());
+  s3.appendChild((function(){var t=cbEl('div','cb-step-text');var b=cbEl('b');b.textContent='unlock';var p=cbEl('p');p.textContent='Enter the plaintext phrase to mint your fingerprint.';t.appendChild(b);t.appendChild(p);return t})());
+
+  var field=cbEl('div','cb-field');
+  var lab=document.createElement('label');lab.setAttribute('for','cbPuzzleInput');lab.textContent='plaintext phrase';
+  var input=cbEl('input','cb-input');input.id='cbPuzzleInput';input.autocomplete='off';input.spellcheck=false;input.placeholder='type the decrypted plaintext here';
+  field.appendChild(lab);field.appendChild(input);
+
+  var tools=cbEl('div','cb-tools');
+  var btnDecode=cbEl('button','cb-mini-btn');btnDecode.type='button';btnDecode.textContent='decode base64';
+  var btnRot=cbEl('button','cb-mini-btn secondary');btnRot.type='button';btnRot.textContent='apply rot13';
+  var btnUnlock=cbEl('button','cb-mini-btn');btnUnlock.type='button';btnUnlock.textContent='unlock';
+  tools.appendChild(btnDecode);tools.appendChild(btnRot);tools.appendChild(btnUnlock);
+
+  var out=cbEl('div','cb-out');
+  out.innerHTML='<span class="warn">awaiting tools.</span> Click <span class="hl">decode base64</span> to begin.';
+  var fp=cbEl('div','cb-fp');fp.textContent='';
+
+  con.appendChild(s1);con.appendChild(s2);con.appendChild(s3);
+  con.appendChild(field);con.appendChild(tools);con.appendChild(out);con.appendChild(fp);
+  right.appendChild(rh);right.appendChild(con);
+
+  body.appendChild(left);body.appendChild(right);
+  modal.appendChild(head);modal.appendChild(body);
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+
+  var decoded=null,token=null,rot=null,done=false;
+  function setOut(html){out.innerHTML=html}
+  function setFp(txt){fp.textContent=txt||''}
+  function parseToken(txt){
+    var m=String(txt||'').match(/^\s*TOKEN:\s*(.+?)\s*$/mi);
+    return m?m[1].trim():null;
+  }
+  btnDecode.addEventListener('click',function(){
+    decoded=cbTryAtob(payloadB64);
+    if(!decoded){setOut('<span class="bad">decode failed.</span> Your browser blocked base64 decode.');return}
+    token=parseToken(decoded);
+    setOut('<span class="ok">decoded.</span><br><br><span class="hl">'+String(decoded).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')+'</span>');
+    setFp('');
+  });
+  btnRot.addEventListener('click',function(){
+    if(!decoded){setOut('<span class="warn">decode first.</span>');return}
+    if(!token){setOut('<span class="bad">TOKEN not found.</span>');return}
+    rot=cbRot13(token);
+    setOut('<span class="ok">rot13 complete.</span> TOKEN → <span class="hl">'+token+'</span><br>PLAINTEXT → <span class="hl">'+rot+'</span>');
+    input.value=rot;
+    setFp('');
+    input.focus();
+  });
+  btnUnlock.addEventListener('click',async function(){
+    var got=String(input.value||'').trim().toLowerCase();
+    if(!got){setOut('<span class="warn">enter plaintext.</span>');return}
+    if(got!==expectedPlain){
+      setOut('<span class="bad">access denied.</span> plaintext mismatch. Hint: the answer is literally about reaching the bottom.');
+      setFp('');
+      return;
+    }
+    var hx=null;
+    try{hx=await cbSha256Hex(got)}catch(e){hx=null}
+    if(!hx){setOut('<span class="ok">access granted.</span> plaintext verified.<br><span class="warn">sha256 unavailable in this browser.</span>');return}
+    var key=hx.slice(0,6).toUpperCase();
+    setOut('<span class="ok">access granted.</span> plaintext verified.<br>fingerprint: <span class="hl">'+key+'</span>');
+    setFp('sha256: '+hx);
+    sessionStorage.setItem('cb_puzzle_solved','1');
+    done=true;
+  });
+
+  function open(){
+    backdrop.classList.add('on');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){input.focus()},40);
+  }
+  var keyHandler=function(e){
+    if(!backdrop.classList.contains('on'))return;
+    if(e.key==='Escape'){e.preventDefault();closeModal()}
+  };
+  document.addEventListener('keydown',keyHandler);
+  function closeModal(){
+    backdrop.classList.remove('on');
+    document.body.style.overflow='';
+    document.removeEventListener('keydown',keyHandler);
+    if(!done)sessionStorage.setItem('cb_puzzle_dismissed','1');
+    setTimeout(function(){backdrop.remove()},260);
+  }
+  close.addEventListener('click',closeModal);
+  backdrop.addEventListener('click',function(e){if(e.target===backdrop)closeModal()});
+  return {open:open,close:closeModal};
+}
+function cbInitBottomPuzzle(){
+  if(cbPuzzleSeen)return;
+  cbPuzzleSeen=true;
+  if(sessionStorage.getItem('cb_puzzle_solved')==='1')return;
+  if(sessionStorage.getItem('cb_puzzle_dismissed')==='1')return;
+  var modal=null;
+  function openModal(){
+    if(!modal)modal=cbBuildModal();
+    modal.open();
+  }
+  cbMountToast(openModal);
+}
+(function(){
+  var s=document.getElementById('cbBottomSentinel');
+  if(!s||!('IntersectionObserver' in window))return;
+  var ob=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ob.disconnect();setTimeout(cbInitBottomPuzzle,140)}
+    });
+  },{threshold:0.12});
+  ob.observe(s);
+})();
 
 })();
 </script>
