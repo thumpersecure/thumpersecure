@@ -201,6 +201,23 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 @keyframes scrollUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 .mon-scroll{animation:scrollUp 25s linear infinite}
 
+.history-cookbook-section{padding:3rem 0 4rem}
+.history-intro{max-width:760px;margin:0 auto 1.5rem;font-size:0.9rem;color:var(--text);line-height:1.8}
+.history-intro em{color:var(--cyan);font-style:normal}
+.ingredients-visual{position:relative;max-width:920px;margin:0 auto 1.6rem;padding:0.55rem;border:1px solid var(--border);border-radius:10px;background:rgba(0,0,0,0.45);overflow:hidden}
+.ingredients-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.08),transparent);transform:translateX(-120%);animation:ingSweep 5s linear infinite;pointer-events:none}
+@keyframes ingSweep{to{transform:translateX(120%)}}
+#ingredientsCanvas{display:block;width:100%;height:150px}
+.ingredient-list{list-style:none;max-width:920px;margin:0 auto;padding:0;display:grid;grid-template-columns:1fr;gap:1rem}
+.ingredient-card{border:1px solid var(--border);border-radius:8px;background:var(--panel);overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.ingredient-card:hover{border-color:rgba(24,220,255,0.35);box-shadow:0 0 25px rgba(24,220,255,0.08)}
+.ingredient-head{display:flex;align-items:center;gap:0.6rem;padding:0.75rem 1rem;border-bottom:1px solid var(--border);font-family:var(--mono)}
+.year-pill{font-size:0.68rem;font-weight:700;color:var(--bg);background:var(--cyan);border-radius:3px;padding:0.16rem 0.42rem}
+.ingredient-name{font-size:0.74rem;color:var(--magenta);letter-spacing:0.1em;text-transform:uppercase}
+.ingredient-desc{padding:0.9rem 1rem 0.4rem;font-size:0.85rem;color:var(--text);line-height:1.7}
+.ingredient-code{margin:0.55rem 1rem 1rem;padding:0.8rem 0.9rem;border-radius:6px;border:1px solid rgba(0,255,204,0.14);background:#05050b;font-family:var(--mono);font-size:0.72rem;line-height:1.6;color:var(--green);overflow-x:auto;white-space:pre}
+.ingredient-code .cm{color:var(--muted)}.ingredient-code .kw{color:var(--cyan)}.ingredient-code .tx{color:var(--amber)}.ingredient-code .ok{color:var(--magenta)}
+
 @media(max-width:640px){
   .hero{padding:3rem 0 2rem}.hero-inner{padding:1.5rem}
   .glitch{font-size:clamp(1.8rem,10vw,2.5rem)}
@@ -208,6 +225,7 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   .vb6-code{font-size:0.68rem}.nfo{font-size:0.55rem;padding:1rem}
   .btn{min-height:44px;padding:0.75rem 1.6rem;display:inline-flex;align-items:center;justify-content:center}
   .mon{height:100px;font-size:0.52rem}
+  #ingredientsCanvas{height:130px}
 }
 </style>
 </head>
@@ -515,6 +533,71 @@ PAIRS WITH:
       </div>
     </section>
 
+    <div class="ascii-div" aria-hidden="true">═══════════════════════════════════════════</div>
+
+    <section class="history-cookbook-section reveal" id="ingredients" aria-label="Historical cookbook ingredients">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> ingredients_1996_to_2026</h2>
+        <p class="history-intro">If this site is a cookbook, these are the staple ingredients that cooked hacker culture into modern OSINT tooling. Same kitchen, new utensils: from dial-up recon to async Rust pipelines. <em>Minimal surface, maximum signal.</em></p>
+
+        <div class="ingredients-visual glass" aria-hidden="true">
+          <canvas id="ingredientsCanvas"></canvas>
+        </div>
+
+        <ol class="ingredient-list">
+          <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">1996</span><span class="ingredient-name">network recon mise en place</span></div>
+            <p class="ingredient-desc">Before dashboards, there was terminal prep. Whois, DNS, and route mapping were the opening moves for understanding any target's footprint.</p>
+            <pre class="ingredient-code"><span class="cm"># classic recon prep</span>
+<span class="kw">whois</span> <span class="tx">example.com</span>
+<span class="kw">nslookup</span> <span class="tx">example.com</span>
+<span class="kw">traceroute</span> <span class="tx">example.com</span></pre>
+          </li>
+
+          <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">2001</span><span class="ingredient-name">service fingerprinting era</span></div>
+            <p class="ingredient-desc">Nmap became a universal ingredient. One command could sketch operating system hints, exposed ports, and service versions in seconds.</p>
+            <pre class="ingredient-code"><span class="cm"># map services + OS hints</span>
+<span class="kw">nmap</span> -sV -O -Pn <span class="tx">target.example</span></pre>
+          </li>
+
+          <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">2007</span><span class="ingredient-name">input-validation wake-up call</span></div>
+            <p class="ingredient-desc">The SQL injection boom forced everyone to cook safer. Parameterized queries became the difference between a recipe and a breach.</p>
+            <pre class="ingredient-code"><span class="cm"># safer query pattern (PHP/PDO)</span>
+<span class="kw">$stmt</span> = $pdo->prepare(<span class="tx">'SELECT * FROM users WHERE username = :u'</span>);
+<span class="kw">$stmt</span>->execute([<span class="tx">'u'</span> =&gt; $_GET[<span class="tx">'user'</span>]]);</pre>
+          </li>
+
+          <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">2013</span><span class="ingredient-name">python osint automation</span></div>
+            <p class="ingredient-desc">Python + requests normalized repeatable intelligence gathering. Scraping, enrichment, and reporting became scriptable in one sitting.</p>
+            <pre class="ingredient-code"><span class="cm"># quick OSINT extract</span>
+<span class="kw">import</span> requests
+r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, timeout=10)
+<span class="ok">print</span>(r.status_code, len(r.text))</pre>
+          </li>
+
+          <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">2019</span><span class="ingredient-name">api-first recon pipelines</span></div>
+            <p class="ingredient-desc">Shell + JSON tooling turned reconnaissance into composable pipelines. Curl and jq became a lingua franca for rapid data fusion.</p>
+            <pre class="ingredient-code"><span class="cm"># chain API output into structured fields</span>
+<span class="kw">curl</span> -s "https://api.github.com/users/thumpersecure/repos?per_page=5" \
+  | <span class="kw">jq</span> '.[] | {name, language, stars: .stargazers_count}'</pre>
+          </li>
+
+          <li class="ingredient-card reveal">
+            <div class="ingredient-head"><span class="year-pill">2026</span><span class="ingredient-name">async rust intelligence kitchen</span></div>
+            <p class="ingredient-desc">Modern privacy tooling favors speed, locality, and reliability. Rust + async collectors now replace sprawling ad-hoc scripts.</p>
+            <pre class="ingredient-code"><span class="cm">// parallel source pulls, one typed output</span>
+<span class="kw">let</span> (a, b, c) = tokio::join!(source_a(q), source_b(q), source_c(q));
+<span class="kw">let</span> report = fuse(a?, b?, c?);
+<span class="ok">println!</span>(<span class="tx">"signals: {}"</span>, report.hits);</pre>
+          </li>
+        </ol>
+      </div>
+    </section>
+
   </main>
 
   <footer role="contentinfo">
@@ -779,6 +862,40 @@ fillMon('mon4',[
   'Elapsed: 58.7s',
   '> You got the job.'
 ]);
+
+/* ====== INGREDIENTS TIMELINE ====== */
+var iCv=document.getElementById('ingredientsCanvas');
+if(iCv){
+  var iX=iCv.getContext('2d'),iTick=0,iYears=[1996,2001,2007,2013,2019,2026];
+  function rIC(){
+    var dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+    var w=iCv.clientWidth,h=iCv.clientHeight;
+    iCv.width=Math.floor(w*dpr);iCv.height=Math.floor(h*dpr);
+    iX.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function dIC(){
+    var w=iCv.clientWidth,h=iCv.clientHeight;
+    iX.clearRect(0,0,w,h);
+    var l=24,r=w-24,y=Math.floor(h*0.48),span=r-l;
+    iX.strokeStyle='rgba(24,220,255,0.22)';iX.lineWidth=1;
+    iX.beginPath();iX.moveTo(l,y);iX.lineTo(r,y);iX.stroke();
+    for(var i=0;i<iYears.length;i++){
+      var x=l+span*(i/(iYears.length-1)),p=0.5+0.5*Math.sin(iTick*0.06+i*0.85),rad=3.8+p*1.6;
+      iX.fillStyle='rgba(0,255,204,'+(0.35+p*0.45)+')';
+      iX.beginPath();iX.arc(x,y,rad,0,Math.PI*2);iX.fill();
+      iX.strokeStyle='rgba(0,255,204,0.22)';
+      iX.beginPath();iX.arc(x,y,rad+5.5,0,Math.PI*2);iX.stroke();
+      iX.fillStyle='#44475a';iX.font='11px JetBrains Mono, monospace';iX.textAlign='center';
+      iX.fillText(String(iYears[i]),x,y+24);
+    }
+    var t=(Math.sin(iTick*0.022)+1)/2,bx=l+span*t;
+    var g=iX.createRadialGradient(bx,y,2,bx,y,35);
+    g.addColorStop(0,'rgba(255,0,170,0.75)');g.addColorStop(1,'rgba(255,0,170,0)');
+    iX.fillStyle=g;iX.beginPath();iX.arc(bx,y,35,0,Math.PI*2);iX.fill();
+    iTick+=1;requestAnimationFrame(dIC);
+  }
+  rIC();dIC();window.addEventListener('resize',rIC);
+}
 
 })();
 </script>
