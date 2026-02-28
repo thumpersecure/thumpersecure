@@ -97,6 +97,30 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .typer-cursor{display:inline-block;width:2px;height:1.2em;background:var(--green);margin-left:2px;animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
+.music-deck{max-width:700px;margin:0 auto 1.1rem;padding:0.7rem 0.8rem;border:1px solid var(--border);border-radius:10px;background:rgba(3,8,18,0.72);position:relative;overflow:hidden}
+.music-deck::before{content:'';position:absolute;top:0;left:-35%;width:35%;height:100%;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.16),transparent);animation:musicSweep 4.8s linear infinite}
+@keyframes musicSweep{to{left:135%}}
+.music-top{display:flex;justify-content:space-between;align-items:center;gap:0.8rem;flex-wrap:wrap;margin-bottom:0.55rem;font-family:var(--mono)}
+.music-title{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--magenta)}
+.music-status{font-size:0.66rem;color:var(--muted)}
+.music-status.playing{color:var(--green);text-shadow:0 0 8px rgba(0,255,65,0.4)}
+.music-status.error{color:var(--amber)}
+.music-fallback{font-size:0.65rem;color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan)}
+.music-fallback:hover{color:var(--tron)}
+.music-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.5rem}
+.music-btn{border:1px solid rgba(24,220,255,0.2);border-radius:7px;background:rgba(4,12,24,0.9);color:var(--text);padding:0.62rem 0.52rem;display:flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.63rem;line-height:1.35;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:transform .22s,border-color .25s,box-shadow .25s,background .25s}
+.music-btn:hover{transform:translateY(-1px);border-color:var(--cyan);box-shadow:0 0 14px rgba(24,220,255,0.2)}
+.music-btn.active{border-color:var(--cyan);background:rgba(0,255,204,0.08);box-shadow:0 0 18px rgba(0,255,204,0.24)}
+.music-name{display:block;text-align:left}
+.music-eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px;min-width:10px}
+.music-eq span{width:2px;background:var(--tron);border-radius:2px;height:3px;opacity:0.55}
+.music-btn.active .music-eq span:nth-child(1){animation:eqA .7s linear infinite}
+.music-btn.active .music-eq span:nth-child(2){animation:eqB .55s linear infinite}
+.music-btn.active .music-eq span:nth-child(3){animation:eqC .8s linear infinite}
+@keyframes eqA{0%,100%{height:3px}50%{height:11px}}
+@keyframes eqB{0%,100%{height:5px}50%{height:12px}}
+@keyframes eqC{0%,100%{height:4px}50%{height:10px}}
+
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .btn{font-family:var(--mono);font-size:0.82rem;padding:0.65rem 1.6rem;border-radius:4px;text-decoration:none;font-weight:600;transition:all .3s;cursor:pointer;border:none;text-transform:uppercase;letter-spacing:0.05em}
 .btn-primary{background:var(--cyan);color:var(--bg);box-shadow:0 0 20px rgba(0,255,204,0.25)}
@@ -221,6 +245,8 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 @media(max-width:640px){
   .hero{padding:3rem 0 2rem}.hero-inner{padding:1.5rem}
   .glitch{font-size:clamp(1.8rem,10vw,2.5rem)}
+  .music-btns{grid-template-columns:1fr}
+  .music-btn{font-size:0.65rem}
   .quote-block{padding:1.2rem}
   .vb6-code{font-size:0.68rem}.nfo{font-size:0.55rem;padding:1rem}
   .btn{min-height:44px;padding:0.75rem 1.6rem;display:inline-flex;align-items:center;justify-content:center}
@@ -245,6 +271,28 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   <header class="hero" role="banner">
     <div class="hero-inner glass">
       <p class="eyebrow">THUMPERSECURE</p>
+      <div class="music-deck" aria-label="Music selector">
+        <div class="music-top">
+          <span class="music-title">music selector</span>
+          <span class="music-status" id="musicStatus">select a track</span>
+          <a id="musicFallback" class="music-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden>open source</a>
+        </div>
+        <div class="music-btns" id="musicDeck">
+          <button type="button" class="music-btn" data-query="Tron soundtrack Wendy Carlos" data-label="Soundtrack from Tron" aria-pressed="false">
+            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="music-name">Soundtrack from Tron</span>
+          </button>
+          <button type="button" class="music-btn" data-query="High Voltage Frank Popp Ensemble" data-label="High Voltage by Frank Popp Ensemble" aria-pressed="false">
+            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="music-name">High Voltage by Frank Popp Ensemble</span>
+          </button>
+          <button type="button" class="music-btn" data-query="Turn Up the Radio Go" data-label="Turn Up the Radio by Go" aria-pressed="false">
+            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="music-name">Turn Up the Radio by Go</span>
+          </button>
+        </div>
+        <audio id="musicPlayer" preload="none" crossorigin="anonymous"></audio>
+      </div>
       <h1 class="glitch" data-text="CODE COOKBOOK">CODE COOKBOOK</h1>
       <p class="hero-sub">// OSINT &amp; SEO SPECIALIST</p>
       <div class="typer-wrap" aria-live="polite"><span id="typerText"></span><span class="typer-cursor"></span></div>
@@ -687,6 +735,76 @@ var phrases=['$ recipe: osint reconnaissance','$ recipe: seo optimization','$ re
 var tyE=document.getElementById('typerText'),pI=0,cI=0,del=false;
 function tL(){var c=phrases[pI];if(!del){tyE.textContent=c.slice(0,cI+1);cI++;if(cI>=c.length){setTimeout(function(){del=true;tL()},2000);return}setTimeout(tL,50+Math.random()*30)}else{tyE.textContent=c.slice(0,cI);cI--;if(cI<0){del=false;cI=0;pI=(pI+1)%phrases.length;setTimeout(tL,300);return}setTimeout(tL,25)}}
 tL();
+
+/* ====== MUSIC SELECTOR ====== */
+var mDeck=document.getElementById('musicDeck');
+if(mDeck){
+  var mBtns=[].slice.call(mDeck.querySelectorAll('.music-btn'));
+  var mPlayer=document.getElementById('musicPlayer');
+  var mStatus=document.getElementById('musicStatus');
+  var mFallback=document.getElementById('musicFallback');
+  var mCache={};
+  function qOwn(o,k){return Object.prototype.hasOwnProperty.call(o,k)}
+  function ytQueryUrl(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q)}
+  function setMusicStatus(txt,state){
+    if(!mStatus)return;
+    mStatus.textContent=txt;
+    mStatus.classList.remove('playing','error');
+    if(state)mStatus.classList.add(state);
+  }
+  function setActiveBtn(btn){
+    mBtns.forEach(function(b){var on=b===btn;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false')});
+  }
+  function hideFallback(){if(mFallback)mFallback.hidden=true}
+  function showFallback(query){
+    if(!mFallback)return;
+    mFallback.href=ytQueryUrl(query);
+    mFallback.hidden=false;
+  }
+  async function loadPreview(query){
+    if(qOwn(mCache,query))return mCache[query];
+    try{
+      var r=await fetch('https://itunes.apple.com/search?term='+encodeURIComponent(query)+'&entity=song&limit=8');
+      if(!r.ok)throw new Error('itunes '+r.status);
+      var data=await r.json();
+      var hit=(data.results||[]).find(function(x){return !!x.previewUrl})||null;
+      mCache[query]=hit;
+      return hit;
+    }catch(e){
+      mCache[query]=null;
+      return null;
+    }
+  }
+  async function playChoice(btn){
+    if(!mPlayer)return;
+    var label=btn.getAttribute('data-label')||btn.textContent.trim();
+    var query=btn.getAttribute('data-query')||label;
+    hideFallback();
+    if(btn.classList.contains('active')&&mPlayer.src){
+      if(!mPlayer.paused){mPlayer.pause();setMusicStatus('paused: '+label.toLowerCase(),null);return}
+      try{await mPlayer.play();setMusicStatus('playing preview: '+label.toLowerCase(),'playing');return}catch(e){setMusicStatus('tap again to start playback',null);return}
+    }
+    setActiveBtn(btn);
+    setMusicStatus('loading: '+label.toLowerCase()+' ...',null);
+    var track=await loadPreview(query);
+    if(track&&track.previewUrl){
+      if(mPlayer.src!==track.previewUrl)mPlayer.src=track.previewUrl;
+      try{await mPlayer.play();setMusicStatus('playing preview: '+label.toLowerCase(),'playing')}
+      catch(e){setMusicStatus('track ready: tap again to play',null)}
+      return;
+    }
+    mPlayer.pause();
+    mPlayer.removeAttribute('src');
+    mPlayer.load();
+    setMusicStatus('preview unavailable', 'error');
+    showFallback(query);
+  }
+  mBtns.forEach(function(btn){btn.addEventListener('click',function(){playChoice(btn)})});
+  if(mPlayer){
+    mPlayer.addEventListener('ended',function(){setMusicStatus('preview ended — choose another track',null)});
+    mPlayer.addEventListener('error',function(){setMusicStatus('audio source failed — use open source','error')});
+  }
+}
 
 /* ====== INTERSECTION OBSERVER ====== */
 var rO=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');rO.unobserve(en.target)}})},{threshold:0.12});
