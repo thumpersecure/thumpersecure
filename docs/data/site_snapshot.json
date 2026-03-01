@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-02-28T17:08:56.081Z",
+  "last_updated_utc": "2026-03-01T06:31:58.727Z",
   "stats": {
     "tools_count": 13,
-    "stars_total": 542,
+    "stars_total": 545,
     "featured_count": 4,
-    "followers": 43
+    "followers": 44
   },
   "repos": [
     {
@@ -44,8 +44,8 @@
       "name": "Spin",
       "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
       "topics": [],
-      "stars": 77,
-      "last_updated": "2026-02-28T12:04:39Z",
+      "stars": 78,
+      "last_updated": "2026-03-01T04:13:39Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/Spin/",
       "html_url": "https://github.com/thumpersecure/Spin",
@@ -165,6 +165,20 @@
       "featured": false
     },
     {
+      "name": "ofacebook",
+      "description": "🪬A Facebook OSINT tool that uses prefixes. Designed as simple mobile web app. ",
+      "topics": [
+        "osint-facebook",
+        "osint-tool"
+      ],
+      "stars": 4,
+      "last_updated": "2026-02-28T21:08:06Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/ofacebook/",
+      "html_url": "https://github.com/thumpersecure/ofacebook",
+      "featured": false
+    },
+    {
       "name": "LOVE-BOMB",
       "description": "❤️‍🔥LOVEBOMB",
       "topics": [],
@@ -173,20 +187,6 @@
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/LOVE-BOMB/",
       "html_url": "https://github.com/thumpersecure/LOVE-BOMB",
-      "featured": false
-    },
-    {
-      "name": "ofacebook",
-      "description": "🪬A Facebook OSINT tool that uses prefixes. Designed as simple mobile web app. ",
-      "topics": [
-        "osint-facebook",
-        "osint-tool"
-      ],
-      "stars": 2,
-      "last_updated": "2026-02-28T00:56:52Z",
-      "language": "JavaScript",
-      "homepage": "https://thumpersecure.github.io/ofacebook/",
-      "html_url": "https://github.com/thumpersecure/ofacebook",
       "featured": false
     },
     {
