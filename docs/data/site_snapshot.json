@@ -1,18 +1,18 @@
 {
-  "last_updated_utc": "2026-03-01T06:31:58.727Z",
+  "last_updated_utc": "2026-03-02T06:41:48.950Z",
   "stats": {
     "tools_count": 13,
     "stars_total": 545,
     "featured_count": 4,
-    "followers": 44
+    "followers": 45
   },
   "repos": [
     {
       "name": "palm-tree",
       "description": "🌴 A tool to generate a ton of randomized traffic noise using 30+ personas, 10 parallel generators, chaos modes, live headlines, and more! Bash, Python, or both!",
       "topics": [],
-      "stars": 139,
-      "last_updated": "2026-02-26T21:47:22Z",
+      "stars": 138,
+      "last_updated": "2026-03-01T21:41:40Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -157,8 +157,8 @@
         "webapp",
         "wireless"
       ],
-      "stars": 9,
-      "last_updated": "2026-02-28T16:45:44Z",
+      "stars": 10,
+      "last_updated": "2026-03-01T11:12:03Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/blueTTool/",
       "html_url": "https://github.com/thumpersecure/blueTTool",
