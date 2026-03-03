@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-03-02T06:41:48.950Z",
+  "last_updated_utc": "2026-03-03T06:35:56.220Z",
   "stats": {
     "tools_count": 13,
-    "stars_total": 545,
+    "stars_total": 547,
     "featured_count": 4,
-    "followers": 45
+    "followers": 48
   },
   "repos": [
     {
@@ -157,8 +157,8 @@
         "webapp",
         "wireless"
       ],
-      "stars": 10,
-      "last_updated": "2026-03-01T11:12:03Z",
+      "stars": 11,
+      "last_updated": "2026-03-02T14:03:16Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/blueTTool/",
       "html_url": "https://github.com/thumpersecure/blueTTool",
@@ -171,8 +171,8 @@
         "osint-facebook",
         "osint-tool"
       ],
-      "stars": 4,
-      "last_updated": "2026-02-28T21:08:06Z",
+      "stars": 5,
+      "last_updated": "2026-03-03T05:42:42Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/ofacebook/",
       "html_url": "https://github.com/thumpersecure/ofacebook",
