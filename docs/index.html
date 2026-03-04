@@ -566,6 +566,65 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .cb-body::-webkit-scrollbar-track{background:rgba(0,0,0,0.22)}
 .cb-body::-webkit-scrollbar-thumb{background:rgba(24,220,255,0.18);border-radius:10px}
 
+/* ====== LOCK HISTORY & CYBERSECURITY ====== */
+.lock-history-section{padding:2.4rem 0 3rem}
+.lock-history-section .history-intro{max-width:780px;margin:0 auto 1.3rem;font-size:0.88rem;line-height:1.78}
+.lock-history-section .history-intro em{color:var(--cyan);font-style:normal}
+.lock-history-section .history-intro strong{color:var(--orange)}
+.lh-subhead{font-family:var(--mono);font-size:clamp(0.82rem,1.5vw,1rem);color:var(--cyan);text-transform:uppercase;letter-spacing:0.1em;margin:2.2rem 0 1rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(0,255,204,0.15);max-width:780px;margin-left:auto;margin-right:auto}
+.lh-subhead span{color:var(--magenta)}
+.lh-timeline{list-style:none;max-width:780px;margin:0 auto 2rem;padding:0 0 0 2.2rem;position:relative}
+.lh-timeline::before{content:'';position:absolute;left:0.55rem;top:0.2rem;bottom:0.2rem;width:2px;background:linear-gradient(180deg,var(--tron),var(--cyan),var(--magenta),var(--orange));border-radius:2px;opacity:0.55}
+.lh-timeline li{position:relative;margin-bottom:1.1rem;padding-left:0.6rem}
+.lh-timeline li::before{content:'';position:absolute;left:-1.95rem;top:0.45rem;width:10px;height:10px;border-radius:50%;border:2px solid var(--cyan);background:var(--bg);box-shadow:0 0 8px rgba(0,255,204,0.35);z-index:1}
+.lh-timeline .tl-year{display:inline-block;font-family:var(--mono);font-size:0.63rem;font-weight:700;color:var(--bg);background:var(--orange);border-radius:3px;padding:0.12rem 0.38rem;margin-right:0.45rem;vertical-align:middle}
+.lh-timeline .tl-title{font-family:var(--mono);font-size:0.78rem;color:var(--cyan);letter-spacing:0.04em}
+.lh-timeline .tl-desc{font-size:0.82rem;color:var(--text);line-height:1.62;margin-top:0.25rem}
+.lh-timeline .tl-desc em{color:var(--amber);font-style:normal}
+
+.lh-analogy-table{max-width:780px;margin:0 auto 2rem;border:1px solid var(--border);border-radius:10px;overflow-x:auto;overflow-y:hidden;background:rgba(6,9,17,0.88)}
+.lh-analogy-table table{width:100%;border-collapse:collapse}
+.lh-analogy-table thead th{font-family:var(--mono);font-size:0.68rem;color:var(--magenta);text-transform:uppercase;letter-spacing:0.1em;padding:0.7rem 0.9rem;border-bottom:1px solid rgba(0,255,204,0.18);text-align:left;background:rgba(0,0,0,0.3)}
+.lh-analogy-table tbody td{font-size:0.82rem;color:var(--text);padding:0.55rem 0.9rem;border-bottom:1px solid rgba(0,255,204,0.06);line-height:1.5}
+.lh-analogy-table tbody tr:last-child td{border-bottom:none}
+.lh-analogy-table tbody td:first-child{font-family:var(--mono);color:var(--cyan);font-size:0.78rem;white-space:nowrap}
+.lh-analogy-table .arrow-col{color:var(--orange);text-align:center;font-family:var(--mono);font-size:0.75rem;width:3rem}
+
+.lh-figure-grid{max-width:780px;margin:0 auto 2rem;display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem}
+@media(max-width:640px){.lh-figure-grid{grid-template-columns:1fr}}
+.lh-figure-card{border:1px solid var(--border);border-radius:10px;background:linear-gradient(160deg,rgba(8,14,28,0.92),rgba(8,8,20,0.92));padding:0.9rem 1rem;transition:border-color .28s,box-shadow .28s,transform .28s;position:relative;overflow:hidden}
+.lh-figure-card::before{content:'';position:absolute;left:-35%;top:0;width:35%;height:100%;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.08),transparent);transform:skewX(-18deg);pointer-events:none}
+.lh-figure-card:hover{border-color:rgba(24,220,255,0.42);box-shadow:0 0 22px rgba(24,220,255,0.1);transform:translateY(-2px)}
+.lh-figure-card:hover::before{animation:legendSweep 2.8s linear infinite}
+.lh-figure-card .lh-fig-head{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.45rem}
+.lh-figure-card .lh-fig-icon{width:2rem;height:2rem;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid var(--cyan);font-size:0.95rem;background:rgba(0,255,204,0.06);flex:0 0 auto}
+.lh-figure-card .lh-fig-name{font-family:var(--mono);font-size:0.82rem;color:var(--cyan);letter-spacing:0.05em;text-transform:uppercase}
+.lh-figure-card .lh-fig-era{font-family:var(--mono);font-size:0.58rem;color:var(--amber);letter-spacing:0.08em}
+.lh-figure-card .lh-fig-bio{font-size:0.8rem;color:var(--text);line-height:1.58;margin-top:0.2rem}
+.lh-figure-card .lh-fig-bio em{color:var(--green);font-style:normal}
+
+.lh-quote-block{max-width:780px;margin:0 auto 2rem;padding:1.3rem 1.5rem;border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;background:linear-gradient(135deg,rgba(0,255,204,0.04),rgba(8,8,20,0.85));position:relative;overflow:hidden}
+.lh-quote-block::after{content:'';position:absolute;right:-20%;top:0;width:30%;height:100%;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.06),transparent);transform:skewX(-18deg);pointer-events:none}
+.lh-quote-block .lh-qt{font-size:1rem;color:var(--text);font-style:italic;line-height:1.7;margin-bottom:0.5rem}
+.lh-quote-block .lh-qt-cite{font-family:var(--mono);font-size:0.72rem;color:var(--magenta);letter-spacing:0.06em}
+
+.lh-insight-list{max-width:780px;margin:0 auto 2rem;padding:0;list-style:none}
+.lh-insight-list li{position:relative;padding:0.5rem 0 0.5rem 1.4rem;font-size:0.84rem;color:var(--text);line-height:1.65;border-bottom:1px solid rgba(0,255,204,0.06)}
+.lh-insight-list li:last-child{border-bottom:none}
+.lh-insight-list li::before{content:'\25B8';position:absolute;left:0;top:0.5rem;color:var(--orange);font-size:0.82rem}
+.lh-insight-list li em{color:var(--cyan);font-style:normal}
+.lh-insight-list li strong{color:var(--amber)}
+
+.lh-archives-note{max-width:780px;margin:0 auto 1rem;padding:1rem 1.2rem;border:1px dashed rgba(255,107,26,0.3);border-radius:10px;background:rgba(255,107,26,0.03);font-size:0.82rem;color:var(--text);line-height:1.65}
+.lh-archives-note strong{color:var(--orange)}
+.lh-archives-note em{color:var(--cyan);font-style:normal}
+
+.lh-ethics-list{max-width:780px;margin:0 auto 2rem;padding:0;list-style:none}
+.lh-ethics-list li{padding:0.55rem 0 0.55rem 1.6rem;font-size:0.84rem;color:var(--text);line-height:1.62;position:relative}
+.lh-ethics-list li::before{content:'\2726';position:absolute;left:0.1rem;top:0.55rem;color:var(--green);font-size:0.78rem}
+.lh-ethics-list li em{color:var(--amber);font-style:normal}
+.lh-ethics-list li strong{color:var(--cyan)}
+
 /* ====== UTILITIES ====== */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.reveal.visible{opacity:1;transform:translateY(0)}
 .loading-msg{text-align:center;font-family:var(--mono);color:var(--muted);font-size:0.85rem;padding:3rem 0;grid-column:1/-1}
@@ -621,6 +680,21 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   .checksum-grid{grid-template-columns:repeat(6,minmax(32px,40px))}
   .unscramble-grid{grid-template-columns:repeat(4,minmax(36px,46px))}
   .hardware-card{min-width:220px}
+  .lock-history-section{padding:1.8rem 0 2.2rem}
+  .lock-history-section .history-intro{font-size:0.78rem;line-height:1.5;margin-bottom:0.82rem}
+  .lh-subhead{font-size:0.78rem;margin:1.6rem auto 0.8rem}
+  .lh-timeline{padding-left:1.8rem}
+  .lh-timeline li::before{left:-1.55rem}
+  .lh-timeline .tl-desc{font-size:0.76rem}
+  .lh-analogy-table thead th{font-size:0.6rem;padding:0.55rem 0.6rem}
+  .lh-analogy-table tbody td{font-size:0.74rem;padding:0.42rem 0.6rem}
+  .lh-figure-card{padding:0.72rem 0.82rem}
+  .lh-figure-card .lh-fig-name{font-size:0.74rem}
+  .lh-figure-card .lh-fig-bio{font-size:0.74rem}
+  .lh-quote-block{padding:1rem 1.1rem}
+  .lh-quote-block .lh-qt{font-size:0.88rem}
+  .lh-insight-list li{font-size:0.76rem}
+  .lh-ethics-list li{font-size:0.76rem}
 }
 
 /* ====== REDUCED MOTION ====== */
@@ -1190,6 +1264,386 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
               <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Recon Bonus:</strong> Port context matters. Keep remote exposure minimal, validate open services, and treat every listening endpoint as a potential narrative leak.</p>
             </div>
           </div>
+        </div>
+      </div></div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
+
+    <!-- ====== MODULE: LOCK HISTORY & CYBERSECURITY EVOLUTION ====== -->
+    <section class="ts-module reveal" id="mod-lockhistory" aria-label="Lock history and cybersecurity evolution">
+      <button class="ts-module-header" aria-expanded="false" aria-controls="mod-lockhistory-body">
+        <h2 class="section-head"><span>//</span> lock_history_and_security_evolution</h2>
+        <p class="ts-module-summary">From 18th-century key masters to modern hackers &mdash; the complete lineage of locks, secrets, and security.</p>
+        <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
+      </button>
+      <div class="ts-module-body" id="mod-lockhistory-body"><div>
+        <div class="container lock-history-section" id="lock-history">
+
+          <!-- ── OVERVIEW ── -->
+          <p class="history-intro">In the 18th and 19th centuries, <em>locksmiths were the security engineers of the physical world</em>. They designed and built locks for banks, railroads, government offices, safe manufacturers, and wealthy estates. Many were called <strong>&ldquo;key masters&rdquo;</strong> or <strong>&ldquo;master locksmiths&rdquo;</strong> &mdash; trusted tradesmen whose professional knowledge overlapped uncomfortably with attack technique: how locks fail, how keys are copied, and how unauthorized entry happens.</p>
+
+          <p class="history-intro">Their role was twofold: <em>design secure locks</em> and <em>understand how locks can be bypassed</em>. A locksmith who could defeat rival locks proved that their own designs were superior &mdash; exactly like a modern penetration tester who breaks into systems to expose weaknesses. The lock was the password. The key was the credential. The lockpick was the exploit tool. And the locksmith was the original security researcher.</p>
+
+          <p class="history-intro">That tension between <em>guardian</em> and <em>potential threat</em> produced a culture of secret manuals, guild oaths, public spectacles, and fierce debates about whether revealing vulnerabilities helps or harms society &mdash; arguments that echo identically in today&rsquo;s cybersecurity disclosure wars. This section traces that lineage from the first printed lock treatises to modern lock-sport communities, drawing direct parallels between physical and digital security at every step.</p>
+
+          <!-- ── HISTORICAL TIMELINE ── -->
+          <h3 class="lh-subhead" aria-label="Evolution of Locks and Security"><span>&#9670;</span> Evolution of Locks and Security</h3>
+
+          <ul class="lh-timeline" aria-label="Lock and security timeline">
+            <li>
+              <span class="tl-year">1700s</span>
+              <span class="tl-title">Locksmith Guilds &amp; Apprenticeships</span>
+              <p class="tl-desc">In the European guild model, locksmiths operated within strict frameworks of masters, journeymen, and apprentices. In London, the City&rsquo;s livery-company system linked trade identity to regulated membership and civic legitimacy. Apprentices spent years learning internal mechanisms before being permitted to work independently. Guild rules protected trade secrets, and members were sworn to secrecy about bypass techniques. <em>Knowing how to pick a lock was a professional requirement, not criminal behavior.</em></p>
+            </li>
+            <li>
+              <span class="tl-year">1815</span>
+              <span class="tl-title">Early Lock Treatises &amp; the &ldquo;Inviolability&rdquo; Debate</span>
+              <p class="tl-desc">Joseph Bramah&rsquo;s published treatise literature framed lock security as a problem of <em>claims versus attack realities</em>, explicitly warning that reliance on &ldquo;inviolable&rdquo; locks is &ldquo;fallacious.&rdquo; Bramah&rsquo;s own enduring <em>&ldquo;challenge lock&rdquo;</em> concept &mdash; offering a public reward for opening a lock without a key &mdash; created the first benchmark for &ldquo;unpickable&rdquo; claims, and foreshadowed modern bug-bounty programs by nearly two centuries.</p>
+            </li>
+            <li>
+              <span class="tl-year">1818</span>
+              <span class="tl-title">Chubb&rsquo;s Detector Lock &mdash; Tamper Evidence Formalized</span>
+              <p class="tl-desc">Jeremiah Chubb formalized <em>tamper evidence</em> in lock design. The detector lock&rsquo;s signature move was to penalize manipulation by forcing a jammed state that required a reset with a special key &mdash; effectively combining <em>resistance</em> with <em>detection</em>. Period commentary recognized that some anti-picking features could create new operator feedback and thereby alter the attack surface &mdash; an early articulation of the idea that security features can backfire.</p>
+            </li>
+            <li>
+              <span class="tl-year">1851</span>
+              <span class="tl-title">The Great Exhibition &mdash; Lock Picking Goes Public</span>
+              <p class="tl-desc">The Great Exhibition at the Crystal Palace in London became the first major public &ldquo;security hack.&rdquo; American locksmith <em>Alfred Charles Hobbs</em> publicly defeated the two most celebrated locks in the world. He picked the <em>Chubb Detector Lock</em> in about 30 minutes and then cracked the legendary <em>Bramah Lock</em> &mdash; which had claimed to be unpickable for 67 years &mdash; after roughly 51 hours of work. The event shocked the world and sparked the first mass-media security debate: <em>should vulnerabilities be hidden or exposed?</em></p>
+            </li>
+            <li>
+              <span class="tl-year">1853</span>
+              <span class="tl-title">Hobbs&rsquo;s Treatise &mdash; &ldquo;Rogues Already Know&rdquo;</span>
+              <p class="tl-desc">The landmark treatise <em>&ldquo;On the Construction of Locks&rdquo;</em> (1853), compiled from materials by Hobbs and published by J. Weale in London, argued explicitly that publishing about lock weaknesses would stimulate invention and raise the locksmith&rsquo;s art. Its most famous line: <em>&ldquo;Rogues are very keen in their profession, and know already much more than we can teach them&hellip;&rdquo;</em> This is strikingly similar to modern responsible-disclosure rationales: criminals already possess the knowledge; secrecy mainly disadvantages legitimate users and designers.</p>
+            </li>
+            <li>
+              <span class="tl-year">1861</span>
+              <span class="tl-title">Yale&rsquo;s Pin Tumbler Patent &mdash; Industrialization of Security</span>
+              <p class="tl-desc">Linus Yale Jr.&rsquo;s U.S. patent No. 31,278 (1861) formalized the pin-tumbler/cylinder lock in a widely adopted commercial form. This patent marked the legal-technical shift where lock mechanisms were described in the normalized language of claims and embodiments. The Yale tradition embraced <em>&ldquo;challenge to the world&rdquo;</em> marketing and public reward offers around bank locks &mdash; treating adversarial testing as both publicity and proof, eerily similar to later bug-bounty norms.</p>
+            </li>
+            <li>
+              <span class="tl-year">1873</span>
+              <span class="tl-title">Sargent&rsquo;s Time Locks &mdash; Access Control Schedules</span>
+              <p class="tl-desc">James Sargent invented and patented a bank-vault time lock that combined lockwork with clockwork. Installed in a bank in Morrison, Illinois, it was explicitly an <em>&ldquo;access control schedule&rdquo;</em> &mdash; access depended not only on possession of a key or combination but also on time-based policy. By 1877, time-lock patent disputes (e.g., patent No. 186,369 referenced in an 1885 U.S. Supreme Court decision) showed how quickly these innovations became high-stakes intellectual property.</p>
+            </li>
+            <li>
+              <span class="tl-year">1883</span>
+              <span class="tl-title">Kerckhoffs&rsquo;s Principle &mdash; Secrecy Is Not Security</span>
+              <p class="tl-desc">Auguste Kerckhoffs published the foundational principle: <em>security should not depend on secrecy of the system &mdash; only the key should be secret.</em> A lock should remain secure even if attackers know exactly how it works. This principle, born from the locksmith tradition, is now the bedrock of modern cryptography, TLS, password hashing, and open security design.</p>
+            </li>
+            <li>
+              <span class="tl-year">1900s</span>
+              <span class="tl-title">Early 20th Century &mdash; Industrial Maturation</span>
+              <p class="tl-desc">Lock-picking knowledge spread through industrialization and mass production. Safecracking manuals described stethoscope techniques, dial manipulation, and drilling points &mdash; restricted to law enforcement, locksmith schools, and insurance investigators. Henry R. Towne&rsquo;s 1904 <em>&ldquo;Locks and Builders Hardware&rdquo;</em> positioned locks as a specification and systems problem for architects and institutions, marking the transition from artisanal craft to professional discipline.</p>
+            </li>
+            <li>
+              <span class="tl-year">1850&ndash;1900</span>
+              <span class="tl-title">Master Key Systems &mdash; Privileged Credentials</span>
+              <p class="tl-desc">Mid-century descriptions introduced locks <em>&ldquo;made in series&hellip; a separate key to each, and a master key for opening any number.&rdquo;</em> This was an institutional access-control problem recognizable to modern security engineers: convenience and centralized authority create powerful <em>&ldquo;rights amplification&rdquo;</em> properties. The master key was the historical analog of admin credentials &mdash; one artifact conferring broad rights across a system.</p>
+            </li>
+            <li>
+              <span class="tl-year">1970&ndash;now</span>
+              <span class="tl-title">High-Security Locks &amp; Modern Lock-Sport</span>
+              <p class="tl-desc">Security technology evolved to high-security locks relying on complex key geometry, rotating pins, and restricted keyways &mdash; <em>Medeco</em>, <em>Abloy</em>, and <em>ASSA</em> &mdash; analogous to modern cryptography. The culture of locksmiths as security researchers continues today through the Locksport community, DEFCON lockpicking villages, and TOOOL (The Open Organisation of Lockpickers), openly teaching lock picking as security education.</p>
+            </li>
+          </ul>
+
+          <!-- ── LOCK PICKING CULTURE & ETHICS ── -->
+          <h3 class="lh-subhead" aria-label="Lock-Picking Culture and Ethics"><span>&#9670;</span> Lock-Picking Culture &amp; Ethics</h3>
+
+          <p class="history-intro">The tension between secrecy and disclosure has been the defining ethical debate in security for over two centuries. Locksmith guilds guarded knowledge fiercely: trade secrets were protected, apprentices were sworn to secrecy, and bypass methods were restricted to members. This mirrors today&rsquo;s vulnerability disclosure debate &mdash; should researchers publish exploits, or keep them private?</p>
+
+          <ul class="lh-ethics-list" aria-label="Ethics and disclosure parallels">
+            <li><strong>Guild Secrecy:</strong> European locksmith guilds enforced strict knowledge control. Apprentices spent years earning trust before learning bypass techniques. Knowledge of weaknesses equaled power &mdash; <em>exactly the same dynamic as modern exploit disclosure.</em></li>
+            <li><strong>The &ldquo;Destroy After Reading&rdquo; Culture:</strong> There are accounts from locksmith guilds and security circles that manuals describing lock bypass techniques were circulated privately with instructions like <em>&ldquo;read and destroy&rdquo;</em> or <em>&ldquo;not to be copied.&rdquo;</em> However, in mainstream 19th-century English-language technical works, this pattern does not appear &mdash; the dominant stance is that <em>publication improves security</em> by forcing design advances. It remains plausible that &ldquo;destroy after reading&rdquo; language existed in ephemeral pamphlets, restricted-circulation police training notes, or underworld texts that are harder to locate and authenticate.</li>
+            <li><strong>Hobbs&rsquo;s Disclosure Argument:</strong> The 1853 treatise explicitly stated that exposing defects would stimulate invention and raise the locksmith&rsquo;s art. The sharper form &mdash; <em>&ldquo;rogues already know&rdquo;</em> &mdash; is effectively a 19th-century argument against relying on secrecy for security.</li>
+            <li><strong>Kerckhoffs&rsquo;s Principle Applied:</strong> Security should not depend on secrecy of the system. A lock should remain secure even if attackers know exactly how it works. This philosophy &mdash; born from the locksmith tradition &mdash; is now the foundation of <em>cryptography, TLS, password hashing, and open security design.</em></li>
+            <li><strong>Modern Cybersecurity Commentary:</strong> Modern researchers explicitly recognize the Hobbs-era arguments as ancestors to vulnerability-disclosure debates, quoting him in nearly the same terms used today when arguing to <em>prosecute crime rather than suppress research.</em></li>
+            <li><strong>Public Contests as Proof:</strong> Victorian lock-picking contests converted invisible properties (resistance to attack) into visible proof &mdash; much as modern security work turns invisible failure modes into demonstrable exploits for vendors and the public. The 1851 demonstrations were essentially the <em>first security conference talk exposing vulnerabilities.</em></li>
+          </ul>
+
+          <!-- ── MODERN ANALOGIES TABLE ── -->
+          <h3 class="lh-subhead" aria-label="Modern Analogies"><span>&#9670;</span> Locks as Passwords &mdash; The Perfect Analogy</h3>
+
+          <p class="history-intro">The comparison between physical locks and digital security is historically accurate and structurally precise. Every element of a lock system maps directly to a digital security analog:</p>
+
+          <div class="lh-analogy-table" role="table" aria-label="Lock to digital security analogy mapping">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Lock Component</th>
+                  <th class="arrow-col" aria-hidden="true"></th>
+                  <th scope="col">Digital Equivalent</th>
+                  <th scope="col">Connection</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>&#128273; Key</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Password</td>
+                  <td>The secret that grants access; must be unique and hard to duplicate.</td>
+                </tr>
+                <tr>
+                  <td>&#128274; Lock Cylinder</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Authentication System</td>
+                  <td>The mechanism that validates the credential against expected parameters.</td>
+                </tr>
+                <tr>
+                  <td>&#9881; Lockpick</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Exploit Tool</td>
+                  <td>A purpose-built instrument that manipulates the mechanism without the proper credential.</td>
+                </tr>
+                <tr>
+                  <td>&#128272; Master Key</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Admin Credentials</td>
+                  <td>One artifact that confers broad rights across many systems &mdash; a &ldquo;rights amplification&rdquo; property.</td>
+                </tr>
+                <tr>
+                  <td>&#128737; Safe / Vault</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Secure Database</td>
+                  <td>The container that holds high-value assets behind layered access controls.</td>
+                </tr>
+                <tr>
+                  <td>&#128295; Locksmith</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Security Engineer</td>
+                  <td>The professional who designs, tests, and certifies the security of the mechanism.</td>
+                </tr>
+                <tr>
+                  <td>&#128163; Safecracker</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Hacker</td>
+                  <td>The adversary (or authorized tester) who defeats the mechanism through skill and knowledge.</td>
+                </tr>
+                <tr>
+                  <td>&#9201; Time Lock</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Access Schedule</td>
+                  <td>Policy-enforced windows: access depends on time, not just possession of the credential.</td>
+                </tr>
+                <tr>
+                  <td>&#128270; Detector Lock</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Intrusion Detection</td>
+                  <td>The mechanism signals interference &mdash; combining resistance with alerting, like an IDS.</td>
+                </tr>
+                <tr>
+                  <td>&#128220; Lock Patent</td>
+                  <td class="arrow-col">&rarr;</td>
+                  <td>Security Standard</td>
+                  <td>Formalized documentation of the mechanism &mdash; enabling peer review and interoperability.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ── KEY FIGURES & QUOTATIONS ── -->
+          <h3 class="lh-subhead" aria-label="Key Figures and Quotations"><span>&#9670;</span> Key Figures in Lock &amp; Security History</h3>
+
+          <div class="lh-figure-grid" aria-label="Biographical cards of key figures">
+            <article class="lh-figure-card" aria-label="Joseph Bramah biography">
+              <div class="lh-fig-head">
+                <span class="lh-fig-icon" aria-hidden="true">&#128274;</span>
+                <div>
+                  <span class="lh-fig-name">Joseph Bramah</span>
+                  <span class="lh-fig-era">1748 &ndash; 1814 &middot; London, England</span>
+                </div>
+              </div>
+              <p class="lh-fig-bio">Inventor and lock manufacturer who created the famous &ldquo;challenge lock&rdquo; &mdash; offering a public reward of 200 guineas for anyone who could open it without a key. This enduring challenge created a public benchmark for &ldquo;unpickable&rdquo; claims and foreshadowed modern <em>bug bounty programs</em>. His 1815 treatise warned that &ldquo;all dependance on the inviolable security of Locks&hellip; is fallacious&rdquo; &mdash; a remarkably candid admission from a lock manufacturer.</p>
+            </article>
+
+            <article class="lh-figure-card" aria-label="Jeremiah Chubb biography">
+              <div class="lh-fig-head">
+                <span class="lh-fig-icon" aria-hidden="true">&#128271;</span>
+                <div>
+                  <span class="lh-fig-name">Jeremiah Chubb</span>
+                  <span class="lh-fig-era">1793 &ndash; 1872 &middot; Portsea, England</span>
+                </div>
+              </div>
+              <p class="lh-fig-bio">Creator of the <em>detector lock</em>, which formalized tamper evidence in security design. The lock penalized manipulation by jamming and requiring a special reset key &mdash; combining <em>access resistance</em> with <em>intrusion detection</em>. The Chubb detector became a recurring reference point in mid-century security contests and debates, analogous to modern intrusion detection systems that not only block but alert.</p>
+            </article>
+
+            <article class="lh-figure-card" aria-label="Alfred Charles Hobbs biography">
+              <div class="lh-fig-head">
+                <span class="lh-fig-icon" aria-hidden="true">&#128373;</span>
+                <div>
+                  <span class="lh-fig-name">Alfred Charles Hobbs</span>
+                  <span class="lh-fig-era">1812 &ndash; 1891 &middot; Boston, USA / London, UK</span>
+                </div>
+              </div>
+              <p class="lh-fig-bio">The American locksmith who defined the mid-century public image of lock expertise by picking both the Bramah and Chubb locks during the 1851 Great Exhibition. His 1853 treatise framed publishing about lock weaknesses as beneficial to &ldquo;mechanical science&rdquo; and the public, and contained early, explicit arguments against <em>&ldquo;security through obscurity.&rdquo;</em> Modern cybersecurity commentary explicitly draws a line from Hobbs to today&rsquo;s vulnerability-disclosure culture.</p>
+            </article>
+
+            <article class="lh-figure-card" aria-label="Linus Yale Jr biography">
+              <div class="lh-fig-head">
+                <span class="lh-fig-icon" aria-hidden="true">&#9881;</span>
+                <div>
+                  <span class="lh-fig-name">Linus Yale Jr.</span>
+                  <span class="lh-fig-era">1821 &ndash; 1868 &middot; Shelburne Falls, USA</span>
+                </div>
+              </div>
+              <p class="lh-fig-bio">Anchor of the U.S. patent pathway for widely adopted lock architectures. His 1861 patent (No. 31,278) formalized the pin-tumbler cylinder lock. The Yale tradition embraced &ldquo;challenge to the world&rdquo; marketing and public reward offers &mdash; adversarial testing as both publicity and proof. His innovations <em>industrialized and standardized</em> lock manufacturing, paralleling how security standards formalize digital protocols today.</p>
+            </article>
+
+            <article class="lh-figure-card" aria-label="James Sargent biography">
+              <div class="lh-fig-head">
+                <span class="lh-fig-icon" aria-hidden="true">&#9201;</span>
+                <div>
+                  <span class="lh-fig-name">James Sargent</span>
+                  <span class="lh-fig-era">1824 &ndash; 1910 &middot; Chester, Vermont, USA</span>
+                </div>
+              </div>
+              <p class="lh-fig-bio">Inventor of the bank-vault <em>time lock</em> (patented 1873), which combined lockwork with clockwork to create an &ldquo;access control schedule.&rdquo; Access depended not only on possession but on time-based policy &mdash; resembling modern enforced maintenance windows and access-control schedules. Patent disputes (e.g., No. 186,369, referenced in an 1885 Supreme Court decision) showed how quickly time-lock innovations became high-stakes intellectual property.</p>
+            </article>
+
+            <article class="lh-figure-card" aria-label="Henry R. Towne biography">
+              <div class="lh-fig-head">
+                <span class="lh-fig-icon" aria-hidden="true">&#128218;</span>
+                <div>
+                  <span class="lh-fig-name">Henry R. Towne</span>
+                  <span class="lh-fig-era">1844 &ndash; 1924 &middot; Philadelphia, USA</span>
+                </div>
+              </div>
+              <p class="lh-fig-bio">Industrial leader and bridge figure who framed locks and hardware as an architect&rsquo;s and institution&rsquo;s lifecycle problem. His 1904 <em>&ldquo;Locks and Builders Hardware: A Hand Book for Architects&rdquo;</em> positioned security as a matter of specification, standardization, and professional practice &mdash; rather than purely artisanal craft. This marked the transition to <em>security as systems engineering</em>, a concept central to modern InfoSec.</p>
+            </article>
+          </div>
+
+          <!-- Matt Blaze Quote -->
+          <div class="lh-quote-block" aria-label="Quote by Matt Blaze">
+            <p class="lh-qt">&ldquo;A lock that can&rsquo;t be studied can&rsquo;t be trusted.&rdquo;</p>
+            <p class="lh-qt-cite">&mdash; Matt Blaze, security researcher &middot; echoing 150+ years of locksmith philosophy</p>
+          </div>
+
+          <!-- Hobbs Quote -->
+          <div class="lh-quote-block" aria-label="Quote from Hobbs's 1853 treatise" style="border-left-color:var(--orange)">
+            <p class="lh-qt">&ldquo;Rogues are very keen in their profession, and know already much more than we can teach them respecting their deceitful avocations&hellip;&rdquo;</p>
+            <p class="lh-qt-cite">&mdash; From &ldquo;On the Construction of Locks,&rdquo; 1853 &middot; the original argument for responsible disclosure</p>
+          </div>
+
+          <!-- ── ADDITIONAL INSIGHT: DEEPER RESEARCH ── -->
+          <h3 class="lh-subhead" aria-label="Additional Insight from Deep Research"><span>&#9670;</span> Deeper Research Synthesis</h3>
+
+          <p class="history-intro">Scholarly analysis of the 19th-century lock industry reveals patterns that map precisely onto modern cybersecurity culture. Lock challenges became <em>public spectacles</em> akin to security conferences; patents formalized lock mechanisms the way RFCs formalize protocols; and time locks introduced <em>enforced policies</em> identical to modern access-control schedules. Below are key findings from primary and near-primary sources.</p>
+
+          <ul class="lh-insight-list" aria-label="Key research insights">
+            <li><strong>Lock-Picking Contests as Security Conferences:</strong> Victorian lock-picking challenges look uncannily like modern security competitions: defined rules, witnesses, adversarial testing, reputation markets, and claims of &ldquo;unpickable&rdquo; security challenged in public. Beginning in 1851, rival brand-name locksmiths and challengers staged attempts under negotiated rules, turning security into performance and marketing while pressuring design improvement. This was also an emerging security industry&rsquo;s way of establishing credibility in a market where consumers could not independently verify &ldquo;unpickable&rdquo; claims.</li>
+            <li><strong>Primary Sources Favor Disclosure:</strong> The most influential mid-century English technical treatments do not read like clandestine criminal manuals. They read like <em>reform literature</em>: identify failure modes, motivate better design, and professionalize the field. The preface to the 1853 Hobbs treatise explicitly states that exposing defects would stimulate invention.</li>
+            <li><strong>Patents as Formal Security Standards:</strong> Patent formalization is visible in U.S. documentation: Yale&rsquo;s 1861 patent specification is a primary artifact of mechanistic development described in normalized claims and embodiments. By the 1870s, the security perimeter extends beyond <em>mechanism</em> to <em>time</em> &mdash; time locks constrain access independent of key possession. Sargent &amp; Greenleaf&rsquo;s historical record emphasizes invention and patenting of the bank-vault time lock in 1873, with early real-world installation in Morrison, Illinois.</li>
+            <li><strong>Warded and Lever-Tumbler Traditions:</strong> Even as older warded concepts persisted, the 19th century&rsquo;s prestige security market favored lever-based designs aimed at resisting probing and false keys. The <em>detector (tamper-evident) idea</em> penalized manipulation by forcing a jammed state &mdash; reframing lock security as both resistance and detection.</li>
+            <li><strong>Industrial Keying &amp; Master-Key Systems:</strong> The ambition to manage access at scale appeared directly in mid-century descriptions. Locks &ldquo;made in series&rdquo; with distinct keys plus a master key &mdash; this is an institutional access-control problem recognizable to modern security engineers. Convenience and centralized authority create powerful <em>rights-amplification properties</em>.</li>
+            <li><strong>Locksmiths as Social Paradox:</strong> What made locksmiths socially distinctive was not just metalworking skill but their proximity to access and property. Hobbs-era writing describes how locksmiths and apprentices moved through local markets and production networks in industrial centers like <em>Wolverhampton</em>, reflecting economic realities rather than a purely artisanal shop model.</li>
+            <li><strong>Time Locks as Policy Enforcement:</strong> By the 1870s, vault security was increasingly a system: not just a lock but a schedule, procedures, and a mechanical enforcement layer. Time locks constrained access independent of possession, resembling modern <em>access-control schedules and enforced maintenance windows</em>. Litigation (1885 Supreme Court) formalized these innovations as high-stakes intellectual property.</li>
+            <li><strong>&ldquo;Destroy After Reading&rdquo; &mdash; Myth vs. Evidence:</strong> Despite a persistent modern trope that &ldquo;dangerous&rdquo; manuals urged readers to destroy the text, the mainstream 19th-century English-language technical works consulted emphasize <em>public benefit, professional uplift, and controlled dissemination</em> rather than &ldquo;burn after reading.&rdquo; This does not prove such language never existed &mdash; only that it did not appear in the core digitized sources, and may have been more likely in ephemeral pamphlets, underworld texts, or restricted-circulation training documents.</li>
+          </ul>
+
+          <!-- ── EVOLUTION OF SECURITY PHASES ── -->
+          <h3 class="lh-subhead" aria-label="Phases of Security Evolution"><span>&#9670;</span> The Four Phases of Security Evolution</h3>
+
+          <p class="history-intro">Security technology evolved in a pattern strikingly similar to computing security:</p>
+
+          <ul class="lh-timeline" aria-label="Four phases of security evolution">
+            <li>
+              <span class="tl-year">Phase 1</span>
+              <span class="tl-title">Mechanical Secrecy (1700 &ndash; 1850)</span>
+              <p class="tl-desc">Locks relied on <em>hidden mechanisms</em>. Security depended on attackers not knowing how the lock worked. Guilds enforced secrecy. This is the &ldquo;security through obscurity&rdquo; era &mdash; analogous to early software where source code was proprietary and unexposed.</p>
+            </li>
+            <li>
+              <span class="tl-year">Phase 2</span>
+              <span class="tl-title">Public Vulnerability Testing (1850 &ndash; 1900)</span>
+              <p class="tl-desc">Lock pickers proved designs could fail in public contests. The Great Exhibition of 1851 was the inflection point. This mirrors the emergence of <em>penetration testing</em> and <em>public vulnerability disclosure</em> in computing &mdash; the moment the security community recognized that adversarial testing drives improvement.</p>
+            </li>
+            <li>
+              <span class="tl-year">Phase 3</span>
+              <span class="tl-title">Improved Engineering (1900 &ndash; 1970)</span>
+              <p class="tl-desc">More complex cylinders, safes, combination locks, and time locks were developed. The exposure&ndash;redesign&ndash;improved security innovation logic took hold. In computing, this parallels the development of <em>cryptographic standards, access control lists,</em> and <em>formal security models</em> in response to discovered vulnerabilities.</p>
+            </li>
+            <li>
+              <span class="tl-year">Phase 4</span>
+              <span class="tl-title">High-Security &amp; Open Research (1970 &ndash; Present)</span>
+              <p class="tl-desc">High-security locks like <em>Medeco, Abloy,</em> and <em>ASSA</em> rely on complex key geometry, rotating pins, and restricted keyways &mdash; analogous to modern <em>cryptography</em>. The lock-sport community (DEFCON, TOOOL) openly teaches lock picking as security education, mirroring the open-source security research movement.</p>
+            </li>
+          </ul>
+
+          <!-- ── LOCKSMITHS AS THE ORIGINAL HACKERS ── -->
+          <h3 class="lh-subhead" aria-label="Locksmiths as the First Hackers"><span>&#9670;</span> Locksmiths: The Original Hackers</h3>
+
+          <p class="history-intro">The comparison between early locksmiths and modern security researchers is historically precise. Early locksmiths <em>reverse-engineered locks</em>, <em>tested security claims</em>, <em>built bypass tools</em>, and <em>demonstrated vulnerabilities publicly</em> &mdash; exactly like penetration testers, security researchers, and exploit developers today. The 1851 lock-picking demonstrations were essentially the <em>first security conference talk exposing vulnerabilities</em>.</p>
+
+          <ul class="lh-ethics-list" aria-label="Locksmith-to-hacker parallels">
+            <li><strong>Reverse Engineering:</strong> Locksmiths disassembled rival locks to understand their mechanisms, just as security researchers reverse-engineer software to find vulnerabilities.</li>
+            <li><strong>Security Claims Testing:</strong> Lock manufacturers claimed &ldquo;unpickable&rdquo; status; locksmiths proved them wrong in public. Today, security researchers test &ldquo;unbreakable&rdquo; encryption and &ldquo;secure&rdquo; software.</li>
+            <li><strong>Tool Building:</strong> Specialized lockpicks and tension wrenches were purpose-built for specific lock types &mdash; analogous to exploit frameworks, fuzzing tools, and custom scripts.</li>
+            <li><strong>Public Demonstration:</strong> Victorian contests converted invisible security properties into visible proof. Modern CTF competitions, DEFCON talks, and responsible-disclosure reports do the same.</li>
+            <li><strong>Reputation Markets:</strong> A locksmith&rsquo;s reputation depended on their ability to break (or resist breaking) locks. Modern security researchers build reputations through CVE discoveries, conference presentations, and bug-bounty payouts.</li>
+            <li><strong>Dual-Use Knowledge:</strong> Lock-picking skill served both defense and offense. The same bypass technique could protect a client or enable a burglary. This dual-use tension is <em>identical</em> to the debate around offensive security tools today.</li>
+          </ul>
+
+          <!-- ── KEY MANUALS TABLE ── -->
+          <h3 class="lh-subhead" aria-label="Key Historical Manuals and Treatises"><span>&#9670;</span> Key Historical Manuals &amp; Treatises</h3>
+
+          <div class="lh-analogy-table" role="table" aria-label="Comparison of key historical lock manuals">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Year</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Significance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A Dissertation on the Construction of Locks</td>
+                  <td>1815</td>
+                  <td>Joseph Bramah</td>
+                  <td>Warned that &ldquo;all dependance on the inviolable security of Locks&hellip; is fallacious.&rdquo; First public treatise admitting lock vulnerability.</td>
+                </tr>
+                <tr>
+                  <td>On the Construction of Locks and Keys</td>
+                  <td>1850</td>
+                  <td>John Chubb</td>
+                  <td>Presented to the Institution of Civil Engineers. Described master-key systems: locks &ldquo;made in series&rdquo; with a master key for institutional access control.</td>
+                </tr>
+                <tr>
+                  <td>Rudimentary Treatise on the Construction of Locks</td>
+                  <td>1853</td>
+                  <td>A. C. Hobbs / J. Weale</td>
+                  <td>The landmark disclosure text. Argued that &ldquo;rogues already know&rdquo; and publication improves security. No &ldquo;destroy after reading&rdquo; instructions found.</td>
+                </tr>
+                <tr>
+                  <td>Locks and Builders Hardware: A Hand Book for Architects</td>
+                  <td>1904</td>
+                  <td>Henry R. Towne</td>
+                  <td>Treated locks as a systems-level specification problem for architects and institutions. Marked the shift to professional security engineering.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ── ARCHIVES FOR FURTHER RESEARCH ── -->
+          <h3 class="lh-subhead" aria-label="Archives for Further Research"><span>&#9670;</span> Archives &amp; Further Research</h3>
+
+          <p class="history-intro">To push deeper into this history &mdash; especially to locate ephemeral &ldquo;dangerous knowledge&rdquo; texts and trade norms around secrecy &mdash; the most promising sources are:</p>
+
+          <div class="lh-archives-note" aria-label="Recommended archives for research">
+            <strong>&#128218; Recommended Archives:</strong>
+            <ul style="margin:0.6rem 0 0;padding-left:1.3rem;list-style:disc">
+              <li><em>The British Library</em> &mdash; 19th-century trade manuals, pamphlets, and technical ephemera (especially small print runs)</li>
+              <li><em>HathiTrust Digital Library</em> &mdash; Additional scans of locksmith/hardware treatises and regional trade publications not mirrored elsewhere</li>
+              <li><em>Internet Archive</em> &mdash; OCR text and page images of public-domain hardware books and catalogs, including variant editions with different prefaces</li>
+              <li><em>United States Patent and Trademark Office (USPTO)</em> &mdash; Systematic retrieval of lock, safe, and alarm patents by date and assignee via Google Patents</li>
+              <li><em>London Metropolitan Archives</em> &mdash; Trade and company archives (e.g., Chubb-related holdings) and broader civic records of trades and apprenticeships</li>
+              <li><em>City of London Corporation / Guildhall Records</em> &mdash; Apprenticeship and freeman documentation for locating individual locksmith careers within formal civic structures</li>
+            </ul>
+          </div>
+
+          <p class="history-intro" style="margin-top:1.5rem"><em>The history of locks is the history of cybersecurity.</em> Every debate about vulnerability disclosure, every tension between secrecy and openness, every arms race between defender and attacker &mdash; it all began with locksmiths and key masters working in candlelit workshops, forging mechanisms that guarded the wealth and secrets of nations. Understanding this lineage is not just historical curiosity; it is the foundation of the security philosophy we practice today.</p>
+
         </div>
       </div></div>
     </section>
