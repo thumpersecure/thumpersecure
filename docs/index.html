@@ -38,7 +38,7 @@
 :root{
   --bg:#06060e;--panel:rgba(8,8,20,0.92);
   --cyan:#00ffcc;--magenta:#ff00aa;--green:#00ff41;--tron:#18dcff;
-  --amber:#ffaa00;--violet:#8b5cf6;--red:#ff3e3e;
+  --amber:#ffaa00;--orange:#ff6b1a;--violet:#8b5cf6;--red:#ff3e3e;
   --text:#b8c0d0;--muted:#6272a4;--dim:#2a2d3a;
   --border:rgba(0,255,204,0.12);
   --mono:'JetBrains Mono','Fira Code','Courier New',monospace;
@@ -445,6 +445,48 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .port-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .port-btn.open{border-color:var(--green);background:rgba(0,255,65,0.12);color:var(--green);box-shadow:0 0 8px rgba(0,255,65,0.2)}
 .port-target{font-family:var(--mono);font-size:0.78rem;color:var(--amber);margin-bottom:0.5rem}
+.unscramble-grid{grid-template-columns:repeat(4,minmax(46px,56px))}
+.math-prompt{font-family:var(--mono);font-size:0.82rem;color:var(--amber);margin-bottom:0.55rem}
+.math-options .math-opt{min-width:68px}
+.math-opt.wrong{animation:mathFlash .35s ease}
+@keyframes mathFlash{0%{box-shadow:0 0 0 rgba(255,62,62,0)}50%{box-shadow:0 0 18px rgba(255,62,62,0.45)}100%{box-shadow:0 0 0 rgba(255,62,62,0)}}
+
+/* Latest CVEs + OSINT + Hardware modules */
+.cves-section,.osint-section,.hardware-history-section{padding:2.4rem 0 3rem}
+.cve-list{list-style:none;max-width:920px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:0.72rem;padding:0}
+@media(max-width:820px){.cve-list{grid-template-columns:1fr}}
+.cve-card{border:1px solid var(--border);border-radius:10px;background:rgba(7,11,20,0.9);padding:0.78rem 0.9rem;transition:border-color .26s,box-shadow .26s,transform .26s}
+.cve-card:hover{border-color:rgba(24,220,255,0.45);box-shadow:0 0 20px rgba(24,220,255,0.11);transform:translateY(-2px)}
+.cve-top{display:flex;align-items:center;gap:0.45rem;margin-bottom:0.4rem}
+.cve-id{font-family:var(--mono);font-size:0.77rem;color:var(--cyan);letter-spacing:0.06em;text-transform:uppercase}
+.cve-cite{font-family:var(--mono);font-size:0.66rem;color:var(--amber);cursor:help}
+.cve-desc{font-size:0.8rem;line-height:1.58;color:var(--text)}
+
+.osint-grid{max-width:940px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem}
+@media(max-width:860px){.osint-grid{grid-template-columns:1fr}}
+.osint-card{border:1px solid var(--border);border-radius:10px;background:rgba(6,10,18,0.9);padding:0.9rem 0.95rem;display:flex;flex-direction:column;gap:0.42rem;transition:border-color .26s,box-shadow .26s}
+.osint-card:hover{border-color:rgba(24,220,255,0.44);box-shadow:0 0 20px rgba(24,220,255,0.09)}
+.osint-name{font-family:var(--mono);font-size:0.88rem;color:var(--cyan);letter-spacing:0.04em}
+.osint-desc{font-size:0.79rem;line-height:1.55;color:var(--text)}
+.osint-link{--link-border:var(--tron);--link-glow:rgba(24,220,255,0.28);display:inline-flex;align-items:center;justify-content:center;gap:0.3rem;margin-top:0.25rem;align-self:flex-start;text-decoration:none;font-family:var(--mono);font-size:0.67rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--link-border);border-radius:999px;padding:0.43rem 0.72rem;background:rgba(2,10,20,0.8);transition:border-color .24s,box-shadow .24s,color .24s,transform .2s}
+.osint-link:hover,.osint-link:focus-visible{--link-border:var(--orange);--link-glow:rgba(255,107,26,0.35);color:#ffd7bf;box-shadow:0 0 16px var(--link-glow),0 0 28px rgba(255,107,26,0.2);transform:translateY(-1px)}
+.osint-link:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+.hardware-timeline{max-width:980px;margin:0 auto;display:flex;gap:0.9rem;overflow-x:auto;padding-bottom:0.35rem;scroll-snap-type:x mandatory}
+.hardware-timeline:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:10px}
+.hardware-timeline::-webkit-scrollbar{height:9px}
+.hardware-timeline::-webkit-scrollbar-track{background:rgba(0,0,0,0.25)}
+.hardware-timeline::-webkit-scrollbar-thumb{background:rgba(24,220,255,0.2);border-radius:999px}
+.hardware-card{min-width:260px;max-width:300px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(160deg,rgba(8,13,24,0.92),rgba(8,8,20,0.93));padding:0.9rem;display:flex;flex-direction:column;gap:0.5rem;scroll-snap-align:start;position:relative}
+.hardware-card:hover{border-color:rgba(24,220,255,0.42);box-shadow:0 0 24px rgba(24,220,255,0.12)}
+.hardware-card.fictional{border-color:rgba(255,0,170,0.36)}
+.hardware-card.fictional .hardware-title{color:var(--magenta)}
+.hardware-title{font-family:var(--mono);font-size:0.83rem;color:var(--cyan);letter-spacing:0.05em;text-transform:uppercase}
+.hardware-body{font-size:0.78rem;color:var(--text);line-height:1.58}
+.hardware-meta{display:flex;align-items:center;justify-content:space-between;gap:0.5rem}
+.hardware-icon{font-size:1.08rem;color:var(--tron)}
+.hardware-tag{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber)}
+.hardware-tag.fiction{color:var(--magenta)}
 
 /* ====== SETTINGS PANEL (Phase 9) ====== */
 .settings-overlay{position:fixed;inset:0;z-index:15000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
@@ -577,6 +619,8 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   .ts-module-summary{font-size:0.62rem}
   .fx-toast-container{right:0.5rem;bottom:0.5rem;max-width:calc(100vw - 1rem)}
   .checksum-grid{grid-template-columns:repeat(6,minmax(32px,40px))}
+  .unscramble-grid{grid-template-columns:repeat(4,minmax(36px,46px))}
+  .hardware-card{min-width:220px}
 }
 
 /* ====== REDUCED MOTION ====== */
@@ -818,6 +862,114 @@ TOOLS:   Session cloning, investigation graph,
           <p class="archives-text" style="margin-top:2rem">From Dick Tracy's yellow trenchcoat to Jessica Jones's whiskey-and-stakeouts PI aesthetic &mdash; every version carried a different investigative personality. The tech stack evolved just as dramatically: vanilla JS to Svelte to React to a zero-NPM pure Rust build. The browser's DNA stayed constant: <em>privacy-first, multi-identity, OSINT-native.</em></p>
           <p class="archives-text"><em>palm-tree</em> proved that one Reddit post can change everything. A traffic noise generator that creates 30+ fake personas browsing in parallel &mdash; the pitch was simple: <em>"Make advertisers cry. Make data brokers confused."</em></p>
           <p class="archives-text">The <em>Telespot ecosystem</em> is five tools that form a complete phone-number OSINT pipeline. It starts with a phone number and ends with actionable intelligence &mdash; or a cleaned digital footprint.</p>
+        </div>
+      </div></div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
+
+    <!-- ====== TOP PRE-FLIGHT PUZZLES ====== -->
+    <section class="projects-section reveal" id="preflight-puzzles" aria-label="Preflight puzzle gate">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> preflight_puzzles</h2>
+        <p class="history-intro">Complete these two quick puzzle checks before diving into the featured tool stack.</p>
+        <div class="puzzle-unlock-area" id="puzzleE" data-puzzle="unscramble">
+          <div class="puzzle-solved-badge">&#10003; WORD GRID SOLVED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Puzzle E &mdash; Word Unscramble Grid</div>
+            <div class="puzzle-desc">Click the 3 highlighted cells in the correct order to assemble a short code term. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('unscramble')">Skip</button></div>
+            <div class="checksum-grid unscramble-grid" id="unscrambleGrid"></div>
+            <div class="checksum-status" id="unscrambleStatus" aria-live="polite">selected 0/3</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Welcome, codebreaker.</p>
+          </div>
+        </div>
+        <div class="puzzle-unlock-area" id="puzzleF" data-puzzle="math">
+          <div class="puzzle-solved-badge">&#10003; MATH CHALLENGE PASSED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Puzzle F &mdash; Simple Math Challenge</div>
+            <div class="puzzle-desc">Solve the expression and pick the correct answer. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('math')">Skip</button></div>
+            <div class="math-prompt" id="mathPrompt" aria-live="polite">3 + 4 &times; 2 = ?</div>
+            <div class="pattern-options math-options" id="mathOptions"></div>
+            <div class="checksum-status" id="mathStatus" aria-live="polite">choose one result</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Access verified. Continue exploring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
+
+    <!-- ====== MODULE: LATEST CVES ====== -->
+    <section class="ts-module reveal" aria-label="Latest CVEs" id="mod-cves">
+      <button class="ts-module-header" aria-expanded="false" aria-controls="mod-cves-body">
+        <h2 class="section-head"><span>//</span> latest_cves</h2>
+        <p class="ts-module-summary">Recent vulnerability headlines across Android, Qualcomm components, and embedded systems.</p>
+        <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
+      </button>
+      <div class="ts-module-body" id="mod-cves-body"><div>
+        <div class="container cves-section" id="latest-cves">
+          <p class="history-intro">Rapid triage list of notable CVE disclosures with one-line operational context.</p>
+          <ul class="cve-list" aria-label="Latest CVE list">
+            <li class="cve-card"><div class="cve-top"><span class="cve-id">CVE-2026-20425</span><sup class="cve-cite" title="Android security bulletin reference">[A]</sup></div><p class="cve-desc">Android System vulnerability allowing possible local privilege escalation due to an out-of-bounds write.</p></li>
+            <li class="cve-card"><div class="cve-top"><span class="cve-id">CVE-2026-21385</span><sup class="cve-cite" title="Qualcomm component advisory">[Q]</sup></div><p class="cve-desc">Memory corruption vulnerability in Qualcomm display components that may allow attackers to manipulate memory.</p></li>
+            <li class="cve-card"><div class="cve-top"><span class="cve-id">CVE-2026-0006</span><sup class="cve-cite" title="Android framework bulletin">[A]</sup></div><p class="cve-desc">Remote code execution vulnerability affecting Android system services.</p></li>
+            <li class="cve-card"><div class="cve-top"><span class="cve-id">CVE-2025-48631</span><sup class="cve-cite" title="Android framework issue tracker">[F]</sup></div><p class="cve-desc">Denial of service issue impacting Android framework stability.</p></li>
+            <li class="cve-card"><div class="cve-top"><span class="cve-id">CVE-2026-0047</span><sup class="cve-cite" title="Android framework reference">[A]</sup></div><p class="cve-desc">Local privilege escalation flaw within the Android framework layer.</p></li>
+            <li class="cve-card"><div class="cve-top"><span class="cve-id">CVE-2026-29120</span><sup class="cve-cite" title="Embedded firmware advisory">[E]</sup></div><p class="cve-desc">Hard-coded root password vulnerability found in SFX2100 satellite receiver firmware.</p></li>
+          </ul>
+        </div>
+      </div></div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
+
+    <!-- ====== MODULE: OSINT TOOLS ====== -->
+    <section class="ts-module reveal" aria-label="OSINT tools" id="mod-osint">
+      <button class="ts-module-header" aria-expanded="false" aria-controls="mod-osint-body">
+        <h2 class="section-head"><span>//</span> osint_tools</h2>
+        <p class="ts-module-summary">Core reconnaissance platforms and search methods used in modern investigations.</p>
+        <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
+      </button>
+      <div class="ts-module-body" id="mod-osint-body"><div>
+        <div class="container osint-section" id="osint-tools">
+          <p class="history-intro">These links point to common open-source intelligence platforms used for collection and correlation.</p>
+          <div class="osint-grid">
+            <article class="osint-card"><h3 class="osint-name">OSINT Framework</h3><p class="osint-desc">Directory of OSINT resources organized by investigation type.</p><a class="osint-link" role="button" aria-label="Open OSINT Framework" href="https://osintframework.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">Google Dorks</h3><p class="osint-desc">Advanced search queries used to discover publicly indexed files and hidden resources.</p><a class="osint-link" role="button" aria-label="Open Google Dorks cheatsheet" href="https://www.exploit-db.com/google-hacking-database" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">theHarvester</h3><p class="osint-desc">Reconnaissance tool used to gather emails, subdomains, and hosts.</p><a class="osint-link" role="button" aria-label="Open theHarvester project page" href="https://github.com/laramies/theHarvester" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">SecurityTrails</h3><p class="osint-desc">DNS and domain intelligence platform with historical DNS records.</p><a class="osint-link" role="button" aria-label="Open SecurityTrails" href="https://securitytrails.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">BGPView</h3><p class="osint-desc">Tool for analyzing IP ownership and BGP routing data.</p><a class="osint-link" role="button" aria-label="Open BGPView" href="https://bgpview.io/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">Maltego</h3><p class="osint-desc">Graph-based OSINT analysis platform used to map relationships between entities.</p><a class="osint-link" role="button" aria-label="Open Maltego" href="https://www.maltego.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
+
+    <!-- ====== MODULE: HARDWARE HISTORY ====== -->
+    <section class="ts-module reveal" aria-label="History of hardware" id="mod-hardware">
+      <button class="ts-module-header" aria-expanded="false" aria-controls="mod-hardware-body">
+        <h2 class="section-head"><span>//</span> hardware_history</h2>
+        <p class="ts-module-summary">Surveillance and hacking hardware timeline from early espionage gear to SDR platforms.</p>
+        <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
+      </button>
+      <div class="ts-module-body" id="mod-hardware-body"><div>
+        <div class="container hardware-history-section" id="hardware-history">
+          <p class="history-intro">A compact timeline of influential interception and hacking hardware. Real-world devices are listed first; fictional examples are explicitly tagged.</p>
+          <div class="hardware-timeline" role="region" aria-label="Scrollable hardware timeline" tabindex="0">
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1940s&ndash;1950s</span><span class="hardware-icon" aria-hidden="true">&#128264;</span></div><h3 class="hardware-title">The Thing</h3><p class="hardware-body">A passive resonant cavity listening device hidden inside a carved Great Seal gifted to the U.S. embassy in Moscow. It transmitted audio only when illuminated by an external RF source.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1960s</span><span class="hardware-icon" aria-hidden="true">&#9742;</span></div><h3 class="hardware-title">Blue Box</h3><p class="hardware-body">Device that generated multi-frequency tones used by long-distance telephone operators. Early phone phreakers used it to control telephone routing systems.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128246;</span></div><h3 class="hardware-title">HackRF One</h3><p class="hardware-body">Software-defined radio platform capable of transmitting and receiving signals from 1 MHz to 6 GHz, widely used for protocol research and signal analysis.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128421;</span></div><h3 class="hardware-title">Ubertooth One</h3><p class="hardware-body">Open-source Bluetooth monitoring and experimentation platform focused on low-level wireless packet capture and analysis workflows.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2020s</span><span class="hardware-icon" aria-hidden="true">&#128187;</span></div><h3 class="hardware-title">Flipper Zero</h3><p class="hardware-body">Portable open-source hardware multi-tool capable of interacting with radio protocols, NFC, RFID, infrared, and access control systems.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card fictional"><div class="hardware-meta"><span class="year-pill">1960s+ fiction</span><span class="hardware-icon" aria-hidden="true">&#127916;</span></div><h3 class="hardware-title">James Bond Gadget Canon</h3><p class="hardware-body">Pop-culture spy hardware references include exploding pens, miniature transmitters, and covert tracking devices used for dramatic mission pivots.</p><span class="hardware-tag fiction">fictional reference</span></article>
+            <article class="hardware-card fictional"><div class="hardware-meta"><span class="year-pill">1966+ fiction</span><span class="hardware-icon" aria-hidden="true">&#127909;</span></div><h3 class="hardware-title">Mission: Impossible Gear</h3><p class="hardware-body">Fictional toolkit highlights wrist communicators, disguised recording hardware, and micro-transmitters used by field teams in infiltration scenarios.</p><span class="hardware-tag fiction">fictional reference</span></article>
+          </div>
         </div>
       </div></div>
     </section>
@@ -1600,6 +1752,89 @@ function updatePuzzleUI(id){
   if(getPuzzleState(id)){area.classList.add('solved')}else{area.classList.remove('solved')}
 }
 
+// Puzzle E: Word Unscramble Grid
+(function(){
+  var grid=document.getElementById('unscrambleGrid');
+  var status=document.getElementById('unscrambleStatus');
+  if(!grid)return;
+  var alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var words=['NET','KEY','LOG','RAM','DNS'];
+  var targetWord=words[Math.floor(Math.random()*words.length)];
+  var selected=[];
+  var positions=[];for(var p=0;p<16;p++)positions.push(p);
+  for(var i=positions.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=positions[i];positions[i]=positions[j];positions[j]=t}
+  var hintIndices=positions.slice(0,3);
+  var letters=[];
+  for(var c=0;c<16;c++)letters.push(alphabet[Math.floor(Math.random()*alphabet.length)]);
+  hintIndices.forEach(function(idx,ord){letters[idx]=targetWord.charAt(ord)});
+  for(var n=0;n<16;n++){
+    var btn=document.createElement('button');
+    var row=Math.floor(n/4)+1,col=(n%4)+1;
+    var isHint=hintIndices.indexOf(n)!==-1;
+    btn.type='button';
+    btn.className='checksum-cell';
+    btn.textContent=letters[n];
+    btn.setAttribute('data-idx',String(n));
+    btn.setAttribute('aria-label','Grid row '+row+' column '+col+' letter '+letters[n]+(isHint?', highlighted hint':''));
+    if(isHint)btn.classList.add('hint');
+    grid.appendChild(btn);
+  }
+  if(status)status.textContent='selected 0/3';
+  grid.addEventListener('click',function(e){
+    var btn=e.target.closest('.checksum-cell');if(!btn)return;
+    if(getPuzzleState('unscramble'))return;
+    var idx=parseInt(btn.getAttribute('data-idx'),10);
+    if(btn.classList.contains('selected'))return;
+    var expected=hintIndices[selected.length];
+    if(idx===expected){
+      btn.classList.add('selected');
+      selected.push(idx);
+      if(status)status.textContent='selected '+selected.length+'/3';
+      if(selected.length===3){
+        if(status)status.textContent='Welcome, codebreaker.';
+        setPuzzleState('unscramble',true);
+      }
+    }else{
+      btn.classList.add('wrong');
+      if(status)status.textContent='sequence mismatch — follow the highlighted trail';
+      setTimeout(function(){btn.classList.remove('wrong')},450);
+    }
+  });
+  if(getPuzzleState('unscramble')&&status)status.textContent='Welcome, codebreaker.';
+  updatePuzzleUI('unscramble');
+})();
+
+// Puzzle F: Simple Math Challenge
+(function(){
+  var container=document.getElementById('mathOptions');
+  var status=document.getElementById('mathStatus');
+  if(!container)return;
+  var answers=[8,10,11,14];
+  for(var i=answers.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=answers[i];answers[i]=answers[j];answers[j]=t}
+  answers.forEach(function(val){
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.className='pattern-opt math-opt';
+    btn.textContent=String(val);
+    btn.setAttribute('aria-label','Answer option '+String(val));
+    btn.addEventListener('click',function(){
+      if(getPuzzleState('math'))return;
+      if(val===11){
+        btn.classList.add('correct');
+        if(status)status.textContent='Access verified. Continue exploring.';
+        setPuzzleState('math',true);
+      }else{
+        btn.classList.add('wrong');
+        if(status)status.textContent='incorrect answer — try again';
+        setTimeout(function(){btn.classList.remove('wrong')},450);
+      }
+    });
+    container.appendChild(btn);
+  });
+  if(getPuzzleState('math')&&status)status.textContent='Access verified. Continue exploring.';
+  updatePuzzleUI('math');
+})();
+
 // Puzzle A: Terminal Checksum
 (function(){
   var grid=document.getElementById('checksumGrid');
@@ -1618,7 +1853,10 @@ function updatePuzzleUI(id){
   // Pick 3 hint cells
   var pool=[];for(var j=0;j<36;j++)pool.push(j);
   for(var k=0;k<3;k++){var ri=Math.floor(Math.random()*pool.length);hintIndices.push(pool[ri]);code+=cells[pool[ri]].ch;pool.splice(ri,1)}
-  hintIndices.forEach(function(hi){cells[hi].el.classList.add('hint')});
+  hintIndices.forEach(function(hi){
+    cells[hi].el.classList.add('hint');
+    cells[hi].el.setAttribute('aria-label','Character '+cells[hi].ch+', highlighted hint');
+  });
   // Click handler
   grid.addEventListener('click',function(e){
     var btn=e.target.closest('.checksum-cell');if(!btn)return;
@@ -1745,11 +1983,12 @@ TS.checkPortScan=function(){
 
 TS.puzzleSkip=function(id){setPuzzleState(id,true)};
 TS.resetAllPuzzles=function(){
-  ['checksum','pattern','decrypt','portscan','bottom'].forEach(function(id){
+  ['unscramble','math','checksum','pattern','decrypt','portscan','bottom'].forEach(function(id){
     setSetting('puzzle_'+id,false);updatePuzzleUI(id);
   });
   localStorage.removeItem('cb_puzzle_solved');
   localStorage.removeItem('cb_puzzle_dismissed');
+  window.location.reload();
 };
 
 /* ====== SETTINGS PANEL (Phase 9) ====== */
