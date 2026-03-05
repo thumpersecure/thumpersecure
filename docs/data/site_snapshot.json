@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-03-04T20:58:46.722Z",
+  "last_updated_utc": "2026-03-05T06:35:22.341Z",
   "stats": {
     "tools_count": 13,
-    "stars_total": 550,
+    "stars_total": 551,
     "featured_count": 4,
     "followers": 48
   },
@@ -88,8 +88,8 @@
       "name": "TeleSTOP",
       "description": "📵 A windows desktop program designed for one thing; to help you remove your data from 50+ people-search sites at the source. No cloud, no APIs, 100% local. Pairs with xTELENUMSINT for faster detection/reporting. Reduce spam calls. Lower your risk for identity theft. Take back control. NO coding required. 100% free.",
       "topics": [],
-      "stars": 34,
-      "last_updated": "2026-02-28T01:24:18Z",
+      "stars": 35,
+      "last_updated": "2026-03-05T01:32:36Z",
       "language": "TypeScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/TeleSTOP",
