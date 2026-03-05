@@ -167,6 +167,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .music-fallback:hover{color:var(--tron)}
 .autoplay-banner{display:none;width:100%;text-align:center;padding:0.3rem 0.5rem;font-family:var(--mono);font-size:0.56rem;color:var(--amber);letter-spacing:0.08em;cursor:pointer}
 .autoplay-banner.show{display:block}
+.music-panel{width:100%}
+.music-panel[hidden]{display:none}
+.music-panel-toggle{display:none}
 
 /* ====== TOP TOGGLES ROW ====== */
 .top-toggles{display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:0.15rem 0 0;flex-wrap:wrap}
@@ -655,6 +658,7 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   .music-eq span{width:2px}
   .music-meta{justify-content:center;gap:0.26rem 0.5rem;padding:0.02rem 0.1rem 0}
   .music-status,.music-fallback{font-size:0.5rem}
+  .music-panel-toggle{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:36px;font-size:0.5rem;letter-spacing:0.08em}
   .quote-block{padding:1.2rem}
   .vb6-code{font-size:0.68rem}.nfo{font-size:0.55rem;padding:1rem}
   .btn{min-height:44px;padding:0.75rem 1.6rem;display:inline-flex;align-items:center;justify-content:center}
@@ -755,29 +759,32 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   <div class="top-bar-wrap" aria-label="Controls">
     <div class="top-bar">
       <span class="top-bar-label">signal deck // tron &middot; mr robot &middot; swordfish</span>
-      <div class="music-controls-row">
-        <button type="button" class="music-mute-btn" id="musicMute" aria-label="Mute audio" title="Mute/Unmute">&#x1f50a;</button>
-        <div class="music-btns" id="musicDeck">
-          <button type="button" class="music-btn" data-theme="tron" data-index="0" data-label="Tron — Spoken Words" aria-pressed="false">
-            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-            <span class="music-name"><span class="music-track">TRON // SPOKEN WORDS</span><span class="music-vibe">Wendy Carlos &middot; 1982 synth grid</span></span>
-          </button>
-          <button type="button" class="music-btn" data-theme="robot" data-index="1" data-label="Mr Robot — Daemons" aria-pressed="false">
-            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-            <span class="music-name"><span class="music-track">MR ROBOT // DAEMONS</span><span class="music-vibe">Mac Quayle &middot; terminal noise</span></span>
-          </button>
-          <button type="button" class="music-btn" data-theme="swordfish" data-index="2" data-label="Swordfish — Breach" aria-pressed="false">
-            <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-            <span class="music-name"><span class="music-track">SWORDFISH // BREACH</span><span class="music-vibe">Paul Oakenfold &middot; multi-screen rush</span></span>
-          </button>
+      <button type="button" class="top-toggle-btn music-panel-toggle" id="musicPanelToggle" aria-controls="musicPanel" aria-expanded="true" aria-label="Hide audio controls">Hide audio controls</button>
+      <div id="musicPanel" class="music-panel">
+        <div class="music-controls-row">
+          <button type="button" class="music-mute-btn" id="musicMute" aria-label="Mute audio" title="Mute/Unmute">&#x1f50a;</button>
+          <div class="music-btns" id="musicDeck">
+            <button type="button" class="music-btn" data-theme="tron" data-index="0" data-label="Tron — Spoken Words" aria-pressed="false">
+              <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
+              <span class="music-name"><span class="music-track">TRON // SPOKEN WORDS</span><span class="music-vibe">Wendy Carlos &middot; 1982 synth grid</span></span>
+            </button>
+            <button type="button" class="music-btn" data-theme="robot" data-index="1" data-label="Mr Robot — Daemons" aria-pressed="false">
+              <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
+              <span class="music-name"><span class="music-track">MR ROBOT // DAEMONS</span><span class="music-vibe">Mac Quayle &middot; terminal noise</span></span>
+            </button>
+            <button type="button" class="music-btn" data-theme="swordfish" data-index="2" data-label="Swordfish — Breach" aria-pressed="false">
+              <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
+              <span class="music-name"><span class="music-track">SWORDFISH // BREACH</span><span class="music-vibe">Paul Oakenfold &middot; multi-screen rush</span></span>
+            </button>
+          </div>
         </div>
+        <div class="music-meta">
+          <span class="music-status" id="musicStatus" aria-live="polite">select a track</span>
+          <button type="button" class="music-next-btn" id="musicNext" aria-label="Next track">next &#9193;</button>
+          <a id="musicFallback" class="music-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden>open source</a>
+        </div>
+        <div id="autoplayBanner" class="autoplay-banner" role="button" tabindex="0" aria-label="Tap to play audio">&#127925; Audio ready &mdash; tap to play</div>
       </div>
-      <div class="music-meta">
-        <span class="music-status" id="musicStatus" aria-live="polite">select a track</span>
-        <button type="button" class="music-next-btn" id="musicNext" aria-label="Next track">next &#9193;</button>
-        <a id="musicFallback" class="music-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden>open source</a>
-      </div>
-      <div id="autoplayBanner" class="autoplay-banner" role="button" tabindex="0" aria-label="Tap to play audio">&#127925; Audio ready &mdash; tap to play</div>
       <div class="top-toggles">
         <button type="button" class="top-toggle-btn on" id="toggleEffects" aria-label="Toggle AI defense effects">Effects: On</button>
         <button type="button" class="top-toggle-btn settings-btn" id="toggleSettings" aria-label="Open settings">&#9881; Settings</button>
@@ -1005,19 +1012,19 @@ TOOLS:   Session cloning, investigation graph,
     <section class="ts-module reveal" aria-label="OSINT tools" id="mod-osint">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-osint-body">
         <h2 class="section-head"><span>//</span> osint_tools</h2>
-        <p class="ts-module-summary">Core reconnaissance platforms and search methods used in modern investigations.</p>
+        <p class="ts-module-summary">Core OSINT platforms and search methods used in modern investigations.</p>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-osint-body"><div>
         <div class="container osint-section" id="osint-tools">
-          <p class="history-intro">These links point to common open-source intelligence platforms used for collection and correlation.</p>
+          <p class="history-intro">These links cover common OSINT resources for collecting, pivoting, and correlating public data.</p>
           <div class="osint-grid">
-            <article class="osint-card"><h3 class="osint-name">OSINT Framework</h3><p class="osint-desc">Directory of OSINT resources organized by investigation type.</p><a class="osint-link" role="button" aria-label="Open OSINT Framework" href="https://osintframework.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
-            <article class="osint-card"><h3 class="osint-name">Google Dorks</h3><p class="osint-desc">Advanced search queries used to discover publicly indexed files and hidden resources.</p><a class="osint-link" role="button" aria-label="Open Google Dorks cheatsheet" href="https://www.exploit-db.com/google-hacking-database" target="_blank" rel="noopener noreferrer">Open Link</a></article>
-            <article class="osint-card"><h3 class="osint-name">theHarvester</h3><p class="osint-desc">Reconnaissance tool used to gather emails, subdomains, and hosts.</p><a class="osint-link" role="button" aria-label="Open theHarvester project page" href="https://github.com/laramies/theHarvester" target="_blank" rel="noopener noreferrer">Open Link</a></article>
-            <article class="osint-card"><h3 class="osint-name">SecurityTrails</h3><p class="osint-desc">DNS and domain intelligence platform with historical DNS records.</p><a class="osint-link" role="button" aria-label="Open SecurityTrails" href="https://securitytrails.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
-            <article class="osint-card"><h3 class="osint-name">BGPView</h3><p class="osint-desc">Tool for analyzing IP ownership and BGP routing data.</p><a class="osint-link" role="button" aria-label="Open BGPView" href="https://bgpview.io/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
-            <article class="osint-card"><h3 class="osint-name">Maltego</h3><p class="osint-desc">Graph-based OSINT analysis platform used to map relationships between entities.</p><a class="osint-link" role="button" aria-label="Open Maltego" href="https://www.maltego.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">OSINT Framework</h3><p class="osint-desc">Browsable map of OSINT resources grouped by investigation workflow.</p><a class="osint-link" role="button" aria-label="Open OSINT Framework" href="https://osintframework.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">Google Dorks</h3><p class="osint-desc">Advanced search operators that surface exposed files, admin pages, and indexed artifacts.</p><a class="osint-link" role="button" aria-label="Open Google Dorks cheatsheet" href="https://www.exploit-db.com/google-hacking-database" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">theHarvester</h3><p class="osint-desc">Recon tool for collecting emails, subdomains, hosts, and related metadata.</p><a class="osint-link" role="button" aria-label="Open theHarvester project page" href="https://github.com/laramies/theHarvester" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">SecurityTrails</h3><p class="osint-desc">Domain and DNS intelligence platform with current and historical record views.</p><a class="osint-link" role="button" aria-label="Open SecurityTrails" href="https://securitytrails.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">BGPView</h3><p class="osint-desc">Resource for checking ASN, IP ownership, and BGP routing relationships.</p><a class="osint-link" role="button" aria-label="Open BGPView" href="https://bgpview.io/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
+            <article class="osint-card"><h3 class="osint-name">Maltego</h3><p class="osint-desc">Graph-based platform for mapping links between people, domains, infrastructure, and events.</p><a class="osint-link" role="button" aria-label="Open Maltego" href="https://www.maltego.com/" target="_blank" rel="noopener noreferrer">Open Link</a></article>
           </div>
         </div>
       </div></div>
@@ -1029,20 +1036,20 @@ TOOLS:   Session cloning, investigation graph,
     <section class="ts-module reveal" aria-label="History of hardware" id="mod-hardware">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-hardware-body">
         <h2 class="section-head"><span>//</span> hardware_history</h2>
-        <p class="ts-module-summary">Surveillance and hacking hardware timeline from early espionage gear to SDR platforms.</p>
+        <p class="ts-module-summary">Timeline of surveillance and hacking hardware from early spy gear to SDR platforms.</p>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-hardware-body"><div>
         <div class="container hardware-history-section" id="hardware-history">
-          <p class="history-intro">A compact timeline of influential interception and hacking hardware. Real-world devices are listed first; fictional examples are explicitly tagged.</p>
+          <p class="history-intro">A quick timeline of influential interception hardware. Real devices appear first, and fictional entries are clearly tagged.</p>
           <div class="hardware-timeline" role="region" aria-label="Scrollable hardware timeline" tabindex="0">
-            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1940s&ndash;1950s</span><span class="hardware-icon" aria-hidden="true">&#128264;</span></div><h3 class="hardware-title">The Thing</h3><p class="hardware-body">A passive resonant cavity listening device hidden inside a carved Great Seal gifted to the U.S. embassy in Moscow. It transmitted audio only when illuminated by an external RF source.</p><span class="hardware-tag">real hardware</span></article>
-            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1960s</span><span class="hardware-icon" aria-hidden="true">&#9742;</span></div><h3 class="hardware-title">Blue Box</h3><p class="hardware-body">Device that generated multi-frequency tones used by long-distance telephone operators. Early phone phreakers used it to control telephone routing systems.</p><span class="hardware-tag">real hardware</span></article>
-            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128246;</span></div><h3 class="hardware-title">HackRF One</h3><p class="hardware-body">Software-defined radio platform capable of transmitting and receiving signals from 1 MHz to 6 GHz, widely used for protocol research and signal analysis.</p><span class="hardware-tag">real hardware</span></article>
-            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128421;</span></div><h3 class="hardware-title">Ubertooth One</h3><p class="hardware-body">Open-source Bluetooth monitoring and experimentation platform focused on low-level wireless packet capture and analysis workflows.</p><span class="hardware-tag">real hardware</span></article>
-            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2020s</span><span class="hardware-icon" aria-hidden="true">&#128187;</span></div><h3 class="hardware-title">Flipper Zero</h3><p class="hardware-body">Portable open-source hardware multi-tool capable of interacting with radio protocols, NFC, RFID, infrared, and access control systems.</p><span class="hardware-tag">real hardware</span></article>
-            <article class="hardware-card fictional"><div class="hardware-meta"><span class="year-pill">1960s+ fiction</span><span class="hardware-icon" aria-hidden="true">&#127916;</span></div><h3 class="hardware-title">James Bond Gadget Canon</h3><p class="hardware-body">Pop-culture spy hardware references include exploding pens, miniature transmitters, and covert tracking devices used for dramatic mission pivots.</p><span class="hardware-tag fiction">fictional reference</span></article>
-            <article class="hardware-card fictional"><div class="hardware-meta"><span class="year-pill">1966+ fiction</span><span class="hardware-icon" aria-hidden="true">&#127909;</span></div><h3 class="hardware-title">Mission: Impossible Gear</h3><p class="hardware-body">Fictional toolkit highlights wrist communicators, disguised recording hardware, and micro-transmitters used by field teams in infiltration scenarios.</p><span class="hardware-tag fiction">fictional reference</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1940s&ndash;1950s</span><span class="hardware-icon" aria-hidden="true">&#128264;</span></div><h3 class="hardware-title">The Thing</h3><p class="hardware-body">A passive listening device with no internal power, hidden inside a carved Great Seal gifted to the U.S. ambassador in Moscow. When illuminated by external radio waves, its cavity resonated and retransmitted room audio, making it an early RFID precursor.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1960s&ndash;1970s</span><span class="hardware-icon" aria-hidden="true">&#9742;</span></div><h3 class="hardware-title">Blue Box</h3><p class="hardware-body">An electronic tone generator that used 2600 Hz and multi-frequency signaling to seize control of long-distance call routing. It became popular in the 1970s as cheap microelectronics spread, then faded in the 1980s when networks moved to out-of-band signaling.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128246;</span></div><h3 class="hardware-title">HackRF One</h3><p class="hardware-body">HackRF One is an open-source SDR transceiver by Great Scott Gadgets, launched via Kickstarter in 2014. It transmits and receives from 1 MHz to 6 GHz and is widely used by researchers and hobbyists.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128421;</span></div><h3 class="hardware-title">Ubertooth One</h3><p class="hardware-body">An open-source 2.4 GHz wireless development platform for Bluetooth experimentation. It provides hardware, firmware, and host code for low-level packet capture and analysis, and is designed for user-written software.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2020s</span><span class="hardware-icon" aria-hidden="true">&#128187;</span></div><h3 class="hardware-title">Flipper Zero</h3><p class="hardware-body">A portable multi-tool for interacting with sub-GHz radio protocols, NFC, RFID, infrared, and access-control systems.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card fictional"><div class="hardware-meta"><span class="year-pill">1960s+ fiction</span><span class="hardware-icon" aria-hidden="true">&#127916;</span></div><h3 class="hardware-title">James Bond Gadget Canon</h3><p class="hardware-body">Fictional spy devices from James Bond include exploding pens, miniature transmitters, and covert trackers used for dramatic plot turns.</p><span class="hardware-tag fiction">fictional device (film/TV)</span></article>
+            <article class="hardware-card fictional"><div class="hardware-meta"><span class="year-pill">1966+ fiction</span><span class="hardware-icon" aria-hidden="true">&#127909;</span></div><h3 class="hardware-title">Mission: Impossible Gear</h3><p class="hardware-body">Fictional Mission: Impossible hardware includes wrist communicators, disguised recorders, and micro-transmitters used in infiltration scenes.</p><span class="hardware-tag fiction">fictional device (film/TV)</span></article>
           </div>
         </div>
       </div></div>
@@ -1122,33 +1129,33 @@ TOOLS:   Session cloning, investigation graph,
     <section class="ts-module reveal" id="mod-ingredients" aria-label="Historical cookbook ingredients">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-ingredients-body">
         <h2 class="section-head"><span>//</span> ingredients_1986_to_2026</h2>
-        <p class="ts-module-summary">8 milestones from 1986 dial-up to 2026 async Rust pipelines.</p>
+        <p class="ts-module-summary">Eight milestones from 1986 dial-up to 2026 async Rust pipelines.</p>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-ingredients-body"><div>
         <div class="container history-cookbook-section" id="ingredients">
-          <p class="history-intro">The long recipe starts in the floppy-and-dial-up years. From BBS scripts and worm-era wake-up calls to modern async intelligence pipelines, every decade added one more ingredient to today's privacy-first OSINT stack. <em>Same mission, sharper tools.</em></p>
+          <p class="history-intro">This timeline starts in the floppy-and-dial-up era and runs to modern async workflows. Each decade adds one practical ingredient to today&rsquo;s privacy-first OSINT stack. <em>Same mission, sharper tools.</em></p>
           <div class="ingredients-visual glass" aria-hidden="true"><canvas id="ingredientsCanvas"></canvas></div>
           <ol class="ingredient-list">
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">1986</span><span class="ingredient-name">dial-up bbs foundations</span></div><p class="ingredient-desc">Before web apps and cloud APIs, communities traded code over modems.</p><pre class="ingredient-code"><span class="cm"># modem-era connection ritual</span>
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">1986</span><span class="ingredient-name">dial-up bbs foundations</span></div><p class="ingredient-desc">Before web apps or cloud APIs, communities shared code over dial-up modems.</p><pre class="ingredient-code"><span class="cm"># modem-era connection ritual</span>
 <span class="kw">ATZ</span>
 <span class="kw">ATDT</span> <span class="tx">5550137</span>
 <span class="ok">CONNECT</span> 2400</pre></li>
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">1988</span><span class="ingredient-name">worm-era secure coding shift</span></div><p class="ingredient-desc">The Morris Worm era highlighted how small C mistakes could scale into systemic incidents.</p><pre class="ingredient-code"><span class="cm">/* unsafe input was common */</span>
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">1988</span><span class="ingredient-name">worm-era secure coding shift</span></div><p class="ingredient-desc">The Morris Worm era showed how small C mistakes could become system-wide incidents.</p><pre class="ingredient-code"><span class="cm">/* unsafe input was common */</span>
 <span class="kw">char</span> buf[128];
 <span class="kw">fgets</span>(buf, <span class="tx">sizeof(buf)</span>, stdin);</pre></li>
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">1996</span><span class="ingredient-name">network recon mise en place</span></div><p class="ingredient-desc">Whois, DNS, and route mapping became the opening moves.</p><pre class="ingredient-code"><span class="kw">whois</span> <span class="tx">example.com</span>
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">1996</span><span class="ingredient-name">network recon mise en place</span></div><p class="ingredient-desc">Whois, DNS, and traceroute became the standard first recon steps.</p><pre class="ingredient-code"><span class="kw">whois</span> <span class="tx">example.com</span>
 <span class="kw">nslookup</span> <span class="tx">example.com</span>
 <span class="kw">traceroute</span> <span class="tx">example.com</span></pre></li>
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2001</span><span class="ingredient-name">service fingerprinting era</span></div><p class="ingredient-desc">Nmap became a universal ingredient: ports, service versions, and host hints.</p><pre class="ingredient-code"><span class="kw">nmap</span> -sV -O -Pn <span class="tx">target.example</span></pre></li>
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2007</span><span class="ingredient-name">input-validation wake-up call</span></div><p class="ingredient-desc">The SQL injection wave made parameterized queries non-negotiable.</p><pre class="ingredient-code"><span class="kw">$stmt</span> = $pdo-&gt;prepare(<span class="tx">'SELECT * FROM users WHERE username = :u'</span>);
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2001</span><span class="ingredient-name">service fingerprinting era</span></div><p class="ingredient-desc">Nmap became a go-to staple for ports, service versions, and host clues.</p><pre class="ingredient-code"><span class="kw">nmap</span> -sV -O -Pn <span class="tx">target.example</span></pre></li>
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2007</span><span class="ingredient-name">input-validation wake-up call</span></div><p class="ingredient-desc">SQL injection waves made parameterized queries a baseline requirement.</p><pre class="ingredient-code"><span class="kw">$stmt</span> = $pdo-&gt;prepare(<span class="tx">'SELECT * FROM users WHERE username = :u'</span>);
 <span class="kw">$stmt</span>-&gt;execute([<span class="tx">'u'</span> =&gt; $_GET[<span class="tx">'user'</span>]]);</pre></li>
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2013</span><span class="ingredient-name">python osint automation</span></div><p class="ingredient-desc">Python + requests normalized repeatable intelligence collection.</p><pre class="ingredient-code"><span class="kw">import</span> requests
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2013</span><span class="ingredient-name">python osint automation</span></div><p class="ingredient-desc">Python plus requests made repeatable intelligence collection easy and scriptable.</p><pre class="ingredient-code"><span class="kw">import</span> requests
 r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, timeout=10)
 <span class="ok">print</span>(r.status_code, len(r.text))</pre></li>
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2019</span><span class="ingredient-name">api-first recon pipelines</span></div><p class="ingredient-desc">CLI tools and JSON processors made intelligence assembly composable.</p><pre class="ingredient-code"><span class="kw">curl</span> -s "https://api.github.com/users/thumpersecure/repos?per_page=5" \
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2019</span><span class="ingredient-name">api-first recon pipelines</span></div><p class="ingredient-desc">CLI tools and JSON processors made intelligence workflows modular and composable.</p><pre class="ingredient-code"><span class="kw">curl</span> -s "https://api.github.com/users/thumpersecure/repos?per_page=5" \
   | <span class="kw">jq</span> '.[] | {name, language, stars: .stargazers_count}'</pre></li>
-            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2026</span><span class="ingredient-name">async rust intelligence kitchen</span></div><p class="ingredient-desc">Modern tooling prioritizes local execution, typed reliability, and parallel source fusion.</p><pre class="ingredient-code"><span class="kw">let</span> (a, b, c) = tokio::join!(source_a(q), source_b(q), source_c(q));
+            <li class="ingredient-card"><div class="ingredient-head"><span class="year-pill">2026</span><span class="ingredient-name">async rust intelligence kitchen</span></div><p class="ingredient-desc">Modern tooling emphasizes local execution, typed reliability, and parallel source fusion.</p><pre class="ingredient-code"><span class="kw">let</span> (a, b, c) = tokio::join!(source_a(q), source_b(q), source_c(q));
 <span class="kw">let</span> report = fuse(a?, b?, c?);
 <span class="ok">println!</span>(<span class="tx">"signals: {}"</span>, report.hits);</pre></li>
           </ol>
@@ -1206,22 +1213,22 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
     <section class="ts-module reveal" id="mod-glossary" aria-label="Cyber glossary">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-glossary-body">
         <h2 class="section-head"><span>//</span> threat_glossary</h2>
-        <p class="ts-module-summary">9 threat types from malware to zero-day.</p>
+        <p class="ts-module-summary">Nine common threat types from malware to zero-day.</p>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-glossary-body"><div>
         <div class="container glossary-section" id="glossary">
-          <p class="history-intro">Minimalist field notes for common security terms.</p>
+          <p class="history-intro">Quick, plain-language definitions for common security threats.</p>
           <div class="glossary-grid">
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-malware">MAL</span><span class="term-name">malware</span></div><p class="term-def">Any malicious software built to disrupt systems, steal data, or gain unauthorized control.</p><pre class="term-visual">payload -&gt; execute -&gt; compromise</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-adware">ADS</span><span class="term-name">adware</span></div><p class="term-def">Software that injects or forces advertising behavior, often tracking user actions.</p><pre class="term-visual">tracking id -&gt; profile -&gt; ad blast</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-trojan">TRJ</span><span class="term-name">trojan</span></div><p class="term-def">A malicious program disguised as legitimate software.</p><pre class="term-visual">looks safe -&gt; install -&gt; hidden run</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-shoulder">EYE</span><span class="term-name">shoulder surfing</span></div><p class="term-def">Stealing credentials by visually observing someone entering sensitive info.</p><pre class="term-visual">user -&gt; screen &lt;- observer</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-phishing">PHI</span><span class="term-name">phishing</span></div><p class="term-def">Social engineering messages that imitate trusted brands to trick targets.</p><pre class="term-visual">inbox -&gt; fake login -&gt; stolen creds</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-ransom">RAN</span><span class="term-name">ransomware</span></div><p class="term-def">Malware that encrypts data and demands payment for a decryption key.</p><pre class="term-visual">files -&gt; encrypted -&gt; ransom note</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-spyware">SPY</span><span class="term-name">spyware</span></div><p class="term-def">Software that silently monitors activity and exfiltrates data.</p><pre class="term-visual">collect -&gt; beacon -&gt; exfiltrate</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-zeroday">0D</span><span class="term-name">zero-day</span></div><p class="term-def">A vulnerability exploited before defenders have an official fix.</p><pre class="term-visual">new vuln -&gt; no patch -&gt; active exploit</pre></article>
-            <article class="term-card"><div class="term-top"><span class="term-icon ti-botnet">BOT</span><span class="term-name">botnet</span></div><p class="term-def">A network of compromised machines remotely controlled for abuse.</p><pre class="term-visual">infected nodes -&gt; c2 -&gt; synchronized action</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-malware">MAL</span><span class="term-name">malware</span></div><p class="term-def">Catch-all term for software designed to disrupt systems, steal data, or take control without permission.</p><pre class="term-visual">payload -&gt; execute -&gt; compromise</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-adware">ADS</span><span class="term-name">adware</span></div><p class="term-def">Software that pushes ads aggressively and often tracks user behavior.</p><pre class="term-visual">tracking id -&gt; profile -&gt; ad blast</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-trojan">TRJ</span><span class="term-name">trojan</span></div><p class="term-def">Malicious software that pretends to be legitimate so users install it.</p><pre class="term-visual">looks safe -&gt; install -&gt; hidden run</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-shoulder">EYE</span><span class="term-name">shoulder surfing</span></div><p class="term-def">Stealing sensitive information by watching someone type or view it.</p><pre class="term-visual">user -&gt; screen &lt;- observer</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-phishing">PHI</span><span class="term-name">phishing</span></div><p class="term-def">Deceptive messages that impersonate trusted senders to steal logins or data.</p><pre class="term-visual">inbox -&gt; fake login -&gt; stolen creds</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-ransom">RAN</span><span class="term-name">ransomware</span></div><p class="term-def">Malware that encrypts files or systems and demands payment for recovery.</p><pre class="term-visual">files -&gt; encrypted -&gt; ransom note</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-spyware">SPY</span><span class="term-name">spyware</span></div><p class="term-def">Software that secretly monitors activity and sends collected data to an operator.</p><pre class="term-visual">collect -&gt; beacon -&gt; exfiltrate</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-zeroday">0D</span><span class="term-name">zero-day</span></div><p class="term-def">A vulnerability exploited before an official patch or mitigation is available.</p><pre class="term-visual">new vuln -&gt; no patch -&gt; active exploit</pre></article>
+            <article class="term-card"><div class="term-top"><span class="term-icon ti-botnet">BOT</span><span class="term-name">botnet</span></div><p class="term-def">A remotely controlled network of compromised devices used for coordinated abuse.</p><pre class="term-visual">infected nodes -&gt; c2 -&gt; synchronized action</pre></article>
           </div>
         </div>
       </div></div>
@@ -1274,18 +1281,18 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
     <section class="ts-module reveal" id="mod-lockhistory" aria-label="Lock history and cybersecurity evolution">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-lockhistory-body">
         <h2 class="section-head"><span>//</span> lock_history_and_security_evolution</h2>
-        <p class="ts-module-summary">From 18th-century key masters to modern hackers &mdash; the complete lineage of locks, secrets, and security.</p>
+        <p class="ts-module-summary">From key masters to modern hackers &mdash; how lock history shaped security thinking.</p>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-lockhistory-body"><div>
         <div class="container lock-history-section" id="lock-history">
 
           <!-- ── OVERVIEW ── -->
-          <p class="history-intro">In the 18th and 19th centuries, <em>locksmiths were the security engineers of the physical world</em>. They designed and built locks for banks, railroads, government offices, safe manufacturers, and wealthy estates. Many were called <strong>&ldquo;key masters&rdquo;</strong> or <strong>&ldquo;master locksmiths&rdquo;</strong> &mdash; trusted tradesmen whose professional knowledge overlapped uncomfortably with attack technique: how locks fail, how keys are copied, and how unauthorized entry happens.</p>
+          <p class="history-intro">Before cybersecurity had a name, locksmiths were doing that job in metal. They built locks for banks, railroads, government offices, and private vaults.</p>
 
-          <p class="history-intro">Their role was twofold: <em>design secure locks</em> and <em>understand how locks can be bypassed</em>. A locksmith who could defeat rival locks proved that their own designs were superior &mdash; exactly like a modern penetration tester who breaks into systems to expose weaknesses. The lock was the password. The key was the credential. The lockpick was the exploit tool. And the locksmith was the original security researcher.</p>
+          <p class="history-intro">A great locksmith had to build defenses and understand bypasses. That is the same mindset modern penetration testers use today.</p>
 
-          <p class="history-intro">That tension between <em>guardian</em> and <em>potential threat</em> produced a culture of secret manuals, guild oaths, public spectacles, and fierce debates about whether revealing vulnerabilities helps or harms society &mdash; arguments that echo identically in today&rsquo;s cybersecurity disclosure wars. This section traces that lineage from the first printed lock treatises to modern lock-sport communities, drawing direct parallels between physical and digital security at every step.</p>
+          <p class="history-intro">This dual role sparked a debate we still have: hide weaknesses, or expose them so systems improve. The story below follows that thread from guild secrecy to open security research.</p>
 
           <!-- ── HISTORICAL TIMELINE ── -->
           <h3 class="lh-subhead" aria-label="Evolution of Locks and Security"><span>&#9670;</span> Evolution of Locks and Security</h3>
@@ -1294,78 +1301,76 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
             <li>
               <span class="tl-year">1700s</span>
               <span class="tl-title">Locksmith Guilds &amp; Apprenticeships</span>
-              <p class="tl-desc">In the European guild model, locksmiths operated within strict frameworks of masters, journeymen, and apprentices. In London, the City&rsquo;s livery-company system linked trade identity to regulated membership and civic legitimacy. Apprentices spent years learning internal mechanisms before being permitted to work independently. Guild rules protected trade secrets, and members were sworn to secrecy about bypass techniques. <em>Knowing how to pick a lock was a professional requirement, not criminal behavior.</em></p>
+              <p class="tl-desc">Guild locksmiths trained through long apprenticeships and guarded trade secrets closely. Knowing bypass techniques was part of professional practice, not automatically criminal behavior.</p>
             </li>
             <li>
-              <span class="tl-year">1815</span>
-              <span class="tl-title">Early Lock Treatises &amp; the &ldquo;Inviolability&rdquo; Debate</span>
-              <p class="tl-desc">Joseph Bramah&rsquo;s published treatise literature framed lock security as a problem of <em>claims versus attack realities</em>, explicitly warning that reliance on &ldquo;inviolable&rdquo; locks is &ldquo;fallacious.&rdquo; Bramah&rsquo;s own enduring <em>&ldquo;challenge lock&rdquo;</em> concept &mdash; offering a public reward for opening a lock without a key &mdash; created the first benchmark for &ldquo;unpickable&rdquo; claims, and foreshadowed modern bug-bounty programs by nearly two centuries.</p>
+              <span class="tl-year">1784</span>
+              <span class="tl-title">Bramah&rsquo;s Challenge Lock</span>
+              <p class="tl-desc">Joseph Bramah patented his high-security lock in 1784 and offered 200 guineas to anyone who could open it without the key. The challenge stood for about 67 years.</p>
             </li>
             <li>
               <span class="tl-year">1818</span>
               <span class="tl-title">Chubb&rsquo;s Detector Lock &mdash; Tamper Evidence Formalized</span>
-              <p class="tl-desc">Jeremiah Chubb formalized <em>tamper evidence</em> in lock design. The detector lock&rsquo;s signature move was to penalize manipulation by forcing a jammed state that required a reset with a special key &mdash; effectively combining <em>resistance</em> with <em>detection</em>. Period commentary recognized that some anti-picking features could create new operator feedback and thereby alter the attack surface &mdash; an early articulation of the idea that security features can backfire.</p>
+              <p class="tl-desc">Jeremiah Chubb invented the detector lock in 1818 after a government reward was offered following a dockyard burglary. Its four-lever design jammed when tampered with and was widely treated as unpicked until the 1851 exhibition.</p>
             </li>
             <li>
               <span class="tl-year">1851</span>
               <span class="tl-title">The Great Exhibition &mdash; Lock Picking Goes Public</span>
-              <p class="tl-desc">The Great Exhibition at the Crystal Palace in London became the first major public &ldquo;security hack.&rdquo; American locksmith <em>Alfred Charles Hobbs</em> publicly defeated the two most celebrated locks in the world. He picked the <em>Chubb Detector Lock</em> in about 30 minutes and then cracked the legendary <em>Bramah Lock</em> &mdash; which had claimed to be unpickable for 67 years &mdash; after roughly 51 hours of work. The event shocked the world and sparked the first mass-media security debate: <em>should vulnerabilities be hidden or exposed?</em></p>
+              <p class="tl-desc">At the Great Exhibition of 1851, American locksmith Alfred Charles Hobbs opened Chubb&rsquo;s detector lock and then Bramah&rsquo;s challenge lock. Bramah&rsquo;s lock took him about 51 hours, and the event turned lock security into a public test.</p>
             </li>
             <li>
               <span class="tl-year">1853</span>
               <span class="tl-title">Hobbs&rsquo;s Treatise &mdash; &ldquo;Rogues Already Know&rdquo;</span>
-              <p class="tl-desc">The landmark treatise <em>&ldquo;On the Construction of Locks&rdquo;</em> (1853), compiled from materials by Hobbs and published by J. Weale in London, argued explicitly that publishing about lock weaknesses would stimulate invention and raise the locksmith&rsquo;s art. Its most famous line: <em>&ldquo;Rogues are very keen in their profession, and know already much more than we can teach them&hellip;&rdquo;</em> This is strikingly similar to modern responsible-disclosure rationales: criminals already possess the knowledge; secrecy mainly disadvantages legitimate users and designers.</p>
+              <p class="tl-desc">In 1853, Hobbs published <em>Rudimentary Treatise on the Construction of Locks</em> and argued that exposing defects improves security. His famous point was blunt: criminals already study these weaknesses.</p>
             </li>
             <li>
               <span class="tl-year">1861</span>
               <span class="tl-title">Yale&rsquo;s Pin Tumbler Patent &mdash; Industrialization of Security</span>
-              <p class="tl-desc">Linus Yale Jr.&rsquo;s U.S. patent No. 31,278 (1861) formalized the pin-tumbler/cylinder lock in a widely adopted commercial form. This patent marked the legal-technical shift where lock mechanisms were described in the normalized language of claims and embodiments. The Yale tradition embraced <em>&ldquo;challenge to the world&rdquo;</em> marketing and public reward offers around bank locks &mdash; treating adversarial testing as both publicity and proof, eerily similar to later bug-bounty norms.</p>
+              <p class="tl-desc">Linus Yale Jr.&rsquo;s 1861 patent helped standardize the modern pin-tumbler cylinder lock. Better designs could now be manufactured at scale.</p>
             </li>
             <li>
               <span class="tl-year">1873</span>
               <span class="tl-title">Sargent&rsquo;s Time Locks &mdash; Access Control Schedules</span>
-              <p class="tl-desc">James Sargent invented and patented a bank-vault time lock that combined lockwork with clockwork. Installed in a bank in Morrison, Illinois, it was explicitly an <em>&ldquo;access control schedule&rdquo;</em> &mdash; access depended not only on possession of a key or combination but also on time-based policy. By 1877, time-lock patent disputes (e.g., patent No. 186,369 referenced in an 1885 U.S. Supreme Court decision) showed how quickly these innovations became high-stakes intellectual property.</p>
+              <p class="tl-desc">James Sargent&rsquo;s time lock added clock-based policy to vault access. A correct key was no longer enough if the schedule said no.</p>
             </li>
             <li>
               <span class="tl-year">1883</span>
               <span class="tl-title">Kerckhoffs&rsquo;s Principle &mdash; Secrecy Is Not Security</span>
-              <p class="tl-desc">Auguste Kerckhoffs published the foundational principle: <em>security should not depend on secrecy of the system &mdash; only the key should be secret.</em> A lock should remain secure even if attackers know exactly how it works. This principle, born from the locksmith tradition, is now the bedrock of modern cryptography, TLS, password hashing, and open security design.</p>
+              <p class="tl-desc">Kerckhoffs argued that a system should stay secure even when its design is public. Only the key must remain secret.</p>
             </li>
             <li>
               <span class="tl-year">1900s</span>
-              <span class="tl-title">Early 20th Century &mdash; Industrial Maturation</span>
-              <p class="tl-desc">Lock-picking knowledge spread through industrialization and mass production. Safecracking manuals described stethoscope techniques, dial manipulation, and drilling points &mdash; restricted to law enforcement, locksmith schools, and insurance investigators. Henry R. Towne&rsquo;s 1904 <em>&ldquo;Locks and Builders Hardware&rdquo;</em> positioned locks as a specification and systems problem for architects and institutions, marking the transition from artisanal craft to professional discipline.</p>
+              <span class="tl-title">Security Becomes a Systems Discipline</span>
+              <p class="tl-desc">By the early 1900s, locks were treated as engineering systems, not just artisan craft. Manuals and standards spread better design and testing methods.</p>
             </li>
             <li>
               <span class="tl-year">1850&ndash;1900</span>
-              <span class="tl-title">Master Key Systems &mdash; Privileged Credentials</span>
-              <p class="tl-desc">Mid-century descriptions introduced locks <em>&ldquo;made in series&hellip; a separate key to each, and a master key for opening any number.&rdquo;</em> This was an institutional access-control problem recognizable to modern security engineers: convenience and centralized authority create powerful <em>&ldquo;rights amplification&rdquo;</em> properties. The master key was the historical analog of admin credentials &mdash; one artifact conferring broad rights across a system.</p>
+              <span class="tl-title">Master Keys and Privileged Access</span>
+              <p class="tl-desc">Master-key systems solved convenience at scale but increased risk concentration. One powerful credential could open many doors.</p>
             </li>
             <li>
               <span class="tl-year">1970&ndash;now</span>
               <span class="tl-title">High-Security Locks &amp; Modern Lock-Sport</span>
-              <p class="tl-desc">Security technology evolved to high-security locks relying on complex key geometry, rotating pins, and restricted keyways &mdash; <em>Medeco</em>, <em>Abloy</em>, and <em>ASSA</em> &mdash; analogous to modern cryptography. The culture of locksmiths as security researchers continues today through the Locksport community, DEFCON lockpicking villages, and TOOOL (The Open Organisation of Lockpickers), openly teaching lock picking as security education.</p>
+              <p class="tl-desc">Modern high-security locks use stricter tolerances, advanced key control, and hardened mechanisms. Locksport groups such as TOOOL and DEF CON villages keep public testing alive as security education.</p>
             </li>
           </ul>
 
           <!-- ── LOCK PICKING CULTURE & ETHICS ── -->
           <h3 class="lh-subhead" aria-label="Lock-Picking Culture and Ethics"><span>&#9670;</span> Lock-Picking Culture &amp; Ethics</h3>
 
-          <p class="history-intro">The tension between secrecy and disclosure has been the defining ethical debate in security for over two centuries. Locksmith guilds guarded knowledge fiercely: trade secrets were protected, apprentices were sworn to secrecy, and bypass methods were restricted to members. This mirrors today&rsquo;s vulnerability disclosure debate &mdash; should researchers publish exploits, or keep them private?</p>
+          <p class="history-intro">For over two centuries, security culture has argued about one question: keep weaknesses secret, or publish them so designs improve. Locksmith history and modern cybersecurity still wrestle with that same choice.</p>
 
           <ul class="lh-ethics-list" aria-label="Ethics and disclosure parallels">
-            <li><strong>Guild Secrecy:</strong> European locksmith guilds enforced strict knowledge control. Apprentices spent years earning trust before learning bypass techniques. Knowledge of weaknesses equaled power &mdash; <em>exactly the same dynamic as modern exploit disclosure.</em></li>
-            <li><strong>The &ldquo;Destroy After Reading&rdquo; Culture:</strong> There are accounts from locksmith guilds and security circles that manuals describing lock bypass techniques were circulated privately with instructions like <em>&ldquo;read and destroy&rdquo;</em> or <em>&ldquo;not to be copied.&rdquo;</em> However, in mainstream 19th-century English-language technical works, this pattern does not appear &mdash; the dominant stance is that <em>publication improves security</em> by forcing design advances. It remains plausible that &ldquo;destroy after reading&rdquo; language existed in ephemeral pamphlets, restricted-circulation police training notes, or underworld texts that are harder to locate and authenticate.</li>
-            <li><strong>Hobbs&rsquo;s Disclosure Argument:</strong> The 1853 treatise explicitly stated that exposing defects would stimulate invention and raise the locksmith&rsquo;s art. The sharper form &mdash; <em>&ldquo;rogues already know&rdquo;</em> &mdash; is effectively a 19th-century argument against relying on secrecy for security.</li>
-            <li><strong>Kerckhoffs&rsquo;s Principle Applied:</strong> Security should not depend on secrecy of the system. A lock should remain secure even if attackers know exactly how it works. This philosophy &mdash; born from the locksmith tradition &mdash; is now the foundation of <em>cryptography, TLS, password hashing, and open security design.</em></li>
-            <li><strong>Modern Cybersecurity Commentary:</strong> Modern researchers explicitly recognize the Hobbs-era arguments as ancestors to vulnerability-disclosure debates, quoting him in nearly the same terms used today when arguing to <em>prosecute crime rather than suppress research.</em></li>
-            <li><strong>Public Contests as Proof:</strong> Victorian lock-picking contests converted invisible properties (resistance to attack) into visible proof &mdash; much as modern security work turns invisible failure modes into demonstrable exploits for vendors and the public. The 1851 demonstrations were essentially the <em>first security conference talk exposing vulnerabilities.</em></li>
+            <li><strong>Guild Secrecy:</strong> Trade groups tightly controlled bypass knowledge, and apprentices learned it slowly. Secrecy protected reputation, but it also reduced outside scrutiny.</li>
+            <li><strong>Hobbs&rsquo;s Disclosure Argument:</strong> In 1853, Hobbs argued that exposing defects forces better design. His line that <em>&ldquo;rogues already know&rdquo;</em> still sounds like modern disclosure policy.</li>
+            <li><strong>Kerckhoffs&rsquo;s Principle:</strong> A system should stay secure even when its design is known. In both locks and software, defense should rely on sound engineering and protected keys, not obscurity.</li>
+            <li><strong>Public Testing Culture:</strong> Victorian lock contests made hidden weaknesses visible. Today, CTFs, penetration tests, and coordinated disclosure play the same role.</li>
           </ul>
 
           <!-- ── MODERN ANALOGIES TABLE ── -->
           <h3 class="lh-subhead" aria-label="Modern Analogies"><span>&#9670;</span> Locks as Passwords &mdash; The Perfect Analogy</h3>
 
-          <p class="history-intro">The comparison between physical locks and digital security is historically accurate and structurally precise. Every element of a lock system maps directly to a digital security analog:</p>
+          <p class="history-intro">Physical locks and digital systems solve the same core problem: verify a secret, then grant or deny access. The mapping below shows the parallels clearly.</p>
 
           <div class="lh-analogy-table" role="table" aria-label="Lock to digital security analogy mapping">
             <table>
@@ -1382,61 +1387,61 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                   <td>&#128273; Key</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Password</td>
-                  <td>The secret that grants access; must be unique and hard to duplicate.</td>
+                  <td>Both are secrets that grant access, and both fail when copied.</td>
                 </tr>
                 <tr>
                   <td>&#128274; Lock Cylinder</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Authentication System</td>
-                  <td>The mechanism that validates the credential against expected parameters.</td>
+                  <td>Both verify that the presented credential matches expected rules.</td>
                 </tr>
                 <tr>
                   <td>&#9881; Lockpick</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Exploit Tool</td>
-                  <td>A purpose-built instrument that manipulates the mechanism without the proper credential.</td>
+                  <td>Both bypass normal access by exploiting weaknesses in the mechanism.</td>
                 </tr>
                 <tr>
                   <td>&#128272; Master Key</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Admin Credentials</td>
-                  <td>One artifact that confers broad rights across many systems &mdash; a &ldquo;rights amplification&rdquo; property.</td>
+                  <td>Both provide broad privileged access, so compromise has wide impact.</td>
                 </tr>
                 <tr>
                   <td>&#128737; Safe / Vault</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Secure Database</td>
-                  <td>The container that holds high-value assets behind layered access controls.</td>
+                  <td>Both protect high-value assets behind layered controls.</td>
                 </tr>
                 <tr>
                   <td>&#128295; Locksmith</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Security Engineer</td>
-                  <td>The professional who designs, tests, and certifies the security of the mechanism.</td>
+                  <td>Both are professionals who design, test, and improve defenses.</td>
                 </tr>
                 <tr>
                   <td>&#128163; Safecracker</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Hacker</td>
-                  <td>The adversary (or authorized tester) who defeats the mechanism through skill and knowledge.</td>
+                  <td>Both test or attack protections through skill, tools, and analysis.</td>
                 </tr>
                 <tr>
                   <td>&#9201; Time Lock</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Access Schedule</td>
-                  <td>Policy-enforced windows: access depends on time, not just possession of the credential.</td>
+                  <td>Both restrict when access is allowed, not just who has credentials.</td>
                 </tr>
                 <tr>
                   <td>&#128270; Detector Lock</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Intrusion Detection</td>
-                  <td>The mechanism signals interference &mdash; combining resistance with alerting, like an IDS.</td>
+                  <td>Both detect tampering attempts and raise an alert.</td>
                 </tr>
                 <tr>
                   <td>&#128220; Lock Patent</td>
                   <td class="arrow-col">&rarr;</td>
                   <td>Security Standard</td>
-                  <td>Formalized documentation of the mechanism &mdash; enabling peer review and interoperability.</td>
+                  <td>Both provide documented designs that others can review and improve.</td>
                 </tr>
               </tbody>
             </table>
@@ -1454,7 +1459,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                   <span class="lh-fig-era">1748 &ndash; 1814 &middot; London, England</span>
                 </div>
               </div>
-              <p class="lh-fig-bio">Inventor and lock manufacturer who created the famous &ldquo;challenge lock&rdquo; &mdash; offering a public reward of 200 guineas for anyone who could open it without a key. This enduring challenge created a public benchmark for &ldquo;unpickable&rdquo; claims and foreshadowed modern <em>bug bounty programs</em>. His 1815 treatise warned that &ldquo;all dependance on the inviolable security of Locks&hellip; is fallacious&rdquo; &mdash; a remarkably candid admission from a lock manufacturer.</p>
+              <p class="lh-fig-bio">Joseph Bramah patented his high-security lock in 1784 and later offered a public reward of 200 guineas to anyone who could open it without a key. His challenge became an early public test of security claims.</p>
             </article>
 
             <article class="lh-figure-card" aria-label="Jeremiah Chubb biography">
@@ -1465,7 +1470,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                   <span class="lh-fig-era">1793 &ndash; 1872 &middot; Portsea, England</span>
                 </div>
               </div>
-              <p class="lh-fig-bio">Creator of the <em>detector lock</em>, which formalized tamper evidence in security design. The lock penalized manipulation by jamming and requiring a special reset key &mdash; combining <em>access resistance</em> with <em>intrusion detection</em>. The Chubb detector became a recurring reference point in mid-century security contests and debates, analogous to modern intrusion detection systems that not only block but alert.</p>
+              <p class="lh-fig-bio">Jeremiah Chubb invented the detector lock in 1818 after a government reward call following a dockyard burglary. Its key feature was tamper jamming: interference triggered a lockout that required a special reset key.</p>
             </article>
 
             <article class="lh-figure-card" aria-label="Alfred Charles Hobbs biography">
@@ -1476,7 +1481,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                   <span class="lh-fig-era">1812 &ndash; 1891 &middot; Boston, USA / London, UK</span>
                 </div>
               </div>
-              <p class="lh-fig-bio">The American locksmith who defined the mid-century public image of lock expertise by picking both the Bramah and Chubb locks during the 1851 Great Exhibition. His 1853 treatise framed publishing about lock weaknesses as beneficial to &ldquo;mechanical science&rdquo; and the public, and contained early, explicit arguments against <em>&ldquo;security through obscurity.&rdquo;</em> Modern cybersecurity commentary explicitly draws a line from Hobbs to today&rsquo;s vulnerability-disclosure culture.</p>
+              <p class="lh-fig-bio">Alfred Charles Hobbs gained international attention at the Great Exhibition in 1851 by opening both Chubb and Bramah locks, including Bramah&rsquo;s after about 51 hours of work. In 1853, he argued that publishing flaws improves security.</p>
             </article>
 
             <article class="lh-figure-card" aria-label="Linus Yale Jr biography">
@@ -1487,7 +1492,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                   <span class="lh-fig-era">1821 &ndash; 1868 &middot; Shelburne Falls, USA</span>
                 </div>
               </div>
-              <p class="lh-fig-bio">Anchor of the U.S. patent pathway for widely adopted lock architectures. His 1861 patent (No. 31,278) formalized the pin-tumbler cylinder lock. The Yale tradition embraced &ldquo;challenge to the world&rdquo; marketing and public reward offers &mdash; adversarial testing as both publicity and proof. His innovations <em>industrialized and standardized</em> lock manufacturing, paralleling how security standards formalize digital protocols today.</p>
+              <p class="lh-fig-bio">Linus Yale Jr. helped standardize the pin-tumbler cylinder lock through his 1861 patent. His work made modern lock designs practical for broad commercial use.</p>
             </article>
 
             <article class="lh-figure-card" aria-label="James Sargent biography">
@@ -1498,7 +1503,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                   <span class="lh-fig-era">1824 &ndash; 1910 &middot; Chester, Vermont, USA</span>
                 </div>
               </div>
-              <p class="lh-fig-bio">Inventor of the bank-vault <em>time lock</em> (patented 1873), which combined lockwork with clockwork to create an &ldquo;access control schedule.&rdquo; Access depended not only on possession but on time-based policy &mdash; resembling modern enforced maintenance windows and access-control schedules. Patent disputes (e.g., No. 186,369, referenced in an 1885 Supreme Court decision) showed how quickly time-lock innovations became high-stakes intellectual property.</p>
+              <p class="lh-fig-bio">James Sargent patented a practical vault time lock in 1873. His design shifted security from only &ldquo;who has the key&rdquo; to also &ldquo;when access is allowed.&rdquo;</p>
             </article>
 
             <article class="lh-figure-card" aria-label="Henry R. Towne biography">
@@ -1509,7 +1514,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                   <span class="lh-fig-era">1844 &ndash; 1924 &middot; Philadelphia, USA</span>
                 </div>
               </div>
-              <p class="lh-fig-bio">Industrial leader and bridge figure who framed locks and hardware as an architect&rsquo;s and institution&rsquo;s lifecycle problem. His 1904 <em>&ldquo;Locks and Builders Hardware: A Hand Book for Architects&rdquo;</em> positioned security as a matter of specification, standardization, and professional practice &mdash; rather than purely artisanal craft. This marked the transition to <em>security as systems engineering</em>, a concept central to modern InfoSec.</p>
+              <p class="lh-fig-bio">Henry R. Towne helped scale lock manufacturing and standards in the United States. His 1904 handbook framed locks as a planning and systems problem for institutions, not just a workshop craft.</p>
             </article>
           </div>
 
@@ -1521,66 +1526,60 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
 
           <!-- Hobbs Quote -->
           <div class="lh-quote-block" aria-label="Quote from Hobbs's 1853 treatise" style="border-left-color:var(--orange)">
-            <p class="lh-qt">&ldquo;Rogues are very keen in their profession, and know already much more than we can teach them respecting their deceitful avocations&hellip;&rdquo;</p>
-            <p class="lh-qt-cite">&mdash; From &ldquo;On the Construction of Locks,&rdquo; 1853 &middot; the original argument for responsible disclosure</p>
+            <p class="lh-qt">&ldquo;Rogues are very keen in their profession, and know already much more than we can teach them respecting their deceitful avocations.&rdquo;</p>
+            <p class="lh-qt-cite">&mdash; From &ldquo;Rudimentary Treatise on the Construction of Locks,&rdquo; 1853 (John Weale, London)</p>
           </div>
 
           <!-- ── ADDITIONAL INSIGHT: DEEPER RESEARCH ── -->
           <h3 class="lh-subhead" aria-label="Additional Insight from Deep Research"><span>&#9670;</span> Deeper Research Synthesis</h3>
 
-          <p class="history-intro">Scholarly analysis of the 19th-century lock industry reveals patterns that map precisely onto modern cybersecurity culture. Lock challenges became <em>public spectacles</em> akin to security conferences; patents formalized lock mechanisms the way RFCs formalize protocols; and time locks introduced <em>enforced policies</em> identical to modern access-control schedules. Below are key findings from primary and near-primary sources.</p>
+          <p class="history-intro">The lock industry&rsquo;s history reads like a preview of modern security culture: secrecy first, then public testing, then stronger engineering. The shift happened because open challenges exposed weak claims and forced better designs.</p>
 
           <ul class="lh-insight-list" aria-label="Key research insights">
-            <li><strong>Lock-Picking Contests as Security Conferences:</strong> Victorian lock-picking challenges look uncannily like modern security competitions: defined rules, witnesses, adversarial testing, reputation markets, and claims of &ldquo;unpickable&rdquo; security challenged in public. Beginning in 1851, rival brand-name locksmiths and challengers staged attempts under negotiated rules, turning security into performance and marketing while pressuring design improvement. This was also an emerging security industry&rsquo;s way of establishing credibility in a market where consumers could not independently verify &ldquo;unpickable&rdquo; claims.</li>
-            <li><strong>Primary Sources Favor Disclosure:</strong> The most influential mid-century English technical treatments do not read like clandestine criminal manuals. They read like <em>reform literature</em>: identify failure modes, motivate better design, and professionalize the field. The preface to the 1853 Hobbs treatise explicitly states that exposing defects would stimulate invention.</li>
-            <li><strong>Patents as Formal Security Standards:</strong> Patent formalization is visible in U.S. documentation: Yale&rsquo;s 1861 patent specification is a primary artifact of mechanistic development described in normalized claims and embodiments. By the 1870s, the security perimeter extends beyond <em>mechanism</em> to <em>time</em> &mdash; time locks constrain access independent of key possession. Sargent &amp; Greenleaf&rsquo;s historical record emphasizes invention and patenting of the bank-vault time lock in 1873, with early real-world installation in Morrison, Illinois.</li>
-            <li><strong>Warded and Lever-Tumbler Traditions:</strong> Even as older warded concepts persisted, the 19th century&rsquo;s prestige security market favored lever-based designs aimed at resisting probing and false keys. The <em>detector (tamper-evident) idea</em> penalized manipulation by forcing a jammed state &mdash; reframing lock security as both resistance and detection.</li>
-            <li><strong>Industrial Keying &amp; Master-Key Systems:</strong> The ambition to manage access at scale appeared directly in mid-century descriptions. Locks &ldquo;made in series&rdquo; with distinct keys plus a master key &mdash; this is an institutional access-control problem recognizable to modern security engineers. Convenience and centralized authority create powerful <em>rights-amplification properties</em>.</li>
-            <li><strong>Locksmiths as Social Paradox:</strong> What made locksmiths socially distinctive was not just metalworking skill but their proximity to access and property. Hobbs-era writing describes how locksmiths and apprentices moved through local markets and production networks in industrial centers like <em>Wolverhampton</em>, reflecting economic realities rather than a purely artisanal shop model.</li>
-            <li><strong>Time Locks as Policy Enforcement:</strong> By the 1870s, vault security was increasingly a system: not just a lock but a schedule, procedures, and a mechanical enforcement layer. Time locks constrained access independent of possession, resembling modern <em>access-control schedules and enforced maintenance windows</em>. Litigation (1885 Supreme Court) formalized these innovations as high-stakes intellectual property.</li>
-            <li><strong>&ldquo;Destroy After Reading&rdquo; &mdash; Myth vs. Evidence:</strong> Despite a persistent modern trope that &ldquo;dangerous&rdquo; manuals urged readers to destroy the text, the mainstream 19th-century English-language technical works consulted emphasize <em>public benefit, professional uplift, and controlled dissemination</em> rather than &ldquo;burn after reading.&rdquo; This does not prove such language never existed &mdash; only that it did not appear in the core digitized sources, and may have been more likely in ephemeral pamphlets, underworld texts, or restricted-circulation training documents.</li>
+            <li><strong>Public Challenges Drove Progress:</strong> Lock contests converted marketing claims into testable results. That pressure improved designs and built public trust.</li>
+            <li><strong>Hobbs Anticipated Responsible Disclosure:</strong> His 1853 argument was clear: publishing flaws helps defenders because attackers are already studying them.</li>
+            <li><strong>Patents and Manuals Became Shared Documentation:</strong> Design details moved into public technical records, allowing review, replication, and refinement.</li>
+            <li><strong>Policy Joined Mechanics:</strong> Time locks and master-key systems showed that security is not only mechanism; it is also rules, roles, and operational discipline.</li>
           </ul>
 
           <!-- ── EVOLUTION OF SECURITY PHASES ── -->
           <h3 class="lh-subhead" aria-label="Phases of Security Evolution"><span>&#9670;</span> The Four Phases of Security Evolution</h3>
 
-          <p class="history-intro">Security technology evolved in a pattern strikingly similar to computing security:</p>
+          <p class="history-intro">Security tends to evolve in four repeating phases, and those phases still describe modern practice.</p>
 
           <ul class="lh-timeline" aria-label="Four phases of security evolution">
             <li>
               <span class="tl-year">Phase 1</span>
               <span class="tl-title">Mechanical Secrecy (1700 &ndash; 1850)</span>
-              <p class="tl-desc">Locks relied on <em>hidden mechanisms</em>. Security depended on attackers not knowing how the lock worked. Guilds enforced secrecy. This is the &ldquo;security through obscurity&rdquo; era &mdash; analogous to early software where source code was proprietary and unexposed.</p>
+              <p class="tl-desc">Defenders relied on hidden designs and private knowledge. Security depended heavily on obscurity.</p>
             </li>
             <li>
               <span class="tl-year">Phase 2</span>
               <span class="tl-title">Public Vulnerability Testing (1850 &ndash; 1900)</span>
-              <p class="tl-desc">Lock pickers proved designs could fail in public contests. The Great Exhibition of 1851 was the inflection point. This mirrors the emergence of <em>penetration testing</em> and <em>public vulnerability disclosure</em> in computing &mdash; the moment the security community recognized that adversarial testing drives improvement.</p>
+              <p class="tl-desc">Public tests showed that strong claims can fail under skilled attack. Adversarial testing became part of security quality.</p>
             </li>
             <li>
               <span class="tl-year">Phase 3</span>
               <span class="tl-title">Improved Engineering (1900 &ndash; 1970)</span>
-              <p class="tl-desc">More complex cylinders, safes, combination locks, and time locks were developed. The exposure&ndash;redesign&ndash;improved security innovation logic took hold. In computing, this parallels the development of <em>cryptographic standards, access control lists,</em> and <em>formal security models</em> in response to discovered vulnerabilities.</p>
+              <p class="tl-desc">Exposure led to redesign, and redesign led to stronger mechanisms and better policy controls.</p>
             </li>
             <li>
               <span class="tl-year">Phase 4</span>
               <span class="tl-title">High-Security &amp; Open Research (1970 &ndash; Present)</span>
-              <p class="tl-desc">High-security locks like <em>Medeco, Abloy,</em> and <em>ASSA</em> rely on complex key geometry, rotating pins, and restricted keyways &mdash; analogous to modern <em>cryptography</em>. The lock-sport community (DEFCON, TOOOL) openly teaches lock picking as security education, mirroring the open-source security research movement.</p>
+              <p class="tl-desc">Modern high-security engineering and open research communities now coexist. The goal is resilient design that survives public scrutiny.</p>
             </li>
           </ul>
 
           <!-- ── LOCKSMITHS AS THE ORIGINAL HACKERS ── -->
           <h3 class="lh-subhead" aria-label="Locksmiths as the First Hackers"><span>&#9670;</span> Locksmiths: The Original Hackers</h3>
 
-          <p class="history-intro">The comparison between early locksmiths and modern security researchers is historically precise. Early locksmiths <em>reverse-engineered locks</em>, <em>tested security claims</em>, <em>built bypass tools</em>, and <em>demonstrated vulnerabilities publicly</em> &mdash; exactly like penetration testers, security researchers, and exploit developers today. The 1851 lock-picking demonstrations were essentially the <em>first security conference talk exposing vulnerabilities</em>.</p>
+          <p class="history-intro">Early locksmiths worked like modern security researchers: they reverse-engineered mechanisms, tested bold claims, built tools, and shared what they learned. The methods changed, but the logic stayed the same.</p>
 
           <ul class="lh-ethics-list" aria-label="Locksmith-to-hacker parallels">
-            <li><strong>Reverse Engineering:</strong> Locksmiths disassembled rival locks to understand their mechanisms, just as security researchers reverse-engineer software to find vulnerabilities.</li>
-            <li><strong>Security Claims Testing:</strong> Lock manufacturers claimed &ldquo;unpickable&rdquo; status; locksmiths proved them wrong in public. Today, security researchers test &ldquo;unbreakable&rdquo; encryption and &ldquo;secure&rdquo; software.</li>
-            <li><strong>Tool Building:</strong> Specialized lockpicks and tension wrenches were purpose-built for specific lock types &mdash; analogous to exploit frameworks, fuzzing tools, and custom scripts.</li>
-            <li><strong>Public Demonstration:</strong> Victorian contests converted invisible security properties into visible proof. Modern CTF competitions, DEFCON talks, and responsible-disclosure reports do the same.</li>
-            <li><strong>Reputation Markets:</strong> A locksmith&rsquo;s reputation depended on their ability to break (or resist breaking) locks. Modern security researchers build reputations through CVE discoveries, conference presentations, and bug-bounty payouts.</li>
-            <li><strong>Dual-Use Knowledge:</strong> Lock-picking skill served both defense and offense. The same bypass technique could protect a client or enable a burglary. This dual-use tension is <em>identical</em> to the debate around offensive security tools today.</li>
+            <li><strong>Reverse Engineering:</strong> They studied rival locks to understand exactly how and why failures happened.</li>
+            <li><strong>Claims Testing:</strong> Public &ldquo;unpickable&rdquo; claims were tested in front of witnesses, not accepted on marketing alone.</li>
+            <li><strong>Tool Building:</strong> Specialized picks played the same role that custom testing frameworks play in modern security.</li>
+            <li><strong>Dual-Use Ethics:</strong> The same skills could protect or attack, which is why norms around lawful testing and disclosure matter.</li>
           </ul>
 
           <!-- ── KEY MANUALS TABLE ── -->
@@ -1642,7 +1641,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
             </ul>
           </div>
 
-          <p class="history-intro" style="margin-top:1.5rem"><em>The history of locks is the history of cybersecurity.</em> Every debate about vulnerability disclosure, every tension between secrecy and openness, every arms race between defender and attacker &mdash; it all began with locksmiths and key masters working in candlelit workshops, forging mechanisms that guarded the wealth and secrets of nations. Understanding this lineage is not just historical curiosity; it is the foundation of the security philosophy we practice today.</p>
+          <p class="history-intro" style="margin-top:1.5rem"><em>Lock history is part of cybersecurity history.</em> We moved from secrecy, to public testing, to stronger engineering, and then to open research communities. That same story still guides how we protect systems today: learn from attacks, fix what fails, and keep improving.</p>
 
         </div>
       </div></div>
@@ -1941,10 +1940,30 @@ var mFallback=document.getElementById('musicFallback');
 var mMuteBtn=document.getElementById('musicMute');
 var mNextBtn=document.getElementById('musicNext');
 var autoplayBanner=document.getElementById('autoplayBanner');
+var mPanel=document.getElementById('musicPanel');
+var mPanelToggle=document.getElementById('musicPanelToggle');
+var mPanelMq=window.matchMedia?window.matchMedia('(max-width: 640px)'):null;
 var mCurrentIndex=-1;
 var mIsMuted=getSetting('music_muted',false);
 var mCache={};
 var mAutoplayPending=false;
+
+function setMusicPanelExpanded(expanded){
+  if(!mPanel||!mPanelToggle)return;
+  mPanel.hidden=!expanded;
+  mPanelToggle.classList.toggle('on',expanded);
+  mPanelToggle.setAttribute('aria-expanded',expanded?'true':'false');
+  mPanelToggle.setAttribute('aria-label',expanded?'Hide audio controls':'Show audio controls');
+  mPanelToggle.textContent=expanded?'Hide audio controls':'Show audio controls';
+}
+
+function syncMusicPanelForViewport(){
+  if(!mPanel||!mPanelToggle)return;
+  var isMobile=!!(mPanelMq&&mPanelMq.matches);
+  mPanelToggle.hidden=!isMobile;
+  if(!isMobile){setMusicPanelExpanded(true);return}
+  setMusicPanelExpanded(getSetting('music_panel_open',false));
+}
 
 function setMusicStatus(txt,state){
   if(!mStatus)return;
@@ -2031,6 +2050,20 @@ function hideAutoplayBanner(){if(autoplayBanner)autoplayBanner.classList.remove(
 function nextTrack(){
   var next=(mCurrentIndex+1)%TRACK_CONFIG.length;
   playTrack(next);
+}
+
+if(mPanel&&mPanelToggle){
+  mPanelToggle.addEventListener('click',function(){
+    var nextOpen=mPanel.hidden;
+    setMusicPanelExpanded(nextOpen);
+    setSetting('music_panel_open',nextOpen);
+  });
+  if(mPanelMq&&typeof mPanelMq.addEventListener==='function'){
+    mPanelMq.addEventListener('change',syncMusicPanelForViewport);
+  }else if(mPanelMq&&typeof mPanelMq.addListener==='function'){
+    mPanelMq.addListener(syncMusicPanelForViewport);
+  }
+  syncMusicPanelForViewport();
 }
 
 // Mute toggle
