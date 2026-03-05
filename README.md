@@ -2,72 +2,72 @@
   <img src="assets/neural-header.svg" width="99%" alt="THUMPERSECURE Code Cookbook" />
 </div>
 
-# THUMPERSECURE // CODE COOKBOOK
+# THUMPERSECURE // OSINT + PRIVACY TOOLCHAIN
 
-Cyberpunk-flavored portfolio + ops dashboard for OSINT, privacy tooling, and search workflow engineering.
+Tools, playbooks, and workflow systems for recon, privacy, and digital footprint control.
 
-[![Live Site](https://img.shields.io/badge/Launch_Code_Cookbook-b0ffcc?style=for-the-badge&logo=github&logoColor=0601FF&labelColor=06060F)](https://thumpersecure.github.io/thumpersecure/)
-[![Profile](https://img.shields.io/badge/GitHub-thumpersecure-00b8ff?style=flat-square&logo=github&labelColor=06060F)](https://github.com/thumpersecure)
-[![Pages Source](https://img.shields.io/badge/Deploy-/docs-8b5cf6?style=flat-square&labelColor=06060e)](https://github.com/thumpersecure/thumpersecure/tree/main/docs)
+[![GitHub](https://img.shields.io/badge/GitHub-thumpersecure-00b8ff?style=for-the-badge&logo=github&labelColor=06060F)](https://github.com/thumpersecure)
+[![Live Hub](https://img.shields.io/badge/Project_Hub-online-b0ffcc?style=for-the-badge&labelColor=06060F)](https://thumpersecure.github.io/thumpersecure/)
 
 ---
 
 ## Table of Contents
 
-- [What this repo is](#what-this-repo-is)
-- [Live experience](#live-experience)
-- [Featured ecosystem](#featured-ecosystem)
-- [How the site runs](#how-the-site-runs)
-- [Quickstart](#quickstart)
-- [Project structure](#project-structure)
-- [Configuration notes](#configuration-notes)
-- [Quality standards](#quality-standards)
-- [Contributing](#contributing)
-- [Security and responsible use](#security-and-responsible-use)
-- [License](#license)
+- [Overview](#overview)
+- [Who this is for](#who-this-is-for)
+- [Start here](#start-here)
+- [Featured projects](#featured-projects)
+- [Full repository index](#full-repository-index)
 
 ---
 
-## What this repo is
+## Overview
 
-`thumpersecure` is the main landing repo for the **Code Cookbook** site.  
-It combines:
+This repository is the command center for the THUMPERSECURE ecosystem.
 
-- a cinematic, interactive portfolio experience
-- a static-data pipeline for repo intelligence
-- practical documentation around tooling, OSINT workflows, and privacy operations
+It tracks projects focused on:
 
-If you want the whole vibe in one line: **terminal aesthetics, production discipline, no dead dashboards**.
+- phone-number OSINT
+- privacy hardening and opt-out operations
+- automation-first recon workflows
+- practical tools for researchers, operators, and builders
 
----
-
-## Live experience
-
-### Primary URL
-
-**https://thumpersecure.github.io/thumpersecure/**
-
-### What you get on the page
-
-- multi-module interface with collapse/expand controls
-- searchable recipe index
-- hardware/security history timelines
-- optional puzzle unlock flows
-- adaptive audio deck (including mobile collapse toggle)
-- persisted settings and resilient fallback behavior
+The goal is simple: ship useful tools, keep them readable, and make them easy to run.
 
 ---
 
-## Featured ecosystem
+## Who this is for
 
-| Project | Summary |
+- Investigators and OSINT practitioners
+- Privacy-conscious users reducing exposure
+- Developers building recon and workflow tooling
+- Teams that want repeatable, low-friction operational utilities
+
+---
+
+## Start here
+
+1. Pick a project from the featured list below.
+2. Open that project README for exact install and usage steps.
+3. Run locally, verify output, then adapt to your workflow.
+
+If you are new to this ecosystem, start with:
+
+- [`Telespot`](https://github.com/thumpersecure/Telespot) for phone OSINT
+- [`opt-out-manual-2026`](https://github.com/thumpersecure/opt-out-manual-2026) for privacy cleanup
+
+---
+
+## Featured projects
+
+| Project | What it does |
 | --- | --- |
-| [palm-tree](https://github.com/thumpersecure/palm-tree) | High-volume traffic-noise generation with personas, chaos modes, and geo rotation. |
-| [Telespot](https://github.com/thumpersecure/Telespot) | Phone-number OSINT CLI across multiple public sources. |
-| [Spin](https://github.com/thumpersecure/Spin) | Desktop browser focused on privacy-first OSINT workflows. |
-| [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) | Practical opt-out guide for people-search and data-broker ecosystems. |
+| [palm-tree](https://github.com/thumpersecure/palm-tree) | Generates realistic traffic noise to reduce behavioral fingerprinting. |
+| [Telespot](https://github.com/thumpersecure/Telespot) | Phone-number OSINT CLI using multi-source search and correlation. |
+| [Spin](https://github.com/thumpersecure/Spin) | Privacy-first desktop browser tailored for research workflows. |
+| [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) | Actionable opt-out guide for data-broker and people-search sites. |
 
-### Telespot pipeline
+### Telespot ecosystem path
 
 ```text
 Telespot (CLI) -> Telespotter (Rust) -> TelespotXX (Web)
@@ -78,162 +78,20 @@ Telespot (CLI) -> Telespotter (Rust) -> TelespotXX (Web)
 
 ---
 
-## How the site runs
+## Full repository index
 
-This site is intentionally static at runtime and dynamic at build time.
-
-### Data path
-
-1. `scripts/build_snapshot.js` pulls profile + repo data from GitHub.
-2. It writes a validated snapshot to `docs/data/site_snapshot.json`.
-3. Frontend loads data through a layered path:
-   - fresh snapshot
-   - localStorage cache
-   - embedded fallback
-
-Result: the interface stays operational even when networks, APIs, or rate limits get noisy.
-
-### Runtime highlights
-
-- stateful UI controls with local preference memory
-- animated modules with reduced-motion support
-- graceful audio fallback strategy
-- structured metadata for SEO and sharing cards
-
----
-
-## Quickstart
-
-### Prerequisites
-
-- Node.js 18+ (for snapshot generation)
-- Python 3 (optional, for local static serving)
-
-### 1) Clone
-
-```bash
-git clone https://github.com/thumpersecure/thumpersecure.git
-cd thumpersecure
-```
-
-### 2) Build a fresh snapshot (optional but recommended)
-
-```bash
-GITHUB_TOKEN=your_token_here node scripts/build_snapshot.js
-```
-
-`GITHUB_TOKEN` is optional, but helps avoid low API rate limits.
-
-### 3) Run locally
-
-```bash
-python3 -m http.server 8080
-```
-
-Open:
-
-```text
-http://localhost:8080/docs/
-```
-
----
-
-## Project structure
-
-```text
-.
-├─ README.md
-├─ assets/                     # profile/readme visual assets
-├─ docs/                       # GitHub Pages source (site root)
-│  ├─ index.html               # main app
-│  ├─ data/site_snapshot.json  # generated snapshot
-│  ├─ assets/audio/README.md   # audio setup notes
-│  ├─ QA_CHECKLIST.md          # manual QA checks
-│  └─ PAGES.md                 # GitHub Pages deployment notes
-├─ scripts/
-│  └─ build_snapshot.js        # snapshot builder
-└─ telespot-numsint/           # extension subproject
-```
-
----
-
-## Configuration notes
-
-### GitHub Pages
-
-Deploy from:
-
-- **Branch:** `main`
-- **Folder:** `/docs`
-
-Reference: [`docs/PAGES.md`](docs/PAGES.md)
-
-### Audio tracks
-
-- local files can live in `docs/` or `docs/assets/audio/`
-- track fallbacks are built in when files are missing
-
-Reference: [`docs/assets/audio/README.md`](docs/assets/audio/README.md)
-
-### User settings
-
-Interface preferences persist under:
-
-```text
-localStorage key: ts_cookbook_settings
-```
-
----
-
-## Quality standards
-
-Before shipping visual or behavior changes, run through:
-
-- [`docs/QA_CHECKLIST.md`](docs/QA_CHECKLIST.md)
-
-Priority checks:
-
-- data hydration and fallback integrity
-- keyboard and accessibility flow
-- mobile responsiveness (especially top control bar)
-- no console errors
-
----
-
-## Contributing
-
-Contributions are welcome, especially around:
-
-- UX polish and accessibility improvements
-- performance and rendering efficiency
-- historical/security content quality
-- documentation clarity
-
-Recommended flow:
-
-1. Fork + branch
-2. Keep changes focused and reviewable
-3. Include before/after notes for UI-impacting edits
-4. Open a PR with clear testing steps
-
----
-
-## Security and responsible use
-
-Some linked tools and workflows are dual-use.  
-Use them lawfully, ethically, and with proper authorization.
-
-- Do not target systems or people without permission.
-- Respect platform policies, local laws, and disclosure norms.
-
----
-
-## License
-
-No repository-wide license file is currently present.
-
-If you plan to reuse code/assets beyond normal GitHub use, open an issue first to confirm permissions.
-
----
-
-<sub>Built for operators who like signal over noise.</sub>
+| Repository | Purpose |
+| --- | --- |
+| [blueTTool](https://github.com/thumpersecure/blueTTool) | BLE utility workflows for mobile testing contexts. |
+| [LOVE-BOMB](https://github.com/thumpersecure/LOVE-BOMB) | Experimental utility project. |
+| [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) | Step-by-step opt-out instructions at scale. |
+| [palm-tree](https://github.com/thumpersecure/palm-tree) | Privacy noise generation and behavioral obfuscation tooling. |
+| [spicy-cat](https://github.com/thumpersecure/spicy-cat) | Persona and activity-noise helper for privacy workflows. |
+| [Spin](https://github.com/thumpersecure/Spin) | Desktop OSINT/privacy browser project. |
+| [TeleSTOP](https://github.com/thumpersecure/TeleSTOP) | Desktop app for personal-data removals. |
+| [Telespot](https://github.com/thumpersecure/Telespot) | CLI phone OSINT and result correlation. |
+| [Telespotter](https://github.com/thumpersecure/Telespotter) | Rust implementation for faster phone OSINT runs. |
+| [TelespotXX](https://github.com/thumpersecure/TelespotXX) | Web layer that combines Telespot workflows. |
+| [thumpersecure](https://github.com/thumpersecure/thumpersecure) | Main profile and ecosystem entrypoint. |
+| [xTELENUMSINT](https://github.com/thumpersecure/xTELENUMSINT) | Chrome extension for phone OSINT format pivots. |
+| [zweather](https://github.com/thumpersecure/zweather) | Forecast comparison utility. |
