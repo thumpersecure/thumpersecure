@@ -2,9 +2,9 @@
   <img src="assets/neural-header.svg" width="99%" alt="THUMPERSECURE Code Cookbook" />
 </div>
 
-# THUMPERSECURE // OSINT + PRIVACY TOOLCHAIN
+# THUMPERSECURE // CYBER OPS TOOLCHAIN FOR OSINT & PRIVACY
 
-Tools, playbooks, and workflow systems for recon, privacy, and digital footprint control.
+A cyberpunk command deck for recon, privacy hardening, and digital footprint control.
 
 [![GitHub](https://img.shields.io/badge/GitHub-thumpersecure-00b8ff?style=for-the-badge&logo=github&labelColor=06060F)](https://github.com/thumpersecure)
 [![Live Hub](https://img.shields.io/badge/Project_Hub-online-b0ffcc?style=for-the-badge&labelColor=06060F)](https://thumpersecure.github.io/thumpersecure/)
@@ -13,15 +13,25 @@ Tools, playbooks, and workflow systems for recon, privacy, and digital footprint
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Who this is for](#who-this-is-for)
-- [Start here](#start-here)
-- [Featured projects](#featured-projects)
-- [Full repository index](#full-repository-index)
+- [Mission Brief](#mission-brief)
+- [Operator Fit](#operator-fit)
+- [Quickstart](#quickstart)
+- [Flagship Projects](#flagship-projects)
+- [Full Arsenal Index](#full-arsenal-index)
 
 ---
 
-## Overview
+## Quick Links
+
+- [Live Hub](https://thumpersecure.github.io/thumpersecure/)
+- [Flagship Projects](#flagship-projects)
+- [Full Arsenal Index](#full-arsenal-index)
+- [Telespot](https://github.com/thumpersecure/Telespot)
+- [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026)
+
+---
+
+## Mission Brief
 
 This repository is the command center for the THUMPERSECURE ecosystem.
 
@@ -36,7 +46,7 @@ The goal is simple: ship useful tools, keep them readable, and make them easy to
 
 ---
 
-## Who this is for
+## Operator Fit
 
 - Investigators and OSINT practitioners
 - Privacy-conscious users reducing exposure
@@ -45,7 +55,7 @@ The goal is simple: ship useful tools, keep them readable, and make them easy to
 
 ---
 
-## Start here
+## Quickstart
 
 1. Pick a project from the featured list below.
 2. Open that project README for exact install and usage steps.
@@ -58,14 +68,14 @@ If you are new to this ecosystem, start with:
 
 ---
 
-## Featured projects
+## Flagship Projects
 
 | Project | What it does |
 | --- | --- |
-| [palm-tree](https://github.com/thumpersecure/palm-tree) | Generates realistic traffic noise to reduce behavioral fingerprinting. |
-| [Telespot](https://github.com/thumpersecure/Telespot) | Phone-number OSINT CLI using multi-source search and correlation. |
-| [Spin](https://github.com/thumpersecure/Spin) | Privacy-first desktop browser tailored for research workflows. |
-| [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) | Actionable opt-out guide for data-broker and people-search sites. |
+| [palm-tree](https://github.com/thumpersecure/palm-tree) | Injects realistic traffic noise to disrupt behavioral fingerprinting and tracking models. |
+| [Telespot](https://github.com/thumpersecure/Telespot) | High-velocity phone OSINT CLI that fuses multi-source lookup into correlated leads. |
+| [Spin](https://github.com/thumpersecure/Spin) | Research-first desktop browser with hardened privacy defaults for investigative workflows. |
+| [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) | Operator-grade playbook for removals from data-broker and people-search networks. |
 
 ### Telespot ecosystem path
 
@@ -78,7 +88,7 @@ Telespot (CLI) -> Telespotter (Rust) -> TelespotXX (Web)
 
 ---
 
-## Full repository index
+## Full Arsenal Index
 
 | Repository | Purpose |
 | --- | --- |
@@ -95,3 +105,11 @@ Telespot (CLI) -> Telespotter (Rust) -> TelespotXX (Web)
 | [thumpersecure](https://github.com/thumpersecure/thumpersecure) | Main profile and ecosystem entrypoint. |
 | [xTELENUMSINT](https://github.com/thumpersecure/xTELENUMSINT) | Chrome extension for phone OSINT format pivots. |
 | [zweather](https://github.com/thumpersecure/zweather) | Forecast comparison utility. |
+
+---
+
+## Deploy the Stack
+
+Pick a project. Run the playbook. Reduce exposure.
+
+**Start now:** [Telespot](https://github.com/thumpersecure/Telespot) · [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) · [thumpersecure hub](https://github.com/thumpersecure)
