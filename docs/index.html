@@ -43,11 +43,51 @@
 
 <!-- ====== BACKGROUND LAYERS ====== -->
 <div class="crt" aria-hidden="true"></div>
+<div class="scanline-overlay" aria-hidden="true"></div>
 <div class="sweep" aria-hidden="true"></div>
 <div class="ambient" aria-hidden="true"></div>
 <div class="tron-grid" aria-hidden="true"></div>
+<div class="circuit-pattern" aria-hidden="true"></div>
+<canvas id="tronGridCanvas" aria-hidden="true"></canvas>
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
 <canvas id="rainCanvas" aria-hidden="true"></canvas>
+<!-- SVG decorative: circuit lines, hexagons, data nodes -->
+<svg class="tron-svg-bg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="tronGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#18dcff;stop-opacity:0.15"/><stop offset="100%" style="stop-color:#ff00aa;stop-opacity:0.05"/></linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#00ffcc;stop-opacity:0.4"/><stop offset="100%" style="stop-color:#00ffcc;stop-opacity:0"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g class="circuit-lines">
+    <path d="M0 200 Q300 180 600 200 T1200 200" fill="none" stroke="url(#cyanGrad)" stroke-width="0.5" opacity="0.6"/>
+    <path d="M0 400 L400 400 L500 350 L800 400 L1200 400" fill="none" stroke="#18dcff" stroke-width="0.3" opacity="0.25"/>
+    <path d="M0 600 L200 550 L500 600 L900 580 L1200 600" fill="none" stroke="#00ff41" stroke-width="0.3" opacity="0.2"/>
+    <path d="M100 0 L100 800" fill="none" stroke="#18dcff" stroke-width="0.2" opacity="0.15"/>
+    <path d="M600 0 L600 800" fill="none" stroke="#18dcff" stroke-width="0.2" opacity="0.12"/>
+    <path d="M1100 0 L1100 800" fill="none" stroke="#ff00aa" stroke-width="0.2" opacity="0.1"/>
+  </g>
+  <g class="hexagons">
+    <polygon points="150,120 200,145 200,195 150,220 100,195 100,145" fill="none" stroke="#18dcff" stroke-width="0.8" opacity="0.2"/>
+    <polygon points="1050,280 1100,305 1100,355 1050,380 1000,355 1000,305" fill="none" stroke="#00ffcc" stroke-width="0.6" opacity="0.18"/>
+    <polygon points="550,520 600,545 600,595 550,620 500,595 500,545" fill="none" stroke="#ff00aa" stroke-width="0.5" opacity="0.15"/>
+    <polygon points="80,450 120,470 120,530 80,550 40,530 40,470" fill="none" stroke="#00ff41" stroke-width="0.4" opacity="0.12"/>
+  </g>
+  <g class="data-nodes">
+    <circle cx="200" cy="145" r="3" fill="#18dcff" filter="url(#glow)" opacity="0.5"/>
+    <circle cx="1100" cy="305" r="2.5" fill="#00ffcc" filter="url(#glow)" opacity="0.4"/>
+    <circle cx="600" cy="545" r="2" fill="#ff00aa" filter="url(#glow)" opacity="0.35"/>
+    <circle cx="80" cy="470" r="2" fill="#00ff41" filter="url(#glow)" opacity="0.3"/>
+    <circle cx="950" cy="150" r="1.5" fill="#18dcff" opacity="0.25"/>
+    <circle cx="350" cy="650" r="1.5" fill="#00ffcc" opacity="0.2"/>
+  </g>
+</svg>
+<!-- Floating data orbs -->
+<div class="data-orbs" aria-hidden="true">
+  <span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span>
+  <span class="orb orb-4"></span><span class="orb orb-5"></span><span class="orb orb-6"></span>
+</div>
+<!-- Holographic vignette -->
+<div class="holographic-vignette" aria-hidden="true"></div>
 
 <!-- ====== EFFECTS TOAST CONTAINER ====== -->
 <div class="fx-toast-container" id="fxToastContainer" aria-live="polite"></div>
@@ -153,6 +193,15 @@
     </div>
 
     <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
+
+    <div class="circuit-divider" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 40" preserveAspectRatio="xMidYMid slice">
+        <defs><linearGradient id="circuitDivGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#18dcff" stop-opacity="0"/><stop offset="50%" stop-color="#18dcff" stop-opacity="0.6"/><stop offset="100%" stop-color="#18dcff" stop-opacity="0"/></linearGradient></defs>
+        <path d="M0 20 L200 20 L250 15 L350 20 L400 25 L550 20 L600 18 L800 20" fill="none" stroke="url(#circuitDivGrad)" stroke-width="1"/>
+        <polygon points="400,20 415,12 430,20 415,28" fill="none" stroke="#00ffcc" stroke-width="0.8" opacity="0.7"/>
+        <circle cx="200" cy="20" r="2" fill="#18dcff" opacity="0.5"/><circle cx="550" cy="20" r="2" fill="#00ff41" opacity="0.5"/>
+      </svg>
+    </div>
 
     <!-- ════════════════════════════════════════════════════════════
          GROUP: HISTORY & CULTURE
@@ -1154,7 +1203,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
         <div class="container hardware-history-section" id="hardware-history">
           <p class="history-intro">A quick timeline of influential interception hardware. Real devices appear first, and fictional entries are clearly tagged.</p>
           <div class="hardware-timeline" role="region" aria-label="Scrollable hardware timeline" tabindex="0">
-            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1940s&ndash;1950s</span><span class="hardware-icon" aria-hidden="true">&#128264;</span></div><h3 class="hardware-title">The Thing</h3><p class="hardware-body">A passive listening device with no internal power, hidden inside a carved Great Seal gifted to the U.S. ambassador in Moscow. When illuminated by external radio waves, its cavity resonated and retransmitted room audio, making it an early RFID precursor.</p><span class="hardware-tag">real hardware</span></article>
+            <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1940s&ndash;1950s</span><span class="hardware-icon" aria-hidden="true">&#128264;</span></div><h3 class="hardware-title">Analog Device</h3><p class="hardware-body">A passive listening device with no internal power, hidden inside a carved Great Seal gifted to the U.S. ambassador in Moscow. When illuminated by external radio waves, its cavity resonated and retransmitted room audio, making it an early RFID precursor.</p><span class="hardware-tag">real hardware</span></article>
             <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">1960s&ndash;1970s</span><span class="hardware-icon" aria-hidden="true">&#9742;</span></div><h3 class="hardware-title">Blue Box</h3><p class="hardware-body">An electronic tone generator that used 2600 Hz and multi-frequency signaling to seize control of long-distance call routing. It became popular in the 1970s as cheap microelectronics spread, then faded in the 1980s when networks moved to out-of-band signaling.</p><span class="hardware-tag">real hardware</span></article>
             <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128246;</span></div><h3 class="hardware-title">HackRF One</h3><p class="hardware-body">HackRF One is an open-source SDR transceiver by Great Scott Gadgets, launched via Kickstarter in 2014. It transmits and receives from 1 MHz to 6 GHz and is widely used by researchers and hobbyists.</p><span class="hardware-tag">real hardware</span></article>
             <article class="hardware-card"><div class="hardware-meta"><span class="year-pill">2010s</span><span class="hardware-icon" aria-hidden="true">&#128421;</span></div><h3 class="hardware-title">Ubertooth One</h3><p class="hardware-body">An open-source 2.4 GHz wireless development platform for Bluetooth experimentation. It provides hardware, firmware, and host code for low-level packet capture and analysis, and is designed for user-written software.</p><span class="hardware-tag">real hardware</span></article>
@@ -1171,7 +1220,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
     <!-- ====== CLOSING QUOTE ====== -->
     <section class="quote-section reveal" aria-label="Quote">
       <div class="container">
-        <blockquote class="quote-block glass">
+        <blockquote class="quote-block glass barcode-edge">
           <p class="quote-text">"Turn up the radio. And turn out the lights."</p>
           <cite class="quote-cite">&mdash; Mr. Robot</cite>
         </blockquote>
