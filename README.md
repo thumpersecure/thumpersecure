@@ -47,6 +47,7 @@
 | [Flagship Projects](#flagship-projects) | Star projects to start with |
 | [Full Arsenal Index](#full-arsenal-index) | Complete project catalog |
 | [Deploy the Stack](#deploy-the-stack) | Start now |
+| [Code Cookbook Site](#-code-cookbook-site) | Live hub architecture |
 | [Contributing](#contributing) | How to contribute |
 | [License](#license) | Licensing info |
 | [Acknowledgments](#acknowledgments) | Credits |
@@ -185,6 +186,34 @@ We focus on four pillars:
 *[Telespot](https://github.com/thumpersecure/Telespot) · [opt-out-manual-2026](https://github.com/thumpersecure/opt-out-manual-2026) · [Live Hub](https://thumpersecure.github.io/thumpersecure/)*
 
 </div>
+
+---
+
+<br />
+
+## 🌐 Code Cookbook Site
+
+The [live Code Cookbook](https://thumpersecure.github.io/thumpersecure/) is a cyberpunk-themed portfolio site hosted via GitHub Pages from the `/docs` folder.
+
+### Site Architecture
+
+| Component | Path | Purpose |
+| :--- | :--- | :--- |
+| HTML | `docs/index.html` | Single-page app with category-grouped modules |
+| CSS | `docs/css/styles.css` | Cyberpunk/TRON aesthetic, responsive layout |
+| JS | `docs/js/app.js` | Puzzles, audio, effects, data loading |
+| Live Data | `docs/data/site_snapshot.json` | Auto-updated repo stats (CI workflow) |
+| Fallback Data | `docs/data/fallback-snapshot.json` | Static fallback for offline use |
+
+### Module Categories
+
+| Category | Content |
+| :--- | :--- |
+| **History & Culture** | Lock history, BBS archives, cinema, tool evolution |
+| **Interactive Gate** | Preflight puzzles (word grid, math challenge) |
+| **Threat Intelligence** | CVE triage, threat glossary, security zines |
+| **Tools & Recipes** | Featured tools, full project index, OSINT links |
+| **Wisdom & Hardware** | Legend quotes, surveillance/hacking hardware timeline |
 
 ---
 
