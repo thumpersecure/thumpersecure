@@ -3,6 +3,43 @@
 
 /* CSP: Content-Security-Policy should be set via meta tag in HTML for defense in depth. */
 
+/* ====== CYBERSECURITY TOOL REFERENCE (NMAP) ======
+ * NMAP — Network Mapper: industry-standard port scanner and recon tool.
+ * Port scanning: nmap -p 22,80,443 target.com (common ports)
+ * -sV: service/version detection (probes open ports for banners)
+ * -sC: default NSE scripts (vuln checks, info disclosure)
+ * -A: aggressive (OS detection, version, scripts, traceroute)
+ * -Pn: skip host discovery (treat host as up; useful for firewalled targets)
+ * -O: OS fingerprinting
+ * Common use cases: recon before pentest, asset inventory, vuln assessment.
+ * Red team: document every scan for the engagement report.
+ * Blue team: baseline normal port patterns before hunting anomalies.
+ */
+
+/* ====== CYBERSECURITY TOOL REFERENCE (WIRESHARK) ======
+ * WIRESHARK — Packet capture and protocol analyzer.
+ * Capture: select interface, start capture; save as .pcap for later analysis.
+ * Display filters: tcp.port==443, http, ip.addr==192.168.1.1, dns.qry.name
+ * Follow stream: right-click packet -> Follow -> TCP/HTTP stream (reconstructs session)
+ * Use cases: debugging TLS handshakes, inspecting HTTP headers, detecting beaconing,
+ *            analyzing DNS exfil, validating firewall rules.
+ * Red team: capture C2 traffic for post-engagement writeup.
+ * Blue team: baseline normal traffic patterns; anomalies often indicate compromise.
+ */
+
+/* ====== CYBERSECURITY TOOL REFERENCE (METASPLOIT) ======
+ * METASPLOIT — Exploitation framework (msfconsole).
+ * search <term>: find modules (exploits, aux, post)
+ * use <module>: load exploit/auxiliary/post module
+ * set RHOSTS <ip>: target host(s)
+ * set PAYLOAD <payload>: e.g. windows/meterpreter/reverse_http
+ * set LHOST <ip>: callback listener
+ * exploit / run: execute module
+ * Common flow: search -> use -> set options -> exploit.
+ * Red team: document every module used and outcome for the report.
+ * Blue team: monitor for msf payload signatures; EDR/IDS often flag meterpreter.
+ */
+
 /* ====== GLOBAL NAMESPACE ====== */
 window.TS = window.TS || {};
 var SETTINGS_KEY = 'ts_cookbook_settings';
@@ -14,6 +51,7 @@ function getSetting(k,def){var s=getSettings();return s[k]!==undefined?s[k]:def}
 function setSetting(k,v){var s=getSettings();s[k]=v;saveSettings(s)}
 
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+// I fight for the users. — Tron
 var reducedMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ====== BOOT SEQUENCE ====== */
@@ -32,7 +70,7 @@ var reducedMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:
     {t:'[OK]   Code rain shader',c:'#00ffcc'},
     {t:'[OK]   Glitch engine',c:'#00ffcc'},
     {t:'[OK]   CRT overlay',c:'#00ffcc'},
-    {t:'[OK]   Wireframe renderer (Gibson)',c:'#00ffcc'},
+    {t:'[OK]   Wireframe renderer (Gibson)',c:'#00ffcc'}, // Hack the planet.
     {t:'[OK]   Snapshot data layer',c:'#18dcff'},
     {t:'[OK]   Music controller',c:'#18dcff'},
     {t:'[OK]   Effects engine',c:'#18dcff'},
@@ -64,6 +102,7 @@ async function loadSiteData(){
   var devMode=getSetting('dev_mode',false);
   var base=location.pathname.replace(/\/[^\/]*$/,'/');
   // Tier 1: Fetch live snapshot
+  // Blue team: baseline normal before hunting anomalies — know what "good" looks like.
   if(!devMode){
     try{
       var ctrl=new AbortController();
@@ -146,6 +185,7 @@ function renderStats(data){
 }
 
 function buildFeaturedCards(data){
+  // Red team: document everything for the report — even small details matter.
   var grid=document.getElementById('featuredGrid');if(!grid)return;
   var featured=data.repos.filter(function(r){return r.featured});
   if(!featured.length){grid.innerHTML='<div class="loading-msg">No featured recipes.</div>';return}
@@ -262,8 +302,8 @@ if(collapseAllBtn)collapseAllBtn.addEventListener('click',function(){
 /* ====== MUSIC CONTROLLER (Phase 5) ====== */
 var TRACK_CONFIG=[
   {local:'Tron-Website-Music-Spoken-Words.m4a',query:'TRON 1982 End Titles Wendy Carlos',label:'Tron — Spoken Words'},
-  {local:null,query:'Mr Robot soundtrack Mac Quayle 3.0_5-da3m0nsneverstop',label:'Mr Robot — Daemons'},
-  {local:null,query:'Swordfish soundtrack Paul Oakenfold',label:'Swordfish — Breach'}
+  {local:'Swordfish_track2-website.m4a',query:'Swordfish soundtrack Paul Oakenfold',label:'Swordfish — Track 2'},
+  {local:'Track3-Music-forwebsite.mp3',query:'Swordfish soundtrack Paul Oakenfold',label:'Track 3 — Music'} // The password is always swordfish.
 ];
 var mPlayer=document.getElementById('musicPlayer');
 var mBtns=[].slice.call(document.querySelectorAll('.music-btn'));
@@ -481,7 +521,9 @@ var FX_SCROLL_EVENTS=[
   {key:'quotes',selector:'#mod-quotes',icon:'&#128172;',label:'SIMULATION',msg:'Legend quote wall energized \u2014 rotating hot feed active.'},
   {key:'glossary',selector:'#mod-glossary',icon:'&#128295;',label:'DEMO',msg:'Threat glossary parsed \u2014 defensive vocabulary armed.'},
   {key:'zines',selector:'#mod-zines',icon:'&#128240;',label:'SIMULATION',msg:'Deep-scroll achieved \u2014 zine relay now broadcasting.'},
-  {key:'fieldintel',selector:'#mod-fieldintel',icon:'&#128225;',label:'SIMULATION',msg:'Field intel pager online \u2014 24 signals decoded.'}
+  {key:'fieldintel',selector:'#mod-fieldintel',icon:'&#128225;',label:'SIMULATION',msg:'Field intel pager online \u2014 24 signals decoded.'},
+  {key:'darkweb',selector:'#mod-darkweb',icon:'&#128274;',label:'SIMULATION',msg:'Onion routing active \u2014 dark web module decrypted.'},
+  {key:'investigators',selector:'#mod-investigators',icon:'&#128269;',label:'DEMO',msg:'Investigator timeline loaded \u2014 mail carriers to OSINT.'}
 ];
 var fxContainer=document.getElementById('fxToastContainer');
 var fxEnabled=getSetting('effects_enabled',reducedMotion?false:true);
@@ -566,6 +608,7 @@ fxInitScrollToasts();
 
 /* ====== PUZZLES (Phase 7) ====== */
 function getPuzzleState(id){return getSetting('puzzle_'+id,false)}
+// Blue team: treat puzzle state like access logs — verify integrity.
 function setPuzzleState(id,solved){setSetting('puzzle_'+id,solved);updatePuzzleUI(id)}
 function updatePuzzleUI(id){
   var area=document.querySelector('[data-puzzle="'+id+'"]');
@@ -729,6 +772,42 @@ function updatePuzzleUI(id){
   updatePuzzleUI('pattern');
 })();
 
+// Puzzle: Phishing Detection
+(function(){
+  var container=document.getElementById('phishingOptions');
+  var status=document.getElementById('phishingStatus');
+  if(!container)return;
+  var options=[
+    {text:'Hi Sarah, Your March statement is ready. Sign in at yourbank.com to view. — Customer Service',correct:false},
+    {text:'URGENT! Your account will be SUSPENDED in 24h! Click secure-paypal-verify.com to restore. Act now!',correct:true},
+    {text:'Your package shipped. Track at ups.com. Order #88472. — UPS',correct:false},
+    {text:'Meeting reminder: Tomorrow 2pm, Room B. — HR',correct:false}
+  ];
+  for(var i=options.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=options[i];options[i]=options[j];options[j]=t}
+  options.forEach(function(opt){
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.className='pattern-opt phishing-opt';
+    btn.textContent=opt.text;
+    btn.setAttribute('aria-label','Email option');
+    btn.addEventListener('click',function(){
+      if(getPuzzleState('phishing'))return;
+      if(opt.correct){
+        btn.classList.add('correct');
+        if(status)status.textContent='Phishing detected. Access verified.';
+        setPuzzleState('phishing',true);
+      }else{
+        btn.classList.add('wrong');
+        if(status)status.textContent='Look for urgent language, mismatched domains, generic greetings.';
+        setTimeout(function(){btn.classList.remove('wrong')},600);
+      }
+    });
+    container.appendChild(btn);
+  });
+  if(getPuzzleState('phishing')&&status)status.textContent='Phishing detected. Access verified.';
+  updatePuzzleUI('phishing');
+})();
+
 // Puzzle C: Decrypt Slider
 (function(){
   var target=document.getElementById('dialTarget');
@@ -804,7 +883,7 @@ TS.checkPortScan=function(){
 
 TS.puzzleSkip=function(id){setPuzzleState(id,true)};
 TS.resetAllPuzzles=function(){
-  ['unscramble','math','checksum','pattern','decrypt','portscan','bottom'].forEach(function(id){
+  ['unscramble','math','checksum','pattern','phishing','decrypt','portscan','bottom'].forEach(function(id){
     setSetting('puzzle_'+id,false);updatePuzzleUI(id);
   });
   localStorage.removeItem('cb_puzzle_solved');
@@ -861,6 +940,7 @@ var settingResetPuzzlesBtn=document.getElementById('settingResetPuzzles');
 if(settingResetPuzzlesBtn)settingResetPuzzlesBtn.addEventListener('click',function(){TS.resetAllPuzzles()});
 
 /* ====== PARTICLE CANVAS ====== */
+// There is no spoon. — The Matrix
 var pC=document.getElementById('particleCanvas');
 if(pC){
   var pX=pC.getContext('2d'),pts=[],mouse={x:-9999,y:-9999};
@@ -893,10 +973,15 @@ if(tGC&&!reducedMotion){
   function dTGC(){
     if(tGC.style.display==='none'){requestAnimationFrame(dTGC);return}
     var w=tGC.width,h=tGC.height;
+    var musicPlaying=!!(mPlayer&&!mPlayer.paused&&mPlayer.src);
+    var beatPulse=0.5+0.5*Math.sin(tGT*0.15);
+    var gridOpacity=musicPlaying?0.12+beatPulse*0.06:0.12;
+    var trailChance=musicPlaying?0.035+beatPulse*0.015:0.02;
+    var spacingMult=musicPlaying?0.9+beatPulse*0.03:0.9;
     tGX.fillStyle='rgba(6,6,14,0.08)';tGX.fillRect(0,0,w,h);
-    var cols=24,rows=14,spacing=Math.min(w/cols,h/rows)*0.9;
+    var cols=24,rows=14,spacing=Math.min(w/cols,h/rows)*spacingMult;
     var cx=w/2,cy=h*0.6,perspective=0.4;
-    tGX.strokeStyle='rgba(24,220,255,0.12)';tGX.lineWidth=0.5;
+    tGX.strokeStyle='rgba(24,220,255,'+gridOpacity+')';tGX.lineWidth=0.5;
     for(var r=0;r<=rows;r++){
       var py=cy+r*spacing*0.6;
       var scale=1+(py/h-0.5)*perspective;
@@ -919,7 +1004,8 @@ if(tGC&&!reducedMotion){
       }
       tGX.stroke();
     }
-    if(Math.random()<0.02)tGTrails.push({x:Math.random()*w,y:0,vx:(Math.random()-0.5)*2,vy:2+Math.random()*3,col:Math.random()>0.5?'#18dcff':'#00ffcc',life:1});
+    // Red team: document everything for the report — trail frequency = engagement log.
+    if(Math.random()<trailChance)tGTrails.push({x:Math.random()*w,y:0,vx:(Math.random()-0.5)*2,vy:2+Math.random()*3,col:Math.random()>0.5?'#18dcff':'#00ffcc',life:1});
     tGTrails=tGTrails.filter(function(tr){
       tr.x+=tr.vx;tr.y+=tr.vy;tr.life-=0.015;
       if(tr.life<=0)return false;
@@ -956,7 +1042,7 @@ window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(funct
 },250)});
 
 /* ====== TYPEWRITER ====== */
-var phrases=['$ recipe: osint reconnaissance','$ recipe: seo optimization','$ recipe: privacy toolkit','$ recipe: phone intelligence','$ recipe: data aggregation'];
+var phrases=['$ recipe: osint reconnaissance','$ recipe: seo optimization','$ recipe: privacy toolkit','$ recipe: phone intelligence','$ recipe: data aggregation']; // Control is an illusion. — Mr Robot
 var tyE=document.getElementById('typerText'),pI=0,cI=0,del=false;
 function tL(){if(!tyE)return;var c=phrases[pI];if(!del){tyE.textContent=c.slice(0,cI+1);cI++;if(cI>=c.length){setTimeout(function(){del=true;tL()},2000);return}setTimeout(tL,50+Math.random()*30)}else{tyE.textContent=c.slice(0,cI);cI--;if(cI<0){del=false;cI=0;pI=(pI+1)%phrases.length;setTimeout(tL,300);return}setTimeout(tL,25)}}
 tL();
@@ -978,8 +1064,44 @@ var tLines=[
   {type:'out',text:'OSINT & SEO \u2014 the code cookbook'},
   {type:'cmd',text:'$ echo "I fight for the users."'},
   {type:'out',text:'\u2014 Tron'},
+  {type:'cmd',text:'$ nmap -sV -O -Pn target.example.com'},
+  {type:'out',text:'PORT     STATE SERVICE  VERSION'},
+  {type:'out',text:'22/tcp   open  ssh       OpenSSH 8.2'},
+  {type:'out',text:'443/tcp  open  ssl/http  nginx 1.18.0'},
+  {type:'cmd',text:'$ whois example.com | grep -E "Registrar|Name Server"'},
+  {type:'out',text:'Registrar: EXAMPLE-REG, Inc.'},
+  {type:'out',text:'Name Server: ns1.example-dns.com'},
+  {type:'cmd',text:'$ theHarvester -d target.com -b all'},
+  {type:'out',text:'[*] Emails: 47 | Hosts: 12 | IPs: 8'},
+  {type:'cmd',text:'$ curl -s "https://api.github.com/users/thumpersecure/repos" | jq ".[].name"'},
+  {type:'out',text:'"palm-tree"'},
+  {type:'out',text:'"Telespot"'},
+  {type:'out',text:'"Spin"'},
+  {type:'cmd',text:'$ hashcat -m 0 hashes.txt rockyou.txt'},
+  {type:'out',text:'Session..........: hashcat'},
+  {type:'out',text:'Status...........: Cracked'},
+  {type:'cmd',text:'$ hydra -l admin -P wordlist.txt ssh://192.168.1.1'},
+  {type:'out',text:'[22][ssh] host: 192.168.1.1   login: admin   password: swordfish'},
+  {type:'cmd',text:'$ wireshark -r capture.pcap -Y "http.request"'},
+  {type:'out',text:'Frame 42: 74 bytes on wire'},
+  {type:'out',text:'GET /admin HTTP/1.1'},
+  {type:'cmd',text:'$ sqlmap -u "https://target.com/page?id=1" --dbs'},
+  {type:'out',text:'available databases [2]:'},
+  {type:'out',text:'[*] information_schema'},
+  {type:'out',text:'[*] production_db'},
+  {type:'cmd',text:'$ john --wordlist=rockyou.txt shadow.txt'},
+  {type:'out',text:'Loaded 1 password hash (crypt, generic crypt(3) [?/64])'},
+  {type:'out',text:'root:password123 (root)'},
+  {type:'cmd',text:'$ echo "Hack the planet!"'},
+  {type:'out',text:'Hack the planet!'},
+  {type:'cmd',text:'$ traceroute -n 8.8.8.8'},
+  {type:'out',text:' 1  10.0.0.1  1.2ms'},
+  {type:'out',text:' 2  172.16.0.1  5.1ms'},
+  {type:'out',text:' 3  * * *'},
   {type:'cmd',text:'$ ./cook --recipe=all --serve'},
-  {type:'out',text:'[+] Code Cookbook served. Bon app\u00e9tit.'}
+  {type:'out',text:'[+] Code Cookbook served. Bon app\u00e9tit.'},
+  {type:'cmd',text:'$ cmatrix'},
+  {type:'matrix',text:'0 1 0 1 1 0 0 1 1 0 1 0 0 1 1 0 0 1\n1 0 1 0 0 1 1 0 0 1 0 1 1 0 0 1 1 0\nA 0 K 3 7 2 0 1 9 8 4 5 6 0 1 2 3 4\n0 1 0 1 1 0 0 1 1 0 1 0 0 1 1 0 0 1\n9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2\n1 0 1 0 0 1 1 0 0 1 0 1 1 0 0 1 1 0\nZ Y X W V U T S R Q P O N M L K J I\n0 1 0 1 1 0 0 1 1 0 1 0 0 1 1 0 0 1\n# $ % @ ! ^ * ( ) _ + = [ ] { } : ;\n1 0 1 0 0 1 1 0 0 1 0 1 1 0 0 1 1 0'}
 ];
 var tB=document.getElementById('termBody'),tS=false,tSec=document.querySelector('.terminal-section');
 var tO=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!tS){tS=true;rT();tO.unobserve(en.target)}})},{threshold:0.25});
@@ -987,7 +1109,10 @@ if(tSec)tO.observe(tSec);
 async function rT(){
   if(!tB)return;
   for(var i=0;i<tLines.length;i++){var ln=tLines[i],el=document.createElement('div');el.className='term-line';tB.appendChild(el);
-    if(ln.type==='cmd'){await tpL(el,ln.text,30)}else{el.innerHTML='<span class="output">'+ln.text+'</span>';el.classList.add('typed')}await sleep(250);
+    if(ln.type==='cmd'){await tpL(el,ln.text,30)}
+    else if(ln.type==='matrix'){el.innerHTML='<pre class="term-matrix output">'+ln.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</pre>';el.classList.add('typed')}
+    else{el.innerHTML='<span class="output">'+ln.text+'</span>';el.classList.add('typed')}
+    await sleep(250);
   }var cur=document.createElement('span');cur.className='term-cursor-end';cur.innerHTML='&nbsp;';tB.appendChild(cur);
 }
 function tpL(el,text,spd){return new Promise(function(res){el.classList.add('typed');var i=0,iv=setInterval(function(){el.textContent=text.slice(0,i+1);i++;if(i>=text.length){clearInterval(iv);res()}},spd)})}
@@ -1033,7 +1158,7 @@ if(wC){
 function fillMon(id,lines){var el=document.getElementById(id);if(!el)return;var txt=lines.join('\n');el.textContent=txt+'\n'+txt}
 fillMon('mon1',['> hack the gibson','CONNECT 192.168.1.1','AUTH: root@gibson','GRANTED','ls /secret/','garbage.dat   2.1K','worm.dat      8.4K','da_vinci.exe  41K','> cat da_vinci.exe','4F 50 45 4E 20 48','TRACE DETECTED','> evade --stealth','Routing thru 7 proxies','Connection masked']);
 fillMon('mon2',['TRACE: 10.0.0.1','  > 172.16.0.1','HOP 1: 52ms  NYC','HOP 2: 89ms  LON','HOP 3: 134ms TYO','HOP 4: 201ms SYD','PKT LOSS: 0.2%','TTL: 64','PROTO: TCP/443','CIPHER: AES-256-GCM','TLS 1.3 OK','CERT: *.gibson.corp','OSINT SCAN: ACTIVE','PORTS: 22,80,443']);
-fillMon('mon3',['DECRYPTING...','KEY: 2048-bit RSA','BLOCK: 16 bytes','MODE: CBC','IV: a3f2c881...','ROUND  1/14: OK','ROUND  2/14: OK','ROUND  3/14: OK','SUBSTITUTION: DONE','PERMUTATION: DONE','XOR: COMPLETE','PLAINTEXT READY','PASSWORD: *********','PASSWORD: swordfish']);
+fillMon('mon3',['DECRYPTING...','KEY: 2048-bit RSA','BLOCK: 16 bytes','MODE: CBC','IV: a3f2c881...','ROUND  1/14: OK','ROUND  2/14: OK','ROUND  3/14: OK','SUBSTITUTION: DONE','PERMUTATION: DONE','XOR: COMPLETE','PLAINTEXT READY','PASSWORD: *********','PASSWORD: swordfish']); // Would you like to play a game? — WOPR
 fillMon('mon4',['$ ./swordfish --crack','TARGET: DOD.GOV','TIME: 60s','Brute force: 2^28','Rainbow table: LOADED','Hash collision: FOUND','Firewall bypass: OK','IDS evasion: ACTIVE','Rootkit: DEPLOYED','ACCESS: GRANTED','Elapsed: 58.7s','> You got the job.']);
 
 /* ====== INGREDIENTS TIMELINE ====== */

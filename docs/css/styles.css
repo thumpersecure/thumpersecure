@@ -329,6 +329,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .term-body{padding:1.2rem;font-family:var(--mono);font-size:clamp(0.72rem,1.2vw,0.85rem);color:var(--green);line-height:1.8;min-height:220px}
 .term-line{opacity:0;white-space:pre-wrap}.term-line.typed{opacity:1}
 .term-line .output{color:var(--muted)}.term-line .hl{color:var(--cyan)}
+.term-matrix{font-family:var(--mono);font-size:0.65rem;line-height:1.2;color:var(--green);margin:0.3rem 0;letter-spacing:0.05em;overflow:hidden;max-height:8em}
 .term-cursor-end{display:inline-block;width:8px;height:1.1em;background:var(--green);animation:blink 1s step-end infinite;vertical-align:text-bottom}
 
 /* ====== CINEMA ====== */
@@ -467,6 +468,8 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .pattern-opt:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .pattern-opt.correct{border-color:var(--green);background:rgba(0,255,65,0.1);color:var(--green)}
 .pattern-opt.wrong{border-color:var(--red);background:rgba(255,62,62,0.1);color:var(--red)}
+.phishing-options{flex-direction:column;align-items:stretch}
+.phishing-options .phishing-opt{min-width:100%;text-align:left;white-space:normal;line-height:1.4;padding:0.7rem 1rem}
 /* Puzzle C: decrypt slider */
 .decrypt-dials{display:flex;gap:1rem;justify-content:center;align-items:center;margin:0.8rem 0;flex-wrap:wrap}
 .dial-group{display:flex;flex-direction:column;align-items:center;gap:0.3rem}
