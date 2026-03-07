@@ -6,9 +6,9 @@ Place local audio files here for the Code Cookbook music player.
 
 | Track | Filename | Format | Notes |
 |-------|----------|--------|-------|
-| 1 (Tron) | `../Tron-Website-Music-Spoken-Words.m4a` | M4A | Currently in docs/ root |
-| 2 (Mr Robot) | `track-2.mp3` | MP3 | Falls back to iTunes preview if missing |
-| 3 (Swordfish) | `track-3.mp3` | MP3 | Falls back to iTunes preview if missing |
+| 1 (Tron) | `../Tron-Website-Music-Spoken-Words.m4a` | M4A | In docs/ root |
+| 2 (Swordfish) | `../Swordfish_track2-website.m4a` | M4A | In docs/ root |
+| 3 (Track 3) | `../Track3-Music-forwebsite.mp3` | MP3 | In docs/ root |
 
 ## Adding tracks
 
