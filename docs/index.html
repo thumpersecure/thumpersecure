@@ -170,7 +170,7 @@
     </div>
   </header>
 
-  <main>
+  <main class="uniform-section-spacing">
 
     <!-- ====== STATS ====== -->
     <section class="stats-section reveal" aria-label="Statistics">
@@ -194,6 +194,142 @@
       <button type="button" class="module-ctrl-btn" id="collapseAllBtn" aria-label="Collapse all modules">&#9650; Collapse All</button>
       <span id="moduleCtrlStatus" class="sr-only" aria-live="polite"></span>
     </div>
+
+    <!-- ====== TOP PRE-FLIGHT PUZZLES ====== -->
+    <section class="projects-section reveal" id="preflight-puzzles" aria-label="Preflight puzzle gate">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> preflight_puzzles</h2>
+        <p class="history-intro">Complete these two quick puzzle checks before diving into the featured tool stack.</p>
+        <div class="puzzle-unlock-area" id="puzzleE" data-puzzle="unscramble">
+          <div class="puzzle-solved-badge">&#10003; WORD GRID SOLVED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Puzzle E &mdash; Word Unscramble Grid</div>
+            <div class="puzzle-desc">Click the 3 highlighted cells in the correct order to assemble a short code term. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('unscramble')">Skip</button></div>
+            <div class="checksum-grid unscramble-grid" id="unscrambleGrid"></div>
+            <div class="checksum-status" id="unscrambleStatus" aria-live="polite">selected 0/3</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Welcome, codebreaker.</p>
+          </div>
+        </div>
+        <div class="puzzle-unlock-area" id="puzzleF" data-puzzle="math">
+          <div class="puzzle-solved-badge">&#10003; MATH CHALLENGE PASSED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Puzzle F &mdash; Simple Math Challenge</div>
+            <div class="puzzle-desc">Solve the expression and pick the correct answer. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('math')">Skip</button></div>
+            <div class="math-prompt" id="mathPrompt" aria-live="polite">3 + 4 &times; 2 = ?</div>
+            <div class="pattern-options math-options" id="mathOptions"></div>
+            <div class="checksum-status" id="mathStatus" aria-live="polite">choose one result</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Access verified. Continue exploring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TERMINAL ====== -->
+    <section class="terminal-section reveal" aria-label="Terminal">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> terminal</h2>
+        <div class="terminal">
+          <div class="term-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="term-title">code-cookbook &mdash; bash</span></div>
+          <div class="term-body" id="termBody"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== RECIPE INDEX (always visible, not collapsible) ====== -->
+    <section class="projects-section reveal" aria-label="All projects" id="recipe-index-section">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> recipe_index</h2>
+        <div class="search-wrap">
+          <span class="search-icon" aria-hidden="true">&#128269;</span>
+          <input type="search" class="search-input" id="repoSearch" placeholder="Search recipes by name, language, or keyword&hellip;" aria-label="Search repositories">
+        </div>
+        <div class="project-grid" id="projectGrid"><div class="loading-msg"><span class="spinner"></span>Loading recipes&hellip;</div></div>
+      </div>
+    </section>
+
+    <!-- ====== OTHER PUZZLES ====== -->
+    <section class="projects-section reveal" id="puzzles-section" aria-label="Puzzle challenges">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> puzzles</h2>
+        <p class="history-intro">All bonus puzzle challenges collected in one section.</p>
+
+        <div class="puzzle-unlock-area" id="puzzleA" data-puzzle="checksum">
+          <div class="puzzle-solved-badge">&#10003; CHECKSUM VERIFIED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Terminal Checksum Challenge</div>
+            <div class="puzzle-desc">Click the 3 highlighted characters in order to form the access code. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('checksum')">Skip</button></div>
+            <div class="checksum-grid" id="checksumGrid"></div>
+            <div class="checksum-status" id="checksumStatus">find the glowing characters</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Extended Note:</strong> palm-tree's original Reddit post generated 139 stars in 48 hours. The secret? A one-line pitch: "If you can't hide, overwhelm." Traffic noise as privacy armor.</p>
+          </div>
+        </div>
+
+        <div class="puzzle-unlock-area" id="puzzleB" data-puzzle="pattern" style="margin-top:2rem">
+          <div class="puzzle-solved-badge">&#10003; PATTERN MATCHED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Pattern Match Challenge</div>
+            <div class="puzzle-desc">Which tool "overwhelms trackers with noise"? <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('pattern')">Skip</button></div>
+            <div class="pattern-options" id="patternOptions"></div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Easter Egg:</strong> The original Telespot prototype was written in a single weekend. It searched 4 engines simultaneously and correlated phone numbers across all results. 260+ stars across the ecosystem today.</p>
+          </div>
+        </div>
+
+        <div class="puzzle-unlock-area" id="puzzlePhishing" data-puzzle="phishing" style="margin-top:1.5rem">
+          <div class="puzzle-solved-badge">&#10003; PHISHING DETECTED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Phishing Puzzle</div>
+            <div class="puzzle-desc">Which email is most likely a phishing attempt? <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('phishing')">Skip</button></div>
+            <div class="pattern-options phishing-options" id="phishingOptions"></div>
+            <div class="checksum-status" id="phishingStatus" aria-live="polite">select the suspicious email</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Blue team tip:</strong> Urgent language, mismatched domains, and generic greetings are classic phishing signals. Hover links before clicking.</p>
+          </div>
+        </div>
+
+        <div class="puzzle-unlock-area" id="puzzleD" data-puzzle="portscan" style="margin-top:2rem">
+          <div class="puzzle-solved-badge">&#10003; PORT MAP VERIFIED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Port Scan Challenge</div>
+            <div class="puzzle-desc">Toggle the ports to match the secure target map. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('portscan')">Skip</button></div>
+            <div class="port-target" id="portTarget">Target: ---</div>
+            <div class="port-scan-row" id="portScanRow"></div>
+            <button class="cb-mini-btn" style="margin-top:0.5rem" onclick="TS.checkPortScan()">Verify</button>
+            <div class="checksum-status" id="portScanStatus">set the correct open ports</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Recon Bonus:</strong> Port context matters. Keep remote exposure minimal, validate open services, and treat every listening endpoint as a potential narrative leak.</p>
+          </div>
+        </div>
+
+        <div class="puzzle-unlock-area" id="puzzleC" data-puzzle="decrypt" style="margin-top:2rem">
+          <div class="puzzle-solved-badge">&#10003; DECRYPTED</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#128274; Decrypt Slider Challenge</div>
+            <div class="puzzle-desc">Align the 3 hex dials to match the target prefix. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('decrypt')">Skip</button></div>
+            <div class="dial-target" id="dialTarget">Target: ---</div>
+            <div class="decrypt-dials" id="decryptDials">
+              <div class="dial-group"><span class="dial-label">Dial A</span><input class="dial-input" type="text" maxlength="2" id="dialA" placeholder="00"></div>
+              <div class="dial-group"><span class="dial-label">Dial B</span><input class="dial-input" type="text" maxlength="2" id="dialB" placeholder="00"></div>
+              <div class="dial-group"><span class="dial-label">Dial C</span><input class="dial-input" type="text" maxlength="2" id="dialC" placeholder="00"></div>
+            </div>
+            <button class="cb-mini-btn" style="margin-top:0.5rem" onclick="TS.checkDecrypt()">Verify</button>
+            <div class="checksum-status" id="decryptStatus">enter hex values (00-ff)</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Deep Recipe:</strong> The Telespot ecosystem pipeline: Phone &rarr; Telespot CLI (99&#9733;) &rarr; Telespotter Rust (53&#9733;) &rarr; TelespotXX Web (21&#9733;). Extensions: xTELENUMSINT (56&#9733;) + TeleSTOP (34&#9733;). Total: 263 stars across 5 tools.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
 
@@ -464,17 +600,6 @@
             <p class="lh-qt-cite">&mdash; From &ldquo;Rudimentary Treatise on the Construction of Locks,&rdquo; 1853 (John Weale, London)</p>
           </div>
 
-          <!-- ── ADDITIONAL INSIGHT: DEEPER RESEARCH ── -->
-          <h3 class="lh-subhead" aria-label="Additional Insight from Deep Research"><span>&#9670;</span> Deeper Research Synthesis</h3>
-
-          <p class="history-intro">The lock industry&rsquo;s history reads like a preview of modern security culture: secrecy first, then public testing, then stronger engineering. The shift happened because open challenges exposed weak claims and forced better designs.</p>
-
-          <ul class="lh-insight-list" aria-label="Key research insights">
-            <li><strong>Public Challenges Drove Progress:</strong> Lock contests converted marketing claims into testable results. That pressure improved designs and built public trust.</li>
-            <li><strong>Hobbs Anticipated Responsible Disclosure:</strong> His 1853 argument was clear: publishing flaws helps defenders because attackers are already studying them.</li>
-            <li><strong>Patents and Manuals Became Shared Documentation:</strong> Design details moved into public technical records, allowing review, replication, and refinement.</li>
-            <li><strong>Policy Joined Mechanics:</strong> Time locks and master-key systems showed that security is not only mechanism; it is also rules, roles, and operational discipline.</li>
-          </ul>
 
           <!-- ── EVOLUTION OF SECURITY PHASES ── -->
           <h3 class="lh-subhead" aria-label="Phases of Security Evolution"><span>&#9670;</span> The Four Phases of Security Evolution</h3>
@@ -515,48 +640,6 @@
             <li><strong>Tool Building:</strong> Specialized picks played the same role that custom testing frameworks play in modern security.</li>
             <li><strong>Dual-Use Ethics:</strong> The same skills could protect or attack, which is why norms around lawful testing and disclosure matter.</li>
           </ul>
-
-          <!-- ── KEY MANUALS TABLE ── -->
-          <h3 class="lh-subhead" aria-label="Key Historical Manuals and Treatises"><span>&#9670;</span> Key Historical Manuals &amp; Treatises</h3>
-
-          <div class="lh-analogy-table" role="table" aria-label="Comparison of key historical lock manuals">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Title</th>
-                  <th scope="col">Year</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Significance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>A Dissertation on the Construction of Locks</td>
-                  <td>1815</td>
-                  <td>Joseph Bramah</td>
-                  <td>Warned that &ldquo;all dependance on the inviolable security of Locks&hellip; is fallacious.&rdquo; First public treatise admitting lock vulnerability.</td>
-                </tr>
-                <tr>
-                  <td>On the Construction of Locks and Keys</td>
-                  <td>1850</td>
-                  <td>John Chubb</td>
-                  <td>Presented to the Institution of Civil Engineers. Described master-key systems: locks &ldquo;made in series&rdquo; with a master key for institutional access control.</td>
-                </tr>
-                <tr>
-                  <td>Rudimentary Treatise on the Construction of Locks</td>
-                  <td>1853</td>
-                  <td>A. C. Hobbs / J. Weale</td>
-                  <td>The landmark disclosure text. Argued that &ldquo;rogues already know&rdquo; and publication improves security. No &ldquo;destroy after reading&rdquo; instructions found.</td>
-                </tr>
-                <tr>
-                  <td>Locks and Builders Hardware: A Hand Book for Architects</td>
-                  <td>1904</td>
-                  <td>Henry R. Towne</td>
-                  <td>Treated locks as a systems-level specification problem for architects and institutions. Marked the shift to professional security engineering.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
           <p class="history-intro" style="margin-top:1.5rem"><em>Lock history is part of cybersecurity history.</em> We moved from secrecy, to public testing, to stronger engineering, and then to open research communities. That same story still guides how we protect systems today: learn from attacks, fix what fails, and keep improving.</p>
 
@@ -697,46 +780,6 @@ TOOLS:   Session cloning, investigation graph,
     </section>
 
     <!-- ════════════════════════════════════════════════════════════
-         GROUP: INTERACTIVE GATE
-         ════════════════════════════════════════════════════════════ -->
-    <div class="category-heading" aria-hidden="true">[ INTERACTIVE GATE ]</div>
-
-    <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
-
-    <!-- ====== TOP PRE-FLIGHT PUZZLES ====== -->
-    <section class="projects-section reveal" id="preflight-puzzles" aria-label="Preflight puzzle gate">
-      <div class="container">
-        <h2 class="section-head"><span>//</span> preflight_puzzles</h2>
-        <p class="history-intro">Complete these two quick puzzle checks before diving into the featured tool stack.</p>
-        <div class="puzzle-unlock-area" id="puzzleE" data-puzzle="unscramble">
-          <div class="puzzle-solved-badge">&#10003; WORD GRID SOLVED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Puzzle E &mdash; Word Unscramble Grid</div>
-            <div class="puzzle-desc">Click the 3 highlighted cells in the correct order to assemble a short code term. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('unscramble')">Skip</button></div>
-            <div class="checksum-grid unscramble-grid" id="unscrambleGrid"></div>
-            <div class="checksum-status" id="unscrambleStatus" aria-live="polite">selected 0/3</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Welcome, codebreaker.</p>
-          </div>
-        </div>
-        <div class="puzzle-unlock-area" id="puzzleF" data-puzzle="math">
-          <div class="puzzle-solved-badge">&#10003; MATH CHALLENGE PASSED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Puzzle F &mdash; Simple Math Challenge</div>
-            <div class="puzzle-desc">Solve the expression and pick the correct answer. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('math')">Skip</button></div>
-            <div class="math-prompt" id="mathPrompt" aria-live="polite">3 + 4 &times; 2 = ?</div>
-            <div class="pattern-options math-options" id="mathOptions"></div>
-            <div class="checksum-status" id="mathStatus" aria-live="polite">choose one result</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Access verified. Continue exploring.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════════════════════
          GROUP: THREAT INTELLIGENCE
          ════════════════════════════════════════════════════════════ -->
     <div class="category-heading" aria-hidden="true">[ THREAT INTELLIGENCE ]</div>
@@ -788,18 +831,6 @@ TOOLS:   Session cloning, investigation graph,
             <article class="term-card"><div class="term-top"><span class="term-icon ti-zeroday">0D</span><span class="term-name">zero-day</span></div><p class="term-def">A vulnerability exploited before an official patch or mitigation is available.</p><pre class="term-visual">new vuln -&gt; no patch -&gt; active exploit</pre></article>
             <article class="term-card"><div class="term-top"><span class="term-icon ti-botnet">BOT</span><span class="term-name">botnet</span></div><p class="term-def">A remotely controlled network of compromised devices used for coordinated abuse.</p><pre class="term-visual">infected nodes -&gt; c2 -&gt; synchronized action</pre></article>
           </div>
-          <div class="puzzle-unlock-area" id="puzzlePhishing" data-puzzle="phishing" style="margin-top:1.5rem">
-            <div class="puzzle-solved-badge">&#10003; PHISHING DETECTED</div>
-            <div class="puzzle-game">
-              <div class="puzzle-title">&#128274; Phishing Puzzle</div>
-              <div class="puzzle-desc">Which email is most likely a phishing attempt? <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('phishing')">Skip</button></div>
-              <div class="pattern-options phishing-options" id="phishingOptions"></div>
-              <div class="checksum-status" id="phishingStatus" aria-live="polite">select the suspicious email</div>
-            </div>
-            <div class="puzzle-content">
-              <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Blue team tip:</strong> Urgent language, mismatched domains, and generic greetings are classic phishing signals. Hover links before clicking.</p>
-            </div>
-          </div>
         </div>
       </div></div>
     </section>
@@ -827,20 +858,6 @@ TOOLS:   Session cloning, investigation graph,
             <article class="zine-card"><div class="zine-head"><span class="zine-rank">#08</span><span class="zine-cat">cybersecurity</span></div><h3 class="zine-name"><a href="https://www.darkreading.com/" target="_blank" rel="noopener noreferrer">Dark Reading</a></h3><p class="zine-desc">Enterprise security reporting with threat intelligence and operations focus.</p></article>
             <article class="zine-card"><div class="zine-head"><span class="zine-rank">#09</span><span class="zine-cat">security analysis</span></div><h3 class="zine-name"><a href="https://krebsonsecurity.com/" target="_blank" rel="noopener noreferrer">Krebs on Security</a></h3><p class="zine-desc">Investigative security journalism on breaches, fraud infrastructure, and abuse markets.</p></article>
           </div>
-          <div class="puzzle-unlock-area" id="puzzleD" data-puzzle="portscan" style="margin-top:2rem">
-            <div class="puzzle-solved-badge">&#10003; PORT MAP VERIFIED</div>
-            <div class="puzzle-game">
-              <div class="puzzle-title">&#128274; Port Scan Challenge</div>
-              <div class="puzzle-desc">Toggle the ports to match the secure target map. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('portscan')">Skip</button></div>
-              <div class="port-target" id="portTarget">Target: ---</div>
-              <div class="port-scan-row" id="portScanRow"></div>
-              <button class="cb-mini-btn" style="margin-top:0.5rem" onclick="TS.checkPortScan()">Verify</button>
-              <div class="checksum-status" id="portScanStatus">set the correct open ports</div>
-            </div>
-            <div class="puzzle-content">
-              <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Recon Bonus:</strong> Port context matters. Keep remote exposure minimal, validate open services, and treat every listening endpoint as a potential narrative leak.</p>
-            </div>
-          </div>
         </div>
       </div></div>
     </section>
@@ -864,45 +881,8 @@ TOOLS:   Session cloning, investigation graph,
           <div class="recipe-grid" id="featuredGrid">
             <div class="loading-msg"><span class="spinner"></span>Loading featured recipes&hellip;</div>
           </div>
-          <!-- Puzzle A: Terminal Checksum (opt-in) -->
-          <div class="puzzle-unlock-area" id="puzzleA" data-puzzle="checksum">
-            <div class="puzzle-solved-badge">&#10003; CHECKSUM VERIFIED</div>
-            <div class="puzzle-game">
-              <div class="puzzle-title">&#128274; Terminal Checksum Challenge</div>
-              <div class="puzzle-desc">Click the 3 highlighted characters in order to form the access code. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('checksum')">Skip</button></div>
-              <div class="checksum-grid" id="checksumGrid"></div>
-              <div class="checksum-status" id="checksumStatus">find the glowing characters</div>
-            </div>
-            <div class="puzzle-content">
-              <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Extended Note:</strong> palm-tree's original Reddit post generated 139 stars in 48 hours. The secret? A one-line pitch: "If you can't hide, overwhelm." Traffic noise as privacy armor.</p>
-            </div>
-          </div>
         </div>
       </div></div>
-    </section>
-
-    <!-- ====== RECIPE INDEX (always visible, not collapsible) ====== -->
-    <section class="projects-section reveal" aria-label="All projects" id="recipe-index-section">
-      <div class="container">
-        <h2 class="section-head"><span>//</span> recipe_index</h2>
-        <div class="search-wrap">
-          <span class="search-icon" aria-hidden="true">&#128269;</span>
-          <input type="search" class="search-input" id="repoSearch" placeholder="Search recipes by name, language, or keyword&hellip;" aria-label="Search repositories">
-        </div>
-        <div class="project-grid" id="projectGrid"><div class="loading-msg"><span class="spinner"></span>Loading recipes&hellip;</div></div>
-        <!-- Puzzle B: Pattern Match (opt-in) -->
-        <div class="puzzle-unlock-area" id="puzzleB" data-puzzle="pattern" style="margin-top:2rem">
-          <div class="puzzle-solved-badge">&#10003; PATTERN MATCHED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Pattern Match Challenge</div>
-            <div class="puzzle-desc">Which tool "overwhelms trackers with noise"? <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('pattern')">Skip</button></div>
-            <div class="pattern-options" id="patternOptions"></div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Easter Egg:</strong> The original Telespot prototype was written in a single weekend. It searched 4 engines simultaneously and correlated phone numbers across all results. 260+ stars across the ecosystem today.</p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
@@ -952,17 +932,6 @@ TOOLS:   Session cloning, investigation graph,
 
     <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
 
-    <!-- ====== TERMINAL ====== -->
-    <section class="terminal-section reveal" aria-label="Terminal">
-      <div class="container">
-        <h2 class="section-head"><span>//</span> terminal</h2>
-        <div class="terminal">
-          <div class="term-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="term-title">code-cookbook &mdash; bash</span></div>
-          <div class="term-body" id="termBody"></div>
-        </div>
-      </div>
-    </section>
-
     <div class="ascii-div" aria-hidden="true">&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;</div>
 
     <!-- ====== MODULE: INGREDIENTS ====== -->
@@ -999,25 +968,6 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
 <span class="kw">let</span> report = fuse(a?, b?, c?);
 <span class="ok">println!</span>(<span class="tx">"signals: {}"</span>, report.hits);</pre></li>
           </ol>
-          <!-- Puzzle C: Decrypt Slider (opt-in) -->
-          <div class="puzzle-unlock-area" id="puzzleC" data-puzzle="decrypt" style="margin-top:2rem">
-            <div class="puzzle-solved-badge">&#10003; DECRYPTED</div>
-            <div class="puzzle-game">
-              <div class="puzzle-title">&#128274; Decrypt Slider Challenge</div>
-              <div class="puzzle-desc">Align the 3 hex dials to match the target prefix. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('decrypt')">Skip</button></div>
-              <div class="dial-target" id="dialTarget">Target: ---</div>
-              <div class="decrypt-dials" id="decryptDials">
-                <div class="dial-group"><span class="dial-label">Dial A</span><input class="dial-input" type="text" maxlength="2" id="dialA" placeholder="00"></div>
-                <div class="dial-group"><span class="dial-label">Dial B</span><input class="dial-input" type="text" maxlength="2" id="dialB" placeholder="00"></div>
-                <div class="dial-group"><span class="dial-label">Dial C</span><input class="dial-input" type="text" maxlength="2" id="dialC" placeholder="00"></div>
-              </div>
-              <button class="cb-mini-btn" style="margin-top:0.5rem" onclick="TS.checkDecrypt()">Verify</button>
-              <div class="checksum-status" id="decryptStatus">enter hex values (00-ff)</div>
-            </div>
-            <div class="puzzle-content">
-              <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Deep Recipe:</strong> The Telespot ecosystem pipeline: Phone &rarr; Telespot CLI (99&#9733;) &rarr; Telespotter Rust (53&#9733;) &rarr; TelespotXX Web (21&#9733;). Extensions: xTELENUMSINT (56&#9733;) + TeleSTOP (34&#9733;). Total: 263 stars across 5 tools.</p>
-            </div>
-          </div>
         </div>
       </div></div>
     </section>
@@ -1271,6 +1221,8 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
     <p class="foot-main">Code Cookbook by <a href="https://github.com/thumpersecure" target="_blank" rel="noopener noreferrer">THUMPERSECURE</a> &mdash; a living blend of OSINT workflows, privacy tooling, and hacker-culture archives.</p>
     <p class="foot-sub">Built from <a href="data/site_snapshot.json">snapshot data</a> and curated references. Explore <a href="#ingredients">ingredients</a>, <a href="#quotes">quotes</a>, <a href="#glossary">glossary</a>, and <a href="#zines">zines</a>.</p>
   </footer>
+
+  <button type="button" id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top">Back to top &#9650;</button>
 
 </div>
 
