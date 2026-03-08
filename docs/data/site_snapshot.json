@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-03-07T16:03:00.768Z",
+  "last_updated_utc": "2026-03-08T01:14:50.007Z",
   "stats": {
-    "tools_count": 13,
-    "stars_total": 552,
+    "tools_count": 14,
+    "stars_total": 553,
     "featured_count": 4,
     "followers": 51
   },
@@ -187,6 +187,17 @@
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/LOVE-BOMB/",
       "html_url": "https://github.com/thumpersecure/LOVE-BOMB",
+      "featured": false
+    },
+    {
+      "name": "quevidkit",
+      "description": "📽️quevidkit is a tool to detect if a video has been altered. ",
+      "topics": [],
+      "stars": 1,
+      "last_updated": "2026-03-08T00:50:14Z",
+      "language": "Python",
+      "homepage": "https://thumpersecure.github.io/quevidkit/",
+      "html_url": "https://github.com/thumpersecure/quevidkit",
       "featured": false
     },
     {
