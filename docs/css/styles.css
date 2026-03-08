@@ -88,6 +88,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .page-wrap{position:relative;z-index:2;animation:fadeInUp 0.8s ease-out}
 .container{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+.uniform-section-spacing>*+*{margin-top:2rem}
+.uniform-section-spacing>.ts-module{margin-bottom:0}
+.uniform-section-spacing>.ascii-div{padding:0}
+.uniform-section-spacing>.category-heading{padding:0}
 
 /* ====== GLASS PANEL ====== */
 .glass{background:var(--panel);border:2px solid rgba(24,220,255,0.2);border-radius:16px;
@@ -427,6 +431,10 @@ footer p{max-width:980px;margin:0.25rem auto;line-height:1.65}
 footer .foot-main{color:var(--text)}
 footer .foot-sub{font-size:0.69rem;color:var(--muted)}
 footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:underline}
+.back-to-top-btn{position:fixed;left:clamp(0.8rem,2.5vw,1.4rem);bottom:clamp(0.8rem,2.5vw,1.4rem);z-index:10950;border:1px solid rgba(0,255,204,0.35);background:rgba(2,9,18,0.92);color:var(--cyan);font-family:var(--mono);font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 0.75rem;border-radius:999px;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,border-color .22s ease,box-shadow .22s ease}
+.back-to-top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-to-top-btn:hover{border-color:var(--tron);box-shadow:0 0 12px rgba(24,220,255,0.18)}
+.back-to-top-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 
 /* ====== EFFECTS TOASTS (Phase 6) ====== */
 .fx-toast-container{position:fixed;bottom:clamp(0.8rem,2.5vw,1.4rem);right:clamp(0.8rem,2.5vw,1.4rem);z-index:11000;display:flex;flex-direction:column-reverse;gap:0.5rem;pointer-events:none;max-width:min(400px,calc(100vw - 2rem))}

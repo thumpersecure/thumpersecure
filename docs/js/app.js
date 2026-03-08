@@ -299,6 +299,20 @@ if(collapseAllBtn)collapseAllBtn.addEventListener('click',function(){
   setModuleCtrlStatus('All modules collapsed');
 });
 
+/* ====== BACK TO TOP ====== */
+var backToTopBtn=document.getElementById('backToTopBtn');
+function toggleBackToTop(){
+  if(!backToTopBtn)return;
+  backToTopBtn.classList.toggle('show',window.scrollY>420);
+}
+if(backToTopBtn){
+  window.addEventListener('scroll',toggleBackToTop,{passive:true});
+  backToTopBtn.addEventListener('click',function(){
+    window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'});
+  });
+  toggleBackToTop();
+}
+
 /* ====== MUSIC CONTROLLER (Phase 5) ====== */
 var TRACK_CONFIG=[
   {local:'Tron-Website-Music-Spoken-Words.m4a',query:'TRON 1982 End Titles Wendy Carlos',label:'Tron — Spoken Words'},
