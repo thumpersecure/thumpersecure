@@ -18,6 +18,20 @@ const USERNAME = 'thumpersecure';
 const OUTPUT_PATH = path.resolve(__dirname, '..', 'docs', 'data', 'site_snapshot.json');
 const EXCLUDE_REPOS = new Set(['thumpersecure', 'pineapple-picopager']);
 const FEATURED_REPOS = new Set(['palm-tree', 'Telespot', 'Spin', 'opt-out-manual-2026']);
+/** Extra repos to include even if not yet on GitHub (e.g. new/upcoming projects). */
+const EXTRA_REPOS = [
+  {
+    name: 'quevidkit',
+    description: 'Queue-based video toolkit for OSINT and investigative workflows.',
+    topics: ['osint', 'video', 'investigation'],
+    stars: 0,
+    last_updated: new Date().toISOString(),
+    language: null,
+    homepage: null,
+    html_url: 'https://github.com/thumpersecure/quevidkit',
+    featured: false,
+  },
+];
 
 function httpsGet(url) {
   return new Promise((resolve, reject) => {
@@ -83,7 +97,7 @@ async function main() {
   const [rawRepos, user] = await Promise.all([fetchAllRepos(), fetchUser()]);
 
   // Filter: no forks, no private, not in exclusion list
-  const repos = rawRepos
+  let repos = rawRepos
     .filter((r) => !r.fork && !r.private && !EXCLUDE_REPOS.has(r.name))
     .map((r) => ({
       name: r.name,
@@ -96,6 +110,15 @@ async function main() {
       html_url: r.html_url,
       featured: FEATURED_REPOS.has(r.name),
     }));
+
+  // Merge extra repos (e.g. new/upcoming) if not already present
+  const names = new Set(repos.map((r) => r.name));
+  for (const extra of EXTRA_REPOS) {
+    if (!names.has(extra.name)) {
+      repos.push(extra);
+      names.add(extra.name);
+    }
+  }
 
   // Deterministic sort: stars desc, then name asc
   repos.sort((a, b) => {
