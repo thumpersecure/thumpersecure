@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-03-08T06:28:42.129Z",
+  "last_updated_utc": "2026-03-08T15:45:54.150Z",
   "stats": {
     "tools_count": 14,
     "stars_total": 554,
@@ -191,10 +191,10 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️quevidkit is a tool to detect if a video has been altered. ",
+      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 1,
-      "last_updated": "2026-03-08T00:50:14Z",
+      "last_updated": "2026-03-08T13:42:36Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/quevidkit/",
       "html_url": "https://github.com/thumpersecure/quevidkit",
