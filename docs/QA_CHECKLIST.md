@@ -18,7 +18,7 @@
 - [ ] Offline: page still renders from embedded minimal fallback
 
 ## Section Order & Navigation
-- [ ] Modules appear in category order: History → Gate → Intel → Tools → Hardware
+- [ ] Modules appear in category order: History → Gate → Intel → Tools → Wisdom
 - [ ] Category group headings visible between groups
 - [ ] `#recipes` anchor link from hero navigates to correct section
 - [ ] Footer anchor links (#ingredients, #quotes, #glossary, #zines) work
@@ -35,17 +35,17 @@
 - [ ] Missing audio file shows helpful message (not broken UI)
 
 ## Collapsible Modules
-- [ ] All 13 ts-module sections are collapsible with animation
+- [ ] All ts-module sections are collapsible with animation
 - [ ] Each shows 1-2 line summary when collapsed
 - [ ] Expand All / Collapse All buttons work
 - [ ] Module state toggles via Enter/Space on keyboard
 - [ ] Animations respect prefers-reduced-motion
 
-## AI Defense Effects
-- [ ] Toasts appear every 15-45 seconds when enabled
+## Display Mode & Ambient Events
+- [ ] Toasts appear every 15-45 seconds in Dark mode
 - [ ] All toasts labeled [SIMULATION] or [DEMO]
 - [ ] Toasts are non-blocking and dismissible
-- [ ] Effects On/Off toggle works and persists
+- [ ] Mode toggle switches Dark/Reading and persists
 - [ ] Max 2 toasts visible at once
 - [ ] Scroll-triggered toasts fire for each section once (including field intel)
 
@@ -64,7 +64,7 @@
 
 ## Hacker Field Intel Pager
 - [ ] Module expands/collapses like other ts-modules
-- [ ] All 24 pager entries render with color-coded category bars
+- [ ] All 29 pager entries render with color-coded category bars
 - [ ] Pager beacon pulses green
 - [ ] Tron trace animation runs across pager header
 - [ ] Pager body scrolls with styled scrollbar
@@ -94,7 +94,6 @@
 - [ ] Music panel toggle shows/hides correctly
 - [ ] NFO blocks wrap properly (no clipped text)
 - [ ] Lock history tables scroll horizontally
-- [ ] Hardware timeline scrolls horizontally
 - [ ] Settings panel fits viewport
 - [ ] Boot screen readable on small screens
 - [ ] Pager entries readable with smaller padding/font

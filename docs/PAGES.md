@@ -48,7 +48,7 @@ Modules are grouped into five narrative categories:
 | **Interactive Gate** | preflight_puzzles |
 | **Threat Intelligence** | latest_cves, threat_glossary, zines |
 | **Tools & Recipes** | featured_recipes, recipe_index, osint_tools, terminal, ingredients |
-| **Wisdom & Hardware** | legendary_quotes, hardware_history |
+| **Wisdom** | legendary_quotes |
 
 ## How to set it
 
