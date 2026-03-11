@@ -26,11 +26,6 @@
 
 <br />
 
-[Quick Start](#quickstart) •
-[Flagship Projects](#flagship-projects) •
-[Full Arsenal](#full-arsenal-index) •
-[Live Hub](https://thumpersecure.github.io/thumpersecure/)
-
 </div>
 
 ## 👤 Who It's For
