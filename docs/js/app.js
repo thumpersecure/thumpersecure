@@ -540,7 +540,7 @@ var FX_SCROLL_EVENTS=[
   {key:'quotes',selector:'#mod-quotes',icon:'&#128172;',label:'SIMULATION',msg:'Legend quote wall energized \u2014 rotating hot feed active.'},
   {key:'glossary',selector:'#mod-glossary',icon:'&#128295;',label:'DEMO',msg:'Threat glossary parsed \u2014 defensive vocabulary armed.'},
   {key:'misc',selector:'#mod-misc',icon:'&#128240;',label:'SIMULATION',msg:'Misc resources loaded \u2014 newsletter relay active.'},
-  {key:'fieldintel',selector:'#mod-fieldintel',icon:'&#128225;',label:'SIMULATION',msg:'Field intel pager online \u2014 29 signals decoded.'},
+  {key:'fieldtools',selector:'#mod-fieldtools',icon:'&#128225;',label:'SIMULATION',msg:'Field tools pager online \u2014 29 signals decoded.'},
   {key:'darkweb',selector:'#mod-darkweb',icon:'&#128274;',label:'SIMULATION',msg:'Onion routing active \u2014 dark web module decrypted.'},
   {key:'investigators',selector:'#mod-investigators',icon:'&#128269;',label:'DEMO',msg:'Investigator timeline loaded \u2014 mail carriers to OSINT.'}
 ];
