@@ -535,12 +535,11 @@ var FX_EVENTS=[
 var FX_SCROLL_EVENTS=[
   {key:'cinema',selector:'#mod-cinema',icon:'&#127910;',label:'DEMO',msg:'Cinema grid entered \u2014 wireframe channels are live.'},
   {key:'archives',selector:'#mod-archives',icon:'&#128190;',label:'SIMULATION',msg:'Archive lane opened \u2014 BBS artifacts loaded.'},
-  {key:'recipes',selector:'#mod-recipes',icon:'&#127860;',label:'DEMO',msg:'Featured recipes unlocked \u2014 signal quality high.'},
   {key:'index',selector:'#recipe-index-section',icon:'&#128218;',label:'SIMULATION',msg:'Recipe index sweep complete \u2014 pattern map updated.'},
   {key:'ingredients',selector:'#mod-ingredients',icon:'&#128197;',label:'DEMO',msg:'Timeline grid synced \u2014 legacy-to-modern bridge stable.'},
   {key:'quotes',selector:'#mod-quotes',icon:'&#128172;',label:'SIMULATION',msg:'Legend quote wall energized \u2014 rotating hot feed active.'},
   {key:'glossary',selector:'#mod-glossary',icon:'&#128295;',label:'DEMO',msg:'Threat glossary parsed \u2014 defensive vocabulary armed.'},
-  {key:'zines',selector:'#mod-zines',icon:'&#128240;',label:'SIMULATION',msg:'Deep-scroll achieved \u2014 zine relay now broadcasting.'},
+  {key:'misc',selector:'#mod-misc',icon:'&#128240;',label:'SIMULATION',msg:'Misc resources loaded \u2014 newsletter relay active.'},
   {key:'fieldintel',selector:'#mod-fieldintel',icon:'&#128225;',label:'SIMULATION',msg:'Field intel pager online \u2014 29 signals decoded.'},
   {key:'darkweb',selector:'#mod-darkweb',icon:'&#128274;',label:'SIMULATION',msg:'Onion routing active \u2014 dark web module decrypted.'},
   {key:'investigators',selector:'#mod-investigators',icon:'&#128269;',label:'DEMO',msg:'Investigator timeline loaded \u2014 mail carriers to OSINT.'}
@@ -1474,6 +1473,88 @@ function cbInitBottomPuzzle(){
   if(!s||!('IntersectionObserver' in window))return;
   var ob=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){ob.disconnect();setTimeout(cbInitBottomPuzzle,140)}})},{threshold:0.12});
   ob.observe(s);
+})();
+
+/* ====== CVE MODAL SYSTEM ====== */
+(function(){
+  var overlay=document.createElement('div');
+  overlay.className='cve-modal-overlay';
+  overlay.setAttribute('role','dialog');
+  overlay.setAttribute('aria-modal','true');
+  overlay.setAttribute('aria-label','CVE detail modal');
+  var modal=document.createElement('div');
+  modal.className='cve-modal';
+  var closeBtn=document.createElement('button');
+  closeBtn.className='cve-modal-close';
+  closeBtn.setAttribute('aria-label','Close');
+  closeBtn.innerHTML='&times;';
+  var title=document.createElement('div');
+  title.className='cve-modal-title';
+  var body=document.createElement('div');
+  body.className='cve-modal-body';
+  modal.appendChild(closeBtn);
+  modal.appendChild(title);
+  modal.appendChild(body);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  var lastFocus=null;
+
+  function openCveModal(cveId,detail){
+    lastFocus=document.activeElement;
+    title.textContent=cveId+' — Plain-Language Explanation';
+    body.textContent=detail;
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){closeBtn.focus()},30);
+  }
+
+  function closeCveModal(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    if(lastFocus&&typeof lastFocus.focus==='function')lastFocus.focus();
+  }
+
+  closeBtn.addEventListener('click',closeCveModal);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeCveModal()});
+  document.addEventListener('keydown',function(e){
+    if(!overlay.classList.contains('open'))return;
+    if(e.key==='Escape'){closeCveModal();return}
+    if(e.key!=='Tab')return;
+    var focusables=[].slice.call(modal.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])')).filter(function(el){return el.offsetParent!==null});
+    if(!focusables.length)return;
+    var first=focusables[0],last=focusables[focusables.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+  });
+
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('.cve-more-btn');
+    if(!btn)return;
+    var card=btn.closest('.cve-card');
+    var cveIdEl=card?card.querySelector('.cve-id'):null;
+    var cveId=cveIdEl?cveIdEl.textContent:'CVE Details';
+    var detail=btn.getAttribute('data-cve-detail')||'No additional information available.';
+    btn.setAttribute('aria-expanded','true');
+    openCveModal(cveId,detail);
+  });
+})();
+
+/* ====== UPDATE FX SCROLL EVENTS FOR RENAMED MODULES ====== */
+(function(){
+  var newKeys=[
+    {key:'recent_case_files',selector:'#mod-recent-case-files',icon:'&#128194;',label:'DEMO',msg:'Recent case files opened — milestone archive loaded.'},
+    {key:'misc',selector:'#mod-misc',icon:'&#128240;',label:'SIMULATION',msg:'Misc resources loaded — newsletter relay active.'}
+  ];
+  if(typeof FX_SCROLL_EVENTS!=='undefined'){
+    newKeys.forEach(function(evt){
+      var el=document.querySelector(evt.selector);
+      if(!el||!fxScrollObserver)return;
+      fxScrollMap[evt.key]=evt;
+      el.setAttribute('data-fx-scroll-key',evt.key);
+      fxScrollObserver.observe(el);
+    });
+  }
 })();
 
 })();
