@@ -16,6 +16,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 100% 100% at 50% 0%,transparent 0%,rgba(0,0,0,0.03) 100%);opacity:0.8}
 
 /* ====== BACKGROUND LAYERS ====== */
 #particleCanvas,#rainCanvas,#tronGridCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
@@ -62,6 +63,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .circuit-divider{position:relative;width:100%;max-width:800px;margin:0 auto;height:40px;pointer-events:none;z-index:1}
 .circuit-divider svg{width:100%;height:100%;opacity:0.7}
 
+/* ====== DOTTED SECTION DIVIDER ====== */
+.dotted-divider{width:100%;max-width:720px;margin:1.5rem auto;height:1px;border:none;border-top:1px dotted rgba(24,220,255,0.25);opacity:0.8;pointer-events:none}
+
 /* ====== FLOATING DATA ORBS ====== */
 .data-orbs{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
 .orb{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--tron),transparent);box-shadow:0 0 20px var(--tron),0 0 40px rgba(24,220,255,0.3);opacity:0.15}
@@ -81,6 +85,35 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
   animation:holographicShift 8s ease-in-out infinite}
 @keyframes holographicShift{0%,100%{opacity:0.6}50%{opacity:1}}
 
+/* ====== REQUEST ACCESS (Hollywood intro) ====== */
+.request-access-screen{position:fixed;inset:0;z-index:10001;background:#000;display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.6s ease}
+.request-access-screen.done{opacity:0;pointer-events:none}
+.ra-content{position:relative;text-align:center;padding:2rem}
+.ra-scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px);pointer-events:none;opacity:0.5}
+.ra-glow-orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.2;animation:raOrbPulse 3s ease-in-out infinite}
+.ra-glow-1{width:300px;height:300px;background:var(--tron);top:10%;left:20%}
+.ra-glow-2{width:200px;height:200px;background:var(--magenta);bottom:20%;right:15%;animation-delay:1s}
+@keyframes raOrbPulse{0%,100%{opacity:0.15;transform:scale(1)}50%{opacity:0.3;transform:scale(1.1)}}
+.ra-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.4em;color:var(--muted);display:block;margin-bottom:0.5rem}
+.ra-title{font-family:var(--mono);font-size:clamp(1.2rem,4vw,2rem);font-weight:700;color:var(--cyan);letter-spacing:0.15em;
+  text-shadow:0 0 20px var(--cyan),0 0 40px rgba(24,220,255,0.5);margin-bottom:0.8rem}
+.ra-sub{font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.2em;margin-bottom:1.5rem}
+.ra-btn{font-family:var(--mono);font-size:0.9rem;font-weight:700;letter-spacing:0.2em;padding:1rem 2.5rem;
+  background:linear-gradient(135deg,var(--tron),var(--cyan));color:#000;border:none;border-radius:4px;
+  cursor:pointer;transition:all 0.3s;box-shadow:0 0 30px rgba(24,220,255,0.5),0 0 60px rgba(24,220,255,0.2)}
+.ra-btn:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(24,220,255,0.7),0 0 80px rgba(24,220,255,0.3)}
+.ra-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.ra-btn.hidden{opacity:0;pointer-events:none;transform:scale(0.8);transition:opacity 0.4s,transform 0.4s}
+.ra-analyze{display:none;position:absolute;bottom:25%;left:50%;transform:translateX(-50%);width:200px}
+.ra-analyze.show{display:block;animation:raAnalyzeIn 0.5s ease}
+.ra-analyze-bar{height:2px;background:linear-gradient(90deg,transparent,var(--tron),var(--cyan),transparent);
+  animation:raAnalyzeBar 2s ease-in-out}
+@keyframes raAnalyzeBar{0%{width:0;opacity:0}20%{opacity:1}80%{width:100%;opacity:1}100%{width:100%;opacity:0}}
+.ra-analyze-text{display:block;font-family:var(--mono);font-size:0.55rem;letter-spacing:0.5em;color:var(--tron);margin-top:0.5rem;animation:raAnalyzeBlink 0.8s ease-in-out infinite}
+@keyframes raAnalyzeBlink{0%,100%{opacity:0.6}50%{opacity:1}}
+@keyframes raAnalyzeIn{from{opacity:0}to{opacity:1}}
+
 /* ====== BOOT SCREEN ====== */
 .boot{position:fixed;inset:0;z-index:10000;background:#000;padding:clamp(1rem,4vw,2.5rem);
   font-family:var(--mono);font-size:clamp(0.65rem,1.1vw,0.82rem);color:var(--green);overflow-y:auto;
@@ -91,6 +124,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 /* ====== LAYOUT ====== */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .page-wrap{position:relative;z-index:2;animation:fadeInUp 0.8s ease-out}
+.main-content{max-width:1120px;margin:0 auto}
 .container{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
 .uniform-section-spacing>*+*{margin-top:2rem}
 .uniform-section-spacing>.ts-module{margin-bottom:0}
@@ -122,8 +156,20 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 @keyframes g2{0%{clip-path:inset(85% 0 0 0);transform:translate(0)}10%{clip-path:inset(60% 0 15% 0);transform:translate(2px,-1px)}20%{clip-path:inset(20% 0 50% 0);transform:translate(-2px,1px)}30%{clip-path:inset(70% 0 10% 0);transform:translate(0)}40%{clip-path:inset(10% 0 60% 0);transform:translate(1px,2px)}50%{clip-path:inset(40% 0 30% 0);transform:translate(-2px)}60%{clip-path:inset(5% 0 70% 0);transform:translate(1px)}70%{clip-path:inset(80% 0 5% 0);transform:translate(0)}80%{clip-path:inset(30% 0 40% 0);transform:translate(-3px,2px)}90%{clip-path:inset(0 0 80% 0);transform:translate(2px,-1px)}100%{clip-path:inset(85% 0 0 0);transform:translate(0)}}
 
 /* ====== HERO ====== */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:7.6rem 0 3rem}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:7.6rem 0 3rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0.15}
+.hero[data-hero-theme="tron-grid"]::before{background:linear-gradient(90deg,transparent 0%,rgba(24,220,255,0.2) 50%,transparent 100%);animation:heroTronSweep 4s ease-in-out infinite}
+.hero[data-hero-theme="matrix-rain"]::before{background:repeating-linear-gradient(180deg,transparent 0,transparent 8px,rgba(0,255,65,0.08) 8px,rgba(0,255,65,0.08) 10px);animation:heroMatrixShift 3s linear infinite}
+.hero[data-hero-theme="hologram-scan"]::before{background:linear-gradient(180deg,transparent 0%,rgba(255,0,170,0.12) 30%,rgba(24,220,255,0.12) 70%,transparent 100%);animation:heroHoloScan 5s ease-in-out infinite}
+.hero[data-hero-theme="neon-pulse"]::before{background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(24,220,255,0.08),transparent 70%);animation:heroNeonPulse 3s ease-in-out infinite}
+@keyframes heroTronSweep{0%,100%{opacity:0.1;transform:translateX(-20%)}50%{opacity:0.25;transform:translateX(20%)}}
+@keyframes heroMatrixShift{0%{background-position:0 0}100%{background-position:0 20px}}
+@keyframes heroHoloScan{0%,100%{opacity:0.1}50%{opacity:0.2}}
+@keyframes heroNeonPulse{0%,100%{opacity:0.12;transform:scale(1)}50%{opacity:0.22;transform:scale(1.05)}}
 .hero-inner{text-align:center;padding:clamp(2.2rem,5vw,3.8rem);max-width:860px;width:100%}
+.hero-holographic{position:relative;box-shadow:0 0 80px rgba(24,220,255,0.15),0 0 120px rgba(255,0,170,0.08),inset 0 0 60px rgba(24,220,255,0.03)}
+.hero-holographic::after{content:'';position:absolute;inset:-2px;border-radius:18px;padding:2px;background:linear-gradient(135deg,rgba(24,220,255,0.3),rgba(255,0,170,0.2),rgba(24,220,255,0.3));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:0.6;animation:heroBorderShift 6s ease-in-out infinite}
+@keyframes heroBorderShift{0%,100%{opacity:0.5}50%{opacity:0.8}}
 .eyebrow{font-family:var(--mono);font-size:clamp(0.6rem,1.1vw,0.75rem);letter-spacing:0.4em;text-transform:uppercase;color:var(--magenta);margin-bottom:0.8rem}
 .hero-sub{color:var(--muted);font-family:var(--mono);font-size:clamp(0.8rem,1.4vw,0.95rem);margin-top:1rem}
 .typer-wrap{font-family:var(--mono);font-size:clamp(0.8rem,1.4vw,1rem);color:var(--green);height:1.8em;margin:1.5rem 0 2rem;display:flex;align-items:center;justify-content:center}
@@ -529,6 +575,36 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .osint-link{--link-border:var(--tron);--link-glow:rgba(24,220,255,0.28);display:inline-flex;align-items:center;justify-content:center;gap:0.3rem;margin-top:0.25rem;align-self:flex-start;text-decoration:none;font-family:var(--mono);font-size:0.67rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--link-border);border-radius:999px;padding:0.43rem 0.72rem;background:rgba(2,10,20,0.8);transition:border-color .24s,box-shadow .24s,color .24s,transform .2s}
 .osint-link:hover,.osint-link:focus-visible{--link-border:var(--orange);--link-glow:rgba(255,107,26,0.35);color:#ffd7bf;box-shadow:0 0 16px var(--link-glow),0 0 28px rgba(255,107,26,0.2);transform:translateY(-1px)}
 .osint-link:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+/* ====== PACKET OVER THE WIRE (Tron/Matrix graphical) ====== */
+.packet-over-wire-section{padding:3rem 0 4rem}
+.packet-intro{max-width:780px;margin:0 auto 1.5rem;font-size:0.9rem;color:var(--text);line-height:1.75}
+.packet-grid-visual{position:relative;max-width:920px;margin:0 auto 2rem;border-radius:12px;overflow:hidden;min-height:320px}
+#packetGridCanvas{display:block;width:100%;height:320px;background:linear-gradient(180deg,#020208 0%,#050512 50%,#020208 100%)}
+.packet-overlay-info{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem}
+.packet-node{font-family:var(--mono);font-size:0.72rem;font-weight:700;letter-spacing:0.2em;color:var(--tron);text-shadow:0 0 12px var(--tron),0 0 24px rgba(24,220,255,0.5);animation:packetNodePulse 2s ease-in-out infinite}
+.packet-src{align-self:flex-start}
+.packet-dst{align-self:flex-end}
+.packet-node::after{content:attr(data-label);display:block;font-size:0.5rem;letter-spacing:0.15em;color:var(--muted);margin-top:0.2rem}
+@keyframes packetNodePulse{0%,100%{opacity:0.85}50%{opacity:1;text-shadow:0 0 16px var(--tron),0 0 32px rgba(24,220,255,0.6)}}
+.packet-flow-label{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:0.58rem;letter-spacing:0.25em;color:var(--muted);opacity:0.8}
+.packet-forensic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:920px;margin:0 auto}
+@media(max-width:768px){.packet-forensic-grid{grid-template-columns:1fr}}
+.packet-forensic-card{padding:1.2rem 1.3rem;border-radius:12px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.packet-forensic-card:hover{border-color:rgba(24,220,255,0.5);box-shadow:0 0 35px rgba(24,220,255,0.15);transform:translateY(-2px)}
+.pf-icon{font-size:1.8rem;margin-bottom:0.5rem;filter:drop-shadow(0 0 8px rgba(24,220,255,0.4))}
+.pf-title{font-family:var(--mono);font-size:0.88rem;color:var(--cyan);letter-spacing:0.06em;margin-bottom:0.6rem;text-transform:uppercase}
+.pf-desc{font-size:0.82rem;color:var(--text);line-height:1.6;margin-bottom:0.8rem}
+.pf-desc code{background:rgba(0,255,204,0.08);padding:0.1rem 0.35rem;border-radius:4px;font-size:0.75rem;color:var(--tron)}
+.pf-code{padding:0.7rem 0.9rem;border-radius:8px;background:#05050b;border:1px solid rgba(24,220,255,0.15);font-family:var(--mono);font-size:0.68rem;color:var(--green);line-height:1.5;overflow-x:auto}
+.stego-demo{margin-top:0.8rem}
+.stego-canvas-wrap{position:relative;display:inline-block;border:1px solid rgba(24,220,255,0.2);border-radius:8px;overflow:hidden;box-shadow:0 0 20px rgba(24,220,255,0.08)}
+#stegoCanvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+.stego-hint{display:block;font-family:var(--mono);font-size:0.55rem;letter-spacing:0.12em;color:var(--muted);text-align:center;padding:0.4rem;background:rgba(0,0,0,0.4)}
+
+/* ====== CIRCUIT TRACE PUZZLE ====== */
+.circuit-puzzle-wrap{max-width:360px;margin:0 auto 1rem;border-radius:12px;overflow:hidden;padding:0.5rem}
+#circuitPuzzleCanvas{display:block;width:100%;height:auto;max-height:280px;cursor:pointer;border-radius:8px}
 
 /* ====== SETTINGS PANEL (Phase 9) ====== */
 .settings-overlay{position:fixed;inset:0;z-index:15000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}

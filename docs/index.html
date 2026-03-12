@@ -41,6 +41,25 @@
 </head>
 <body>
 
+<!-- ====== REQUEST ACCESS (Hollywood intro - always on refresh) ====== -->
+<div id="requestAccessScreen" class="request-access-screen" role="dialog" aria-modal="true" aria-label="Request access">
+  <div class="ra-content">
+    <div class="ra-scanlines" aria-hidden="true"></div>
+    <div class="ra-glow-orb ra-glow-1" aria-hidden="true"></div>
+    <div class="ra-glow-orb ra-glow-2" aria-hidden="true"></div>
+    <div class="ra-message">
+      <span class="ra-label">SECURE ACCESS PROTOCOL</span>
+      <h2 class="ra-title">IDENTITY VERIFICATION REQUIRED</h2>
+      <p class="ra-sub">Analyzing connection parameters&hellip;</p>
+      <button type="button" id="requestAccessBtn" class="ra-btn">REQUEST ACCESS</button>
+    </div>
+    <div class="ra-analyze" id="raAnalyze" aria-hidden="true">
+      <div class="ra-analyze-bar"></div>
+      <span class="ra-analyze-text">ANALYZING</span>
+    </div>
+  </div>
+</div>
+
 <!-- ====== BOOT SCREEN ====== -->
 <div id="bootScreen" class="boot" role="status" aria-live="polite"><div id="bootLog"></div></div>
 
@@ -156,9 +175,9 @@
     </div>
   </div>
 
-  <!-- ====== HERO ====== -->
-  <header class="hero" role="banner">
-    <div class="hero-inner glass">
+  <!-- ====== HERO (Tron/holographic - varies on refresh) ====== -->
+  <header class="hero" role="banner" id="heroSection">
+    <div class="hero-inner glass hero-holographic">
       <p class="eyebrow">THUMPERSECURE</p>
       <h1 class="glitch" data-text="CODE COOKBOOK">CODE COOKBOOK</h1>
       <p class="hero-sub">// OSINT &amp; SEO SPECIALIST</p>
@@ -331,7 +350,42 @@
       </div>
     </section>
 
-
+    <!-- ====== PACKET OVER THE WIRE (Tron/Matrix graphical section) ====== -->
+    <section class="packet-over-wire-section reveal" id="packet-over-wire" aria-label="Packet over the wire" data-fx-scroll-key="packetwire">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> packet_over_the_wire</h2>
+        <p class="packet-intro">Data travels the grid like light cycles — formed, sent, received. Below: a Tron-style visualization of how packets move across the network.</p>
+        <div class="packet-grid-visual glass">
+          <canvas id="packetGridCanvas" aria-hidden="true"></canvas>
+          <div class="packet-overlay-info">
+            <div class="packet-node packet-src" data-label="SOURCE">SRC</div>
+            <div class="packet-node packet-dst" data-label="DEST">DST</div>
+            <div class="packet-flow-label">ETHERNET → IP → TCP → PAYLOAD</div>
+          </div>
+        </div>
+        <div class="packet-forensic-grid">
+          <div class="packet-forensic-card glass">
+            <div class="pf-icon">&#128268;</div>
+            <h3 class="pf-title">Wireshark &amp; Deep Packet Inspection</h3>
+            <p class="pf-desc">Wireshark captures traffic on the wire. Display filters (<code>tcp.port==443</code>, <code>http</code>, <code>ip.addr==x.x.x.x</code>) isolate flows. <strong>Deep Packet Inspection (DPI)</strong> examines payloads beyond headers — used for filtering, blocking, or surveillance. Right-click → Follow → TCP stream reconstructs sessions.</p>
+            <pre class="pf-code">$ wireshark -r capture.pcap -Y "http.request"
+Frame 42: 74 bytes on wire
+GET /admin HTTP/1.1</pre>
+          </div>
+          <div class="packet-forensic-card glass">
+            <div class="pf-icon">&#128247;</div>
+            <h3 class="pf-title">Steganography</h3>
+            <p class="pf-desc">Hiding data inside images, audio, or video. LSB (least significant bit) encoding alters pixel values imperceptibly. Tools: Steghide, OpenStego, Stegsolve. Example below: a seemingly normal image can carry a hidden message.</p>
+            <div class="stego-demo">
+              <div class="stego-canvas-wrap">
+                <canvas id="stegoCanvas" width="200" height="120" aria-label="Steganography demo: image with hidden data"></canvas>
+                <span class="stego-hint">pixels encode bits → decode to reveal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="circuit-divider" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 40" preserveAspectRatio="xMidYMid slice">
@@ -413,6 +467,7 @@
         </div>
       </div></div>
     </section>
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: HISTORY OF INVESTIGATORS ====== -->
     <section class="ts-module reveal" aria-label="History of investigators" id="mod-investigators">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-investigators-body">
@@ -508,11 +563,7 @@
         </div>
       </div></div>
     </section>
-
-
-
-
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: ARCHIVES ====== -->
     <section class="ts-module reveal" aria-label="The Archives" id="mod-archives">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-archives-body">
@@ -572,9 +623,7 @@
         </div>
       </div></div>
     </section>
-
-
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: CINEMA ====== -->
     <section class="ts-module reveal" aria-label="Cinema references" id="mod-cinema">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-cinema-body">
@@ -628,9 +677,7 @@
         </div>
       </div></div>
     </section>
-
-
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: RECENT CASE FILES ====== -->
     <section class="ts-module reveal" aria-label="Recent case files" id="mod-recent-case-files">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-recent-case-files-body">
@@ -680,7 +727,7 @@
         </div>
       </div></div>
     </section>
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: LATEST CVES ====== -->
     <section class="ts-module reveal" aria-label="Latest CVEs" id="mod-cves">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-cves-body">
@@ -704,9 +751,7 @@
         </div>
       </div></div>
     </section>
-
-
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: GLOSSARY ====== -->
     <section class="ts-module reveal" id="mod-glossary" aria-label="Cyber glossary">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-glossary-body">
@@ -796,7 +841,7 @@
         </div>
       </div></div>
     </section>
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: OSINT TOOLS ====== -->
     <section class="ts-module reveal" aria-label="OSINT tools" id="mod-osint">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-osint-body">
@@ -820,8 +865,7 @@
         </div>
       </div></div>
     </section>
-
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: DARK WEB ====== -->
     <section class="ts-module reveal" aria-label="Dark web" id="mod-darkweb">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-darkweb-body">
@@ -840,11 +884,7 @@
         </div>
       </div></div>
     </section>
-
-
-
-
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: INGREDIENTS ====== -->
     <section class="ts-module reveal" id="mod-ingredients" aria-label="Historical cookbook ingredients">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-ingredients-body">
@@ -882,12 +922,12 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
         </div>
       </div></div>
     </section>
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: FIELD TOOLS ====== -->
     <section class="ts-module reveal" id="mod-fieldtools" aria-label="Field tools">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-fieldtools-body">
         <h2 class="section-head"><span>//</span> field_tools</h2>
-        <p class="ts-module-summary">29 hardware, radio, OSINT, and hacker-culture tools on a WiFi Pineapple Pager screen.</p>
+        <p class="ts-module-summary">31 hardware, radio, OSINT, and forensic tools on a WiFi Pineapple Pager screen.</p>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-fieldtools-body"><div>
@@ -927,7 +967,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
             <div class="pager-header">
               <span class="pager-title">&#127820; field tools // pager</span>
               <span class="pager-beacon" aria-hidden="true"></span>
-              <span class="pager-status">29 signals &bull; live</span>
+              <span class="pager-status">31 signals &bull; live</span>
             </div>
             <div class="pager-body" role="region" aria-label="Scrollable field tool entries" tabindex="0">
 
@@ -1075,6 +1115,18 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
                 <p class="pager-desc">A curated index of Google &ldquo;dorks&rdquo; &mdash; advanced search queries that surface exposed files, login pages, directory listings, and misconfigurations. Maintained by <em>Exploit-DB</em>. The original passive reconnaissance technique, still effective after 20+ years.</p>
               </div>
 
+              <div class="pager-entry" data-cat="defensive">
+                <div class="pager-meta"><span class="pager-tag t-defensive">defensive</span><span class="pager-freq">Ethernet / Wi-Fi / pcap</span></div>
+                <div class="pager-name"><a href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer">Wireshark</a></div>
+                <p class="pager-desc">The standard packet capture and protocol analyzer. Capture live traffic or analyze .pcap files. Display filters (<code>tcp.port==443</code>, <code>http</code>, <code>dns.qry.name</code>) isolate flows. Follow TCP/HTTP stream reconstructs sessions. <strong>Deep Packet Inspection (DPI)</strong> examines payloads beyond headers — used for filtering, blocking, or forensic analysis. Essential for debugging TLS handshakes, detecting beaconing, and validating firewall rules.</p>
+              </div>
+
+              <div class="pager-entry" data-cat="defensive">
+                <div class="pager-meta"><span class="pager-tag t-defensive">defensive</span><span class="pager-freq">image / audio / LSB</span></div>
+                <div class="pager-name"><a href="https://steghide.sourceforge.net/" target="_blank" rel="noopener noreferrer">Steghide / OpenStego / Stegsolve</a></div>
+                <p class="pager-desc">Steganography tools for hiding data inside images, audio, or video. <em>Steghide</em> uses LSB encoding and compression. <em>OpenStego</em> offers password protection. <em>Stegsolve</em> analyzes bit planes to reveal hidden content. Used in CTFs, forensics, and covert communication research.</p>
+              </div>
+
               <div class="pager-entry" data-cat="offensive">
                 <div class="pager-meta"><span class="pager-tag t-offensive">offensive</span><span class="pager-freq">USB / Ethernet</span></div>
                 <div class="pager-name"><a href="https://shop.hak5.org/products/packet-squirrel-mark-ii" target="_blank" rel="noopener noreferrer">Hak5 Packet Squirrel</a></div>
@@ -1107,7 +1159,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
 
             </div>
             <div class="pager-footer">
-              <span class="pager-count">29 tools loaded</span>
+              <span class="pager-count">31 tools loaded</span>
               <span class="pager-sig">root@pager:~# &#9632;</span>
             </div>
           </div>
@@ -1137,8 +1189,28 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
         </div>
       </div></div>
     </section>
-
-
+    <hr class="dotted-divider" aria-hidden="true">
+    <!-- ====== GRAPHICAL PUZZLE (medium difficulty) ====== -->
+    <section class="projects-section reveal" id="graphical-puzzle-section" aria-label="Circuit trace puzzle" data-fx-scroll-key="circuitpuzzle">
+      <div class="container">
+        <h2 class="section-head"><span>//</span> circuit_trace</h2>
+        <p class="history-intro">Trace the energy path through the grid. Click the nodes in the correct sequence to complete the circuit. Follow the faint pulse.</p>
+        <div class="puzzle-unlock-area" id="puzzleCircuit" data-puzzle="circuit">
+          <div class="puzzle-solved-badge">&#10003; CIRCUIT COMPLETE</div>
+          <div class="puzzle-game">
+            <div class="puzzle-title">&#9889; Puzzle G &mdash; Circuit Trace</div>
+            <div class="puzzle-desc">Connect the glowing nodes in order. The path forms a shape. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('circuit')">Skip</button></div>
+            <div class="circuit-puzzle-wrap glass">
+              <canvas id="circuitPuzzleCanvas" width="320" height="240" aria-label="Circuit trace puzzle grid"></canvas>
+            </div>
+            <div class="checksum-status" id="circuitPuzzleStatus" aria-live="polite">trace the path: 0/5</div>
+          </div>
+          <div class="puzzle-content">
+            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Circuit energized. Grid access granted.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ====== CLOSING QUOTE ====== -->
     <section class="quote-section reveal" aria-label="Quote">
