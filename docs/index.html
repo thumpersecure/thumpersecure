@@ -427,9 +427,89 @@
       </button>
       <div class="ts-module-body" id="mod-investigators-body"><div>
         <div class="container archives-section" id="investigators">
-          <p class="history-intro">Investigation work moved from local observers and postal intelligence to formal detective agencies like Pinkerton, then to licensed private investigators and specialized digital teams.</p>
-          <p class="history-intro">Evidence gathering is easier today because people and systems produce continuous digital traces: logs, metadata, account history, geospatial data, and public records that can be searched and correlated quickly. It is also different: the challenge is no longer finding any data, but validating source quality, timeline integrity, and context.</p>
-          <p class="history-intro"><strong>Computer forensics</strong> is the science of identifying, preserving, acquiring, analyzing, and reporting digital evidence so findings are reproducible and legally defensible. In practice, investigators preserve chain of custody, work from forensic copies, and use hash verification to demonstrate copy integrity throughout handling and analysis.</p>
+          <p class="history-intro">Investigation work moved from local observers and postal intelligence to formal detective agencies like Pinkerton, then to licensed private investigators and specialized digital teams. Early forensic science involved simple physical methods &mdash; from Chinese techniques using insect behavior to identify weapons, to Archimedes&rsquo;s water displacement for testing metal purity &mdash; and progressed through fingerprint classification and early identification databases.</p>
+
+          <h3 class="lh-subhead"><span>&#9670;</span> Notable Analog Forensic Pioneers</h3>
+          <div class="investigator-grid">
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128269;</div>
+              <h4 class="inv-name">Alphonse Bertillon</h4>
+              <p class="inv-era">1853 &ndash; 1914</p>
+              <p class="inv-bio">French police officer and biometric researcher who developed anthropometry and the standardized mug-shot system for criminal identification.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128110;</div>
+              <h4 class="inv-name">August Vollmer</h4>
+              <p class="inv-era">1876 &ndash; 1955</p>
+              <p class="inv-bio">U.S. police chief credited with professionalizing policing and introducing fingerprinting, forensic laboratories, and lie-detector use.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128300;</div>
+              <h4 class="inv-name">Edmond Locard</h4>
+              <p class="inv-era">1877 &ndash; 1966</p>
+              <p class="inv-bio">French criminologist who established one of the first forensic laboratories and formulated the &ldquo;Locard exchange principle&rdquo; &mdash; every contact leaves a trace.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#127968;</div>
+              <h4 class="inv-name">Frances Glessner Lee</h4>
+              <p class="inv-era">1878 &ndash; 1962</p>
+              <p class="inv-bio">Pioneered the use of miniature crime-scene dioramas (&ldquo;Nutshell Studies&rdquo;) and worked to bring medical professionals into forensic investigation as a discipline.</p>
+            </article>
+          </div>
+
+          <h3 class="lh-subhead"><span>&#9670;</span> Digital Forensics Experts</h3>
+          <p class="history-intro">Digital forensics follows a rigorous process: identify, preserve, acquire, analyse and report evidence while maintaining chain of custody and using hash verification. These practitioners shaped the modern field:</p>
+          <div class="investigator-grid">
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128187;</div>
+              <h4 class="inv-name">Brian Carrier</h4>
+              <p class="inv-bio">Creator of Autopsy and The Sleuth Kit; author of <em>File System Forensic Analysis</em> &mdash; foundational open-source forensic tools used by law enforcement worldwide.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128218;</div>
+              <h4 class="inv-name">Eoghan Casey</h4>
+              <p class="inv-bio">Author of <em>Digital Evidence and Computer Crime</em>, a standard reference text that defines methodology for digital investigations.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#127891;</div>
+              <h4 class="inv-name">Gary Kessler</h4>
+              <p class="inv-bio">Educator and researcher whose publications on file signatures, forensic imaging, and evidence handling have trained thousands of practitioners.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128241;</div>
+              <h4 class="inv-name">Cindy Murphy</h4>
+              <p class="inv-bio">Mobile-forensics specialist and detective who advanced acquisition techniques for smartphones and embedded devices.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128295;</div>
+              <h4 class="inv-name">Michael Cohen</h4>
+              <p class="inv-bio">Developer of GRR Rapid Response, an open-source incident-response framework used for remote live forensics at scale.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128270;</div>
+              <h4 class="inv-name">Jessica Hyde</h4>
+              <p class="inv-bio">Digital forensics practitioner and educator focused on mobile and IoT forensics, advancing methodology for emerging device types.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128214;</div>
+              <h4 class="inv-name">Brett Shavers</h4>
+              <p class="inv-bio">Author and investigator who bridges digital forensics with practical law enforcement casework and OSINT methodology.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128202;</div>
+              <h4 class="inv-name">Ali Hadi</h4>
+              <p class="inv-bio">Educator and challenge creator whose forensic investigation datasets and CTF exercises have trained the global DFIR community.</p>
+            </article>
+            <article class="investigator-card glass">
+              <div class="inv-icon" aria-hidden="true">&#128242;</div>
+              <h4 class="inv-name">Heather Mahalik</h4>
+              <p class="inv-bio">Mobile forensics expert and SANS instructor specializing in smartphone evidence extraction and app-level artifact analysis.</p>
+            </article>
+          </div>
+
+          <h3 class="lh-subhead"><span>&#9670;</span> The Rise of OSINT</h3>
+          <p class="history-intro">OSINT emerged as publicly available data &mdash; social media, online records, satellite imagery &mdash; exploded in volume. Modern OSINT offers advanced data mining, social-network analysis, geolocation, and real-time monitoring. It complements traditional surveillance and database access while demanding strict ethical and legal considerations.</p>
+          <p class="history-intro">Today OSINT is an essential complement to forensic investigation, allowing analysts to mine public data, social media, and records in real time. The Locard exchange principle applies digitally too: every online interaction leaves traces that skilled investigators can find and correlate.</p>
         </div>
       </div></div>
     </section>
