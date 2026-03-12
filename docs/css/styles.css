@@ -91,7 +91,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .request-access-screen.done{opacity:0;pointer-events:none}
 .ra-content{position:relative;text-align:center;padding:2rem}
 .ra-scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px);pointer-events:none;opacity:0.5}
-.ra-glow-orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.2;animation:raOrbPulse 3s ease-in-out infinite}
+.ra-glow-orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.2;animation:raOrbPulse 3s ease-in-out infinite;pointer-events:none}
 .ra-glow-1{width:300px;height:300px;background:var(--tron);top:10%;left:20%}
 .ra-glow-2{width:200px;height:200px;background:var(--magenta);bottom:20%;right:15%;animation-delay:1s}
 @keyframes raOrbPulse{0%,100%{opacity:0.15;transform:scale(1)}50%{opacity:0.3;transform:scale(1.1)}}
