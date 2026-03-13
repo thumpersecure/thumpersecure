@@ -1762,7 +1762,7 @@ function tpL(el,text,spd){return new Promise(function(res){el.classList.add('typ
 var wC=document.getElementById('wireframeCanvas');
 if(wC){
   var wX=wC.getContext('2d'),wAng=0;
-  function rWC(){var s=wC.parentElement;wC.width=s.clientWidth;wC.height=s.clientHeight}
+  function rWC(){var s=wC.parentElement;if(!s)return;wC.width=s.clientWidth;wC.height=s.clientHeight}
   rWC();
   var cube=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
   var edg=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
@@ -1770,7 +1770,7 @@ if(wC){
     var ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(a*0.7),sb=Math.sin(a*0.7);
     var x1=p[0]*ca-p[2]*sa,z1=p[0]*sa+p[2]*ca;
     var y1=p[1]*cb-z1*sb,z2=p[1]*sb+z1*cb;
-    var sc=wC.width*0.28,d=3+z2;
+    var sc=wC.width*0.28,d=3+z2||1;
     return[x1/d*sc+wC.width/2,y1/d*sc+wC.height/2,z2];
   }
   function dW(){
@@ -1880,7 +1880,7 @@ if(qCv){
 var pktCv=document.getElementById('packetGridCanvas');
 if(pktCv&&!reducedMotion){
   var pktX=pktCv.getContext('2d'),pktT=0,pktTrails=[],pktPackets=[];
-  function rPkt(){var w=pktCv.parentElement.clientWidth;var h=320;pktCv.width=w;pktCv.height=h}
+  function rPkt(){var p=pktCv.parentElement;if(!p)return;var w=p.clientWidth;var h=320;pktCv.width=w;pktCv.height=h}
   function dPkt(){
     if(!pktX)return;
     if(document.hidden||pktCv.style.display==='none'){requestAnimationFrame(dPkt);return}
