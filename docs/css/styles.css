@@ -999,22 +999,6 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 }
 body{overflow-x:hidden}
 .page-wrap{overflow-x:hidden}
-/* ====== MOBILE ANIMATION REDUCTION ====== */
-@media(max-width:768px){
-  #particleCanvas,#rainCanvas,#tronGridCanvas{opacity:0.3}
-  .data-orbs{display:none}
-  .holographic-vignette{display:none}
-  .crt,.scanline-overlay{display:none}
-  .sweep{display:none}
-  .glass::before{animation:none}
-  .ingredient-code::after{animation:none}
-}
-/* ====== LANDSCAPE ORIENTATION ====== */
-@media(orientation:landscape) and (max-height:500px){
-  .hero{min-height:auto;padding-top:6rem;padding-bottom:1.5rem}
-  .term-body{max-height:40vh}
-  #inviteForgeCanvas{height:200px}
-}
 
 /* ====== CATEGORY GROUP HEADINGS ====== */
 .category-heading{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--magenta);text-align:center;padding:0.6rem 0;margin:0 auto;max-width:1120px;text-shadow:0 0 8px rgba(255,0,170,0.25)}
