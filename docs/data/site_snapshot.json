@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-03-13T06:36:58.797Z",
+  "last_updated_utc": "2026-03-13T14:31:10.366Z",
   "stats": {
     "tools_count": 14,
-    "stars_total": 570,
+    "stars_total": 571,
     "featured_count": 4,
     "followers": 55
   },
@@ -182,8 +182,8 @@
       "name": "quevidkit",
       "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server. https://thumpersecure.github.io/quevidkit/",
       "topics": [],
-      "stars": 4,
-      "last_updated": "2026-03-12T16:56:24Z",
+      "stars": 5,
+      "last_updated": "2026-03-13T10:42:59Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/quevidkit/",
       "html_url": "https://github.com/thumpersecure/quevidkit",
