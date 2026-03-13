@@ -1416,7 +1416,6 @@ var autoScrollEnabled=getSetting('auto_scroll',true);
 var autoScrollSpeed=18;
 var autoScrollRaf=null;
 var autoScrollPaused=false;
-var autoScrollLastTime=0;
 
 function getPuzzleArea(id){
   var area=document.querySelector('[data-puzzle="'+id+'"]');
@@ -1436,25 +1435,20 @@ function isPuzzleBlockingScroll(){
   return false;
 }
 
-function runAutoScroll(timestamp){
+function runAutoScroll(){
   if(!autoScrollEnabled||autoScrollPaused||reducedMotion)return;
-  if(isPuzzleBlockingScroll()){autoScrollLastTime=0;autoScrollRaf=requestAnimationFrame(runAutoScroll);return;}
+  if(isPuzzleBlockingScroll()){autoScrollRaf=requestAnimationFrame(runAutoScroll);return;}
   var maxScroll=document.documentElement.scrollHeight-window.innerHeight;
   if(window.scrollY>=maxScroll-5)return;
-  if(autoScrollLastTime){
-    var dt=Math.min(timestamp-autoScrollLastTime,100)/1000;
-    window.scrollBy(0,autoScrollSpeed*dt);
-  }
-  autoScrollLastTime=timestamp;
+  window.scrollBy(0,autoScrollSpeed*0.016);
   autoScrollRaf=requestAnimationFrame(runAutoScroll);
 }
 
 function startAutoScroll(){
-  if(!autoScrollRaf&&autoScrollEnabled&&!reducedMotion){autoScrollLastTime=0;runAutoScroll()}
+  if(!autoScrollRaf&&autoScrollEnabled&&!reducedMotion)runAutoScroll();
 }
 
 function stopAutoScroll(){
-  if(autoScrollStartTimer){clearTimeout(autoScrollStartTimer);autoScrollStartTimer=null}
   if(autoScrollRaf){cancelAnimationFrame(autoScrollRaf);autoScrollRaf=null;}
 }
 
@@ -1471,8 +1465,7 @@ document.addEventListener('scroll',function(){
   if(nearBottom)stopAutoScroll();
 },{passive:true});
 
-var autoScrollStartTimer=setTimeout(function(){
-  autoScrollStartTimer=null;
+setTimeout(function(){
   if(autoScrollEnabled&&!reducedMotion)startAutoScroll();
 },3000);
 
@@ -2028,6 +2021,32 @@ if(stegoCv){
     }
     return out;
   }
+  function paintDecodedStego(decoded){
+    sX.fillStyle='#050510';
+    sX.fillRect(0,0,sw,sh);
+    for(var bandY=sh-16;bandY<sh;bandY+=4){
+      for(var bandX=0;bandX<sw;bandX+=4){
+        var br=0;var bg=255;var bb=65;
+        sX.fillStyle='rgba('+br+','+bg+','+bb+',0.25)';
+        sX.fillRect(bandX,bandY,4,4);
+      }
+    }
+    sX.fillStyle='rgba(0,255,65,0.12)';
+    sX.fillRect(0,sh-16,sw,16);
+    sX.fillStyle='rgba(0,255,204,0.85)';
+    sX.font='700 11px JetBrains Mono';
+    sX.fillText('LSB PAYLOAD EXTRACTED',14,28);
+    sX.fillStyle='#00ff41';
+    sX.font='700 16px JetBrains Mono';
+    sX.fillText(decoded,14,58);
+    sX.fillStyle='rgba(24,220,255,0.5)';
+    sX.font='700 9px JetBrains Mono';
+    sX.fillText('source: blue-channel band (y='+String(sh-16)+'..'+String(sh)+')',14,82);
+    sX.fillText(String(stegoMsg.length*8)+' bits \u2192 '+String(stegoMsg.length)+' bytes decoded',14,98);
+    sX.strokeStyle='rgba(0,255,65,0.4)';
+    sX.lineWidth=1;
+    sX.strokeRect(8,sh-18,sw-16,18);
+  }
   paintStego();
   var decodeBtn=document.getElementById('decodeStegoBtn');
   var stegoHint=document.getElementById('stegoHint');
@@ -2036,13 +2055,14 @@ if(stegoCv){
     stegoDecoded=false;
     paintStego();
     if(decodeBtn){decodeBtn.textContent='Decode message';decodeBtn.disabled=false}
-    if(stegoHint)stegoHint.textContent='';
+    if(stegoHint)stegoHint.textContent='pixels encode bits \u2192 decode to reveal';
   }
   if(decodeBtn&&stegoHint){
     decodeBtn.addEventListener('click',function(){
       if(stegoDecoded){resetStegoDemo();return}
       var decoded=decodeStegoBits();
-      stegoHint.textContent='decoded payload → '+decoded;
+      paintDecodedStego(decoded);
+      stegoHint.textContent='decoded payload \u2192 '+decoded;
       decodeBtn.textContent='Reset demo';
       stegoDecoded=true;
     });
@@ -2570,7 +2590,6 @@ window.addEventListener('pageshow',function(e){
     if(!mPlayer.paused)setMusicStatus('playing: '+TRACK_CONFIG[Math.max(0,mCurrentIndex)].label.toLowerCase(),'playing');
     else setMusicStatus('paused — tap play to resume',null);
   }
-  if(autoScrollEnabled&&!reducedMotion)startAutoScroll();
 });
 
 /* ====== UPDATE FX SCROLL EVENTS FOR RENAMED MODULES ====== */
