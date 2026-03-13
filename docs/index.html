@@ -7,7 +7,7 @@
 <meta name="keywords" content="OSINT, open source intelligence, SEO, privacy tools, palm-tree, Telespot, Spin, Telespotter, xTELENUMSINT, TeleSTOP, opt-out-manual-2026, spicy-cat, TelespotXX, bluettool, LOVE-BOMB, zweather, code cookbook, thumpersecure, cybersecurity, phone intelligence, OSINT tools, SEO tools">
 <meta name="author" content="THUMPERSECURE">
 <meta name="theme-color" content="#06060e">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://itunes.apple.com; media-src 'self' https:; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://itunes.apple.com https://api64.ipify.org https://ipwho.is https://httpbin.org https://rdap.arin.net; media-src 'self' https:; frame-ancestors 'none'">
 <meta property="og:title" content="THUMPERSECURE | Code Cookbook">
 <meta property="og:description" content="OSINT &amp; SEO specialist portfolio. Privacy tools, phone intelligence, SEO automation — cyberpunk code cookbook experience.">
 <meta property="og:type" content="website">
@@ -50,18 +50,71 @@
     <div class="ra-message">
       <span class="ra-label">SECURE ACCESS PROTOCOL</span>
       <h2 class="ra-title">IDENTITY VERIFICATION REQUIRED</h2>
-      <p class="ra-sub">Analyzing connection parameters&hellip;</p>
+      <p class="ra-sub">Stand by for forensic intake and biometric gate validation.</p>
       <button type="button" id="requestAccessBtn" class="ra-btn">REQUEST ACCESS</button>
     </div>
     <div class="ra-analyze" id="raAnalyze" aria-hidden="true">
       <div class="ra-analyze-bar"></div>
       <span class="ra-analyze-text">ANALYZING</span>
+      <div class="ra-analyze-lines" id="raAnalyzeLines">
+        <span>Correlating transport-layer fingerprint with client hints...</span>
+        <span>Tracing ingress path for relay, proxy, and beacon anomalies...</span>
+        <span>Building preliminary packet chronology for operator dossier...</span>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ====== BOOT SCREEN ====== -->
-<div id="bootScreen" class="boot" role="status" aria-live="polite"><div id="bootLog"></div></div>
+<div id="bootScreen" class="boot boot-overlay" role="dialog" aria-modal="true" aria-label="Connection trace">
+  <div class="boot-shell glass">
+    <div class="boot-grid">
+      <section class="boot-terminal-pane" aria-labelledby="bootTerminalTitle">
+        <div class="boot-pane-head">
+          <span class="boot-pane-kicker" id="bootTerminalTitle">sys trace</span>
+          <span class="boot-pane-meta" id="bootIntelTimestamp">collecting telemetry</span>
+        </div>
+        <div id="bootLog" class="boot-log" aria-live="polite"></div>
+      </section>
+      <section class="boot-dossier-pane" aria-labelledby="bootDossierTitle">
+        <div class="boot-pane-head">
+          <span class="boot-pane-kicker" id="bootDossierTitle">operator dossier</span>
+          <span class="boot-pane-meta" id="bootIntelStatus">awaiting remote telemetry</span>
+        </div>
+        <div class="boot-intel-grid">
+          <article class="boot-intel-card">
+            <h3>Server &amp; Network Information</h3>
+            <div class="boot-kv-list" id="bootNetworkInfo"></div>
+          </article>
+          <article class="boot-intel-card">
+            <h3>Browser Information</h3>
+            <div class="boot-kv-list" id="bootBrowserInfo"></div>
+          </article>
+          <article class="boot-intel-card">
+            <h3>WHOIS Lookup On You</h3>
+            <div class="boot-kv-list" id="bootWhoisInfo"></div>
+          </article>
+        </div>
+        <div class="fingerprint-gate" id="fingerprintGate" hidden>
+          <div class="fingerprint-copy">
+            <span class="fingerprint-label">thumbprint_scanner</span>
+            <h3 class="fingerprint-title">PRESS AND HOLD TO CLEAR THE GATE</h3>
+            <p class="fingerprint-desc">Biometric pressure lock engages after a continuous two-second hold on the live scanner.</p>
+          </div>
+          <button type="button" class="fingerprint-scanner" id="fingerprintScanner" aria-describedby="fingerprintStatus">
+            <canvas id="fingerprintCanvas" width="420" height="420" aria-hidden="true"></canvas>
+            <span class="fingerprint-ring"></span>
+            <span class="fingerprint-sweep"></span>
+          </button>
+          <div class="fingerprint-progress-wrap">
+            <div class="fingerprint-progress-bar"><span id="fingerprintProgressFill"></span></div>
+            <div class="fingerprint-progress-copy" id="fingerprintStatus">Press and hold on the scanner for 2 seconds.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
 
 <!-- ====== BACKGROUND LAYERS ====== -->
 <div class="crt" aria-hidden="true"></div>
@@ -183,7 +236,7 @@
       <p class="hero-sub">// OSINT &amp; SEO SPECIALIST</p>
       <div class="typer-wrap" aria-live="polite"><span id="typerText"></span><span class="typer-cursor"></span></div>
       <nav class="hero-btns" aria-label="Primary navigation">
-        <a href="#recipes" class="btn btn-primary">ACCESS GRANTED</a>
+        <a href="#recipe-index-section" class="btn btn-primary">ACCESS GRANTED</a>
         <a href="https://github.com/thumpersecure" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
       </nav>
     </div>
@@ -214,37 +267,52 @@
       <span id="moduleCtrlStatus" class="sr-only" aria-live="polite"></span>
     </div>
 
-    <!-- ====== TOP PRE-FLIGHT PUZZLES ====== -->
-    <section class="projects-section reveal" id="preflight-puzzles" aria-label="Preflight puzzle gate">
-      <div class="container">
-        <h2 class="section-head"><span>//</span> preflight_puzzles</h2>
-        <p class="history-intro">Complete these two quick puzzle checks before diving into the featured tool stack.</p>
-        <div class="puzzle-unlock-area" id="puzzleE" data-puzzle="unscramble">
-          <div class="puzzle-solved-badge">&#10003; WORD GRID SOLVED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Puzzle E &mdash; Word Unscramble Grid</div>
-            <div class="puzzle-desc">Click the 3 highlighted cells in the correct order to assemble a short code term. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('unscramble')">Skip</button></div>
-            <div class="checksum-grid unscramble-grid" id="unscrambleGrid"></div>
-            <div class="checksum-status" id="unscrambleStatus" aria-live="polite">selected 0/3</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Welcome, codebreaker.</p>
+    <!-- ====== MODULE: PUZZLES ====== -->
+    <section class="ts-module reveal" id="mod-puzzles" aria-label="Puzzle gate">
+      <button class="ts-module-header" aria-expanded="false" aria-controls="mod-puzzles-body">
+        <h2 class="section-head"><span>//</span> invite_code_forge</h2>
+        <p class="ts-module-summary">One over-the-top holographic puzzle gate with a live neon matrix, pulse-trace sequence, and forged invite code.</p>
+        <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
+      </button>
+      <div class="ts-module-body" id="mod-puzzles-body"><div>
+        <div class="container forge-section" id="preflight-puzzles">
+          <p class="history-intro">This single gate replaces every old puzzle. Follow the pulse across the lattice, strike the live nodes in sequence, and mint the invite code.</p>
+          <div class="puzzle-unlock-area puzzle-unlock-area-hero" id="puzzleForge" data-puzzle="inviteforge">
+            <div class="puzzle-solved-badge">&#10003; INVITE CODE FORGED</div>
+            <div class="puzzle-game">
+              <div class="puzzle-title">&#9889; Invite Code Forge</div>
+              <div class="puzzle-desc">Watch the surge route, then replay it on the holographic matrix. This one is almost all signal, almost no text.</div>
+              <div class="forge-grid">
+                <div class="forge-canvas-shell glass">
+                  <canvas id="inviteForgeCanvas" width="920" height="540" aria-label="Holographic invite code puzzle"></canvas>
+                  <div class="forge-overlay">
+                    <div class="forge-overlay-chip">pulse lattice // live</div>
+                    <div class="forge-overlay-chip">sequence depth <span id="forgeSequenceDepth">0/6</span></div>
+                    <div class="forge-overlay-chip">glow index <span id="forgeGlowIndex">A7-C1</span></div>
+                  </div>
+                </div>
+                <div class="forge-sidecar glass">
+                  <div class="forge-side-head">
+                    <span class="forge-kicker">code mint</span>
+                    <span class="forge-latency" id="forgeLatency">syncing</span>
+                  </div>
+                  <div class="forge-code-output" id="forgeCodeOutput">INVITE // ------</div>
+                  <div class="forge-status checksum-status" id="forgeStatus" aria-live="polite">Memorize the neon surge path, then click the live nodes in order.</div>
+                  <div class="forge-actions">
+                    <button type="button" class="cb-mini-btn" id="forgeReplayBtn">Replay pulse</button>
+                    <button type="button" class="cb-mini-btn secondary" id="forgeResetBtn">Reset lattice</button>
+                    <button type="button" class="cb-mini-btn secondary" onclick="TS.puzzleSkip('inviteforge')">Skip</button>
+                  </div>
+                  <div class="forge-trace-list" id="forgeTraceList" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+            <div class="puzzle-content">
+              <p class="forge-success-copy">Invite code forged. The lattice is stable and the rest of the deck is unlocked.</p>
+            </div>
           </div>
         </div>
-        <div class="puzzle-unlock-area" id="puzzleF" data-puzzle="math">
-          <div class="puzzle-solved-badge">&#10003; MATH CHALLENGE PASSED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Puzzle F &mdash; Simple Math Challenge</div>
-            <div class="puzzle-desc">Solve the expression and pick the correct answer. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('math')">Skip</button></div>
-            <div class="math-prompt" id="mathPrompt" aria-live="polite">3 + 4 &times; 2 = ?</div>
-            <div class="pattern-options math-options" id="mathOptions"></div>
-            <div class="checksum-status" id="mathStatus" aria-live="polite">choose one result</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Access verified. Continue exploring.</p>
-          </div>
-        </div>
-      </div>
+      </div></div>
     </section>
 
     <!-- ====== TERMINAL ====== -->
@@ -270,121 +338,52 @@
       </div>
     </section>
 
-    <!-- ====== OTHER PUZZLES ====== -->
-    <section class="projects-section reveal" id="puzzles-section" aria-label="Puzzle challenges">
-      <div class="container">
-        <h2 class="section-head"><span>//</span> puzzles</h2>
-        <p class="history-intro">All bonus puzzle challenges collected in one section.</p>
-
-        <div class="puzzle-unlock-area" id="puzzleA" data-puzzle="checksum">
-          <div class="puzzle-solved-badge">&#10003; CHECKSUM VERIFIED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Terminal Checksum Challenge</div>
-            <div class="puzzle-desc">Click the 3 highlighted characters in order to form the access code. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('checksum')">Skip</button></div>
-            <div class="checksum-grid" id="checksumGrid"></div>
-            <div class="checksum-status" id="checksumStatus">find the glowing characters</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Extended Note:</strong> palm-tree's original Reddit post generated 139 stars in 48 hours. The secret? A one-line pitch: "If you can't hide, overwhelm." Traffic noise as privacy armor.</p>
-          </div>
-        </div>
-
-        <div class="puzzle-unlock-area" id="puzzleB" data-puzzle="pattern" style="margin-top:2rem">
-          <div class="puzzle-solved-badge">&#10003; PATTERN MATCHED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Pattern Match Challenge</div>
-            <div class="puzzle-desc">Which tool "overwhelms trackers with noise"? <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('pattern')">Skip</button></div>
-            <div class="pattern-options" id="patternOptions"></div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Easter Egg:</strong> The original Telespot prototype was written in a single weekend. It searched 4 engines simultaneously and correlated phone numbers across all results. 260+ stars across the ecosystem today.</p>
-          </div>
-        </div>
-
-        <div class="puzzle-unlock-area" id="puzzlePhishing" data-puzzle="phishing" style="margin-top:1.5rem">
-          <div class="puzzle-solved-badge">&#10003; PHISHING DETECTED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Phishing Puzzle</div>
-            <div class="puzzle-desc">Which email is most likely a phishing attempt? <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('phishing')">Skip</button></div>
-            <div class="pattern-options phishing-options" id="phishingOptions"></div>
-            <div class="checksum-status" id="phishingStatus" aria-live="polite">select the suspicious email</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Blue team tip:</strong> Urgent language, mismatched domains, and generic greetings are classic phishing signals. Hover links before clicking.</p>
-          </div>
-        </div>
-
-        <div class="puzzle-unlock-area" id="puzzleD" data-puzzle="portscan" style="margin-top:2rem">
-          <div class="puzzle-solved-badge">&#10003; PORT MAP VERIFIED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Port Scan Challenge</div>
-            <div class="puzzle-desc">Toggle the ports to match the secure target map. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('portscan')">Skip</button></div>
-            <div class="port-target" id="portTarget">Target: ---</div>
-            <div class="port-scan-row" id="portScanRow"></div>
-            <button class="cb-mini-btn" style="margin-top:0.5rem" onclick="TS.checkPortScan()">Verify</button>
-            <div class="checksum-status" id="portScanStatus">set the correct open ports</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Recon Bonus:</strong> Port context matters. Keep remote exposure minimal, validate open services, and treat every listening endpoint as a potential narrative leak.</p>
-          </div>
-        </div>
-
-        <div class="puzzle-unlock-area" id="puzzleC" data-puzzle="decrypt" style="margin-top:2rem">
-          <div class="puzzle-solved-badge">&#10003; DECRYPTED</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#128274; Decrypt Slider Challenge</div>
-            <div class="puzzle-desc">Align the 3 hex dials to match the target prefix. <button class="cb-mini-btn secondary" style="font-size:0.6rem;padding:0.2rem 0.5rem" onclick="TS.puzzleSkip('decrypt')">Skip</button></div>
-            <div class="dial-target" id="dialTarget">Target: ---</div>
-            <div class="decrypt-dials" id="decryptDials">
-              <div class="dial-group"><span class="dial-label">Dial A</span><input class="dial-input" type="text" maxlength="2" id="dialA" placeholder="00"></div>
-              <div class="dial-group"><span class="dial-label">Dial B</span><input class="dial-input" type="text" maxlength="2" id="dialB" placeholder="00"></div>
-              <div class="dial-group"><span class="dial-label">Dial C</span><input class="dial-input" type="text" maxlength="2" id="dialC" placeholder="00"></div>
-            </div>
-            <button class="cb-mini-btn" style="margin-top:0.5rem" onclick="TS.checkDecrypt()">Verify</button>
-            <div class="checksum-status" id="decryptStatus">enter hex values (00-ff)</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">&#127919; <strong>Deep Recipe:</strong> The Telespot ecosystem pipeline: Phone &rarr; Telespot CLI (99&#9733;) &rarr; Telespotter Rust (53&#9733;) &rarr; TelespotXX Web (21&#9733;). Extensions: xTELENUMSINT (56&#9733;) + TeleSTOP (34&#9733;). Total: 263 stars across 5 tools.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== PACKET OVER THE WIRE (Tron/Matrix graphical section) ====== -->
-    <section class="packet-over-wire-section reveal" id="packet-over-wire" aria-label="Packet over the wire" data-fx-scroll-key="packetwire">
-      <div class="container">
+    <!-- ====== MODULE: PACKET OVER THE WIRE ====== -->
+    <section class="ts-module reveal packet-module" id="mod-packetwire" aria-label="Packet over the wire">
+      <button class="ts-module-header" aria-expanded="false" aria-controls="mod-packetwire-body">
         <h2 class="section-head"><span>//</span> packet_over_the_wire</h2>
-        <p class="packet-intro">Data travels the grid like light cycles — formed, sent, received. Below: a Tron-style visualization of how packets move across the network.</p>
-        <div class="packet-grid-visual glass">
-          <canvas id="packetGridCanvas" aria-hidden="true"></canvas>
-          <div class="packet-overlay-info">
-            <div class="packet-node packet-src" data-label="SOURCE">SRC</div>
-            <div class="packet-node packet-dst" data-label="DEST">DST</div>
-            <div class="packet-flow-label">ETHERNET → IP → TCP → PAYLOAD</div>
+        <p class="ts-module-summary">Wire-level packet flow with Wireshark on the cable and Kismet tracking wireless energy in the air.</p>
+        <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
+      </button>
+      <div class="ts-module-body" id="mod-packetwire-body"><div>
+        <div class="container packet-over-wire-section" id="packet-over-wire">
+          <p class="packet-intro">Data still travels the grid like light cycles. This module keeps the wire-side packet view, then contrasts it with Kismet listening to wireless beacons, probes, and management frames moving through the air.</p>
+          <div class="packet-grid-visual glass">
+            <canvas id="packetGridCanvas" aria-hidden="true"></canvas>
+            <div class="packet-overlay-info">
+              <div class="packet-node packet-src" data-label="SOURCE">SRC</div>
+              <div class="packet-node packet-dst" data-label="DEST">DST</div>
+              <div class="packet-flow-label">ETHERNET → IP → TCP → PAYLOAD</div>
+            </div>
           </div>
-        </div>
-        <div class="packet-forensic-grid">
-          <div class="packet-forensic-card glass">
-            <div class="pf-icon">&#128268;</div>
-            <h3 class="pf-title">Wireshark &amp; Deep Packet Inspection</h3>
-            <p class="pf-desc">Wireshark captures traffic on the wire. Display filters (<code>tcp.port==443</code>, <code>http</code>, <code>ip.addr==x.x.x.x</code>) isolate flows. <strong>Deep Packet Inspection (DPI)</strong> examines payloads beyond headers — used for filtering, blocking, or surveillance. Right-click → Follow → TCP stream reconstructs sessions.</p>
-            <pre class="pf-code">$ wireshark -r capture.pcap -Y "http.request"
+          <div class="packet-forensic-grid">
+            <div class="packet-forensic-card glass">
+              <div class="pf-icon">&#128268;</div>
+              <h3 class="pf-title">Wireshark &amp; Deep Packet Inspection</h3>
+              <p class="pf-desc">Wireshark captures packets on the wire. Display filters (<code>tcp.port==443</code>, <code>http</code>, <code>ip.addr==x.x.x.x</code>) isolate flows. DPI examines payloads past the headers for filtering, blocking, and forensics. Right-click → Follow → TCP stream reconstructs sessions fast.</p>
+              <pre class="pf-code">$ wireshark -r capture.pcap -Y "http.request"
 Frame 42: 74 bytes on wire
 GET /admin HTTP/1.1</pre>
-          </div>
-          <div class="packet-forensic-card glass">
-            <div class="pf-icon">&#128247;</div>
-            <h3 class="pf-title">Steganography</h3>
-            <p class="pf-desc">Hiding data inside images, audio, or video. LSB (least significant bit) encoding alters pixel values imperceptibly. Tools: Steghide, OpenStego, Stegsolve. Example below: a seemingly normal image can carry a hidden message.</p>
-            <div class="stego-demo">
-              <div class="stego-canvas-wrap">
-                <canvas id="stegoCanvas" width="200" height="120" aria-label="Steganography demo: image with hidden data"></canvas>
-                <span class="stego-hint">pixels encode bits → decode to reveal</span>
+            </div>
+            <div class="packet-forensic-card glass">
+              <div class="pf-icon">&#128246;</div>
+              <h3 class="pf-title">Kismet &amp; Wireless Signals in the Air</h3>
+              <p class="pf-desc">Kismet watches 802.11 management frames, beacons, probe requests, and client movement in the air. It is not packet capture over copper; it is wireless situational awareness over channels, SSIDs, signal strength, and devices drifting through space.</p>
+              <div class="kismet-visual">
+                <canvas id="kismetSignalCanvas" width="320" height="180" aria-label="Kismet wireless signal visualization"></canvas>
+                <div class="kismet-list" id="kismetList">
+                  <div><span>CH 01</span><strong>OFFICE-MESH</strong><em>-42 dBm</em></div>
+                  <div><span>CH 06</span><strong>probe request</strong><em>hidden ssid</em></div>
+                  <div><span>CH 11</span><strong>guest-node</strong><em>-67 dBm</em></div>
+                </div>
               </div>
+              <pre class="pf-code">$ kismet -c wlan0mon
+[wireless] beacon → probe → association
+[watch] channels 1, 6, 11 sweeping live</pre>
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
     </section>
 
     <div class="circuit-divider" aria-hidden="true">
@@ -752,6 +751,61 @@ GET /admin HTTP/1.1</pre>
       </div></div>
     </section>
     <hr class="dotted-divider" aria-hidden="true">
+    <!-- ====== MODULE: THREAT EXAMPLES ====== -->
+    <section class="ts-module reveal" id="mod-threat-examples" aria-label="Threat examples">
+      <button class="ts-module-header" aria-expanded="false" aria-controls="mod-threat-examples-body">
+        <h2 class="section-head"><span>//</span> threat_examples</h2>
+        <p class="ts-module-summary">Interactive examples for stego, homoglyph spoofing, and honeytoken beacon callbacks.</p>
+        <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
+      </button>
+      <div class="ts-module-body" id="mod-threat-examples-body"><div>
+        <div class="container threat-lab-section" id="threat-lab">
+          <p class="history-intro">A few live examples make the abstract stuff concrete: hidden pixels, look-alike domains, and bait documents that call home the moment they are opened.</p>
+          <div class="threat-lab-grid">
+            <article class="threat-lab-card glass">
+              <div class="threat-lab-icon">&#128247;</div>
+              <h3 class="pf-title">Steganography</h3>
+              <p class="pf-desc">Least-significant-bit encoding hides a second message in an image while leaving the visible picture mostly intact. Decode it and the covert phrase leaks back out.</p>
+              <div class="stego-demo">
+                <div class="stego-canvas-wrap">
+                  <canvas id="stegoCanvas" width="220" height="140" aria-label="Steganography demo image"></canvas>
+                  <span class="stego-hint" id="stegoHint">pixels encode bits → decode to reveal</span>
+                </div>
+              </div>
+              <div class="threat-demo-actions">
+                <button type="button" class="cb-mini-btn" id="decodeStegoBtn">Decode message</button>
+              </div>
+            </article>
+            <article class="threat-lab-card glass">
+              <div class="threat-lab-icon">&#127760;</div>
+              <h3 class="pf-title">Homoglyph Spoof</h3>
+              <p class="pf-desc">A phishing domain can look right at a glance while swapping in look-alike Unicode characters. Inspecting the code points exposes the trap.</p>
+              <div class="homoglyph-surface" id="homoglyphSurface">
+                <div class="homoglyph-domain" id="homoglyphDomain">paypaI-secure.com</div>
+                <div class="homoglyph-status" id="homoglyphStatus">Looks clean at first glance.</div>
+              </div>
+              <div class="threat-demo-actions">
+                <button type="button" class="cb-mini-btn" id="inspectHomoglyphBtn">Inspect glyphs</button>
+              </div>
+            </article>
+            <article class="threat-lab-card glass">
+              <div class="threat-lab-icon">&#128196;</div>
+              <h3 class="pf-title">Honeytoken Beacon</h3>
+              <p class="pf-desc">A bait file or credential should stay untouched. The moment someone opens it, the tripwire fires and the callback log tells you who touched the lure.</p>
+              <div class="honeytoken-console" id="honeytokenConsole">
+                <div>status: bait document staged</div>
+                <div>callback: idle</div>
+                <div>operator: waiting for touch</div>
+              </div>
+              <div class="threat-demo-actions">
+                <button type="button" class="cb-mini-btn" id="tripHoneytokenBtn">Trigger callback</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div></div>
+    </section>
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: GLOSSARY ====== -->
     <section class="ts-module reveal" id="mod-glossary" aria-label="Cyber glossary">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-glossary-body">
@@ -819,9 +873,7 @@ GET /admin HTTP/1.1</pre>
         </div>
       </div></div>
     </section>
-
-
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: MISC ====== -->
     <section class="ts-module reveal" id="mod-misc" aria-label="Miscellaneous links">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-misc-body">
@@ -1166,7 +1218,7 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
         </div>
       </div></div>
     </section>
-
+    <hr class="dotted-divider" aria-hidden="true">
     <!-- ====== MODULE: LEGEND QUOTES ====== -->
     <section class="ts-module reveal" id="mod-quotes" aria-label="Legend quotes">
       <button class="ts-module-header" aria-expanded="false" aria-controls="mod-quotes-body">
@@ -1189,28 +1241,6 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
         </div>
       </div></div>
     </section>
-    <hr class="dotted-divider" aria-hidden="true">
-    <!-- ====== GRAPHICAL PUZZLE (medium difficulty) ====== -->
-    <section class="projects-section reveal" id="graphical-puzzle-section" aria-label="Circuit trace puzzle" data-fx-scroll-key="circuitpuzzle">
-      <div class="container">
-        <h2 class="section-head"><span>//</span> circuit_trace</h2>
-        <p class="history-intro">Trace the energy path through the grid. Click the nodes in the correct sequence to complete the circuit. Follow the faint pulse.</p>
-        <div class="puzzle-unlock-area" id="puzzleCircuit" data-puzzle="circuit">
-          <div class="puzzle-solved-badge">&#10003; CIRCUIT COMPLETE</div>
-          <div class="puzzle-game">
-            <div class="puzzle-title">&#9889; Puzzle G &mdash; Circuit Trace</div>
-            <div class="puzzle-desc">Connect the glowing nodes in order. The path forms a shape. <button class="cb-mini-btn secondary" onclick="TS.puzzleSkip('circuit')">Skip</button></div>
-            <div class="circuit-puzzle-wrap glass">
-              <canvas id="circuitPuzzleCanvas" width="320" height="240" aria-label="Circuit trace puzzle grid"></canvas>
-            </div>
-            <div class="checksum-status" id="circuitPuzzleStatus" aria-live="polite">trace the path: 0/5</div>
-          </div>
-          <div class="puzzle-content">
-            <p style="font-family:var(--mono);font-size:0.78rem;color:var(--green);line-height:1.6">Circuit energized. Grid access granted.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ====== CLOSING QUOTE ====== -->
     <section class="quote-section reveal" aria-label="Quote">
@@ -1222,9 +1252,9 @@ r = requests.get(<span class="tx">"https://example.org/public-profile"</span>, t
       </div>
     </section>
 
-    <div id="cbBottomSentinel" class="cb-bottom-sentinel" aria-hidden="true"></div>
-
   </main>
+
+  <div id="cbBottomSentinel" class="cb-bottom-sentinel" aria-hidden="true"></div>
 
   <footer role="contentinfo">
     <p class="foot-main">Code Cookbook by <a href="https://github.com/thumpersecure" target="_blank" rel="noopener noreferrer">THUMPERSECURE</a> &mdash; a living blend of OSINT workflows, privacy tooling, and hacker-culture archives.</p>

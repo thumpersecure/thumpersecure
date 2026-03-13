@@ -44,6 +44,7 @@
 window.TS = window.TS || {};
 var SETTINGS_KEY = 'ts_cookbook_settings';
 var SNAPSHOT_CACHE_KEY = 'ts_cookbook_snapshot';
+TS.operatorDossier = null;
 
 function getSettings(){try{return JSON.parse(localStorage.getItem(SETTINGS_KEY))||{}}catch(e){return{}}}
 function saveSettings(s){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(s))}catch(e){}}
@@ -60,16 +61,359 @@ function waitForRequestAccess(){
     var ra=document.getElementById('requestAccessScreen');
     var btn=document.getElementById('requestAccessBtn');
     var analyze=document.getElementById('raAnalyze');
+    var analyzeLines=document.getElementById('raAnalyzeLines');
     if(!ra||!btn){resolve();return}
-    if(reducedMotion){ra.classList.add('done');setTimeout(function(){ra.remove();resolve()},400);return}
     btn.addEventListener('click',function(){
+      btn.disabled=true;
       btn.classList.add('hidden');
-      if(analyze){analyze.classList.add('show');analyze.setAttribute('aria-hidden','false')}
+      if(analyze){
+        analyze.classList.add('show');
+        analyze.setAttribute('aria-hidden','false');
+      }
+      if(analyzeLines){
+        [].slice.call(analyzeLines.children).forEach(function(line,idx){
+          setTimeout(function(){line.classList.add('show')},160+(idx*220));
+        });
+      }
       setTimeout(function(){
         ra.classList.add('done');
         setTimeout(function(){if(ra.parentNode)ra.remove();resolve()},600);
-      },2200);
+      },reducedMotion?500:2200);
     });
+  });
+}
+
+function fetchJsonWithTimeout(url,timeout){
+  return new Promise(function(resolve,reject){
+    var ctrl=new AbortController();
+    var done=false;
+    var timer=setTimeout(function(){
+      if(done)return;
+      done=true;
+      ctrl.abort();
+      reject(new Error('timeout'));
+    },timeout||4000);
+    fetch(url,{signal:ctrl.signal,cache:'no-store'}).then(function(r){
+      if(done)return;
+      if(!r.ok)throw new Error('http '+r.status);
+      return r.json();
+    }).then(function(data){
+      if(done)return;
+      done=true;
+      clearTimeout(timer);
+      resolve(data);
+    }).catch(function(err){
+      if(done)return;
+      done=true;
+      clearTimeout(timer);
+      reject(err);
+    });
+  });
+}
+
+function formatWallclock(ts){
+  return new Date(ts).toLocaleString('en-US',{
+    weekday:'short',year:'numeric',month:'short',day:'2-digit',
+    hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false
+  });
+}
+
+function renderBootList(container,items){
+  if(!container)return;
+  container.innerHTML='';
+  items.forEach(function(item){
+    var row=document.createElement('div');
+    row.className='boot-kv-row';
+    var key=document.createElement('span');
+    key.className='boot-k';
+    key.textContent=item.k;
+    var value=document.createElement('span');
+    value.className='boot-v';
+    value.textContent=item.v;
+    row.appendChild(key);
+    row.appendChild(value);
+    container.appendChild(row);
+  });
+}
+
+function getRdapVcardField(entity,name){
+  try{
+    var arr=entity&&entity.vcardArray&&entity.vcardArray[1];
+    if(!arr)return null;
+    for(var i=0;i<arr.length;i++){
+      if(arr[i][0]===name)return arr[i][3];
+    }
+  }catch(e){}
+  return null;
+}
+
+function deriveFingerprintCode(seed){
+  var hash=0;
+  var src=String(seed||'THUMPERSECURE');
+  for(var i=0;i<src.length;i++)hash=((hash<<5)-hash)+src.charCodeAt(i);
+  hash=Math.abs(hash);
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var out='';
+  for(var j=0;j<6;j++){
+    out+=chars.charAt(hash%chars.length);
+    hash=Math.floor(hash/chars.length)||Math.abs(hash*33+17);
+  }
+  return out;
+}
+
+function getLocalLanIp(){
+  return new Promise(function(resolve){
+    if(!window.RTCPeerConnection){resolve('Local IP address is not supported in this browser');return}
+    var pc;
+    var settled=false;
+    function finish(val){
+      if(settled)return;
+      settled=true;
+      try{if(pc)pc.close()}catch(e){}
+      resolve(val||'Local IP address is not supported in this browser');
+    }
+    try{
+      pc=new RTCPeerConnection({iceServers:[]});
+      pc.createDataChannel('probe');
+      pc.onicecandidate=function(ev){
+        if(!ev||!ev.candidate||!ev.candidate.candidate)return;
+        var m=ev.candidate.candidate.match(/([0-9]{1,3}(?:\.[0-9]{1,3}){3})/);
+        if(m&&m[1]&&!/^0\.0\.0\.0$/.test(m[1]))finish(m[1]);
+      };
+      pc.createOffer().then(function(of){return pc.setLocalDescription(of)}).catch(function(){finish()});
+      setTimeout(function(){finish()},1500);
+    }catch(e){finish()}
+  });
+}
+
+function buildCookieSummary(){
+  if(!navigator.cookieEnabled)return 'Disabled';
+  if(!document.cookie)return 'Enabled (no cookies visible to this origin)';
+  return 'Enabled ('+document.cookie.split(/;\s*/).length+' visible)';
+}
+
+function buildPluginSummary(){
+  if(!navigator.plugins||!navigator.plugins.length)return 'No plugin enumeration available';
+  return [].slice.call(navigator.plugins,0,5).map(function(p){return p.name}).join(' | ');
+}
+
+async function collectOperatorDossier(){
+  var query=location.search?location.search.slice(1):'(none)';
+  var now=Date.now();
+  var ipPromise=fetchJsonWithTimeout('https://api64.ipify.org?format=json',3500).catch(function(){return null});
+  var ipInfoPromise=fetchJsonWithTimeout('https://ipwho.is/',3500).catch(function(){return null});
+  var echoPromise=fetchJsonWithTimeout('https://httpbin.org/anything?ts='+now,3500).catch(function(){return null});
+  var lanPromise=getLocalLanIp();
+  var ipData=await ipPromise;
+  var publicIp=ipData&&ipData.ip?ipData.ip:'Unavailable';
+  var rdapPromise=publicIp!=='Unavailable'
+    ?fetchJsonWithTimeout('https://rdap.arin.net/registry/ip/'+encodeURIComponent(publicIp),4500).catch(function(){return null})
+    :Promise.resolve(null);
+  var ipInfo=await ipInfoPromise;
+  var echo=await echoPromise;
+  var lanIp=await lanPromise;
+  var rdap=await rdapPromise;
+  var headers=echo&&echo.headers?echo.headers:{};
+  var proxyHints=[echo&&echo.origin&&String(echo.origin).indexOf(',')!==-1?echo.origin:null,headers['Via'],headers['X-Forwarded-For'],headers['Forwarded']].filter(Boolean);
+  var proxyLabel=proxyHints.length?'Possible intermediary observed: '+proxyHints.join(' | '):'No visible proxy or relay markers detected';
+  var requestTimeFloat=(now/1000).toFixed(3);
+  var requestTime=requestTimeFloat+' ('+formatWallclock(now)+')';
+  var cidr=(rdap&&rdap.cidr0_cidrs&&rdap.cidr0_cidrs.length)
+    ?rdap.cidr0_cidrs.map(function(entry){return entry.v4prefix+'/'+entry.length}).join(', ')
+    :(ipInfo&&ipInfo.connection&&ipInfo.connection.asn?('ASN '+ipInfo.connection.asn):'Unavailable');
+  var registrant=(rdap&&rdap.entities||[]).filter(function(entity){
+    return entity.roles&&entity.roles.indexOf('registrant')!==-1;
+  })[0];
+  var registrantName=getRdapVcardField(registrant,'fn')||'Unavailable';
+  var networkItems=[
+    {k:'Hostname',v:publicIp},
+    {k:'Proxy',v:proxyLabel},
+    {k:'Internal LAN IP',v:lanIp},
+    {k:'SCRIPT_URL',v:location.pathname},
+    {k:'SCRIPT_URI',v:location.href},
+    {k:'HTTPS',v:location.protocol==='https:'?'on':'off'},
+    {k:'SSL_TLS_SNI',v:location.hostname||'Unavailable'},
+    {k:'HTTP_HOST',v:location.host||'Unavailable'},
+    {k:'HTTP_SEC_FETCH_DEST',v:headers['Sec-Fetch-Dest']||'not exposed on navigation request'},
+    {k:'HTTP_USER_AGENT',v:navigator.userAgent||'Unavailable'},
+    {k:'HTTP_ACCEPT',v:headers['Accept']||'not exposed on navigation request'},
+    {k:'HTTP_REFERER',v:document.referrer||'(none)'},
+    {k:'HTTP_SEC_FETCH_SITE',v:headers['Sec-Fetch-Site']||'not exposed on navigation request'},
+    {k:'HTTP_SEC_FETCH_MODE',v:headers['Sec-Fetch-Mode']||'not exposed on navigation request'},
+    {k:'HTTP_ACCEPT_LANGUAGE',v:navigator.languages&&navigator.languages.length?navigator.languages.join(', '):(navigator.language||'Unavailable')},
+    {k:'HTTP_PRIORITY',v:headers['Priority']||'not exposed by browser runtime'},
+    {k:'HTTP_ACCEPT_ENCODING',v:headers['Accept-Encoding']||'browser-managed'},
+    {k:'HTTP_COOKIE',v:document.cookie||'No cookies visible to this origin'},
+    {k:'HTTP_CONNECTION',v:headers['Connection']||'not exposed by browser runtime'},
+    {k:'SERVER_SIGNATURE',v:'not exposed by browser runtime'},
+    {k:'SERVER_SOFTWARE',v:'telemetry relay only (static client page)'},
+    {k:'SERVER_NAME',v:location.hostname||'Unavailable'},
+    {k:'SERVER_ADDR',v:'not exposed by browser runtime'},
+    {k:'SERVER_PORT',v:location.port||(location.protocol==='https:'?'443':'80')},
+    {k:'REQUEST_SCHEME',v:location.protocol.replace(':','')},
+    {k:'CONTEXT_PREFIX',v:'(none)'},
+    {k:'REMOTE_PORT',v:'not exposed by browser runtime'},
+    {k:'GATEWAY_INTERFACE',v:'not exposed by browser runtime'},
+    {k:'SERVER_PROTOCOL',v:'not exposed by browser runtime'},
+    {k:'REQUEST_METHOD',v:'GET'},
+    {k:'QUERY_STRING',v:query},
+    {k:'REQUEST_URI',v:location.pathname+location.search},
+    {k:'SCRIPT_NAME',v:location.pathname},
+    {k:'REQUEST_TIME_FLOAT',v:requestTimeFloat},
+    {k:'REQUEST_TIME',v:requestTime}
+  ];
+  var browserItems=[
+    {k:'Refered From',v:document.referrer||'(none)'},
+    {k:'User Agent',v:navigator.userAgent||'Unavailable'},
+    {k:'Screen Resolution',v:(window.screen&&screen.width?screen.width+' x '+screen.height+' (pixels)':'Unavailable')},
+    {k:'Browser Dimensions',v:window.innerWidth+' x '+window.innerHeight+' (pixels)'},
+    {k:'Cookie Status',v:buildCookieSummary()},
+    {k:'Cookies (Visible to this origin)',v:document.cookie||'(none)'},
+    {k:'Browser Plugins',v:buildPluginSummary()}
+  ];
+  var whoisItems=[
+    {k:'NetRange',v:rdap&&rdap.startAddress&&rdap.endAddress?(rdap.startAddress+' - '+rdap.endAddress):'Unavailable'},
+    {k:'CIDR',v:cidr},
+    {k:'NetName',v:rdap&&rdap.name?rdap.name:'Unavailable'},
+    {k:'NetHandle',v:rdap&&rdap.handle?rdap.handle:'Unavailable'},
+    {k:'Parent',v:rdap&&rdap.parentHandle?rdap.parentHandle:'Unavailable'},
+    {k:'NetType',v:rdap&&rdap.type?rdap.type:'Unavailable'},
+    {k:'Organization',v:registrantName!=='Unavailable'?registrantName:(ipInfo&&ipInfo.connection&&ipInfo.connection.org?ipInfo.connection.org:'Unavailable')},
+    {k:'OriginAS',v:ipInfo&&ipInfo.connection&&ipInfo.connection.asn?String(ipInfo.connection.asn):'Unavailable'},
+    {k:'Country',v:ipInfo&&ipInfo.country?(ipInfo.country+' ('+ipInfo.country_code+')'):'Unavailable'},
+    {k:'Reference',v:publicIp!=='Unavailable'?'https://rdap.arin.net/registry/ip/'+publicIp:'Unavailable'}
+  ];
+  var fingerprintCode=deriveFingerprintCode([
+    publicIp,
+    navigator.userAgent,
+    navigator.language,
+    window.screen&&screen.width,
+    window.screen&&screen.height,
+    ipInfo&&ipInfo.connection&&ipInfo.connection.asn
+  ].join('|'));
+  return{
+    collectedAt:now,
+    timestampLabel:formatWallclock(now),
+    fingerprintCode:fingerprintCode,
+    publicIp:publicIp,
+    networkItems:networkItems,
+    browserItems:browserItems,
+    whoisItems:whoisItems
+  };
+}
+
+function armFingerprintGate(dossier){
+  return new Promise(function(resolve){
+    var gate=document.getElementById('fingerprintGate');
+    var scanner=document.getElementById('fingerprintScanner');
+    var canvas=document.getElementById('fingerprintCanvas');
+    var fill=document.getElementById('fingerprintProgressFill');
+    var status=document.getElementById('fingerprintStatus');
+    if(!gate||!scanner||!canvas||!fill||!status){resolve();return}
+    gate.hidden=false;
+    var ctx=canvas.getContext('2d');
+    var holdStart=0;
+    var holdActive=false;
+    var holdProgress=0;
+    var solved=false;
+    var tick=0;
+    function draw(){
+      if(!ctx)return;
+      var w=canvas.width,h=canvas.height,cx=w/2,cy=h/2;
+      ctx.clearRect(0,0,w,h);
+      var bg=ctx.createRadialGradient(cx,cy,10,cx,cy,w*0.45);
+      bg.addColorStop(0,'rgba(10,25,40,0.92)');
+      bg.addColorStop(1,'rgba(2,4,10,0.12)');
+      ctx.fillStyle=bg;
+      ctx.fillRect(0,0,w,h);
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.rotate(Math.sin(tick*0.01)*0.06);
+      for(var ring=0;ring<10;ring++){
+        var rad=42+ring*16;
+        ctx.strokeStyle=ring%2===0?'rgba(24,220,255,0.28)':'rgba(255,0,170,0.18)';
+        ctx.lineWidth=1.2;
+        ctx.beginPath();
+        for(var a=0;a<Math.PI*2;a+=0.04){
+          var wobble=Math.sin(a*3+(tick*0.015)+(ring*0.8))*6;
+          var ovalX=(rad+wobble)*(1.06+Math.sin(ring*0.4)*0.06);
+          var ovalY=(rad*0.82)+Math.cos(a*2+(ring*0.6))*5;
+          var px=Math.cos(a)*ovalX;
+          var py=Math.sin(a)*ovalY;
+          if(a===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+        }
+        ctx.stroke();
+      }
+      for(var i=0;i<48;i++){
+        var ang=(i/48)*Math.PI*2+(tick*0.004);
+        var dist=140+Math.sin(tick*0.02+i)*10;
+        ctx.fillStyle=i%3===0?'rgba(0,255,204,0.35)':'rgba(24,220,255,0.22)';
+        ctx.beginPath();
+        ctx.arc(Math.cos(ang)*dist,Math.sin(ang)*dist,1.7,0,Math.PI*2);
+        ctx.fill();
+      }
+      var sweepY=-150+((tick*2)%300);
+      var sweep=ctx.createLinearGradient(0,sweepY-24,0,sweepY+24);
+      sweep.addColorStop(0,'rgba(24,220,255,0)');
+      sweep.addColorStop(0.5,holdActive?'rgba(0,255,204,0.55)':'rgba(24,220,255,0.45)');
+      sweep.addColorStop(1,'rgba(24,220,255,0)');
+      ctx.fillStyle=sweep;
+      ctx.fillRect(-170,sweepY-24,340,48);
+      ctx.restore();
+      ctx.strokeStyle=holdActive?'rgba(0,255,204,0.9)':'rgba(24,220,255,0.35)';
+      ctx.lineWidth=8;
+      ctx.beginPath();
+      ctx.arc(cx,cy,188,-Math.PI/2,(-Math.PI/2)+(Math.PI*2*holdProgress));
+      ctx.stroke();
+      tick++;
+      if(!solved)requestAnimationFrame(draw);
+    }
+    function updateProgress(ts){
+      if(!holdActive||solved)return;
+      holdProgress=Math.min(1,(ts-holdStart)/2000);
+      fill.style.width=(holdProgress*100)+'%';
+      status.textContent=holdProgress>=1
+        ?'Biometric pressure lock matched. Opening main grid...'
+        :'Hold steady... '+Math.ceil((1-holdProgress)*2*10)/10+'s remaining';
+      if(holdProgress>=1){
+        solved=true;
+        scanner.classList.add('armed');
+        fill.style.width='100%';
+        setTimeout(resolve,350);
+        return;
+      }
+      requestAnimationFrame(updateProgress);
+    }
+    function beginHold(){
+      if(solved||holdActive)return;
+      holdActive=true;
+      holdStart=performance.now();
+      scanner.classList.add('holding');
+      requestAnimationFrame(updateProgress);
+    }
+    function cancelHold(){
+      if(solved)return;
+      holdActive=false;
+      holdProgress=0;
+      fill.style.width='0%';
+      scanner.classList.remove('holding');
+      status.textContent='Press and hold on the scanner for 2 seconds. Fingerprint: '+dossier.fingerprintCode;
+    }
+    function startHoldEvent(e){if(e)e.preventDefault();beginHold()}
+    function cancelHoldEvent(e){if(e)e.preventDefault();cancelHold()}
+    scanner.addEventListener('pointerdown',startHoldEvent);
+    scanner.addEventListener('mousedown',startHoldEvent);
+    scanner.addEventListener('touchstart',startHoldEvent,{passive:false});
+    ['pointerup','pointerleave','pointercancel','mouseup','mouseleave','touchend','touchcancel'].forEach(function(type){scanner.addEventListener(type,cancelHoldEvent,{passive:false})});
+    scanner.addEventListener('keydown',function(e){
+      if(e.key===' '||e.key==='Enter'){e.preventDefault();beginHold()}
+    });
+    scanner.addEventListener('keyup',function(e){
+      if(e.key===' '||e.key==='Enter'){e.preventDefault();cancelHold()}
+    });
+    scanner.addEventListener('contextmenu',function(e){e.preventDefault()});
+    status.textContent='Press and hold on the scanner for 2 seconds. Fingerprint: '+dossier.fingerprintCode;
+    draw();
   });
 }
 
@@ -77,41 +421,64 @@ function waitForRequestAccess(){
 (async function(){
   await waitForRequestAccess();
   var b=document.getElementById('bootScreen'),l=document.getElementById('bootLog');
+  var networkInfo=document.getElementById('bootNetworkInfo');
+  var browserInfo=document.getElementById('bootBrowserInfo');
+  var whoisInfo=document.getElementById('bootWhoisInfo');
+  var intelStatus=document.getElementById('bootIntelStatus');
+  var intelTimestamp=document.getElementById('bootIntelTimestamp');
   if(!b)return;
-  if(sessionStorage.getItem('cb_boot')){b.remove();return}
-  if(reducedMotion){sessionStorage.setItem('cb_boot','1');b.remove();return}
-  sessionStorage.setItem('cb_boot','1');
+  if(reducedMotion)b.classList.add('reduced-motion');
+  if(intelStatus)intelStatus.textContent='requesting live telemetry';
+  var dossierPromise=collectOperatorDossier().catch(function(){
+    return{
+      collectedAt:Date.now(),
+      timestampLabel:'telemetry unavailable',
+      fingerprintCode:'UNKWN0',
+      publicIp:'Unavailable',
+      networkItems:[{k:'Telemetry',v:'Unable to collect remote dossier at this time'}],
+      browserItems:[{k:'Browser',v:navigator.userAgent||'Unavailable'}],
+      whoisItems:[{k:'WHOIS',v:'Unavailable'}]
+    };
+  });
   var lines=[
-    {t:'[SYS] CODE COOKBOOK v3.0',c:null},
-    {t:'[SYS] THUMPERSECURE SYSTEMS',c:null},
+    {t:'[SYS] THUMPERSECURE FORENSIC CONSOLE',c:null},
+    {t:'[SYS] REQUEST ACCESS ACKNOWLEDGED',c:null},
     {t:'─────────────────────────────',c:'#44475a'},
-    {t:'[INIT] Loading kernel modules...',c:null},
-    {t:'[OK]   Particle renderer',c:'#00ffcc'},
-    {t:'[OK]   Code rain shader',c:'#00ffcc'},
-    {t:'[OK]   Glitch engine',c:'#00ffcc'},
-    {t:'[OK]   CRT overlay',c:'#00ffcc'},
-    {t:'[OK]   Wireframe renderer (Gibson)',c:'#00ffcc'}, // Hack the planet.
-    {t:'[OK]   Snapshot data layer',c:'#18dcff'},
-    {t:'[OK]   Music controller',c:'#18dcff'},
-    {t:'[OK]   Effects engine',c:'#18dcff'},
-    {t:'[OK]   Puzzle system',c:'#18dcff'},
-    {t:'[OK]   Grid: online',c:'#18dcff'},
+    {t:'[INIT] Spooling handshake transcript...',c:null},
+    {t:'[OK]   TLS client hints parsed',c:'#00ffcc'},
+    {t:'[OK]   Header echo relay contacted',c:'#00ffcc'},
+    {t:'[OK]   RDAP ownership lookup queued',c:'#18dcff'},
+    {t:'[OK]   Screen and plugin telemetry acquired',c:'#18dcff'},
+    {t:'[OK]   Wireless / wire correlation model online',c:'#18dcff'},
+    {t:'[WARN] Browser runtime limits some server-side fields',c:'#ffb86c'},
+    {t:'[WAIT] Rendering operator dossier and thumbprint gate...',c:'#ff79c6'},
     {t:'─────────────────────────────',c:'#44475a'},
-    {t:'OSINT & SEO SPECIALIST',c:'#ff00aa'},
-    {t:'',c:null},
-    {t:'Ready.',c:'#00ffcc'}
+    {t:'FORENSIC REVIEW READY',c:'#00ffcc'}
   ];
-  for(var i=0;i<lines.length;i++){
+  function appendBootLine(line){
     var d=document.createElement('div');
-    d.textContent=lines[i].t;
-    if(lines[i].c)d.style.color=lines[i].c;
-    if(lines[i].t==='OSINT & SEO SPECIALIST')d.style.fontWeight='700';
-    l.appendChild(d);l.scrollTop=l.scrollHeight;
-    await sleep(lines[i].t?55+Math.random()*35:120);
+    d.textContent=line.t;
+    if(line.c)d.style.color=line.c;
+    if(line.t==='FORENSIC REVIEW READY')d.style.fontWeight='700';
+    l.appendChild(d);
+    l.scrollTop=l.scrollHeight;
   }
-  await sleep(400);
-  b.style.opacity='0';b.style.transition='opacity 0.5s ease';
-  await sleep(500);b.remove();
+  for(var i=0;i<lines.length;i++){
+    appendBootLine(lines[i]);
+    if(!reducedMotion)await sleep(lines[i].t?55+Math.random()*35:120);
+  }
+  var dossier=await dossierPromise;
+  TS.operatorDossier=dossier;
+  renderBootList(networkInfo,dossier.networkItems);
+  renderBootList(browserInfo,dossier.browserItems);
+  renderBootList(whoisInfo,dossier.whoisItems);
+  if(intelStatus)intelStatus.textContent='live telemetry ready';
+  if(intelTimestamp)intelTimestamp.textContent=dossier.timestampLabel;
+  await armFingerprintGate(dossier);
+  b.style.opacity='0';
+  b.style.transition='opacity 0.5s ease';
+  await sleep(500);
+  b.remove();
 })();
 
 /* ====== DATA LOADER (Phase 2) ====== */
@@ -272,6 +639,15 @@ modules.forEach(function(mod){
   });
 });
 
+function findHashTarget(hash){
+  var raw=(hash||'').replace(/^#/,'').trim();
+  if(!raw)return null;
+  var id;
+  try{id=decodeURIComponent(raw)}catch(e){id=raw}
+  if(!id)return null;
+  return document.getElementById(id);
+}
+
 function toggleModule(mod,forceOpen){
   var header=mod.querySelector('.ts-module-header');
   var body=mod.querySelector('.ts-module-body');
@@ -285,6 +661,41 @@ function toggleModule(mod,forceOpen){
     body.style.maxHeight=body.scrollHeight+2000+'px';body.classList.add('open');
     header.setAttribute('aria-expanded','true');
   }
+}
+
+function revealHashTarget(hash,opts){
+  var options=opts||{};
+  var target=findHashTarget(hash);
+  if(!target)return false;
+  var mod=target.closest('.ts-module');
+  if(mod)toggleModule(mod,true);
+  if(options.updateHistory){
+    var nextHash=hash.charAt(0)==='#'?hash:'#'+hash;
+    if(location.hash!==nextHash){
+      history.pushState(null,'',nextHash);
+    }
+  }
+  requestAnimationFrame(function(){
+    target.scrollIntoView({block:'start',behavior:reducedMotion?'auto':'smooth'});
+    if(options.focus&&typeof target.focus==='function'&&target.tabIndex>=0){
+      target.focus({preventScroll:true});
+    }
+  });
+  return true;
+}
+
+document.addEventListener('click',function(e){
+  var link=e.target.closest('a[href^="#"]');
+  if(!link)return;
+  var href=link.getAttribute('href')||'';
+  if(href==='#')return;
+  if(!findHashTarget(href))return;
+  e.preventDefault();
+  revealHashTarget(href,{updateHistory:true});
+});
+window.addEventListener('hashchange',function(){revealHashTarget(location.hash)});
+if(location.hash){
+  requestAnimationFrame(function(){revealHashTarget(location.hash)});
 }
 
 var expandAllBtn=document.getElementById('expandAllBtn');
@@ -318,6 +729,22 @@ if(collapseAllBtn)collapseAllBtn.addEventListener('click',function(){
   toggleAllModules(false);
   setModuleCtrlStatus('All modules collapsed');
 });
+
+(function(){
+  var gate=document.getElementById('fingerprintGate');
+  var scanner=document.getElementById('fingerprintScanner');
+  if(!gate||!scanner||!('MutationObserver' in window))return;
+  function revealGate(){
+    if(gate.hidden)return;
+    requestAnimationFrame(function(){
+      gate.scrollIntoView({block:'center',behavior:reducedMotion?'auto':'smooth'});
+      if(typeof scanner.focus==='function')scanner.focus({preventScroll:true});
+    });
+  }
+  var ob=new MutationObserver(revealGate);
+  ob.observe(gate,{attributes:true,attributeFilter:['hidden']});
+  revealGate();
+})();
 
 /* ====== BACK TO TOP ====== */
 var backToTopBtn=document.getElementById('backToTopBtn');
@@ -557,12 +984,13 @@ var FX_SCROLL_EVENTS=[
   {key:'archives',selector:'#mod-archives',icon:'&#128190;',label:'SIMULATION',msg:'Archive lane opened \u2014 BBS artifacts loaded.'},
   {key:'index',selector:'#recipe-index-section',icon:'&#128218;',label:'SIMULATION',msg:'Recipe index sweep complete \u2014 pattern map updated.'},
   {key:'ingredients',selector:'#mod-ingredients',icon:'&#128197;',label:'DEMO',msg:'Timeline grid synced \u2014 legacy-to-modern bridge stable.'},
+  {key:'puzzles',selector:'#mod-puzzles',icon:'&#9889;',label:'SIMULATION',msg:'Invite code forge opened \u2014 holographic pulse lattice armed.'},
+  {key:'packetwire',selector:'#mod-packetwire',icon:'&#128268;',label:'DEMO',msg:'Packet-over-wire module opened \u2014 packet and wireless views synchronized.'},
+  {key:'threatexamples',selector:'#mod-threat-examples',icon:'&#128737;',label:'DEMO',msg:'Threat lab examples active \u2014 covert channels and tripwires live.'},
   {key:'quotes',selector:'#mod-quotes',icon:'&#128172;',label:'SIMULATION',msg:'Legend quote wall energized \u2014 rotating hot feed active.'},
   {key:'glossary',selector:'#mod-glossary',icon:'&#128295;',label:'DEMO',msg:'Threat glossary parsed \u2014 defensive vocabulary armed.'},
   {key:'misc',selector:'#mod-misc',icon:'&#128240;',label:'SIMULATION',msg:'Misc resources loaded \u2014 newsletter relay active.'},
   {key:'fieldtools',selector:'#mod-fieldtools',icon:'&#128225;',label:'SIMULATION',msg:'Field tools pager online \u2014 31 signals decoded.'},
-{key:'packetwire',selector:'#packet-over-wire',icon:'&#128268;',label:'DEMO',msg:'Packet-over-wire grid entered \u2014 Tron-style traffic visualization active.'},
-{key:'circuitpuzzle',selector:'#graphical-puzzle-section',icon:'&#9889;',label:'SIMULATION',msg:'Circuit trace puzzle loaded \u2014 follow the glow.'},
   {key:'darkweb',selector:'#mod-darkweb',icon:'&#128274;',label:'SIMULATION',msg:'Onion routing active \u2014 dark web module decrypted.'},
   {key:'investigators',selector:'#mod-investigators',icon:'&#128269;',label:'DEMO',msg:'Investigator timeline loaded \u2014 mail carriers to OSINT.'}
 ];
@@ -963,10 +1391,13 @@ TS.checkPortScan=function(){
   }
 };
 
-TS.puzzleSkip=function(id){setPuzzleState(id,true)};
+TS.puzzleSkip=function(id){
+  setPuzzleState(id,true);
+  if(id==='inviteforge'&&typeof TS.finishInviteForge==='function')TS.finishInviteForge(true);
+};
 
 /* ====== AUTO-SCROLL (steady rate, pause at puzzles, exclude bottom) ====== */
-var AUTO_SCROLL_PUZZLES=['unscramble','math','checksum','pattern','phishing','portscan','decrypt','circuit'];
+var AUTO_SCROLL_PUZZLES=['inviteforge'];
 var autoScrollEnabled=getSetting('auto_scroll',true);
 var autoScrollSpeed=18;
 var autoScrollRaf=null;
@@ -1034,7 +1465,7 @@ setTimeout(function(){
 })();
 
 TS.resetAllPuzzles=function(){
-  ['unscramble','math','checksum','pattern','phishing','decrypt','portscan','circuit','bottom'].forEach(function(id){
+  ['inviteforge','unscramble','math','checksum','pattern','phishing','decrypt','portscan','circuit','bottom'].forEach(function(id){
     setSetting('puzzle_'+id,false);updatePuzzleUI(id);
   });
   localStorage.removeItem('cb_puzzle_solved');
@@ -1470,75 +1901,348 @@ if(pktCv&&!reducedMotion){
   rPkt();dPkt();window.addEventListener('resize',rPkt);
 }
 
-/* ====== STEGO DEMO CANVAS ====== */
-var stegoCv=document.getElementById('stegoCanvas');
-if(stegoCv){
-  var sX=stegoCv.getContext('2d'),sw=200,sh=120;
-  var msg='GRID';var bits=[];for(var i=0;i<msg.length;i++){var c=msg.charCodeAt(i);for(var b=7;b>=0;b--)bits.push((c>>b)&1)}
-  for(var y=0;y<sh;y+=4){for(var x=0;x<sw;x+=4){
-    var idx=Math.floor((y*sw+x)/16)%bits.length;
-    var base=32+Math.floor(Math.random()*96);
-    var v=base-(base%2)+bits[idx];
-    sX.fillStyle='rgb('+v+','+v+','+v+')';
-    sX.fillRect(x,y,4,4);
-  }}
+/* ====== KISMET SIGNAL CANVAS ====== */
+var kismetCv=document.getElementById('kismetSignalCanvas');
+if(kismetCv){
+  var kX=kismetCv.getContext('2d'),kTick=0;
+  function drawKismet(){
+    var w=kismetCv.width,h=kismetCv.height,cx=w/2,cy=h/2;
+    kX.clearRect(0,0,w,h);
+    kX.fillStyle='rgba(3,6,16,0.95)';
+    kX.fillRect(0,0,w,h);
+    for(var ring=1;ring<=4;ring++){
+      kX.strokeStyle='rgba(24,220,255,'+(0.12+(ring*0.03))+')';
+      kX.lineWidth=1;
+      kX.beginPath();
+      kX.arc(cx,cy,ring*24,0,Math.PI*2);
+      kX.stroke();
+    }
+    for(var i=0;i<10;i++){
+      var ang=(i/10)*Math.PI*2+(kTick*0.006);
+      var dist=42+(i%4)*18;
+      kX.fillStyle=i%2===0?'rgba(0,255,204,0.28)':'rgba(255,0,170,0.2)';
+      kX.beginPath();
+      kX.arc(cx+Math.cos(ang)*dist,cy+Math.sin(ang)*dist,2.2,0,Math.PI*2);
+      kX.fill();
+    }
+    var sweepAng=(kTick*0.03)%(Math.PI*2);
+    kX.strokeStyle='rgba(0,255,204,0.55)';
+    kX.lineWidth=2;
+    kX.beginPath();
+    kX.moveTo(cx,cy);
+    kX.lineTo(cx+Math.cos(sweepAng)*92,cy+Math.sin(sweepAng)*92);
+    kX.stroke();
+    kTick++;
+    if(!reducedMotion)requestAnimationFrame(drawKismet);
+  }
+  drawKismet();
 }
 
-/* ====== PUZZLE G: CIRCUIT TRACE ====== */
+/* ====== STEGO + THREAT DEMOS ====== */
+var stegoCv=document.getElementById('stegoCanvas');
+if(stegoCv){
+  var sX=stegoCv.getContext('2d'),sw=stegoCv.width,sh=stegoCv.height;
+  var stegoMsg='MASK THE PATTERN';
+  var stegoBits=[];
+  for(var i=0;i<stegoMsg.length;i++){
+    var cc=stegoMsg.charCodeAt(i);
+    for(var bit=7;bit>=0;bit--)stegoBits.push((cc>>bit)&1);
+  }
+  function paintStego(){
+    for(var y=0;y<sh-20;y+=4){
+      for(var x=0;x<sw;x+=4){
+        var r=35+((x+y)%80);
+        var g=70+((x*3+y)%120);
+        var b=110+((y*2)%120);
+        sX.fillStyle='rgb('+r+','+g+','+b+')';
+        sX.fillRect(x,y,4,4);
+      }
+    }
+    var bitPtr=0;
+    for(var bandY=sh-16;bandY<sh&&bitPtr<stegoBits.length;bandY+=4){
+      for(var bandX=0;bandX<sw&&bitPtr<stegoBits.length;bandX+=4){
+        var br=28+((bandX*2)%80);
+        var bg=55+((bandY*5)%90);
+        var bb=150+((bandX+bandY)%80);
+        bb=bb-(bb%2)+stegoBits[bitPtr++];
+        sX.fillStyle='rgb('+br+','+bg+','+bb+')';
+        sX.fillRect(bandX,bandY,4,4);
+      }
+    }
+    sX.fillStyle='rgba(255,255,255,0.06)';
+    sX.fillRect(22,18,176,96);
+    sX.fillStyle='rgba(24,220,255,0.75)';
+    sX.font='700 14px JetBrains Mono';
+    sX.fillText('photo_8821.png',34,42);
+    sX.fillStyle='rgba(0,255,204,0.45)';
+    sX.fillText('normal image // nothing obvious',34,66);
+  }
+  function decodeStegoBits(){
+    var data=sX.getImageData(0,0,sw,sh).data;
+    var bits=[],out='';
+    for(var yy=sh-16;yy<sh&&bits.length<stegoMsg.length*8;yy+=4){
+      for(var xx=0;xx<sw&&bits.length<stegoMsg.length*8;xx+=4){
+        var px=((yy*sw)+xx)*4;
+        bits.push(data[px+2]&1);
+      }
+    }
+    for(var n=0;n<bits.length;n+=8){
+      var code=0;
+      for(var m=0;m<8;m++)code=(code<<1)|bits[n+m];
+      out+=String.fromCharCode(code);
+    }
+    return out;
+  }
+  paintStego();
+  var decodeBtn=document.getElementById('decodeStegoBtn');
+  var stegoHint=document.getElementById('stegoHint');
+  if(decodeBtn&&stegoHint){
+    decodeBtn.addEventListener('click',function(){
+      var decoded=decodeStegoBits();
+      stegoHint.textContent='decoded payload → '+decoded;
+      decodeBtn.textContent='Decoded';
+      decodeBtn.disabled=true;
+    });
+  }
+}
+
 (function(){
-  var cv=document.getElementById('circuitPuzzleCanvas');
-  var status=document.getElementById('circuitPuzzleStatus');
-  if(!cv)return;
-  var ctx=cv.getContext('2d'),nodes=[],path=[0,4,8,12,13],selected=[],tick=0;
-  var w=cv.width,h=cv.height,cols=4,rows=4,gw=w/(cols+1),gh=h/(rows+1);
-  for(var r=0;r<rows;r++)for(var c=0;c<cols;c++)nodes.push({x:(c+1)*gw,y:(r+1)*gh,idx:r*cols+c});
-  function draw(){
-    ctx.fillStyle='rgba(2,5,12,0.95)';ctx.fillRect(0,0,w,h);
-    ctx.strokeStyle='rgba(24,220,255,0.15)';ctx.lineWidth=0.5;
-    for(var i=0;i<nodes.length;i++){
-      for(var j=i+1;j<nodes.length;j++){
-        var a=nodes[i],b=nodes[j];
-        if(Math.abs(a.idx-b.idx)===1||Math.abs(a.idx-b.idx)===cols){
-          ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+  var inspectBtn=document.getElementById('inspectHomoglyphBtn');
+  var domain=document.getElementById('homoglyphDomain');
+  var status=document.getElementById('homoglyphStatus');
+  if(inspectBtn&&domain&&status){
+    inspectBtn.addEventListener('click',function(){
+      domain.textContent='paypaI-secure.com  →  paypal-secure.com';
+      status.textContent='Capital I is standing in for lowercase l — same silhouette, different glyph.';
+      inspectBtn.textContent='Glyphs exposed';
+      inspectBtn.disabled=true;
+    });
+  }
+})();
+
+(function(){
+  var tripBtn=document.getElementById('tripHoneytokenBtn');
+  var consoleEl=document.getElementById('honeytokenConsole');
+  if(tripBtn&&consoleEl){
+    tripBtn.addEventListener('click',function(){
+      var ip=(TS.operatorDossier&&TS.operatorDossier.publicIp)||'unknown';
+      consoleEl.textContent='status: beacon tripped\ncallback: https://pixel-gate.local/open.gif?src=bait-doc\noperator: '+ip+' at '+formatWallclock(Date.now());
+      tripBtn.textContent='Callback logged';
+      tripBtn.disabled=true;
+    });
+  }
+})();
+
+/* ====== INVITE CODE FORGE ====== */
+(function(){
+  var cv=document.getElementById('inviteForgeCanvas');
+  var status=document.getElementById('forgeStatus');
+  var depth=document.getElementById('forgeSequenceDepth');
+  var glow=document.getElementById('forgeGlowIndex');
+  var replayBtn=document.getElementById('forgeReplayBtn');
+  var resetBtn=document.getElementById('forgeResetBtn');
+  var codeOutput=document.getElementById('forgeCodeOutput');
+  var latency=document.getElementById('forgeLatency');
+  var traceList=document.getElementById('forgeTraceList');
+  if(!cv||!status||!depth||!glow||!replayBtn||!resetBtn||!codeOutput||!latency)return;
+  var ctx=cv.getContext('2d');
+  var dpr=Math.max(1,window.devicePixelRatio||1);
+  var labels=['A7','C1','F3','J2','L8','N4','Q6','T1','V5','X9'];
+  var baseSeed=deriveFingerprintCode(location.host+navigator.userAgent);
+  var solvedCode='INVITE // '+deriveFingerprintCode(baseSeed+'-'+location.pathname);
+  var nodes=[],sequence=[],selected=[],particles=[],tick=0,playback=true,playbackIndex=-1,playbackSince=0,solved=false;
+  function resizeForge(){
+    var w=cv.clientWidth||920,h=cv.clientHeight||540;
+    cv.width=Math.floor(w*dpr);
+    cv.height=Math.floor(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    nodes=[
+      {x:w*0.18,y:h*0.28},{x:w*0.33,y:h*0.18},{x:w*0.49,y:h*0.28},{x:w*0.66,y:h*0.18},{x:w*0.82,y:h*0.3},
+      {x:w*0.74,y:h*0.68},{x:w*0.52,y:h*0.78},{x:w*0.3,y:h*0.68},{x:w*0.18,y:h*0.52},{x:w*0.52,y:h*0.5}
+    ];
+  }
+  function rebuildSequence(){
+    sequence=[];
+    var pool=[0,1,2,3,4,5,6,7,8,9];
+    while(sequence.length<6){
+      var idx=Math.floor(Math.random()*pool.length);
+      sequence.push(pool[idx]);
+      pool.splice(idx,1);
+    }
+  }
+  function updateForgeCopy(msg){
+    status.textContent=msg;
+    depth.textContent=selected.length+'/'+sequence.length;
+    var nextIdx=sequence[Math.min(selected.length,sequence.length-1)];
+    glow.textContent=labels[nextIdx];
+    latency.textContent=(selected.length*13+47)+' ms';
+    codeOutput.textContent=solved?solvedCode:'INVITE // '+sequence.map(function(idx,i){
+      return i<selected.length?labels[idx]:'--';
+    }).join('-');
+    if(traceList){
+      traceList.innerHTML=sequence.map(function(idx,i){
+        var state=i<selected.length?'armed':(i===selected.length?'next':'standby');
+        return '<div class="'+state+'">'+labels[idx]+'</div>';
+      }).join('');
+    }
+  }
+  function beginReplay(){
+    selected=[];
+    playback=true;
+    playbackIndex=-1;
+    playbackSince=performance.now();
+    solved=false;
+    updateForgeCopy('Watch the surge route, then replay it on the lattice.');
+  }
+  function finishForge(skipped){
+    solved=true;
+    playback=false;
+    selected=sequence.slice();
+    setPuzzleState('inviteforge',true);
+    updateForgeCopy(skipped?'Invite forge bypassed. Section unlocked.':'Invite code forged. Lattice stable.');
+    codeOutput.textContent=solvedCode;
+  }
+  function attemptNode(idx){
+    if(solved||playback)return false;
+    var expected=sequence[selected.length];
+    if(idx===expected){
+      selected.push(idx);
+      if(selected.length===sequence.length){
+        finishForge(false);
+      }else{
+        updateForgeCopy('Signal captured. Continue following the route.');
+      }
+      return true;
+    }
+    selected=[];
+    updateForgeCopy('Sequence break. The lattice purged your path — replay and try again.');
+    return false;
+  }
+  TS.finishInviteForge=finishForge;
+  TS.inviteForgeState={
+    getSequence:function(){return sequence.slice()},
+    getNodes:function(){return nodes.map(function(node){return{x:node.x,y:node.y}})},
+    replay:beginReplay,
+    select:attemptNode
+  };
+  function spawnParticles(){
+    if(particles.length<26&&Math.random()<0.25){
+      particles.push({x:Math.random()*(cv.clientWidth||920),y:Math.random()*(cv.clientHeight||540),vx:-0.4+Math.random()*0.8,vy:-0.25+Math.random()*0.5,life:1});
+    }
+    particles=particles.filter(function(p){p.x+=p.vx;p.y+=p.vy;p.life-=0.012;return p.life>0});
+  }
+  function drawForge(){
+    var w=cv.clientWidth||920,h=cv.clientHeight||540,cx=w/2,cy=h/2;
+    ctx.clearRect(0,0,w,h);
+    var bg=ctx.createLinearGradient(0,0,w,h);
+    bg.addColorStop(0,'rgba(4,8,20,0.96)');
+    bg.addColorStop(1,'rgba(8,3,18,0.96)');
+    ctx.fillStyle=bg;
+    ctx.fillRect(0,0,w,h);
+    for(var gy=0;gy<7;gy++){
+      ctx.strokeStyle='rgba(24,220,255,0.08)';
+      ctx.beginPath();
+      ctx.moveTo(0,(gy+1)*(h/8));
+      ctx.lineTo(w,(gy+1)*(h/8));
+      ctx.stroke();
+    }
+    for(var gx=0;gx<11;gx++){
+      ctx.beginPath();
+      ctx.moveTo((gx+1)*(w/12),0);
+      ctx.lineTo((gx+1)*(w/12),h);
+      ctx.stroke();
+    }
+    for(var ring=0;ring<4;ring++){
+      ctx.strokeStyle=ring%2===0?'rgba(24,220,255,0.2)':'rgba(255,0,170,0.16)';
+      ctx.lineWidth=1.1;
+      ctx.beginPath();
+      ctx.ellipse(cx,cy,(w*0.14)+(ring*70),(h*0.14)+(ring*36),Math.sin(tick*0.005+ring)*0.25,0,Math.PI*2);
+      ctx.stroke();
+    }
+    if(playback){
+      var elapsed=performance.now()-playbackSince;
+      playbackIndex=Math.min(sequence.length-1,Math.floor(elapsed/550));
+      if(elapsed>(sequence.length*550)+400){
+        playback=false;
+        playbackIndex=-1;
+        updateForgeCopy('Replay the pulse by clicking the glowing nodes in the same order.');
+      }
+    }
+    for(var ln=0;ln<nodes.length;ln++){
+      var node=nodes[ln];
+      for(var lk=ln+1;lk<nodes.length;lk++){
+        var next=nodes[lk];
+        var dist=Math.hypot(node.x-next.x,node.y-next.y);
+        if(dist<260){
+          ctx.strokeStyle='rgba(24,220,255,0.08)';
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          ctx.moveTo(node.x,node.y);
+          ctx.lineTo(next.x,next.y);
+          ctx.stroke();
         }
       }
     }
-    var pulse=0.5+0.5*Math.sin(tick*0.08);
-    for(var k=0;k<nodes.length;k++){
-      var n=nodes[k],isPath=path.indexOf(k)!==-1,isSelected=selected.indexOf(k)!==-1;
-      ctx.beginPath();ctx.arc(n.x,n.y,isPath?12:8,0,Math.PI*2);
-      if(isSelected){ctx.fillStyle='rgba(0,255,204,0.4)';ctx.strokeStyle='#00ffcc';ctx.lineWidth=2}
-      else if(isPath){ctx.fillStyle='rgba(24,220,255,'+(0.15+pulse*0.2)+')';ctx.strokeStyle='#18dcff';ctx.lineWidth=1.5}
-      else{ctx.fillStyle='rgba(24,220,255,0.06)';ctx.strokeStyle='rgba(24,220,255,0.2)';ctx.lineWidth=1}
-      ctx.fill();ctx.stroke();
+    if(selected.length>1){
+      ctx.strokeStyle='rgba(0,255,204,0.65)';
+      ctx.lineWidth=3;
+      ctx.beginPath();
+      ctx.moveTo(nodes[selected[0]].x,nodes[selected[0]].y);
+      for(var s=1;s<selected.length;s++)ctx.lineTo(nodes[selected[s]].x,nodes[selected[s]].y);
+      ctx.stroke();
     }
-    for(var s=0;s<selected.length-1;s++){
-      var n1=nodes[selected[s]],n2=nodes[selected[s+1]];
-      ctx.strokeStyle='rgba(0,255,204,0.6)';ctx.lineWidth=2;
-      ctx.beginPath();ctx.moveTo(n1.x,n1.y);ctx.lineTo(n2.x,n2.y);ctx.stroke();
-    }
-    tick++;if(!reducedMotion)requestAnimationFrame(draw);
+    nodes.forEach(function(node,idx){
+      var isSeq=sequence.indexOf(idx)!==-1;
+      var isSelected=selected.indexOf(idx)!==-1;
+      var isPlayback=playback&&sequence[playbackIndex]===idx;
+      var radius=isPlayback?20:(isSeq?15:10);
+      var grad=ctx.createRadialGradient(node.x,node.y,2,node.x,node.y,radius*2.8);
+      grad.addColorStop(0,isSelected?'rgba(0,255,204,0.95)':(isPlayback?'rgba(255,0,170,0.95)':'rgba(24,220,255,0.82)'));
+      grad.addColorStop(1,'rgba(24,220,255,0)');
+      ctx.fillStyle=grad;
+      ctx.beginPath();
+      ctx.arc(node.x,node.y,radius*2.2,0,Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle=isSelected?'#00ffcc':(isPlayback?'#ff79c6':'#18dcff');
+      ctx.beginPath();
+      ctx.arc(node.x,node.y,radius,0,Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,0.85)';
+      ctx.lineWidth=1.3;
+      ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,0.85)';
+      ctx.font='700 12px JetBrains Mono';
+      ctx.fillText(labels[idx],node.x-14,node.y+4);
+    });
+    spawnParticles();
+    particles.forEach(function(p){
+      ctx.fillStyle='rgba(255,255,255,'+Math.max(0,p.life*0.5)+')';
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,1.8,0,Math.PI*2);
+      ctx.fill();
+    });
+    tick++;
+    requestAnimationFrame(drawForge);
   }
-  cv.addEventListener('click',function(e){
-    if(getPuzzleState('circuit'))return;
+  function clickForge(e){
+    if(solved||playback)return;
     var rect=cv.getBoundingClientRect();
-    var scaleX=cv.width/rect.width,scaleY=cv.height/rect.height;
-    var x=(e.clientX-rect.left)*scaleX,y=(e.clientY-rect.top)*scaleY;
+    var x=e.clientX-rect.left,y=e.clientY-rect.top;
     for(var i=0;i<nodes.length;i++){
-      var n=nodes[i],d=Math.sqrt((x-n.x)*(x-n.x)+(y-n.y)*(y-n.y));
-      if(d<16){
-        var expected=path[selected.length];
-        if(i===expected){
-          selected.push(i);
-          if(status)status.textContent='trace the path: '+selected.length+'/5';
-          if(selected.length===5){if(status)status.textContent='Circuit complete. Access granted.';setPuzzleState('circuit',true)}
-        }else{selected=[];if(status)status.textContent='wrong node — restart from the first glow'}
+      if(Math.hypot(x-nodes[i].x,y-nodes[i].y)<26){
+        attemptNode(i);
         break;
       }
     }
-  });
-  if(reducedMotion){ctx.fillStyle='#050510';ctx.fillRect(0,0,cv.width,cv.height);for(var i=0;i<nodes.length;i++){var n=nodes[i];ctx.beginPath();ctx.arc(n.x,n.y,path.indexOf(i)!==-1?12:8,0,Math.PI*2);ctx.fillStyle=path.indexOf(i)!==-1?'rgba(24,220,255,0.3)':'rgba(24,220,255,0.1)';ctx.fill();ctx.strokeStyle='rgba(24,220,255,0.3)';ctx.stroke()}}else{draw()}
-  updatePuzzleUI('circuit');
+  }
+  cv.addEventListener('click',clickForge);
+  replayBtn.addEventListener('click',function(){beginReplay()});
+  resetBtn.addEventListener('click',function(){rebuildSequence();beginReplay()});
+  resizeForge();
+  window.addEventListener('resize',resizeForge);
+  rebuildSequence();
+  if(getPuzzleState('inviteforge'))finishForge(true);else beginReplay();
+  drawForge();
 })();
 
 /* ====== QUOTE CYCLER ====== */
@@ -1687,9 +2391,38 @@ function cbInitBottomPuzzle(){
 }
 (function(){
   var s=document.getElementById('cbBottomSentinel');
-  if(!s||!('IntersectionObserver' in window))return;
-  var ob=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){ob.disconnect();setTimeout(cbInitBottomPuzzle,140)}})},{threshold:0.12});
-  ob.observe(s);
+  if(!s)return;
+  var fired=false;
+  var ob=null;
+  function cleanup(){
+    window.removeEventListener('scroll',checkSentinel);
+    window.removeEventListener('resize',checkSentinel);
+    if(ob)ob.disconnect();
+  }
+  function trigger(){
+    if(fired)return;
+    fired=true;
+    cleanup();
+    setTimeout(cbInitBottomPuzzle,140);
+  }
+  function checkSentinel(){
+    if(fired)return;
+    var rect=s.getBoundingClientRect();
+    var visible=Math.min(rect.bottom,window.innerHeight)-Math.max(rect.top,0);
+    var ratio=rect.height>0?visible/rect.height:0;
+    if(rect.top<window.innerHeight&&rect.bottom>0&&ratio>=0.12)trigger();
+  }
+  if('IntersectionObserver' in window){
+    ob=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting&&en.intersectionRatio>=0.12)trigger();
+      });
+    },{threshold:0.12});
+    ob.observe(s);
+  }
+  window.addEventListener('scroll',checkSentinel,{passive:true});
+  window.addEventListener('resize',checkSentinel);
+  requestAnimationFrame(checkSentinel);
 })();
 
 /* ====== CVE MODAL SYSTEM ====== */
@@ -1716,9 +2449,17 @@ function cbInitBottomPuzzle(){
   document.body.appendChild(overlay);
 
   var lastFocus=null;
+  var activeTrigger=null;
 
-  function openCveModal(cveId,detail){
-    lastFocus=document.activeElement;
+  function setActiveTrigger(trigger){
+    if(activeTrigger&&activeTrigger!==trigger)activeTrigger.setAttribute('aria-expanded','false');
+    activeTrigger=trigger||null;
+    if(activeTrigger)activeTrigger.setAttribute('aria-expanded','true');
+  }
+
+  function openCveModal(cveId,detail,trigger){
+    setActiveTrigger(trigger);
+    lastFocus=trigger||document.activeElement;
     title.textContent=cveId+' — Plain-Language Explanation';
     body.textContent=detail;
     overlay.classList.add('open');
@@ -1729,6 +2470,7 @@ function cbInitBottomPuzzle(){
   function closeCveModal(){
     overlay.classList.remove('open');
     document.body.style.overflow='';
+    setActiveTrigger(null);
     if(lastFocus&&typeof lastFocus.focus==='function')lastFocus.focus();
   }
 
@@ -1752,8 +2494,7 @@ function cbInitBottomPuzzle(){
     var cveIdEl=card?card.querySelector('.cve-id'):null;
     var cveId=cveIdEl?cveIdEl.textContent:'CVE Details';
     var detail=btn.getAttribute('data-cve-detail')||'No additional information available.';
-    btn.setAttribute('aria-expanded','true');
-    openCveModal(cveId,detail);
+    openCveModal(cveId,detail,btn);
   });
 })();
 
