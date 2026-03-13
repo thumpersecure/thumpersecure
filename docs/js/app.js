@@ -1812,7 +1812,7 @@ if(iCv){
     var dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
     var w=iCv.clientWidth,h=iCv.clientHeight;
     iCv.width=Math.floor(w*dpr);iCv.height=Math.floor(h*dpr);
-    iX.setTransform(dpr,0,0,dpr,0,0);
+    if(iX)iX.setTransform(dpr,0,0,dpr,0,0);
   }
   function dIC(){
     if(!iX)return;
@@ -1848,7 +1848,7 @@ if(qCv){
     var dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
     var w=qCv.clientWidth,h=qCv.clientHeight;
     qCv.width=Math.floor(w*dpr);qCv.height=Math.floor(h*dpr);
-    qX.setTransform(dpr,0,0,dpr,0,0);
+    if(qX)qX.setTransform(dpr,0,0,dpr,0,0);
   }
   function dQC(){
     if(!qX)return;
@@ -2562,6 +2562,16 @@ function cbInitBottomPuzzle(){
     openCveModal(cveId,detail,btn);
   });
 })();
+
+/* ====== BFCACHE RESTORATION ====== */
+window.addEventListener('pageshow',function(e){
+  if(!e.persisted)return;
+  if(mPlayer&&mPlayer.src){
+    if(!mPlayer.paused)setMusicStatus('playing: '+TRACK_CONFIG[Math.max(0,mCurrentIndex)].label.toLowerCase(),'playing');
+    else setMusicStatus('paused — tap play to resume',null);
+  }
+  if(autoScrollEnabled&&!reducedMotion)startAutoScroll();
+});
 
 /* ====== UPDATE FX SCROLL EVENTS FOR RENAMED MODULES ====== */
 (function(){
