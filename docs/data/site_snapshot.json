@@ -1,7 +1,7 @@
 {
-  "last_updated_utc": "2026-03-15T06:41:55.489Z",
+  "last_updated_utc": "2026-03-16T07:03:01.390Z",
   "stats": {
-    "tools_count": 14,
+    "tools_count": 16,
     "stars_total": 573,
     "featured_count": 4,
     "followers": 56
@@ -180,7 +180,7 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front���end that runs in the browser or connects to a FastAPI server. https://thumpersecure.github.io/quevidkit/",
+      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server. https://thumpersecure.github.io/quevidkit/",
       "topics": [],
       "stars": 6,
       "last_updated": "2026-03-14T06:45:47Z",
@@ -213,6 +213,28 @@
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/zweather/",
       "html_url": "https://github.com/thumpersecure/zweather",
+      "featured": false
+    },
+    {
+      "name": "AoLpAgErThEmE",
+      "description": "An AOL styled theme for the Hak5 pineapple pager.",
+      "topics": [],
+      "stars": 0,
+      "last_updated": "2026-03-16T03:12:50Z",
+      "language": "Python",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/AoLpAgErThEmE",
+      "featured": false
+    },
+    {
+      "name": "lawsuitor",
+      "description": "🗽 lawsuitor is a free, open-source web app that helps everyday people understand the steps to filing a civil lawsuit. For education only. *Not legal advice. *Contact a licensed attorney",
+      "topics": [],
+      "stars": 0,
+      "last_updated": "2026-03-16T02:57:23Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/lawsuitor/",
+      "html_url": "https://github.com/thumpersecure/lawsuitor",
       "featured": false
     }
   ]
