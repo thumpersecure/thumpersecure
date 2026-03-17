@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let searchResults = [];
   let currentSearchIndex = 0;
+  let isSearching = false;
 
   // Parse phone number - extract only digits
   function parsePhoneNumber(input) {
@@ -241,6 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Main search handler
   async function handleSearch() {
+    if (isSearching || searchBtn.disabled) {
+      return;
+    }
+
     const phone = phoneInput.value.trim();
 
     if (!phone) {
@@ -267,18 +272,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     displayFormats(formats);
 
+    isSearching = true;
     searchBtn.disabled = true;
     searchBtn.innerHTML = '<span class="btn-icon">⏳</span> Searching...';
 
-    await runAllSearches(formats);
+    try {
+      await runAllSearches(formats);
+    } catch (error) {
+      console.error('Search run failed:', error);
+    } finally {
+      isSearching = false;
+      if (searchBtn.disabled) {
+        searchBtn.disabled = false;
+        searchBtn.innerHTML = '<span class="btn-icon">&#128269;</span> Search';
+      }
+    }
   }
 
   // Event listeners
   searchBtn.addEventListener('click', handleSearch);
 
-  phoneInput.addEventListener('keypress', (e) => {
+  phoneInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-      handleSearch();
+      e.preventDefault();
+      if (!isSearching) {
+        void handleSearch();
+      }
     }
   });
 
