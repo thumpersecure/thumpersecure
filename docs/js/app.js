@@ -526,7 +526,7 @@ async function loadSiteData(){
   }catch(e){}
   // Tier 4: Embedded fallback (minimal inline)
   var fb=getEmbeddedFallback();
-  if(fb&&fb.repos&&fb.repos.length>0){siteData=fb;dataSource='embedded';return fb}
+  if(fb&&fb.stats&&Array.isArray(fb.repos)){siteData=fb;dataSource='embedded';return fb}
   siteData={stats:{tools_count:13,stars_total:552,featured_count:4,followers:48},repos:[]};
   dataSource='error';
   return siteData;
@@ -536,9 +536,10 @@ function getEmbeddedFallback(){
   try{var el=document.getElementById('fallback-snapshot');if(el)return JSON.parse(el.textContent);return null}catch(e){return null}
 }
 
+function parseDateMs(iso){var t=Date.parse(iso);return Number.isFinite(t)?t:null}
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function safeUrl(u){if(!u||/^(javascript|data):/i.test(String(u)))return'#';try{var h=new URL(u);return(h.protocol==='https:'||h.protocol==='http:')&&(h.hostname==='github.com'||h.hostname.endsWith('.github.com')||h.hostname.endsWith('.github.io'))?u:'#'}catch(e){return'#'}}
-function relDate(iso){var d=Math.floor((Date.now()-new Date(iso).getTime())/864e5);if(d<1)return'today';if(d<30)return d+'d ago';if(d<365)return Math.floor(d/30)+'mo ago';return Math.floor(d/365)+'y ago'}
+function relDate(iso){var ts=parseDateMs(iso);if(ts===null)return'unknown';var d=Math.floor((Date.now()-ts)/864e5);if(d<1)return'today';if(d<30)return d+'d ago';if(d<365)return Math.floor(d/30)+'mo ago';return Math.floor(d/365)+'y ago'}
 
 /* ====== RENDER FUNCTIONS ====== */
 function animateCounter(el,target){
@@ -576,7 +577,8 @@ function renderStats(data){
   var ds=document.getElementById('dataStatus');
   if(ds){
     if(dataSource==='live'){
-      var dt=data.last_updated_utc?new Date(data.last_updated_utc).toISOString().replace('T',' ').slice(0,16)+' UTC':'';
+      var ts=parseDateMs(data.last_updated_utc);
+      var dt=ts===null?'unknown':new Date(ts).toISOString().replace('T',' ').slice(0,16)+' UTC';
       ds.textContent='Snapshot: '+dt;ds.classList.remove('fallback');
     }else if(dataSource==='cached'){
       ds.textContent='Cached snapshot in use';ds.classList.add('fallback');
@@ -606,10 +608,7 @@ function buildFeaturedCards(data){
 
 function buildProjectCard(repo,idx){
   var c=document.createElement('article');c.className='project-card';c.style.transitionDelay=(idx*0.04)+'s';
-  c.setAttribute('data-name',(repo.name||'').toLowerCase());
-  c.setAttribute('data-desc',(repo.description||'').toLowerCase());
-  c.setAttribute('data-lang',(repo.language||'').toLowerCase());
-  c.setAttribute('data-topics',(repo.topics||[]).join(' ').toLowerCase());
+  c.setAttribute('data-search',[(repo.name||''),(repo.description||''),(repo.language||''),(repo.topics||[]).join(' ')].join(' ').toLowerCase());
   var sN=esc(repo.name),sD=esc(repo.description||'OSINT & SEO tool by THUMPERSECURE'),sL=esc(repo.language),sU=safeUrl(repo.html_url);
   c.innerHTML='<a class="project-link" href="'+sU+'" target="_blank" rel="noopener noreferrer"><div class="card-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="card-filename">'+sN+'.ts</span></div><div class="card-body"><h3 class="card-name">'+sN+'</h3><p class="card-desc">'+sD+'</p></div><div class="card-meta">'+(repo.stars>0?'<span class="pill pill-stars">&#9733; '+repo.stars+'</span>':'')+(sL?'<span class="pill pill-lang">'+sL+'</span>':'')+'<span class="pill pill-date">'+relDate(repo.last_updated)+'</span></div></a>';
   return c;
@@ -629,14 +628,19 @@ function renderProjectGrid(data){
 
 // Search/filter
 var searchInput=document.getElementById('repoSearch');
+var searchDebounceTimer=null;
+function applyProjectFilter(q){
+  allProjectCards.forEach(function(c){
+    if(!q){c.style.display='';return}
+    var match=(c.getAttribute('data-search')||'').indexOf(q)!==-1;
+    c.style.display=match?'':'none';
+  });
+}
 if(searchInput){
   searchInput.addEventListener('input',function(){
     var q=this.value.trim().toLowerCase();
-    allProjectCards.forEach(function(c){
-      if(!q){c.style.display='';return}
-      var match=c.getAttribute('data-name').indexOf(q)!==-1||c.getAttribute('data-desc').indexOf(q)!==-1||c.getAttribute('data-lang').indexOf(q)!==-1||c.getAttribute('data-topics').indexOf(q)!==-1;
-      c.style.display=match?'':'none';
-    });
+    if(searchDebounceTimer){clearTimeout(searchDebounceTimer)}
+    searchDebounceTimer=setTimeout(function(){applyProjectFilter(q)},100);
   });
 }
 
