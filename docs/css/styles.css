@@ -37,6 +37,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 @keyframes gridPulse{0%,100%{opacity:0.4}50%{opacity:0.8}}
 @keyframes sectionEdgeGlow{0%,100%{opacity:0.5}50%{opacity:1}}
 @keyframes cornerBracketPulse{0%,100%{opacity:0.5}50%{opacity:0.9}}
+@property --tron-glow-phase{syntax:'<number>';initial-value:0;inherits:false}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(ellipse 600px 400px at 10% 15%,rgba(0,255,204,0.05),transparent),
   radial-gradient(ellipse 500px 500px at 85% 10%,rgba(255,0,170,0.04),transparent),
@@ -161,6 +162,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 /* ====== LAYOUT ====== */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .page-wrap{position:relative;z-index:2;animation:fadeInUp 0.8s ease-out;overflow-x:hidden;max-width:100vw}
+.page-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(24,220,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(24,220,255,0.015) 1px,transparent 1px);background-size:48px 48px;background-position:0 calc(var(--tron-scroll-progress,0)*-24px),calc(var(--tron-scroll-progress,0)*12px) 0;pointer-events:none;z-index:0;opacity:0.6;transition:background-position .15s linear}
 .main-content{max-width:1120px;margin:0 auto}
 .container{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
 .uniform-section-spacing>*+*{margin-top:2rem}
@@ -181,6 +183,14 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
   opacity:0.5;mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,0.3),transparent);-webkit-mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,0.3),transparent)}
 @keyframes tronTrace{0%{left:-60px}100%{left:calc(100% + 60px)}}
 .glass:hover{border-color:rgba(24,220,255,0.45);box-shadow:0 0 80px rgba(24,220,255,0.12),0 0 120px rgba(24,220,255,0.05),inset 0 0 60px rgba(0,255,204,0.04)}
+
+/* ====== TRON ENHANCEMENTS ====== */
+.ts-module.reveal.visible .section-head{animation:sectionEdgeGlow 3s ease-in-out infinite;text-shadow:0 0 8px rgba(24,220,255,0.4),0 0 16px rgba(24,220,255,0.2)}
+.recipe-card,.project-card,.investigator-card,.threat-lab-card,.case-file-card{position:relative;overflow:hidden}
+.recipe-card::before,.project-card::before,.investigator-card::before,.threat-lab-card::before,.case-file-card::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(24,220,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(24,220,255,0.03) 1px,transparent 1px);background-size:18px 18px;opacity:0;transition:opacity .35s;pointer-events:none;z-index:0}
+.recipe-card:hover::before,.project-card:hover::before,.investigator-card:hover::before,.threat-lab-card:hover::before,.case-file-card:hover::before{opacity:1;animation:gridPulse 2.5s ease-in-out infinite}
+.recipe-card::after,.project-card::after,.investigator-card::after,.threat-lab-card::after,.case-file-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.6),var(--cyan),rgba(24,220,255,0.6),transparent);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
+.recipe-card:hover::after,.project-card:hover::after,.investigator-card:hover::after,.threat-lab-card:hover::after,.case-file-card:hover::after{opacity:0.7;animation:dataStream 1.5s linear infinite}
 
 /* ====== GLITCH TITLE ====== */
 .glitch{font-family:var(--mono);font-size:clamp(2.9rem,8vw,6rem);font-weight:900;
@@ -1129,6 +1139,12 @@ body.read-mode .pi-link:hover{border-color:rgba(0,0,0,0.35);color:#1a1a1a}
   .pi-link{animation:none}
   .tron-svg-bg .circuit-lines path,.tron-svg-bg .data-nodes circle{animation:none}
   .orb,.holographic-vignette{animation:none}
+  .ts-module.reveal.visible .section-head{animation:none;text-shadow:0 0 6px rgba(24,220,255,0.3)}
+  .recipe-card::before,.project-card::before,.investigator-card::before,.threat-lab-card::before,.case-file-card::before{animation:none}
+  .recipe-card:hover::before,.project-card:hover::before,.investigator-card:hover::before,.threat-lab-card:hover::before,.case-file-card:hover::before{animation:none}
+  .recipe-card::after,.project-card::after,.investigator-card::after,.threat-lab-card::after,.case-file-card::after{animation:none}
+  .recipe-card:hover::after,.project-card:hover::after,.investigator-card:hover::after,.threat-lab-card:hover::after,.case-file-card:hover::after{animation:none}
+  .page-wrap::before{opacity:0.3;transition:none}
 }
 
 /* ====== HACKER FIELD INTEL PAGER - DARK RETRO STYLING ====== */
