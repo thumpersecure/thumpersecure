@@ -822,6 +822,14 @@ function syncMusicPanelForViewport(){
   if(!isMobile){setMusicPanelExpanded(true);return}
   setMusicPanelExpanded(getSetting('music_panel_open',false));
 }
+function debouncedResize(){
+  if(mResizeDebounce)clearTimeout(mResizeDebounce);
+  mResizeDebounce=setTimeout(function(){
+    mResizeDebounce=null;
+    syncMusicPanelForViewport();
+    updateMusicTrackIndicator();
+  },120);
+}
 
 function setMusicStatus(txt,state){
   if(!mStatus)return;
@@ -946,25 +954,23 @@ if(mPanel&&mPanelToggle){
   }else if(mPanelMq&&typeof mPanelMq.addListener==='function'){
     mPanelMq.addListener(syncMusicPanelForViewport);
   }
+  window.addEventListener('resize',debouncedResize);
   syncMusicPanelForViewport();
 }
 
-// Mute toggle
-if(mMuteBtn){
-  updateMuteUI();
-  mMuteBtn.addEventListener('click',function(){
-    mIsMuted=!mIsMuted;setSetting('music_muted',mIsMuted);updateMuteUI();
-  });
-}
+function handleMuteClick(){mIsMuted=!mIsMuted;setSetting('music_muted',mIsMuted);updateMuteUI()}
+if(mMuteBtn){updateMuteUI();mMuteBtn.addEventListener('click',handleMuteClick)}
+if(mMuteBtnMini){updateMuteUI();mMuteBtnMini.addEventListener('click',handleMuteClick)}
 
 // Track buttons
 mBtns.forEach(function(btn,i){
   btn.addEventListener('click',function(){
+    if(i<0||i>=TRACK_CONFIG.length)return;
     if(mCurrentIndex===i&&mPlayer&&!mPlayer.paused){
-      mPlayer.pause();setMusicStatus('paused: '+TRACK_CONFIG[i].label.toLowerCase(),null);return;
+      mPlayer.pause();setMusicStatus('paused: '+TRACK_CONFIG[i].label.toLowerCase(),null);updateMusicTrackIndicator();return;
     }
     if(mCurrentIndex===i&&mPlayer&&mPlayer.paused&&mPlayer.src){
-      mPlayer.play().then(function(){setMusicStatus('playing: '+TRACK_CONFIG[i].label.toLowerCase(),'playing')}).catch(function(){});return;
+      mPlayer.play().then(function(){setMusicStatus('playing: '+TRACK_CONFIG[i].label.toLowerCase(),'playing');updateMusicTrackIndicator()}).catch(function(){});return;
     }
     playTrack(i);
   });
@@ -972,19 +978,23 @@ mBtns.forEach(function(btn,i){
 
 // Next button
 if(mNextBtn)mNextBtn.addEventListener('click',nextTrack);
+if(mNextBtnMini)mNextBtnMini.addEventListener('click',nextTrack);
 
 // Playlist auto-advance
 if(mPlayer){
   mPlayer.addEventListener('ended',function(){nextTrack()});
-  mPlayer.addEventListener('error',function(){setMusicStatus('audio source failed','error')});
+  mPlayer.addEventListener('error',function(){setMusicStatus('audio source failed','error');updateMusicTrackIndicator()});
+  mPlayer.addEventListener('pause',function(){updateMusicTrackIndicator()});
+  mPlayer.addEventListener('play',function(){updateMusicTrackIndicator()});
 }
 
 // Autoplay banner click
 if(autoplayBanner){
   autoplayBanner.addEventListener('click',function(){
-    if(mPlayer&&mPlayer.src){
+    if(mPlayer&&mPlayer.src&&mCurrentIndex>=0&&mCurrentIndex<TRACK_CONFIG.length){
       mPlayer.play().then(function(){
         setMusicStatus('playing: '+TRACK_CONFIG[mCurrentIndex].label.toLowerCase(),'playing');
+        updateMusicTrackIndicator();
         hideAutoplayBanner();mAutoplayPending=false;
       }).catch(function(){});
     }
@@ -1009,9 +1019,10 @@ if(autoplayBanner){
 
 // Global gesture handler for autoplay
 document.addEventListener('click',function onFirstGesture(){
-  if(mAutoplayPending&&mPlayer&&mPlayer.src){
+  if(mAutoplayPending&&mPlayer&&mPlayer.src&&mCurrentIndex>=0&&mCurrentIndex<TRACK_CONFIG.length){
     mPlayer.play().then(function(){
       setMusicStatus('playing: '+TRACK_CONFIG[mCurrentIndex].label.toLowerCase(),'playing');
+      updateMusicTrackIndicator();
       hideAutoplayBanner();mAutoplayPending=false;
     }).catch(function(){});
   }

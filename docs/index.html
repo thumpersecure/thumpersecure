@@ -39,7 +39,6 @@
 </script>
 
 <link rel="stylesheet" href="css/styles.css">
-<meta name="view-transition" content="same-origin">
 </head>
 <body>
 
@@ -224,6 +223,11 @@
           <a id="musicFallback" class="music-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden>open source</a>
         </div>
         <div id="autoplayBanner" class="autoplay-banner" role="button" tabindex="0" aria-label="Tap to play audio">&#127925; Audio ready &mdash; tap to play</div>
+      </div>
+      <div id="musicMiniBar" class="music-mini-bar" aria-label="Compact audio controls" hidden>
+        <button type="button" class="music-mute-btn music-mini-btn" id="musicMuteMini" aria-label="Mute audio" title="Mute/Unmute">&#x1f50a;</button>
+        <span class="music-track-indicator" id="musicTrackIndicator" aria-live="polite">1/3</span>
+        <button type="button" class="music-next-btn music-mini-btn" id="musicNextMini" aria-label="Next track">next &#9193;</button>
       </div>
       <div class="top-toggles">
         <button type="button" class="top-toggle-btn on" id="toggleMode" aria-label="Toggle display mode">Mode: Dark</button>
