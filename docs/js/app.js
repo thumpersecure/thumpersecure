@@ -1746,7 +1746,22 @@ if(reducedMotion){
 }
 
 /* ====== INTERSECTION OBSERVER ====== */
-var rO=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');rO.unobserve(en.target);if(en.target.id==='statsSection'&&statsPendingPairs){statsPendingPairs.forEach(function(p){var el=document.getElementById(p[0]);if(el&&p[1]!=null)animateCounter(el,p[1])});statsPendingPairs=null;if(en.target.removeAttribute)en.target.removeAttribute('data-stats-pending')}})},{threshold:0.12});
+var rO=new IntersectionObserver(function(e){
+  e.forEach(function(en){
+    if(en.isIntersecting){
+      en.target.classList.add('visible');
+      rO.unobserve(en.target);
+      if(en.target.id==='statsSection'&&statsPendingPairs){
+        statsPendingPairs.forEach(function(p){
+          var el=document.getElementById(p[0]);
+          if(el&&p[1]!=null)animateCounter(el,p[1]);
+        });
+        statsPendingPairs=null;
+        if(en.target.removeAttribute)en.target.removeAttribute('data-stats-pending');
+      }
+    }
+  });
+},{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(function(el){rO.observe(el)});
 
 /* ====== MOBILE: HERO PARALLAX & SCROLL PROGRESS ====== */
