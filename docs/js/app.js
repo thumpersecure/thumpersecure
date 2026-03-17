@@ -558,6 +558,11 @@ function renderStats(data){
       var el=document.getElementById(p[0]);
       if(el&&p[1]!=null){el.textContent='0'}
     });
+    var rect=statsSection.getBoundingClientRect();
+    if(rect.top<window.innerHeight&&rect.bottom>0){
+      pairs.forEach(function(p){var el=document.getElementById(p[0]);if(el&&p[1]!=null)animateCounter(el,p[1])});
+      statsPendingPairs=null;statsSection.removeAttribute('data-stats-pending');
+    }
   }else{
     pairs.forEach(function(p){
       var el=document.getElementById(p[0]);
