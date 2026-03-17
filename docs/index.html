@@ -127,34 +127,44 @@
 <canvas id="tronGridCanvas" aria-hidden="true"></canvas>
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
 <canvas id="rainCanvas" aria-hidden="true"></canvas>
-<!-- SVG decorative: circuit lines, hexagons, data nodes -->
+<!-- SVG decorative: circuit lines, hexagons, data nodes (Tron/cyberpunk) -->
 <svg class="tron-svg-bg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
   <defs>
     <linearGradient id="tronGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#18dcff;stop-opacity:0.15"/><stop offset="100%" style="stop-color:#ff00aa;stop-opacity:0.05"/></linearGradient>
     <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#00ffcc;stop-opacity:0.4"/><stop offset="100%" style="stop-color:#00ffcc;stop-opacity:0"/></linearGradient>
+    <linearGradient id="magentaGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ff00aa;stop-opacity:0.2"/><stop offset="100%" style="stop-color:#ff00aa;stop-opacity:0"/></linearGradient>
     <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glowStrong"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
   <g class="circuit-lines">
     <path d="M0 200 Q300 180 600 200 T1200 200" fill="none" stroke="url(#cyanGrad)" stroke-width="0.5" opacity="0.6"/>
     <path d="M0 400 L400 400 L500 350 L800 400 L1200 400" fill="none" stroke="#18dcff" stroke-width="0.3" opacity="0.25"/>
     <path d="M0 600 L200 550 L500 600 L900 580 L1200 600" fill="none" stroke="#00ff41" stroke-width="0.3" opacity="0.2"/>
+    <path d="M0 300 L1200 300" fill="none" stroke="url(#magentaGrad)" stroke-width="0.4" opacity="0.35"/>
+    <path d="M0 500 L1200 500" fill="none" stroke="#18dcff" stroke-width="0.25" opacity="0.2"/>
     <path d="M100 0 L100 800" fill="none" stroke="#18dcff" stroke-width="0.2" opacity="0.15"/>
     <path d="M600 0 L600 800" fill="none" stroke="#18dcff" stroke-width="0.2" opacity="0.12"/>
     <path d="M1100 0 L1100 800" fill="none" stroke="#ff00aa" stroke-width="0.2" opacity="0.1"/>
+    <path d="M300 0 L300 800" fill="none" stroke="#00ffcc" stroke-width="0.15" opacity="0.08"/>
+    <path d="M900 0 L900 800" fill="none" stroke="#00ffcc" stroke-width="0.15" opacity="0.08"/>
   </g>
   <g class="hexagons">
-    <polygon points="150,120 200,145 200,195 150,220 100,195 100,145" fill="none" stroke="#18dcff" stroke-width="0.8" opacity="0.2"/>
-    <polygon points="1050,280 1100,305 1100,355 1050,380 1000,355 1000,305" fill="none" stroke="#00ffcc" stroke-width="0.6" opacity="0.18"/>
-    <polygon points="550,520 600,545 600,595 550,620 500,595 500,545" fill="none" stroke="#ff00aa" stroke-width="0.5" opacity="0.15"/>
-    <polygon points="80,450 120,470 120,530 80,550 40,530 40,470" fill="none" stroke="#00ff41" stroke-width="0.4" opacity="0.12"/>
+    <polygon points="150,120 200,145 200,195 150,220 100,195 100,145" fill="none" stroke="#18dcff" stroke-width="0.8" opacity="0.25"/>
+    <polygon points="1050,280 1100,305 1100,355 1050,380 1000,355 1000,305" fill="none" stroke="#00ffcc" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="550,520 600,545 600,595 550,620 500,595 500,545" fill="none" stroke="#ff00aa" stroke-width="0.5" opacity="0.2"/>
+    <polygon points="80,450 120,470 120,530 80,550 40,530 40,470" fill="none" stroke="#00ff41" stroke-width="0.4" opacity="0.18"/>
+    <polygon points="700,100 750,125 750,175 700,200 650,175 650,125" fill="none" stroke="#18dcff" stroke-width="0.5" opacity="0.15"/>
+    <polygon points="400,650 450,675 450,725 400,750 350,725 350,675" fill="none" stroke="#ff00aa" stroke-width="0.4" opacity="0.12"/>
   </g>
   <g class="data-nodes">
-    <circle cx="200" cy="145" r="3" fill="#18dcff" filter="url(#glow)" opacity="0.5"/>
-    <circle cx="1100" cy="305" r="2.5" fill="#00ffcc" filter="url(#glow)" opacity="0.4"/>
-    <circle cx="600" cy="545" r="2" fill="#ff00aa" filter="url(#glow)" opacity="0.35"/>
-    <circle cx="80" cy="470" r="2" fill="#00ff41" filter="url(#glow)" opacity="0.3"/>
-    <circle cx="950" cy="150" r="1.5" fill="#18dcff" opacity="0.25"/>
-    <circle cx="350" cy="650" r="1.5" fill="#00ffcc" opacity="0.2"/>
+    <circle cx="200" cy="145" r="3" fill="#18dcff" filter="url(#glowStrong)" opacity="0.55"/>
+    <circle cx="1100" cy="305" r="2.5" fill="#00ffcc" filter="url(#glowStrong)" opacity="0.45"/>
+    <circle cx="600" cy="545" r="2" fill="#ff00aa" filter="url(#glowStrong)" opacity="0.4"/>
+    <circle cx="80" cy="470" r="2" fill="#00ff41" filter="url(#glow)" opacity="0.35"/>
+    <circle cx="950" cy="150" r="1.5" fill="#18dcff" opacity="0.3"/>
+    <circle cx="350" cy="650" r="1.5" fill="#00ffcc" opacity="0.25"/>
+    <circle cx="700" cy="125" r="1.5" fill="#18dcff" filter="url(#glow)" opacity="0.3"/>
+    <circle cx="400" cy="675" r="1.5" fill="#ff00aa" filter="url(#glow)" opacity="0.25"/>
   </g>
 </svg>
 <!-- Floating data orbs -->
@@ -196,7 +206,7 @@
 
   <!-- ====== TOP CONTROL BAR ====== -->
   <div class="top-bar-wrap" aria-label="Controls">
-    <div class="top-bar">
+    <div class="top-bar" id="topBar">
       <span class="top-bar-label">signal deck // tron &middot; swordfish &middot; track 3</span>
       <button type="button" class="top-toggle-btn music-panel-toggle" id="musicPanelToggle" aria-controls="musicPanel" aria-expanded="true" aria-label="Hide audio controls">Hide audio controls</button>
       <div id="musicPanel" class="music-panel">

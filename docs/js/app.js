@@ -818,18 +818,15 @@ function setMusicPanelExpanded(expanded){
   mPanelToggle.setAttribute('aria-expanded',expanded?'true':'false');
   mPanelToggle.setAttribute('aria-label',expanded?'Hide audio controls':'Show audio controls');
   mPanelToggle.textContent=expanded?'Hide audio controls':'Show audio controls';
-  if(mMiniBar){
-    var showMini=!expanded&&!!(mPanelMq&&mPanelMq.matches);
-    if(showMini)mMiniBar.removeAttribute('hidden');else mMiniBar.setAttribute('hidden','');
-  }
+  if(mMiniBar)mMiniBar.hidden=expanded;
+  var topBar=document.getElementById('topBar');
+  if(topBar)topBar.classList.toggle('audio-collapsed',!expanded);
 }
 
 function syncMusicPanelForViewport(){
   if(!mPanel||!mPanelToggle)return;
-  var isMobile=!!(mPanelMq&&mPanelMq.matches);
-  mPanelToggle.hidden=!isMobile;
-  if(!isMobile){setMusicPanelExpanded(true);return}
-  setMusicPanelExpanded(getSetting('music_panel_open',false));
+  mPanelToggle.hidden=false;
+  setMusicPanelExpanded(getSetting('music_panel_open',true));
 }
 function debouncedResize(){
   if(mResizeDebounce)clearTimeout(mResizeDebounce);
