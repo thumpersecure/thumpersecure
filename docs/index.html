@@ -39,6 +39,7 @@
 </script>
 
 <link rel="stylesheet" href="css/styles.css">
+<meta name="view-transition" content="same-origin">
 </head>
 <body>
 
@@ -175,7 +176,7 @@
     <div class="settings-title">&#9881; Settings</div>
     <div class="settings-group">
       <div class="settings-group-label">Display</div>
-      <div class="settings-row"><span class="settings-row-label">Reading Mode</span><button class="settings-toggle" id="settingMode" role="switch" aria-checked="false" aria-label="Toggle reading mode"></button></div>
+      <div class="settings-row"><span class="settings-row-label">Display Mode</span><select id="settingMode" class="settings-select" aria-label="Display mode"><option value="dark">Dark</option><option value="engage">Engage</option><option value="read">Read</option></select></div>
       <div class="settings-row"><span class="settings-row-label">Background Animations</span><button class="settings-toggle on" id="settingBgAnim" role="switch" aria-checked="true" aria-label="Toggle background animations"></button></div>
     </div>
     <div class="settings-group">
@@ -190,6 +191,9 @@
 </div>
 
 <div class="page-wrap">
+
+  <!-- ====== SCROLL PROGRESS (mobile) ====== -->
+  <div id="scrollProgress" class="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-hidden="true"></div>
 
   <!-- ====== TOP CONTROL BAR ====== -->
   <div class="top-bar-wrap" aria-label="Controls">
@@ -246,7 +250,7 @@
   <main class="uniform-section-spacing">
 
     <!-- ====== STATS ====== -->
-    <section class="stats-section reveal" aria-label="Statistics">
+    <section class="stats-section reveal" id="statsSection" aria-label="Statistics" data-stats-pending>
       <div class="container">
         <div class="stats-inner">
           <div class="stat-item"><span class="stat-label">tools:</span><span class="stat-val" id="statProjects">0</span></div>
@@ -633,7 +637,8 @@ GET /admin HTTP/1.1</pre>
       </button>
       <div class="ts-module-body" id="mod-cinema-body"><div>
         <div class="container cinema-section">
-          <div class="cinema-quote-grid">
+          <div class="cinema-carousel-wrap" id="cinemaCarouselWrap">
+            <div class="cinema-quote-grid cinema-carousel-track" id="cinemaCarouselTrack" aria-label="Cinema quotes carousel">
             <blockquote class="movie-quote glass">
               <p class="qt">&ldquo;Hack the planet!&rdquo;</p>
               <div class="src">&mdash; Dade Murphy / Zero Cool<br><em>Hackers</em> (1995)</div>
@@ -666,6 +671,8 @@ GET /admin HTTP/1.1</pre>
               <p class="qt">&ldquo;The Matrix is a computer-generated dream world. What is real? Electrical signals interpreted by your brain.&rdquo;</p>
               <div class="src">&mdash; Morpheus<br><em>The Matrix</em> (1999)</div>
             </blockquote>
+          </div>
+          <div class="cinema-carousel-dots" id="cinemaCarouselDots" aria-hidden="true"></div>
           </div>
           <div class="wireframe-wrap wireframe-centered"><canvas id="wireframeCanvas" aria-hidden="true"></canvas></div>
           <div class="multimon" aria-label="Multi-monitor display inspired by Swordfish">
