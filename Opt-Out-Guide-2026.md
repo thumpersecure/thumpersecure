@@ -39,7 +39,7 @@ Location: <CITY, STATE>
 Thank you,
 <YOUR NAME>
 
-## 🗂️ Master Index (31 sites)
+## 🗂️ Master Index (30 sites)
 
 | Site | Difficulty | Time | Needs Email? | Needs ID? | Opt-Out Link |
 |---|---:|---:|---:|---:|---|
