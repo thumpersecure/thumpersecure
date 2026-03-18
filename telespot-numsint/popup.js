@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update progress bar
   function updateProgress(completed, total) {
     const percent = (completed / total) * 100;
-    progressFill.style.width = `${percent}%`;
-    progressText.textContent = `${completed} / ${total} searches completed`;
+    if (progressFill) progressFill.style.width = `${percent}%`;
+    if (progressText) progressText.textContent = `${completed} / ${total} searches completed`;
   }
 
   // Perform Google search for a format
@@ -261,8 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (digits.length < 7) {
       phoneInput.style.borderColor = '#ff3d00';
+      phoneInput.setAttribute('title', 'Enter at least 7 digits');
       setTimeout(() => {
         phoneInput.style.borderColor = '';
+        phoneInput.removeAttribute('title');
       }, 2000);
       return;
     }
@@ -280,6 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await runAllSearches(formats);
     } catch (error) {
       console.error('Search run failed:', error);
+      if (progressText) progressText.textContent = 'Search encountered an error. Please try again.';
     } finally {
       isSearching = false;
       if (searchBtn.disabled) {

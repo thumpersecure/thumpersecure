@@ -333,6 +333,11 @@ footer p {
 }
 
 /* Scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a4a #0d0d1a;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

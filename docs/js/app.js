@@ -266,7 +266,7 @@ async function collectOperatorDossier(){
     {k:'REQUEST_TIME',v:requestTime}
   ];
   var browserItems=[
-    {k:'Refered From',v:document.referrer||'(none)'},
+    {k:'Referred From',v:document.referrer||'(none)'},
     {k:'User Agent',v:navigator.userAgent||'Unavailable'},
     {k:'Screen Resolution',v:(window.screen&&screen.width?screen.width+' x '+screen.height+' (pixels)':'Unavailable')},
     {k:'Browser Dimensions',v:window.innerWidth+' x '+window.innerHeight+' (pixels)'},
@@ -543,6 +543,7 @@ function relDate(iso){var ts=parseDateMs(iso);if(ts===null)return'unknown';var d
 
 /* ====== RENDER FUNCTIONS ====== */
 function animateCounter(el,target){
+  if(!el)return;
   if(!target||target<=0){el.textContent=0;return}
   var c=0,s=Math.max(1,Math.floor(target/50));
   var iv=setInterval(function(){c+=s;if(c>=target){c=target;clearInterval(iv)}el.textContent=c},30);
@@ -766,7 +767,10 @@ if(collapseAllBtn)collapseAllBtn.addEventListener('click',function(){
       if(typeof scanner.focus==='function')scanner.focus({preventScroll:true});
     });
   }
-  var ob=new MutationObserver(revealGate);
+  var ob=new MutationObserver(function(){
+    revealGate();
+    if(!gate.hidden){ob.disconnect()}
+  });
   ob.observe(gate,{attributes:true,attributeFilter:['hidden']});
   revealGate();
 })();
@@ -1793,8 +1797,8 @@ onScrollMobile();
   function updateCarousel(){var w=wrap.offsetWidth;track.style.transform='translateX(-'+idx*w+'px)';[].slice.call(dotsEl.children).forEach(function(d,i){d.classList.toggle('active',i===idx)})}
   function onResize(){if(window.innerWidth>640){track.style.transform='';track.style.scrollSnapType='';return}updateCarousel()}
   buildDots();
-  wrap.addEventListener('touchstart',function(e){if(window.innerWidth>640)return;startX=e.touches[0].clientX;startScroll=idx},{passive:true});
-  wrap.addEventListener('touchend',function(e){if(window.innerWidth>640)return;var dx=startX-e.changedTouches[0].clientX;if(Math.abs(dx)>50){goTo(dx>0?idx+1:idx-1)}},{passive:true});
+  wrap.addEventListener('touchstart',function(e){if(window.innerWidth>640)return;if(!e.touches||!e.touches[0])return;startX=e.touches[0].clientX;startScroll=idx},{passive:true});
+  wrap.addEventListener('touchend',function(e){if(window.innerWidth>640)return;if(!e.changedTouches||!e.changedTouches[0])return;var dx=startX-e.changedTouches[0].clientX;if(Math.abs(dx)>50){goTo(dx>0?idx+1:idx-1)}},{passive:true});
   window.addEventListener('resize',onResize);
   if(window.innerWidth<=640)updateCarousel();
 })();
@@ -2449,7 +2453,8 @@ if(stegoCv){
 
 /* ====== QUOTE CYCLER ====== */
 var lQ=[].slice.call(document.querySelectorAll('.legend-quote-card')),lQi=0,lQTimer=null;
-if(lQ.length&&!reducedMotion){lQTimer=setInterval(function(){lQ.forEach(function(c){c.classList.remove('hot')});lQ[lQi].classList.add('hot');lQi=(lQi+1)%lQ.length},2400)}
+if(lQ.length&&!reducedMotion){lQTimer=setInterval(function(){lQ.forEach(function(c){c.classList.remove('hot')});lQ[lQi].classList.add('hot');lQi=(lQi+1)%lQ.length},2400);
+document.addEventListener('visibilitychange',function(){if(document.hidden){if(lQTimer){clearInterval(lQTimer);lQTimer=null}}else if(lQ.length&&!reducedMotion&&!lQTimer){lQTimer=setInterval(function(){lQ.forEach(function(c){c.classList.remove('hot')});lQ[lQi].classList.add('hot');lQi=(lQi+1)%lQ.length},2400)}})}
 
 /* ====== BOTTOM PUZZLE (existing, migrated to localStorage) ====== */
 var cbPuzzleSeen=false;

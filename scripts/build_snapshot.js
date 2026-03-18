@@ -43,6 +43,10 @@ function httpsGet(url) {
       headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
     const req = https.get(url, { headers }, (res) => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        httpsGet(res.headers.location).then(resolve, reject);
+        return;
+      }
       let body = '';
       res.on('data', (chunk) => { body += chunk; });
       res.on('end', () => {
@@ -58,7 +62,8 @@ function httpsGet(url) {
       });
     });
     req.on('error', reject);
-    req.setTimeout(15000, () => { req.destroy(); reject(new Error(`Timeout fetching ${url}`)); });
+    req.on('timeout', () => { req.destroy(); reject(new Error(`Timeout fetching ${url}`)); });
+    req.setTimeout(15000);
   });
 }
 
@@ -173,6 +178,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error('Snapshot build failed:', err.message);
+  console.error('Snapshot build failed:', err.message, err.stack);
   process.exit(1);
 });

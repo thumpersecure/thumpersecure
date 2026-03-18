@@ -13,7 +13,7 @@ Place local audio files here for the Code Cookbook music player.
 ## Adding tracks
 
 1. Place the audio file in this directory (or `docs/` root)
-2. Update the track configuration in `docs/index.html` (search for `TRACK_CONFIG`)
+2. Update the track configuration in `docs/js/app.js` (search for `TRACK_CONFIG`)
 3. Supported formats: MP3, M4A, OGG, WAV
 
 ## Autoplay
