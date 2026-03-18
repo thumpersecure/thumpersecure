@@ -1766,7 +1766,7 @@ window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(funct
 },250)});
 
 /* ====== TYPEWRITER ====== */
-var phrases=['$ recipe: osint reconnaissance','$ recipe: seo optimization','$ recipe: privacy toolkit','$ recipe: phone intelligence','$ recipe: data aggregation']; // Control is an illusion. — Mr Robot
+var phrases=['osint reconnaissance','seo optimization','privacy toolkit','phone intelligence','data aggregation']; // keep hero copy user-facing (no internal prompt syntax)
 var tyE=document.getElementById('typerText'),pI=0,cI=0,del=false;
 function tL(){if(!tyE)return;var c=phrases[pI];if(!del){tyE.textContent=c.slice(0,cI+1);cI++;if(cI>=c.length){setTimeout(function(){del=true;tL()},2000);return}setTimeout(tL,50+Math.random()*30)}else{tyE.textContent=c.slice(0,cI);cI--;if(cI<0){del=false;cI=0;pI=(pI+1)%phrases.length;setTimeout(tL,300);return}setTimeout(tL,25)}}
 if(reducedMotion){
