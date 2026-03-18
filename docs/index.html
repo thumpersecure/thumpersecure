@@ -133,6 +133,7 @@
     <linearGradient id="tronGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#18dcff;stop-opacity:0.15"/><stop offset="100%" style="stop-color:#ff00aa;stop-opacity:0.05"/></linearGradient>
     <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#00ffcc;stop-opacity:0.4"/><stop offset="100%" style="stop-color:#00ffcc;stop-opacity:0"/></linearGradient>
     <linearGradient id="magentaGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ff00aa;stop-opacity:0.2"/><stop offset="100%" style="stop-color:#ff00aa;stop-opacity:0"/></linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ffb36b;stop-opacity:0.55"/><stop offset="100%" style="stop-color:#ff6b1a;stop-opacity:0.05"/></linearGradient>
     <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <filter id="glowStrong"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
@@ -147,6 +148,18 @@
     <path d="M1100 0 L1100 800" fill="none" stroke="#ff00aa" stroke-width="0.2" opacity="0.1"/>
     <path d="M300 0 L300 800" fill="none" stroke="#00ffcc" stroke-width="0.15" opacity="0.08"/>
     <path d="M900 0 L900 800" fill="none" stroke="#00ffcc" stroke-width="0.15" opacity="0.08"/>
+  </g>
+  <g class="light-cycle-lanes">
+    <path d="M-140 760 C 120 680 340 600 560 500 S 980 270 1320 110" fill="none" stroke="url(#orangeGrad)" stroke-width="1.2" opacity="0.26" stroke-linecap="round" stroke-dasharray="18 24"/>
+    <path d="M-120 720 C 150 645 360 560 620 455 S 1080 235 1340 80" fill="none" stroke="url(#cyanGrad)" stroke-width="1.05" opacity="0.25" stroke-linecap="round" stroke-dasharray="16 20"/>
+    <path d="M140 120 L260 160 L360 248 L480 286 L620 360" fill="none" stroke="url(#tronGrad)" stroke-width="0.65" opacity="0.24" stroke-linecap="round" stroke-dasharray="9 14"/>
+    <path d="M860 150 L960 176 L1060 240 L1180 268" fill="none" stroke="url(#orangeGrad)" stroke-width="0.65" opacity="0.2" stroke-linecap="round" stroke-dasharray="8 12"/>
+  </g>
+  <g class="legacy-ships">
+    <polygon points="860,162 924,132 996,164 1024,238 968,278 886,244" fill="rgba(8,14,28,0.18)" stroke="url(#orangeGrad)" stroke-width="0.85" opacity="0.3"/>
+    <polygon points="212,244 278,214 342,244 360,314 304,350 230,320" fill="rgba(8,14,28,0.14)" stroke="url(#tronGrad)" stroke-width="0.75" opacity="0.24"/>
+    <path d="M906 188 L976 188 L998 228 L954 252 L894 228 Z" fill="none" stroke="#18dcff" stroke-width="0.55" opacity="0.28"/>
+    <path d="M244 270 L312 270 L328 308 L286 330 L236 302 Z" fill="none" stroke="#ff6b1a" stroke-width="0.48" opacity="0.24"/>
   </g>
   <g class="hexagons">
     <polygon points="150,120 200,145 200,195 150,220 100,195 100,145" fill="none" stroke="#18dcff" stroke-width="0.8" opacity="0.25"/>
@@ -249,33 +262,167 @@
 
   <!-- ====== HERO (Tron/holographic - varies on refresh) ====== -->
   <header class="hero" role="banner" id="heroSection">
+    <div class="hero-identity-glow" aria-hidden="true"></div>
+    <div class="hero-energy-lanes" aria-hidden="true">
+      <span class="hero-energy-lane lane-a"></span>
+      <span class="hero-energy-lane lane-b"></span>
+      <span class="hero-energy-lane lane-c"></span>
+    </div>
     <div class="hero-inner glass hero-holographic">
-      <p class="eyebrow">THUMPERSECURE</p>
-      <h1 class="glitch" data-text="CODE COOKBOOK">CODE COOKBOOK</h1>
-      <p class="hero-sub">// OSINT &amp; SEO SPECIALIST</p>
-      <div class="typer-wrap" aria-live="polite"><span id="typerText"></span><span class="typer-cursor"></span></div>
-      <nav class="hero-btns" aria-label="Primary navigation">
-        <a href="#recipe-index-section" class="btn btn-primary">ACCESS GRANTED</a>
-        <a href="https://github.com/thumpersecure" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-      </nav>
+      <span class="hero-corner hero-corner-tl" aria-hidden="true"></span>
+      <span class="hero-corner hero-corner-tr" aria-hidden="true"></span>
+      <span class="hero-corner hero-corner-bl" aria-hidden="true"></span>
+      <span class="hero-corner hero-corner-br" aria-hidden="true"></span>
+      <div class="hero-copy">
+        <p class="eyebrow">THUMPERSECURE</p>
+        <h1 class="glitch" data-text="CODE COOKBOOK">CODE COOKBOOK</h1>
+        <p class="hero-sub">// OSINT &amp; SEO SPECIALIST</p>
+        <div class="typer-wrap" aria-live="polite"><span id="typerText"></span><span class="typer-cursor"></span></div>
+        <div class="hero-meta-strip" aria-label="Experience highlights">
+          <span class="hero-meta-chip">ai-forged interface</span>
+          <span class="hero-meta-chip">tron legacy border rails</span>
+          <span class="hero-meta-chip">3d holo scene render</span>
+        </div>
+        <nav class="hero-btns" aria-label="Primary navigation">
+          <a href="#recipe-index-section" class="btn btn-primary">ACCESS GRANTED</a>
+          <a href="https://github.com/thumpersecure" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </nav>
+      </div>
+      <div class="hero-visual-stack" aria-hidden="true">
+        <div class="hero-visual-shell">
+          <div class="hero-visual-badge">legacy grid // light cycle bay</div>
+          <svg class="hero-holo-scene" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520">
+            <defs>
+              <linearGradient id="heroSceneBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#18dcff" stop-opacity="0.95"/>
+                <stop offset="55%" stop-color="#00ffcc" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#18dcff" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="heroSceneOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffd1ad" stop-opacity="0.95"/>
+                <stop offset="48%" stop-color="#ff6b1a" stop-opacity="0.7"/>
+                <stop offset="100%" stop-color="#ff6b1a" stop-opacity="0"/>
+              </linearGradient>
+              <radialGradient id="heroSceneCore" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#18dcff" stop-opacity="0.26"/>
+                <stop offset="50%" stop-color="#ff6b1a" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#06060e" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="heroSceneGlow">
+                <feGaussianBlur stdDeviation="3" result="heroGlow"/>
+                <feMerge>
+                  <feMergeNode in="heroGlow"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <rect x="54" y="48" width="652" height="424" rx="28" fill="url(#heroSceneCore)" opacity="0.9"/>
+            <g class="holo-scene-rings">
+              <ellipse cx="386" cy="276" rx="250" ry="118" fill="none" stroke="url(#heroSceneBlue)" stroke-width="1.2" opacity="0.5"/>
+              <ellipse cx="386" cy="276" rx="192" ry="92" fill="none" stroke="url(#heroSceneOrange)" stroke-width="1.1" opacity="0.45"/>
+              <ellipse cx="386" cy="276" rx="132" ry="62" fill="none" stroke="url(#heroSceneBlue)" stroke-width="0.95" opacity="0.38"/>
+            </g>
+            <g class="holo-scene-grid">
+              <path d="M94 360 L666 360" fill="none" stroke="rgba(24,220,255,0.16)" stroke-width="1"/>
+              <path d="M130 398 L630 398" fill="none" stroke="rgba(24,220,255,0.12)" stroke-width="0.85"/>
+              <path d="M176 434 L586 434" fill="none" stroke="rgba(255,107,26,0.12)" stroke-width="0.7"/>
+              <path d="M162 198 L262 360" fill="none" stroke="rgba(24,220,255,0.08)" stroke-width="0.7"/>
+              <path d="M252 182 L332 360" fill="none" stroke="rgba(255,107,26,0.08)" stroke-width="0.7"/>
+              <path d="M508 182 L428 360" fill="none" stroke="rgba(255,107,26,0.08)" stroke-width="0.7"/>
+              <path d="M598 198 L498 360" fill="none" stroke="rgba(24,220,255,0.08)" stroke-width="0.7"/>
+            </g>
+            <g class="holo-scene-track" filter="url(#heroSceneGlow)">
+              <path class="scene-lane scene-lane-main" d="M98 390 C 238 344 340 332 452 302 S 664 208 728 140" fill="none" stroke="url(#heroSceneBlue)" stroke-width="7" stroke-linecap="round" stroke-dasharray="18 30"/>
+              <path class="scene-lane scene-lane-alt" d="M126 432 C 248 380 372 366 492 330 S 672 260 732 198" fill="none" stroke="url(#heroSceneOrange)" stroke-width="6" stroke-linecap="round" stroke-dasharray="16 28"/>
+            </g>
+            <g class="holo-scene-bike" filter="url(#heroSceneGlow)">
+              <circle cx="290" cy="304" r="26" fill="none" stroke="url(#heroSceneBlue)" stroke-width="4"/>
+              <circle cx="390" cy="272" r="22" fill="none" stroke="url(#heroSceneBlue)" stroke-width="4"/>
+              <path d="M290 304 L330 280 L390 272 L438 250" fill="none" stroke="url(#heroSceneBlue)" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M330 280 L350 244 L420 244 L438 250" fill="none" stroke="url(#heroSceneOrange)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M348 248 L330 280" fill="none" stroke="url(#heroSceneOrange)" stroke-width="3.2" stroke-linecap="round"/>
+              <path d="M260 325 C 242 342 214 356 176 370" fill="none" stroke="url(#heroSceneBlue)" stroke-width="4.6" stroke-linecap="round"/>
+              <path d="M418 254 C 478 240 534 224 594 196" fill="none" stroke="url(#heroSceneOrange)" stroke-width="4.2" stroke-linecap="round"/>
+            </g>
+            <g class="holo-scene-recognizer" filter="url(#heroSceneGlow)">
+              <path d="M500 144 L560 114 L632 146 L658 222 L602 262 L520 236 Z" fill="rgba(6,12,24,0.38)" stroke="url(#heroSceneOrange)" stroke-width="2"/>
+              <path d="M520 174 L612 174 L628 216 L574 244 L514 216 Z" fill="none" stroke="url(#heroSceneBlue)" stroke-width="1.4" opacity="0.85"/>
+              <path d="M546 122 L572 88 L602 120" fill="none" stroke="url(#heroSceneBlue)" stroke-width="1.6" opacity="0.85"/>
+            </g>
+            <g class="holo-scene-beams" filter="url(#heroSceneGlow)">
+              <path d="M510 146 L448 270" fill="none" stroke="url(#heroSceneOrange)" stroke-width="1.4" opacity="0.65"/>
+              <path d="M618 152 L496 300" fill="none" stroke="url(#heroSceneBlue)" stroke-width="1.2" opacity="0.58"/>
+              <circle cx="448" cy="270" r="5" fill="#ff6b1a" opacity="0.7"/>
+              <circle cx="496" cy="300" r="5" fill="#18dcff" opacity="0.7"/>
+            </g>
+          </svg>
+          <div class="hero-visual-hud">
+            <span>render depth // 4 layers</span>
+            <span>orange/blue sync // live</span>
+            <span>ai motion // adaptive</span>
+          </div>
+        </div>
+        <div class="hero-data-rail">
+          <div class="hero-rail-card">
+            <span class="hero-rail-label">rendering</span>
+            <strong>3d holo / live</strong>
+            <em>layered svg + glass depth</em>
+          </div>
+          <div class="hero-rail-card">
+            <span class="hero-rail-label">border system</span>
+            <strong>legacy rails</strong>
+            <em>blue + orange chase lines</em>
+          </div>
+          <div class="hero-rail-card">
+            <span class="hero-rail-label">wow factor</span>
+            <strong>ai motion stack</strong>
+            <em>tilt, pulse, scan, stagger</em>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
+
+  <div class="hero-stats-circuit" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 36" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="heroCircuitBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#18dcff" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#18dcff" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#18dcff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="heroCircuitOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ff6b1a" stop-opacity="0"/>
+          <stop offset="55%" stop-color="#ff6b1a" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#ff6b1a" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path class="hero-circuit-path hero-circuit-blue" d="M0 18 L140 18 L200 10 L342 18 L430 26 L550 18 L680 14 L860 18" fill="none" stroke="url(#heroCircuitBlue)" stroke-width="1.3" stroke-dasharray="10 7"/>
+      <path class="hero-circuit-path hero-circuit-orange" d="M30 24 L160 24 L236 16 L372 24 L480 10 L620 24 L760 18 L860 18" fill="none" stroke="url(#heroCircuitOrange)" stroke-width="1" stroke-dasharray="8 10"/>
+      <polygon points="430,18 447,9 464,18 447,27" fill="none" stroke="#18dcff" stroke-width="1" opacity="0.85"/>
+      <circle cx="236" cy="16" r="3" fill="#ff6b1a" opacity="0.72"/>
+      <circle cx="620" cy="24" r="3" fill="#18dcff" opacity="0.72"/>
+    </svg>
+  </div>
 
   <main class="uniform-section-spacing">
 
     <!-- ====== STATS ====== -->
     <section class="stats-section reveal" id="statsSection" aria-label="Statistics" data-stats-pending>
       <div class="container">
-        <div class="stats-inner">
-          <div class="stat-item"><span class="stat-label">tools:</span><span class="stat-val" id="statProjects">0</span></div>
-          <span class="stat-sep">|</span>
-          <div class="stat-item"><span class="stat-label">stars:</span><span class="stat-val" id="statStars">0</span></div>
-          <span class="stat-sep">|</span>
-          <div class="stat-item"><span class="stat-label">featured:</span><span class="stat-val" id="statFeatured">0</span></div>
-          <span class="stat-sep">|</span>
-          <div class="stat-item"><span class="stat-label">followers:</span><span class="stat-val" id="statFollowers">0</span></div>
+        <div class="stats-holo-frame glass">
+          <div class="stats-energy-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="stats-inner">
+            <div class="stat-item"><span class="stat-label">tools:</span><span class="stat-val" id="statProjects">0</span></div>
+            <span class="stat-sep">|</span>
+            <div class="stat-item"><span class="stat-label">stars:</span><span class="stat-val" id="statStars">0</span></div>
+            <span class="stat-sep">|</span>
+            <div class="stat-item"><span class="stat-label">featured:</span><span class="stat-val" id="statFeatured">0</span></div>
+            <span class="stat-sep">|</span>
+            <div class="stat-item"><span class="stat-label">followers:</span><span class="stat-val" id="statFollowers">0</span></div>
+          </div>
+          <div class="data-status" id="dataStatus" aria-live="polite">loading snapshot&hellip;</div>
         </div>
-        <div class="data-status" id="dataStatus" aria-live="polite">loading snapshot&hellip;</div>
       </div>
     </section>
 
@@ -346,10 +493,10 @@
     </section>
 
     <!-- ====== RECIPE INDEX (always visible, not collapsible) ====== -->
-    <section class="projects-section reveal" aria-label="All projects" id="recipe-index-section">
+    <section class="projects-section reveal legacy-section" aria-label="All projects" id="recipe-index-section">
       <div class="container">
         <h2 class="section-head"><span>//</span> recipe_index</h2>
-        <div class="search-wrap">
+        <div class="search-wrap legacy-search-wrap">
           <span class="search-icon" aria-hidden="true">&#128269;</span>
           <input type="search" class="search-input" id="repoSearch" placeholder="Search recipes by name, language, or keyword&hellip;" aria-label="Search repositories">
         </div>
@@ -367,7 +514,7 @@
       <div class="ts-module-body" id="mod-packetwire-body"><div>
         <div class="container packet-over-wire-section" id="packet-over-wire">
           <p class="packet-intro">Data still travels the grid like light cycles. This module keeps the wire-side packet view, then contrasts it with Kismet listening to wireless beacons, probes, and management frames moving through the air.</p>
-          <div class="packet-grid-visual glass">
+          <div class="packet-grid-visual glass tron-panel-surface">
             <canvas id="packetGridCanvas" aria-hidden="true"></canvas>
             <div class="packet-overlay-info">
               <div class="packet-node packet-src" data-label="SOURCE">SRC</div>
@@ -422,7 +569,7 @@ GET /admin HTTP/1.1</pre>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-lockhistory-body"><div>
-        <div class="container lock-history-section" id="lock-history">
+        <div class="container lock-history-section tron-story-section" id="lock-history">
           <p class="history-intro">Before cybersecurity had a name, everything was about physical security. Locksmiths did the same job in metal: design defences, study bypasses and improve what failed.</p>
           <p class="history-intro">This history shaped a security rule still used today: strong systems survive public testing, not secrecy alone. Only the key (or secret) should remain confidential.</p>
 
@@ -650,7 +797,7 @@ GET /admin HTTP/1.1</pre>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-cinema-body"><div>
-        <div class="container cinema-section">
+        <div class="container cinema-section tron-cinema-section">
           <div class="cinema-carousel-wrap" id="cinemaCarouselWrap">
             <div class="cinema-quote-grid cinema-carousel-track" id="cinemaCarouselTrack" aria-label="Cinema quotes carousel">
             <blockquote class="movie-quote glass">
@@ -707,7 +854,7 @@ GET /admin HTTP/1.1</pre>
         <span class="ts-module-chevron" aria-hidden="true">&#9660;</span>
       </button>
       <div class="ts-module-body" id="mod-recent-case-files-body"><div>
-        <div class="container case-files-section" id="recent-case-files">
+        <div class="container case-files-section tron-case-section" id="recent-case-files">
 
           <div class="case-file-card">
             <div class="case-file-tab"><span class="case-file-num">CASE 001</span><span class="case-file-date">2024 &ndash; 2026</span></div>
