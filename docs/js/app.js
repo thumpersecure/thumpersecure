@@ -407,8 +407,7 @@ function armFingerprintGate(dossier){
     scanner.addEventListener('pointerdown',startHoldEvent);
     scanner.addEventListener('mousedown',startHoldEvent);
     scanner.addEventListener('touchstart',startHoldEvent,{passive:false});
-    /* Only cancel on actual release; pointerleave/mouseleave would cancel when pointer drifts off element while button is still held */
-    ['pointerup','pointercancel','mouseup','touchend','touchcancel'].forEach(function(type){scanner.addEventListener(type,cancelHoldEvent,{passive:false})});
+    ['pointerup','pointerleave','pointercancel','mouseup','mouseleave','touchend','touchcancel'].forEach(function(type){scanner.addEventListener(type,cancelHoldEvent,{passive:false})});
     scanner.addEventListener('keydown',function(e){
       if(e.key===' '||e.key==='Enter'){e.preventDefault();beginHold()}
     });
