@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>me2me — See What the Internet Sees About You</title>
+  <meta name="description" content="Scan your digital footprint. See what data brokers, advertisers, and trackers can learn about you from your browser alone.">
+  <meta property="og:title" content="me2me — Data Broker Analytics">
+  <meta property="og:description" content="See what the internet sees about you. Scan your browser fingerprint and generate an AI privacy analysis.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Hero -->
+  <header id="hero">
+    <div class="hero-content">
+      <h1 class="logo">me<span class="accent">2</span>me</h1>
+      <p class="tagline">See what the internet sees about you</p>
+      <p class="subtitle">Your browser is leaking data right now. This tool shows you exactly what data brokers, advertisers, and trackers can collect — without you ever clicking "agree."</p>
+      <button id="scan-btn" class="scan-button">
+        <span class="scan-icon">&#x1F50D;</span> Scan Me
+      </button>
+      <div id="previous-scan-notice" class="previous-scan" style="display:none;">
+        <p>Previous scan found from <span id="prev-scan-time"></span></p>
+        <button id="load-previous-btn" class="btn-secondary">Load Previous Results</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Scan Animation -->
+  <section id="scan-progress" class="scan-progress" style="display:none;">
+    <div class="progress-container">
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      <p id="scan-status" class="scan-status">Initializing scan...</p>
+    </div>
+  </section>
+
+  <!-- Exposure Score -->
+  <section id="score-section" class="score-section" style="display:none;">
+    <div class="score-container">
+      <div id="score-ring" class="score-ring">
+        <svg viewBox="0 0 120 120">
+          <circle class="score-bg" cx="60" cy="60" r="52" />
+          <circle id="score-circle" class="score-fg" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73" />
+        </svg>
+        <div class="score-value">
+          <span id="score-number">0</span>
+          <span class="score-label">/ 100</span>
+        </div>
+      </div>
+      <div class="score-info">
+        <h2>Privacy Exposure Score</h2>
+        <p id="score-desc">Scanning...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Dashboard -->
+  <section id="dashboard" class="dashboard" style="display:none;">
+    <h2 class="section-title">Your Digital Fingerprint</h2>
+    <div id="cards-grid" class="cards-grid"></div>
+  </section>
+
+  <!-- Data Broker Info -->
+  <section id="broker-info" class="broker-section" style="display:none;">
+    <h2 class="section-title">What Data Brokers Know About You</h2>
+    <div class="broker-explainer">
+      <p>Data brokers are companies that collect, aggregate, and sell personal information. They combine your browser fingerprint with public records, purchase history, social media activity, and location data to build detailed profiles — often without your knowledge or consent.</p>
+      <p>Your browser fingerprint alone can be used to track you across websites without cookies. Combined with the data below, brokers can infer your income, health interests, political views, and more.</p>
+    </div>
+
+    <h3 class="subsection-title">Major Data Brokers</h3>
+    <div class="broker-table-wrap">
+      <table class="broker-table">
+        <thead>
+          <tr><th>Broker</th><th>What They Collect</th><th>Check / Opt Out</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Spokeo</td><td>Phone, email, address, social media, court records</td><td><a href="https://www.spokeo.com/optout" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>BeenVerified</td><td>Contact info, criminal records, property, assets</td><td><a href="https://www.beenverified.com/app/optout/search" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>WhitePages</td><td>Name, address, phone, relatives, neighbors</td><td><a href="https://www.whitepages.com/suppression-requests" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>Acxiom</td><td>Demographics, purchase behavior, financial data</td><td><a href="https://www.acxiom.com/privacy/opt-out/" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>Experian</td><td>Credit history, financial records, identity data</td><td><a href="https://www.experian.com/privacy/opting_out" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>Equifax</td><td>Credit reports, employment, financial history</td><td><a href="https://www.equifax.com/personal/help/remove-personal-information/" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>LexisNexis</td><td>Public records, court filings, property, licenses</td><td><a href="https://optout.lexisnexis.com/" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>PeopleFinder</td><td>Address history, phone, email, relatives</td><td><a href="https://www.peoplefinder.com/optout" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>Radaris</td><td>Contact info, social profiles, property records</td><td><a href="https://radaris.com/page/how-to-remove" target="_blank" rel="noopener">Opt Out</a></td></tr>
+          <tr><td>Intelius</td><td>Background checks, criminal, address, phone</td><td><a href="https://www.intelius.com/opt-out" target="_blank" rel="noopener">Opt Out</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Categories of Data Sold</h3>
+    <div class="broker-categories">
+      <div class="cat-chip">Public Records</div>
+      <div class="cat-chip">Purchase History</div>
+      <div class="cat-chip">Location Patterns</div>
+      <div class="cat-chip">Social Media Profiles</div>
+      <div class="cat-chip">Financial Records</div>
+      <div class="cat-chip">Health Interests</div>
+      <div class="cat-chip">Political Affiliations</div>
+      <div class="cat-chip">Browser Fingerprints</div>
+      <div class="cat-chip">Device Identifiers</div>
+      <div class="cat-chip">Employment History</div>
+      <div class="cat-chip">Family &amp; Relatives</div>
+      <div class="cat-chip">Criminal Records</div>
+    </div>
+  </section>
+
+  <!-- AI Prompt Generator -->
+  <section id="prompt-section" class="prompt-section" style="display:none;">
+    <h2 class="section-title">Generate AI Privacy Analysis</h2>
+    <p class="prompt-desc">Copy this prompt and paste it into ChatGPT or Claude to get a personalized analysis of your digital exposure and privacy recommendations.</p>
+    <button id="generate-prompt-btn" class="generate-button">Generate AI Prompt</button>
+    <div id="prompt-output" class="prompt-output" style="display:none;">
+      <div class="prompt-header">
+        <span>AI Prompt</span>
+        <button id="copy-prompt-btn" class="copy-button">Copy to Clipboard</button>
+      </div>
+      <textarea id="prompt-text" class="prompt-textarea" readonly></textarea>
+      <p id="copy-feedback" class="copy-feedback" style="display:none;">Copied!</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>me2me &mdash; All data stays in your browser. Nothing is sent to any server (except the IP geolocation lookup).</p>
+    <p>Built by <a href="https://github.com/thumpersecure" target="_blank" rel="noopener">thumpersecure</a></p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
