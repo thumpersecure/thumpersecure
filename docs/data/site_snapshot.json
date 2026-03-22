@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-03-21T06:28:33.486Z",
+  "last_updated_utc": "2026-03-22T06:36:02.302Z",
   "stats": {
     "tools_count": 17,
     "stars_total": 576,
@@ -9,10 +9,10 @@
   "repos": [
     {
       "name": "palm-tree",
-      "description": "🌴 A tool to generate a ton of randomized traffic noise using 30+ personas, 10 parallel generators, chaos modes, live headlines, and more! Bash, Python, or both!",
+      "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
       "stars": 139,
-      "last_updated": "2026-03-11T13:48:23Z",
+      "last_updated": "2026-03-21T16:57:06Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
