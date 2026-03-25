@@ -927,6 +927,7 @@ async function playTrack(idx){
     showFallback(cfg.query);return;
   }
   var absUrl;try{absUrl=new URL(url,location.href).href}catch(e){absUrl=url}
+  if(!mPlayer)return;
   if(mPlayer.src!==absUrl){mPlayer.src=url;mPlayer.load()}
   mPlayer.volume=mIsMuted?0:1;
   try{
@@ -1318,7 +1319,7 @@ function updatePuzzleUI(id){
   // Click handler
   grid.addEventListener('click',function(e){
     var btn=e.target.closest('.checksum-cell');if(!btn)return;
-    var idx=parseInt(btn.getAttribute('data-idx'));
+    var idx=parseInt(btn.getAttribute('data-idx'),10);
     if(btn.classList.contains('selected'))return;
     var expected=hintIndices[selected.length];
     if(idx===expected){
@@ -1955,7 +1956,7 @@ if(wC){
     var ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(a*0.7),sb=Math.sin(a*0.7);
     var x1=p[0]*ca-p[2]*sa,z1=p[0]*sa+p[2]*ca;
     var y1=p[1]*cb-z1*sb,z2=p[1]*sb+z1*cb;
-    var sc=wC.width*0.28,d=3+z2||1;
+    var sc=wC.width*0.28,d=(3+z2)||1;
     return[x1/d*sc+wC.width/2,y1/d*sc+wC.height/2,z2];
   }
   function dW(){
@@ -2208,12 +2209,13 @@ if(stegoCv){
     }
     for(var n=0;n<bits.length;n+=8){
       var code=0;
-      for(var m=0;m<8;m++)code=(code<<1)|bits[n+m];
+      for(var m=0;m<8&&(n+m)<bits.length;m++)code=(code<<1)|bits[n+m];
       out+=String.fromCharCode(code);
     }
     return out;
   }
   function paintDecodedStego(decoded){
+    if(!sX)return;
     sX.fillStyle='#050510';
     sX.fillRect(0,0,sw,sh);
     for(var bandY=sh-16;bandY<sh;bandY+=4){
@@ -2780,7 +2782,7 @@ function cbInitBottomPuzzle(){
 window.addEventListener('pageshow',function(e){
   if(!e.persisted)return;
   if(mPlayer&&mPlayer.src){
-    if(!mPlayer.paused)setMusicStatus('playing: '+TRACK_CONFIG[Math.max(0,mCurrentIndex)].label.toLowerCase(),'playing');
+    if(!mPlayer.paused&&mCurrentIndex>=0&&mCurrentIndex<TRACK_CONFIG.length)setMusicStatus('playing: '+TRACK_CONFIG[mCurrentIndex].label.toLowerCase(),'playing');
     else setMusicStatus('paused — tap play to resume',null);
   }
 });
