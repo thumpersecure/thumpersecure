@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-03-24T06:50:01.315Z",
+  "last_updated_utc": "2026-03-25T01:19:39.474Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 576,
+    "stars_total": 577,
     "featured_count": 4,
     "followers": 55
   },
@@ -11,8 +11,8 @@
       "name": "palm-tree",
       "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
-      "stars": 139,
-      "last_updated": "2026-03-21T16:57:06Z",
+      "stars": 140,
+      "last_updated": "2026-03-24T15:12:46Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -103,7 +103,7 @@
         "opt-out"
       ],
       "stars": 28,
-      "last_updated": "2026-03-11T13:47:21Z",
+      "last_updated": "2026-03-24T20:03:15Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
