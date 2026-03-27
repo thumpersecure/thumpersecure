@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-03-26T14:21:13.930Z",
+  "last_updated_utc": "2026-03-27T06:54:41.204Z",
   "stats": {
-    "tools_count": 17,
-    "stars_total": 577,
+    "tools_count": 15,
+    "stars_total": 576,
     "featured_count": 4,
     "followers": 55
   },
@@ -201,17 +201,6 @@
       "featured": false
     },
     {
-      "name": "lawsuitor",
-      "description": "🗽 lawsuitor is a free, open-source web app that helps everyday people understand the steps to filing a civil lawsuit. For education only. *Not legal advice. *Contact a licensed attorney",
-      "topics": [],
-      "stars": 1,
-      "last_updated": "2026-03-16T23:39:07Z",
-      "language": "JavaScript",
-      "homepage": "https://thumpersecure.github.io/lawsuitor/",
-      "html_url": "https://github.com/thumpersecure/lawsuitor",
-      "featured": false
-    },
-    {
       "name": "zweather",
       "description": "⚡️Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
       "topics": [
@@ -235,17 +224,6 @@
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/AoLpAgErThEmE",
-      "featured": false
-    },
-    {
-      "name": "me2me2",
-      "description": "OSINT & SEO tool by THUMPERSECURE",
-      "topics": [],
-      "stars": 0,
-      "last_updated": "2026-03-21T02:57:44Z",
-      "language": null,
-      "homepage": null,
-      "html_url": "https://github.com/thumpersecure/me2me2",
       "featured": false
     }
   ]
