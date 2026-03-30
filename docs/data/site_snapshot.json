@@ -1,18 +1,18 @@
 {
-  "last_updated_utc": "2026-03-29T06:50:39.874Z",
+  "last_updated_utc": "2026-03-30T07:13:09.797Z",
   "stats": {
     "tools_count": 15,
-    "stars_total": 581,
+    "stars_total": 604,
     "featured_count": 4,
-    "followers": 57
+    "followers": 59
   },
   "repos": [
     {
       "name": "palm-tree",
       "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
-      "stars": 141,
-      "last_updated": "2026-03-29T01:45:07Z",
+      "stars": 142,
+      "last_updated": "2026-03-30T01:31:51Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 104,
-      "last_updated": "2026-03-28T10:42:11Z",
+      "stars": 105,
+      "last_updated": "2026-03-30T01:35:00Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -44,8 +44,8 @@
       "name": "Spin",
       "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
       "topics": [],
-      "stars": 83,
-      "last_updated": "2026-03-29T01:45:11Z",
+      "stars": 84,
+      "last_updated": "2026-03-30T01:31:24Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/Spin/",
       "html_url": "https://github.com/thumpersecure/Spin",
@@ -60,8 +60,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 61,
-      "last_updated": "2026-03-28T18:20:10Z",
+      "stars": 63,
+      "last_updated": "2026-03-30T01:32:58Z",
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
@@ -77,22 +77,11 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 57,
-      "last_updated": "2026-03-20T02:15:41Z",
+      "stars": 58,
+      "last_updated": "2026-03-30T01:34:04Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
-      "featured": false
-    },
-    {
-      "name": "TeleSTOP",
-      "description": "📵 A windows desktop program designed for one thing; to help you remove your data from 50+ people-search sites at the source. No cloud, no APIs, 100% local. Pairs with xTELENUMSINT for faster detection/reporting. Reduce spam calls. Lower your risk for identity theft. Take back control. NO coding required. 100% free.",
-      "topics": [],
-      "stars": 36,
-      "last_updated": "2026-03-11T13:47:32Z",
-      "language": "TypeScript",
-      "homepage": null,
-      "html_url": "https://github.com/thumpersecure/TeleSTOP",
       "featured": false
     },
     {
@@ -102,19 +91,30 @@
         "guide",
         "opt-out"
       ],
-      "stars": 29,
-      "last_updated": "2026-03-29T06:42:44Z",
+      "stars": 41,
+      "last_updated": "2026-03-30T02:27:12Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
       "featured": true
     },
     {
+      "name": "TeleSTOP",
+      "description": "📵 A windows desktop program designed for one thing; to help you remove your data from 50+ people-search sites at the source. No cloud, no APIs, 100% local. Pairs with xTELENUMSINT for faster detection/reporting. Reduce spam calls. Lower your risk for identity theft. Take back control. NO coding required. 100% free.",
+      "topics": [],
+      "stars": 37,
+      "last_updated": "2026-03-30T01:37:06Z",
+      "language": "TypeScript",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/TeleSTOP",
+      "featured": false
+    },
+    {
       "name": "spicy-cat",
       "description": "💋 An online privacy tool that generates realistic digital personas and human-like behavioral noise to disrupt profiling, correlation, and attribution. For best results use TOR and Firefox. Coded in Python.",
       "topics": [],
-      "stars": 24,
-      "last_updated": "2026-03-29T04:19:31Z",
+      "stars": 25,
+      "last_updated": "2026-03-30T01:34:50Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/spicy-cat",
@@ -130,8 +130,8 @@
         "osint-tool",
         "phone-numbers"
       ],
-      "stars": 20,
-      "last_updated": "2026-03-11T04:55:46Z",
+      "stars": 21,
+      "last_updated": "2026-03-30T01:36:13Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/TelespotXX",
@@ -157,8 +157,8 @@
         "webapp",
         "wireless"
       ],
-      "stars": 11,
-      "last_updated": "2026-03-02T14:03:16Z",
+      "stars": 12,
+      "last_updated": "2026-03-30T01:34:22Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/blueTTool/",
       "html_url": "https://github.com/thumpersecure/blueTTool",
@@ -171,8 +171,8 @@
         "osint-facebook",
         "osint-tool"
       ],
-      "stars": 6,
-      "last_updated": "2026-03-11T13:45:09Z",
+      "stars": 7,
+      "last_updated": "2026-03-30T01:33:51Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/ofacebook/",
       "html_url": "https://github.com/thumpersecure/ofacebook",
@@ -180,10 +180,10 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server. https://thumpersecure.github.io/quevidkit/",
+      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 6,
-      "last_updated": "2026-03-29T01:30:12Z",
+      "last_updated": "2026-03-29T23:32:02Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/quevidkit/",
       "html_url": "https://github.com/thumpersecure/quevidkit",
