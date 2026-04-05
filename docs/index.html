@@ -220,43 +220,35 @@
   <!-- ====== TOP CONTROL BAR ====== -->
   <div class="top-bar-wrap" aria-label="Controls">
     <div class="top-bar" id="topBar">
-      <span class="top-bar-label">signal deck // tron &middot; swordfish &middot; track 3</span>
-      <button type="button" class="top-toggle-btn music-panel-toggle" id="musicPanelToggle" aria-controls="musicPanel" aria-expanded="true" aria-label="Hide audio controls">Hide audio controls</button>
+      <span class="top-bar-label">signal deck // adaptive soundtrack</span>
+      <button type="button" class="top-toggle-btn music-panel-toggle" id="musicPanelToggle" aria-controls="musicPanel" aria-expanded="false" aria-label="Open player">Open player</button>
       <div id="musicPanel" class="music-panel">
         <div class="music-controls-row">
-          <button type="button" class="music-mute-btn" id="musicMute" aria-label="Mute audio" title="Mute/Unmute">&#x1f50a;</button>
-          <div class="music-btns" id="musicDeck">
-            <button type="button" class="music-btn" data-theme="tron" data-index="0" data-label="Tron — Spoken Words" aria-pressed="false">
-              <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-              <span class="music-name"><span class="music-track">TRON // SPOKEN WORDS</span><span class="music-vibe">Wendy Carlos &middot; 1982 synth grid</span></span>
-            </button>
-            <button type="button" class="music-btn" data-theme="swordfish" data-index="1" data-label="Swordfish — Track 2" aria-pressed="false">
-              <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-              <span class="music-name"><span class="music-track">SWORDFISH // TRACK 2</span><span class="music-vibe">local audio &middot; multi-screen rush</span></span>
-            </button>
-            <button type="button" class="music-btn" data-theme="cyber" data-index="2" data-label="Track 3 — Music" aria-pressed="false">
-              <span class="music-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-              <span class="music-name"><span class="music-track">TRACK 3 // MUSIC</span><span class="music-vibe">local audio &middot; cookbook vibes</span></span>
-            </button>
+          <div class="music-btns music-transport" id="musicDeck" role="group" aria-label="Music transport controls">
+            <button type="button" class="music-next-btn music-nav-btn" id="musicBack" aria-label="Restart current track">&#x2039;</button>
+            <button type="button" class="music-next-btn music-nav-btn music-playpause-btn" id="musicPlayPause" aria-label="Pause current track">&#10074;&#10074;</button>
+            <button type="button" class="music-next-btn music-nav-btn" id="musicNext" aria-label="Shuffle next track">&#x203a;</button>
+          </div>
+          <div class="music-now-playing" aria-live="polite">
+            <span class="music-track-title" id="musicTrackTitle">Track standby</span>
+            <span class="music-track-sub" id="musicTrackSub">shuffle queue armed // persistent mode</span>
           </div>
         </div>
         <div class="music-meta">
           <span class="music-status" id="musicStatus" aria-live="polite">select a track</span>
-          <button type="button" class="music-next-btn" id="musicNext" aria-label="Next track">next &#9193;</button>
+          <span class="music-track-indicator" id="musicTrackIndicator" aria-live="polite">1/4</span>
           <a id="musicFallback" class="music-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden>open source</a>
         </div>
         <div id="autoplayBanner" class="autoplay-banner" role="button" tabindex="0" aria-label="Tap to play audio">&#127925; Audio ready &mdash; tap to play</div>
       </div>
       <div id="musicMiniBar" class="music-mini-bar" aria-label="Compact audio controls" hidden>
-        <button type="button" class="music-mute-btn music-mini-btn" id="musicMuteMini" aria-label="Mute audio" title="Mute/Unmute">&#x1f50a;</button>
-        <span class="music-track-indicator" id="musicTrackIndicator" aria-live="polite">1/3</span>
-        <button type="button" class="music-next-btn music-mini-btn" id="musicNextMini" aria-label="Next track">next &#9193;</button>
+        <button type="button" class="music-next-btn music-mini-btn music-launch-btn" id="musicExpandMini" aria-label="Open audio player">&#9835; open player</button>
       </div>
       <div class="top-toggles">
         <button type="button" class="top-toggle-btn on" id="toggleMode" aria-label="Toggle display mode">Mode: Dark</button>
         <button type="button" class="top-toggle-btn settings-btn" id="toggleSettings" aria-label="Open settings">&#9881; Settings</button>
       </div>
-      <audio id="musicPlayer" preload="none"></audio>
+      <audio id="musicPlayer" preload="metadata" playsinline></audio>
     </div>
   </div>
 
