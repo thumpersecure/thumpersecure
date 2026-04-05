@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-04-05T01:27:29.718Z",
+  "last_updated_utc": "2026-04-05T02:06:47.594Z",
   "stats": {
     "tools_count": 16,
     "stars_total": 611,
@@ -69,7 +69,7 @@
     },
     {
       "name": "Telespotter",
-      "description": "🦀 A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
+      "description": "�� A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
       "topics": [
         "osint",
         "osint-phonenumbers",
@@ -213,7 +213,7 @@
     },
     {
       "name": "zweather",
-      "description": "⚡️Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
+      "description": "⚡��Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
       "topics": [
         "weather",
         "weather-app",
