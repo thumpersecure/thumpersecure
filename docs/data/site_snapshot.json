@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-04-18T06:54:14.037Z",
+  "last_updated_utc": "2026-04-19T07:04:17.702Z",
   "stats": {
     "tools_count": 16,
-    "stars_total": 644,
+    "stars_total": 646,
     "featured_count": 4,
     "followers": 71
   },
@@ -11,8 +11,8 @@
       "name": "palm-tree",
       "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
-      "stars": 144,
-      "last_updated": "2026-04-09T06:58:45Z",
+      "stars": 145,
+      "last_updated": "2026-04-18T22:27:04Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -171,8 +171,8 @@
         "osint-facebook",
         "osint-tool"
       ],
-      "stars": 8,
-      "last_updated": "2026-04-09T07:09:59Z",
+      "stars": 9,
+      "last_updated": "2026-04-18T07:25:30Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/ofacebook/",
       "html_url": "https://github.com/thumpersecure/ofacebook",
@@ -213,7 +213,7 @@
     },
     {
       "name": "zweather",
-      "description": "⚡���Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
+      "description": "⚡️Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
       "topics": [
         "weather",
         "weather-app",
