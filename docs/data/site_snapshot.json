@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-04-23T07:19:07.279Z",
+  "last_updated_utc": "2026-04-24T07:45:37.547Z",
   "stats": {
     "tools_count": 16,
-    "stars_total": 648,
+    "stars_total": 649,
     "featured_count": 4,
-    "followers": 72
+    "followers": 73
   },
   "repos": [
     {
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 115,
-      "last_updated": "2026-04-17T23:37:24Z",
+      "stars": 116,
+      "last_updated": "2026-04-23T13:45:32Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -69,7 +69,7 @@
     },
     {
       "name": "Telespotter",
-      "description": "���� A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
+      "description": "🦀 A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
       "topics": [
         "osint",
         "osint-phonenumbers",
