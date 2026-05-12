@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-05-11T08:53:26.814Z",
+  "last_updated_utc": "2026-05-12T08:19:04.580Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 662,
+    "stars_total": 664,
     "featured_count": 4,
     "followers": 74
   },
@@ -60,8 +60,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 74,
-      "last_updated": "2026-05-02T16:56:23Z",
+      "stars": 75,
+      "last_updated": "2026-05-11T20:42:13Z",
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 62,
-      "last_updated": "2026-05-04T11:40:49Z",
+      "stars": 63,
+      "last_updated": "2026-05-11T20:43:52Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
