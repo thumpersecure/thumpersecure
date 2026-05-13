@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-05-12T08:19:04.580Z",
+  "last_updated_utc": "2026-05-13T08:29:43.231Z",
   "stats": {
-    "tools_count": 17,
-    "stars_total": 664,
+    "tools_count": 16,
+    "stars_total": 665,
     "featured_count": 4,
     "followers": 74
   },
@@ -171,8 +171,8 @@
         "osint-facebook",
         "osint-tool"
       ],
-      "stars": 10,
-      "last_updated": "2026-05-10T19:09:11Z",
+      "stars": 12,
+      "last_updated": "2026-05-13T00:12:10Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/ofacebook/",
       "html_url": "https://github.com/thumpersecure/ofacebook",
@@ -209,17 +209,6 @@
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/LOVE-BOMB/",
       "html_url": "https://github.com/thumpersecure/LOVE-BOMB",
-      "featured": false
-    },
-    {
-      "name": "lawsuitor",
-      "description": "🗽 lawsuitor is a free, open-source web app that helps everyday people understand the steps to filing a civil lawsuit. For education only. *Not legal advice. *Contact a licensed attorney",
-      "topics": [],
-      "stars": 1,
-      "last_updated": "2026-05-10T14:51:30Z",
-      "language": "JavaScript",
-      "homepage": "https://thumpersecure.github.io/lawsuitor/",
-      "html_url": "https://github.com/thumpersecure/lawsuitor",
       "featured": false
     },
     {
