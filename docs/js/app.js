@@ -65,10 +65,19 @@ function waitForRequestAccess(){
     var btn=document.getElementById('requestAccessBtn');
     var analyze=document.getElementById('raAnalyze');
     var analyzeLines=document.getElementById('raAnalyzeLines');
+    var form=document.getElementById('raPasswordForm');
+    var input=document.getElementById('raPasswordInput');
+    var hint=document.getElementById('raPasswordHint');
     if(!ra||!btn){resolve();return}
-    btn.addEventListener('click',function(){
-      btn.disabled=true;
-      btn.classList.add('hidden');
+    var HINTS=[
+      'Hint: a core principle of secure operations.',
+      'Hint: think honesty — the quality of being whole and undivided.',
+      'Hint: a synonym for uprightness and incorruptibility.',
+      'Hint: 9 letters, starts with "i", ends with "y".',
+      'Hint: the word is "integrity" — try again.'
+    ];
+    var attemptIndex=0;
+    function runAnalyze(){
       if(analyze){
         analyze.classList.add('show');
         analyze.setAttribute('aria-hidden','false');
@@ -82,7 +91,38 @@ function waitForRequestAccess(){
         ra.classList.add('done');
         setTimeout(function(){if(ra.parentNode)ra.remove();resolve()},600);
       },reducedMotion?500:2200);
+    }
+    btn.addEventListener('click',function(){
+      btn.disabled=true;
+      btn.classList.add('hidden');
+      if(form){
+        form.hidden=false;
+        form.classList.add('show');
+        if(input)setTimeout(function(){try{input.focus()}catch(e){}},120);
+      }else{
+        runAnalyze();
+      }
     });
+    if(form){
+      form.addEventListener('submit',function(ev){
+        ev.preventDefault();
+        if(!input)return;
+        var value=(input.value||'').trim().toLowerCase();
+        if(value==='integrity'){
+          if(hint)hint.textContent='';
+          form.classList.add('hidden');
+          runAnalyze();
+          return;
+        }
+        if(hint)hint.textContent=HINTS[Math.min(attemptIndex,HINTS.length-1)];
+        attemptIndex++;
+        input.classList.remove('error');
+        void input.offsetWidth;
+        if(!reducedMotion)input.classList.add('error');
+        input.value='';
+        try{input.focus()}catch(e){}
+      });
+    }
   });
 }
 
