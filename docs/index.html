@@ -53,13 +53,13 @@
       <h2 class="ra-title">IDENTITY VERIFICATION REQUIRED</h2>
       <p class="ra-sub">Stand by for forensic intake and biometric gate validation.</p>
       <button type="button" id="requestAccessBtn" class="ra-btn">REQUEST ACCESS</button>
-      <form id="raPasswordForm" class="ra-password-form" hidden novalidate>
+      <form id="raPasswordForm" class="ra-password-form" hidden novalidate aria-hidden="true">
         <label class="ra-password-label" for="raPasswordInput">ENTER ACCESS CODE</label>
         <input type="password" id="raPasswordInput" class="ra-password-input"
-               autocomplete="off" autocapitalize="off" spellcheck="false"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="64"
                aria-describedby="raPasswordHint" required>
-        <button type="submit" class="ra-btn ra-btn-submit">SUBMIT</button>
-        <p id="raPasswordHint" class="ra-password-hint" role="status" aria-live="polite"></p>
+        <button type="submit" id="raPasswordSubmit" class="ra-btn ra-btn-submit">SUBMIT</button>
+        <p id="raPasswordHint" class="ra-password-hint" role="status" aria-live="polite" aria-atomic="true"></p>
       </form>
     </div>
     <div class="ra-analyze" id="raAnalyze" aria-hidden="true">
@@ -405,7 +405,7 @@
     </svg>
   </div>
 
-  <main class="uniform-section-spacing">
+  <main class="uniform-section-spacing" id="mainContent">
 
     <!-- ====== STATS ====== -->
     <section class="stats-section reveal" id="statsSection" aria-label="Statistics" data-stats-pending>
@@ -498,7 +498,7 @@
         <h2 class="section-head"><span>//</span> recipe_index</h2>
         <div class="search-wrap legacy-search-wrap">
           <span class="search-icon" aria-hidden="true">&#128269;</span>
-          <input type="search" class="search-input" id="repoSearch" placeholder="Search recipes by name, language, or keyword&hellip;" aria-label="Search repositories">
+          <input type="search" class="search-input" id="repoSearch" placeholder="Search recipes by name, language, or keyword&hellip;" aria-label="Search repositories" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
         </div>
         <div class="project-grid" id="featuredGrid"></div>
         <div class="project-grid" id="projectGrid"><div class="loading-msg"><span class="spinner"></span>Loading recipes&hellip;</div></div>
