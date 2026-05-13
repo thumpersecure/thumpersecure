@@ -654,6 +654,58 @@ function parseDateMs(iso){var t=Date.parse(iso);return Number.isFinite(t)?t:null
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function safeUrl(u){if(!u||/^(javascript|data):/i.test(String(u)))return'#';try{var h=new URL(u);return(h.protocol==='https:'||h.protocol==='http:')&&(h.hostname==='github.com'||h.hostname.endsWith('.github.com')||h.hostname.endsWith('.github.io'))?u:'#'}catch(e){return'#'}}
 function relDate(iso){var ts=parseDateMs(iso);if(ts===null)return'unknown';var d=Math.floor((Date.now()-ts)/864e5);if(d<1)return'today';if(d<30)return d+'d ago';if(d<365)return Math.floor(d/30)+'mo ago';return Math.floor(d/365)+'y ago'}
+function emitSuperLiteConsoleView(data){
+  if(typeof console==='undefined')return;
+  var repos=(data&&Array.isArray(data.repos))?data.repos:[];
+  var stats=data&&data.stats?data.stats:{};
+  var featured=repos.filter(function(r){return !!r.featured}).slice(0,8).map(function(r){
+    return{
+      recipe:r.name||'unknown',
+      lang:r.language||'n/a',
+      stars:r.stars||0,
+      updated:relDate(r.last_updated)
+    };
+  });
+  var modules=[].slice.call(document.querySelectorAll('.ts-module')).slice(0,14).map(function(mod){
+    var head=mod.querySelector('.section-head');
+    var summary=mod.querySelector('.ts-module-summary');
+    return{
+      id:mod.id||'(no-id)',
+      topic:(head?head.textContent:'').replace(/\s+/g,' ').trim().replace(/^\/\//,'').trim()||'module',
+      summary:(summary?summary.textContent:'').replace(/\s+/g,' ').trim().slice(0,96)
+    };
+  });
+  var sourceMap={live:'live snapshot',cached:'cached snapshot',fallback:'static fallback file',embedded:'inline embedded fallback',error:'minimal emergency fallback'};
+  var mode=getSetting('display_mode','dark');
+  if(mode==='reading')mode='read';
+  var header=[
+    'THUMPERSECURE // SUPER LITE HEADLESS VIEW',
+    'NAME       code cookbook',
+    'PROFILE    osint + seo specialist',
+    'SYNOPSIS   fast console index of the live site state',
+    'SOURCE     '+(sourceMap[dataSource]||String(dataSource||'unknown')),
+    'MODE       '+String(mode||'dark'),
+    'TOOLS      '+String(stats.tools_count||repos.length||0),
+    'STARS      '+String(stats.stars_total||0),
+    'FEATURED   '+String(stats.featured_count||featured.length||0),
+    'FOLLOWERS  '+String(stats.followers||0),
+    'TIP        run TS.superLite() anytime to reprint'
+  ].join('\n');
+  console.groupCollapsed('%c[super-lite]%c headless site view','color:#18dcff;font-weight:700','color:#9db0cb');
+  console.log(header);
+  if(featured.length){
+    console.log('--- featured recipes ---');
+    if(console.table)console.table(featured);else console.log(featured);
+  }
+  if(modules.length){
+    console.log('--- module index ---');
+    if(console.table)console.table(modules);else console.log(modules);
+  }
+  console.groupEnd();
+}
+TS.superLite=function(){
+  emitSuperLiteConsoleView(siteData||getEmbeddedFallback()||{stats:{},repos:[]});
+};
 
 /* ====== RENDER FUNCTIONS ====== */
 function animateCounter(el,target){
@@ -768,6 +820,7 @@ if(searchInput){
   renderStats(data);
   buildFeaturedCards(data);
   renderProjectGrid(data);
+  emitSuperLiteConsoleView(data);
 })();
 
 /* ====== COLLAPSIBLE MODULES (Phase 4) ====== */
