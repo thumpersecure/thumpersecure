@@ -25,11 +25,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .scanline-overlay{position:fixed;inset:0;pointer-events:none;z-index:999;
   background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.08) 3px,rgba(0,0,0,0.08) 4px);
   opacity:0.4;mix-blend-mode:multiply}
-.sweep{position:fixed;left:0;width:100%;height:2px;
+.sweep{position:fixed;left:0;top:0;width:100%;height:2px;
   background:linear-gradient(90deg,transparent 0%,rgba(24,220,255,0.2) 15%,var(--cyan) 50%,rgba(255,0,170,0.3) 85%,transparent 100%);
-  z-index:997;pointer-events:none;opacity:0.35;animation:sweepDown 8s linear infinite;
+  z-index:997;pointer-events:none;opacity:0.35;animation:sweepDown 8s linear infinite;will-change:transform;
   box-shadow:0 0 12px var(--cyan),0 0 24px rgba(24,220,255,0.4)}
-@keyframes sweepDown{from{top:-2px}to{top:100vh}}
+@keyframes sweepDown{from{transform:translate3d(0,-2px,0)}to{transform:translate3d(0,100vh,0)}}
+@supports (height:100dvh){@keyframes sweepDown{from{transform:translate3d(0,-2px,0)}to{transform:translate3d(0,100dvh,0)}}}
 @keyframes neonPulse{0%,100%{opacity:0.6;filter:brightness(1)}50%{opacity:1;filter:brightness(1.15)}}
 @keyframes neonGlow{0%,100%{box-shadow:0 0 12px rgba(24,220,255,0.2),0 0 24px rgba(24,220,255,0.08)}50%{box-shadow:0 0 20px rgba(24,220,255,0.35),0 0 40px rgba(24,220,255,0.15)}}
 @keyframes borderPulse{0%,100%{border-color:rgba(24,220,255,0.35);box-shadow:0 0 15px rgba(24,220,255,0.1)}50%{border-color:rgba(24,220,255,0.55);box-shadow:0 0 25px rgba(24,220,255,0.2),inset 0 0 20px rgba(24,220,255,0.03)}}
@@ -128,7 +129,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .ra-password-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.4em;color:var(--muted);text-transform:uppercase}
 .ra-password-input{font-family:var(--mono);font-size:0.95rem;letter-spacing:0.25em;color:var(--cyan);text-align:center;
   background:rgba(2,10,18,0.82);border:1px solid rgba(24,220,255,0.35);border-radius:4px;padding:0.85rem 1.2rem;
-  width:min(320px,80vw);outline:none;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s}
+  width:min(320px,80vw);outline:none;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
+  -webkit-text-security:disc;-moz-text-security:disc;text-security:disc;
+  -webkit-appearance:none;appearance:none}
 .ra-password-input::placeholder{color:var(--muted)}
 .ra-password-input:focus{border-color:var(--cyan);box-shadow:0 0 30px rgba(24,220,255,0.4),0 0 60px rgba(24,220,255,0.15)}
 .ra-password-input.error{border-color:var(--magenta);box-shadow:0 0 25px rgba(255,46,162,0.45);animation:raShake 0.32s ease-in-out}
