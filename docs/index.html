@@ -53,11 +53,14 @@
       <h2 class="ra-title">IDENTITY VERIFICATION REQUIRED</h2>
       <p class="ra-sub">Stand by for forensic intake and biometric gate validation.</p>
       <button type="button" id="requestAccessBtn" class="ra-btn">REQUEST ACCESS</button>
-      <form id="raPasswordForm" class="ra-password-form" hidden novalidate aria-hidden="true">
+      <form id="raPasswordForm" class="ra-password-form" hidden novalidate aria-hidden="true" autocomplete="off">
         <label class="ra-password-label" for="raPasswordInput">ENTER ACCESS CODE</label>
-        <input type="password" id="raPasswordInput" class="ra-password-input"
-               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="64"
-               aria-describedby="raPasswordHint" required>
+        <input type="text" id="raPasswordInput" class="ra-password-input"
+               name="ra-access-code"
+               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+               inputmode="text" maxlength="64"
+               data-1p-ignore="true" data-lpignore="true" data-bwignore="true" data-form-type="other"
+               aria-describedby="raPasswordHint">
         <button type="submit" id="raPasswordSubmit" class="ra-btn ra-btn-submit">SUBMIT</button>
         <p id="raPasswordHint" class="ra-password-hint" role="status" aria-live="polite" aria-atomic="true"></p>
       </form>

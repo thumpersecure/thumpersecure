@@ -2343,7 +2343,11 @@ onScrollMobile();
     if(document.hidden)stopPulse();
     else startPulse();
   });
-  window.addEventListener('resize',startPulse);
+  var pulseResizeTimer=null;
+  window.addEventListener('resize',function(){
+    if(pulseResizeTimer)clearTimeout(pulseResizeTimer);
+    pulseResizeTimer=setTimeout(function(){pulseResizeTimer=null;startPulse();},250);
+  });
   startPulse();
 })();
 
