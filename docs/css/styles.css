@@ -121,6 +121,19 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .ra-btn:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(24,220,255,0.7),0 0 80px rgba(24,220,255,0.3)}
 .ra-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
 .ra-btn.hidden{opacity:0;pointer-events:none;transform:scale(0.8);transition:opacity 0.4s,transform 0.4s}
+.ra-password-form{display:flex;flex-direction:column;align-items:center;gap:0.75rem;margin-top:0.25rem;opacity:0;transition:opacity 0.4s ease}
+.ra-password-form.show{opacity:1}
+.ra-password-form.hidden{opacity:0;pointer-events:none;transform:scale(0.95);transition:opacity 0.4s ease,transform 0.4s ease}
+.ra-password-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.4em;color:var(--muted);text-transform:uppercase}
+.ra-password-input{font-family:var(--mono);font-size:0.95rem;letter-spacing:0.25em;color:var(--cyan);text-align:center;
+  background:rgba(2,10,18,0.82);border:1px solid rgba(24,220,255,0.35);border-radius:4px;padding:0.85rem 1.2rem;
+  width:min(320px,80vw);outline:none;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s}
+.ra-password-input::placeholder{color:var(--muted)}
+.ra-password-input:focus{border-color:var(--cyan);box-shadow:0 0 30px rgba(24,220,255,0.4),0 0 60px rgba(24,220,255,0.15)}
+.ra-password-input.error{border-color:var(--magenta);box-shadow:0 0 25px rgba(255,46,162,0.45);animation:raShake 0.32s ease-in-out}
+@keyframes raShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+.ra-password-hint{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;color:var(--magenta);font-style:italic;
+  margin:0.25rem 0 0;min-height:1.1em;max-width:min(380px,90vw);line-height:1.5}
 .ra-analyze{display:none;position:absolute;bottom:-1.5rem;left:50%;transform:translateX(-50%);width:min(430px,90vw);z-index:1}
 .ra-analyze.show{display:block;animation:raAnalyzeIn 0.5s ease}
 .ra-analyze-bar{height:2px;background:linear-gradient(90deg,transparent,var(--tron),var(--cyan),transparent);
