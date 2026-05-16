@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-05-15T06:59:03.605Z",
+  "last_updated_utc": "2026-05-16T06:41:23.762Z",
   "stats": {
     "tools_count": 16,
-    "stars_total": 666,
+    "stars_total": 668,
     "featured_count": 4,
     "followers": 74
   },
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 120,
-      "last_updated": "2026-05-05T06:14:09Z",
+      "stars": 121,
+      "last_updated": "2026-05-15T17:53:48Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -212,6 +212,23 @@
       "featured": false
     },
     {
+      "name": "4philly",
+      "description": "Look up any Philadelphia property’s L&I record — business licenses, open violations, and 311 complaints — pulled live from the city’s own data. Eclipse and Carto are cross-checked side by side, so you can see where the two sources disagree and which one to trust. Free, open-source, installable on phone or desktop.",
+      "topics": [
+        "311",
+        "inspection",
+        "license-management",
+        "opendata",
+        "philadelphia"
+      ],
+      "stars": 1,
+      "last_updated": "2026-05-16T03:33:59Z",
+      "language": "HTML",
+      "homepage": "https://thumpersecure.github.io/4philly/",
+      "html_url": "https://github.com/thumpersecure/4philly",
+      "featured": false
+    },
+    {
       "name": "zweather",
       "description": "⚡️Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
       "topics": [
@@ -224,23 +241,6 @@
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/zweather/",
       "html_url": "https://github.com/thumpersecure/zweather",
-      "featured": false
-    },
-    {
-      "name": "4PHILLY",
-      "description": "4PHILLY - Description coming soon",
-      "topics": [
-        "311",
-        "inspection",
-        "license-management",
-        "opendata",
-        "philadelphia"
-      ],
-      "stars": 0,
-      "last_updated": "2026-05-15T05:12:14Z",
-      "language": "HTML",
-      "homepage": "https://thumpersecure.github.io/4PHILLY/",
-      "html_url": "https://github.com/thumpersecure/4PHILLY",
       "featured": false
     }
   ]
