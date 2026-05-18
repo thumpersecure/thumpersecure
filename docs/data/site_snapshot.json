@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-05-17T06:51:52.124Z",
+  "last_updated_utc": "2026-05-18T07:12:34.803Z",
   "stats": {
-    "tools_count": 16,
-    "stars_total": 669,
+    "tools_count": 17,
+    "stars_total": 671,
     "featured_count": 4,
     "followers": 74
   },
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 63,
-      "last_updated": "2026-05-11T20:43:52Z",
+      "stars": 64,
+      "last_updated": "2026-05-17T14:49:50Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -190,6 +190,23 @@
       "featured": false
     },
     {
+      "name": "4philly",
+      "description": "Look up any Philadelphia property’s L&I record — business licenses, open violations, and 311 complaints — pulled live from the city’s own data. Eclipse and Carto are cross-checked side by side, so you can see where the two sources disagree and which one to trust. Free, open-source, installable on phone or desktop.",
+      "topics": [
+        "311",
+        "inspection",
+        "license-management",
+        "opendata",
+        "philadelphia"
+      ],
+      "stars": 2,
+      "last_updated": "2026-05-18T00:53:26Z",
+      "language": "HTML",
+      "homepage": "https://thumpersecure.github.io/4philly/",
+      "html_url": "https://github.com/thumpersecure/4philly",
+      "featured": false
+    },
+    {
       "name": "AoLpAgErThEmE",
       "description": "An AOL styled theme for the Hak5 pineapple pager.",
       "topics": [],
@@ -212,23 +229,6 @@
       "featured": false
     },
     {
-      "name": "4philly",
-      "description": "Look up any Philadelphia property’s L&I record — business licenses, open violations, and 311 complaints — pulled live from the city’s own data. Eclipse and Carto are cross-checked side by side, so you can see where the two sources disagree and which one to trust. Free, open-source, installable on phone or desktop.",
-      "topics": [
-        "311",
-        "inspection",
-        "license-management",
-        "opendata",
-        "philadelphia"
-      ],
-      "stars": 1,
-      "last_updated": "2026-05-16T13:34:12Z",
-      "language": "HTML",
-      "homepage": "https://thumpersecure.github.io/4philly/",
-      "html_url": "https://github.com/thumpersecure/4philly",
-      "featured": false
-    },
-    {
       "name": "zweather",
       "description": "⚡️Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
       "topics": [
@@ -241,6 +241,17 @@
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/zweather/",
       "html_url": "https://github.com/thumpersecure/zweather",
+      "featured": false
+    },
+    {
+      "name": "EspectreFlashApp",
+      "description": "A simple web app to flash esp’s for espectre easily. Best used with chrome.",
+      "topics": [],
+      "stars": 0,
+      "last_updated": "2026-05-18T01:04:12Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/EspectreFlashApp/",
+      "html_url": "https://github.com/thumpersecure/EspectreFlashApp",
       "featured": false
     }
   ]
