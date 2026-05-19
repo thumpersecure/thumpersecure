@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-05-18T07:12:34.803Z",
+  "last_updated_utc": "2026-05-19T07:04:02.826Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 671,
+    "stars_total": 675,
     "featured_count": 4,
     "followers": 74
   },
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 121,
-      "last_updated": "2026-05-15T17:53:48Z",
+      "stars": 123,
+      "last_updated": "2026-05-18T22:07:19Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 51,
-      "last_updated": "2026-05-09T20:42:26Z",
+      "stars": 52,
+      "last_updated": "2026-05-19T06:27:19Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -200,7 +200,7 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-05-18T00:53:26Z",
+      "last_updated": "2026-05-18T16:15:27Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/4philly/",
       "html_url": "https://github.com/thumpersecure/4philly",
@@ -229,6 +229,17 @@
       "featured": false
     },
     {
+      "name": "EspectreFlashApp",
+      "description": "A simple web app to flash esp’s for espectre easily. Best used with chrome.",
+      "topics": [],
+      "stars": 1,
+      "last_updated": "2026-05-18T09:13:31Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/EspectreFlashApp/",
+      "html_url": "https://github.com/thumpersecure/EspectreFlashApp",
+      "featured": false
+    },
+    {
       "name": "zweather",
       "description": "⚡️Zweather is the honest weather forecast app that shows you the weather forecast and what prior forecasts have changed. ",
       "topics": [
@@ -241,17 +252,6 @@
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/zweather/",
       "html_url": "https://github.com/thumpersecure/zweather",
-      "featured": false
-    },
-    {
-      "name": "EspectreFlashApp",
-      "description": "A simple web app to flash esp’s for espectre easily. Best used with chrome.",
-      "topics": [],
-      "stars": 0,
-      "last_updated": "2026-05-18T01:04:12Z",
-      "language": "JavaScript",
-      "homepage": "https://thumpersecure.github.io/EspectreFlashApp/",
-      "html_url": "https://github.com/thumpersecure/EspectreFlashApp",
       "featured": false
     }
   ]
