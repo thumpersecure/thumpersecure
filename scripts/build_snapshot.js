@@ -16,7 +16,7 @@ const path = require('path');
 
 const USERNAME = 'thumpersecure';
 const OUTPUT_PATH = path.resolve(__dirname, '..', 'docs', 'data', 'site_snapshot.json');
-const EXCLUDE_REPOS = new Set(['thumpersecure', 'pineapple-picopager']);
+const EXCLUDE_REPOS = new Set(['thumpersecure', 'pineapple-picopager', 'JlegaL', 'greystar-bob-faith']);
 const FEATURED_REPOS = new Set(['palm-tree', 'Telespot', 'Spin', 'opt-out-manual-2026']);
 /** Extra repos to include even if not yet on GitHub (e.g. new/upcoming projects). */
 const EXTRA_REPOS = [
