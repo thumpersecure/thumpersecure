@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-05-29T17:03:29.381Z",
+  "last_updated_utc": "2026-05-29T17:08:37.544Z",
   "stats": {
     "tools_count": 19,
     "stars_total": 687,
@@ -263,6 +263,17 @@
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/zweather/",
       "html_url": "https://github.com/thumpersecure/zweather",
+      "featured": false
+    },
+    {
+      "name": "greystar-bob-faith",
+      "description": "OSINT & SEO tool by THUMPERSECURE",
+      "topics": [],
+      "stars": 0,
+      "last_updated": "2026-05-25T18:35:51Z",
+      "language": null,
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/greystar-bob-faith",
       "featured": false
     }
   ]
