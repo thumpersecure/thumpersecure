@@ -49,20 +49,21 @@
     <div class="ra-glow-orb ra-glow-1" aria-hidden="true"></div>
     <div class="ra-glow-orb ra-glow-2" aria-hidden="true"></div>
     <div class="ra-message">
-      <span class="ra-label">SECURE ACCESS PROTOCOL</span>
-      <h2 class="ra-title">IDENTITY VERIFICATION REQUIRED</h2>
-      <p class="ra-sub">Stand by for forensic intake and biometric gate validation.</p>
-      <button type="button" id="requestAccessBtn" class="ra-btn">REQUEST ACCESS</button>
+      <span class="ra-label">CONFIRM YOU'RE HUMAN</span>
+      <h2 class="ra-title">SELECT THE CORRECT VALUE</h2>
+      <p class="ra-sub">Choose wisely to proceed.</p>
+      <div id="raHumanCheck" class="ra-human-check" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0;">
+        <button type="button" class="ra-btn ra-option-btn" data-value="courtesy" style="font-size:12px;padding:8px 14px;letter-spacing:1px;">COURTESY</button>
+        <button type="button" class="ra-btn ra-option-btn" data-value="integrity" style="font-size:12px;padding:8px 14px;letter-spacing:1px;background:#00ffcc;color:#000;">INTEGRITY</button>
+        <button type="button" class="ra-btn ra-option-btn" data-value="perseverance" style="font-size:12px;padding:8px 14px;letter-spacing:1px;">PERSEVERANCE</button>
+        <button type="button" class="ra-btn ra-option-btn" data-value="self-control" style="font-size:12px;padding:8px 14px;letter-spacing:1px;">SELF-CONTROL</button>
+        <button type="button" class="ra-btn ra-option-btn" data-value="indomitable-spirit" style="font-size:12px;padding:8px 14px;letter-spacing:1px;">INDOMITABLE SPIRIT</button>
+      </div>
+      <p id="raPasswordHint" class="ra-password-hint" role="status" aria-live="polite" aria-atomic="true"></p>
+      <button type="button" id="requestAccessBtn" class="ra-btn" style="display:none;">REQUEST ACCESS</button>
       <form id="raPasswordForm" class="ra-password-form" hidden novalidate aria-hidden="true" autocomplete="off">
-        <label class="ra-password-label" for="raPasswordInput">ENTER ACCESS CODE</label>
-        <input type="text" id="raPasswordInput" class="ra-password-input"
-               name="ra-access-code"
-               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-               inputmode="text" maxlength="64"
-               data-1p-ignore="true" data-lpignore="true" data-bwignore="true" data-form-type="other"
-               aria-describedby="raPasswordHint">
-        <button type="submit" id="raPasswordSubmit" class="ra-btn ra-btn-submit">SUBMIT</button>
-        <p id="raPasswordHint" class="ra-password-hint" role="status" aria-live="polite" aria-atomic="true"></p>
+        <input type="hidden" id="raPasswordInput" class="ra-password-input" value="">
+        <button type="submit" id="raPasswordSubmit" class="ra-btn ra-btn-submit" style="display:none;">SUBMIT</button>
       </form>
     </div>
     <div class="ra-analyze" id="raAnalyze" aria-hidden="true">
@@ -76,6 +77,27 @@
     </div>
   </div>
 </div>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.ra-option-btn');
+  var hint=document.getElementById('raPasswordHint');
+  var input=document.getElementById('raPasswordInput');
+  var form=document.getElementById('raPasswordForm');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.getAttribute('data-value');
+      if(v==='integrity'){
+        if(input)input.value='integrity';
+        if(form){form.hidden=false;form.dispatchEvent(new Event('submit',{cancelable:true}));}
+      } else {
+        if(hint)hint.textContent='Try again. Choose the value that matters most.';
+        b.style.opacity='0.4';
+        b.disabled=true;
+      }
+    });
+  });
+})();
+</script>
 
 <!-- ====== BOOT SCREEN ====== -->
 <div id="bootScreen" class="boot boot-overlay" role="dialog" aria-modal="true" aria-label="Connection trace">
