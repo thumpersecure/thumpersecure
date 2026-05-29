@@ -1878,6 +1878,7 @@ function isPuzzleBlockingScroll(){
 }
 
 function runAutoScroll(){
+  if(window.innerWidth<=768)return;
   if(!autoScrollEnabled||autoScrollPaused||reducedMotion)return;
   if(isPuzzleBlockingScroll()){autoScrollRaf=requestAnimationFrame(runAutoScroll);return;}
   var maxScroll=document.documentElement.scrollHeight-window.innerHeight;
@@ -2036,6 +2037,7 @@ if(pC){
   mkP=function(){var n=isMob()?50:130;pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*pC.width,y:Math.random()*pC.height,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35,r:Math.random()*2+0.8,col:COLS[Math.floor(Math.random()*COLS.length)],a:Math.random()*0.4+0.2})};
   function dP(){
     if(!pX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden||pC.style.display==='none'){requestAnimationFrame(dP);return}
     pX.clearRect(0,0,pC.width,pC.height);var n=pts.length,mob=isMob();
     for(var i=0;i<n;i++){var a=pts[i],dx=a.x-mouse.x,dy=a.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
@@ -2059,6 +2061,7 @@ if(tGC&&!reducedMotion){
   function rTGC(){tGC.width=window.innerWidth;tGC.height=window.innerHeight}
   function dTGC(){
     if(!tGX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden||tGC.style.display==='none'){requestAnimationFrame(dTGC);return}
     var w=tGC.width,h=tGC.height;
     var docSpan=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
@@ -2121,6 +2124,7 @@ if(rCv&&!reducedMotion&&window.innerWidth>640){
   iR=function(){rCol=Math.floor(rCv.width/FS);rDr=new Array(rCol).fill(1)};
   function dR(){
     if(!rX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden||rCv.style.display==='none'){requestAnimationFrame(dR);return}
     rX.fillStyle='rgba(6,6,14,0.12)';rX.fillRect(0,0,rCv.width,rCv.height);rX.fillStyle='#00ff41';rX.font=FS+'px monospace';
     for(var i=0;i<rCol;i++){rX.fillText(RC[Math.floor(Math.random()*RC.length)],i*FS,rDr[i]*FS);if(rDr[i]*FS>rCv.height&&Math.random()>0.975)rDr[i]=0;rDr[i]++}
@@ -2353,6 +2357,7 @@ if(wC){
   }
   function dW(){
     if(!wX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden){requestAnimationFrame(dW);return}
     wX.clearRect(0,0,wC.width,wC.height);
     var p2=cube.map(function(p){return pr(p,wAng)});
@@ -2394,6 +2399,7 @@ if(iCv){
   }
   function dIC(){
     if(!iX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden){requestAnimationFrame(dIC);return}
     var w=iCv.clientWidth,h=iCv.clientHeight;
     iX.clearRect(0,0,w,h);
@@ -2430,6 +2436,7 @@ if(qCv){
   }
   function dQC(){
     if(!qX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden){requestAnimationFrame(dQC);return}
     var w=qCv.clientWidth,h=qCv.clientHeight;
     qX.clearRect(0,0,w,h);
@@ -2461,6 +2468,7 @@ if(pktCv&&!reducedMotion){
   function rPkt(){var p=pktCv.parentElement;if(!p)return;var w=p.clientWidth;var h=320;pktCv.width=w;pktCv.height=h}
   function dPkt(){
     if(!pktX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden||pktCv.style.display==='none'){requestAnimationFrame(dPkt);return}
     var w=pktCv.width,h=pktCv.height;
     pktX.fillStyle='rgba(2,2,8,0.15)';pktX.fillRect(0,0,w,h);
@@ -2516,6 +2524,7 @@ if(kismetCv){
   var kX=kismetCv.getContext('2d'),kTick=0;
   function drawKismet(){
     if(!kX)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden){if(!reducedMotion)requestAnimationFrame(drawKismet);return}
     var w=kismetCv.width,h=kismetCv.height,cx=w/2,cy=h/2;
     kX.clearRect(0,0,w,h);
@@ -2802,6 +2811,7 @@ if(stegoCv){
   }
   function drawForge(){
     if(!ctx)return;
+    if(window.innerWidth<=768)return;
     if(document.hidden){requestAnimationFrame(drawForge);return}
     var w=cv.clientWidth||920,h=cv.clientHeight||540,cx=w/2,cy=h/2;
     ctx.clearRect(0,0,w,h);

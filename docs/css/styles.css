@@ -1654,3 +1654,129 @@ body.read-mode .top-toggle-btn{
   .pager-hw-btn{width:28px;height:24px;font-size:0.45rem}
   .pager-term-ascii{font-size:0.55rem}
 }
+
+/* ====== MOBILE ANIMATION KILL — save GPU/battery on small screens ====== */
+@media(max-width:768px){
+  .orb, .floating-orb, [class*="orb"] { animation: none !important; }
+  .sweep-line, .crt-sweep { animation: none !important; }
+  .holographic, [class*="holographic"] { animation: none !important; }
+  .glitch, [class*="glitch"] { animation: none !important; }
+  svg circle, svg line, svg path { animation: none !important; }
+  [class*="pulse"], [class*="glow"] { animation: none !important; }
+  [class*="float"] { animation: none !important; }
+  [class*="drift"] { animation: none !important; }
+
+  /* --- Hide purely decorative fixed overlays to reduce GPU compositing layers --- */
+  /* Scanlines, CRT effect, sweep line, holographic vignette */
+  .crt,
+  .scanline-overlay,
+  .sweep,
+  .holographic-vignette { display: none !important; }
+
+  /* Decorative fixed backgrounds — remove from compositing tree */
+  body::before { position: static !important; display: none !important; }
+  .ambient,
+  .tron-grid,
+  .circuit-pattern,
+  .tron-svg-bg { position: static !important; display: none !important; }
+
+  /* Decorative fixed canvases (particle, rain, tron grid) */
+  #particleCanvas,
+  #rainCanvas,
+  #tronGridCanvas { position: static !important; display: none !important; }
+
+  /* Floating data orbs container */
+  .data-orbs { position: static !important; display: none !important; }
+
+  /* --- Functional fixed elements preserved ---
+     .request-access-screen  (intro gate)
+     .boot                   (boot sequence)
+     .scroll-progress        (scroll indicator)
+     .top-bar-wrap            (nav bar + music player controls)
+     .back-to-top-btn         (back-to-top)
+     .fx-toast-container      (effect toasts)
+     .settings-overlay        (settings dialog)
+     .cb-toast                (copy/action toasts)
+     .cb-backdrop             (modal backdrop)
+     .pi-link                 (OSINT Framework link)
+     .cve-modal-overlay       (CVE detail modal)
+  */
+
+  /* — remove backdrop-filter on mobile; replace with solid semi-transparent bg — */
+  .glass{
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    background-color:rgba(8,8,20,0.97);
+  }
+  .top-bar{
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    background:linear-gradient(140deg,rgba(3,10,20,0.98),rgba(8,8,22,0.98));
+  }
+  .forge-overlay-chip{
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    background:rgba(4,12,24,0.94);
+  }
+  .settings-overlay{
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    background:rgba(0,0,0,0.82);
+  }
+  .cb-backdrop{
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    background:rgba(0,0,0,0.82);
+  }
+  .cve-modal-overlay{
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    background:rgba(0,0,0,0.85);
+  }
+
+  /* Remove expensive blur filters on glow orbs and decorative elements */
+  [class*="glow"], [class*="orb"], [class*="blur"] { filter: none !important; }
+
+  /* Prevent mobile Safari from creating unnecessary compositing layers */
+  .sweep, .circuit-pattern, .cb-modal,
+  [class*="glow"], [class*="orb"] { will-change: auto !important; }
+}
+
+/* ============================================================
+   MOBILE VISUAL FALLBACKS — Cyberpunk feel, zero GPU killers
+   ============================================================ */
+@media (max-width: 768px) {
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: linear-gradient(135deg, #06060e 0%, #0a0c1a 25%, #0d0618 50%, #06060e 75%, #080e1c 100%);
+    background-size: 400% 400%;
+    animation: m-bgShift 12s ease-in-out infinite;
+  }
+  @keyframes m-bgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .tron-grid {
+    transform: none !important;
+    height: 100% !important;
+    background: repeating-linear-gradient(0deg, rgba(24,220,255,0.04) 0px, rgba(24,220,255,0.04) 1px, transparent 1px, transparent 48px), repeating-linear-gradient(90deg, rgba(24,220,255,0.04) 0px, rgba(24,220,255,0.04) 1px, transparent 1px, transparent 48px) !important;
+    background-size: 48px 48px !important;
+    mask-image: none !important; -webkit-mask-image: none !important;
+    opacity: 0.5;
+  }
+  .data-orbs { perspective: none !important; }
+  .orb { box-shadow: none !important; border: none !important; opacity: 0.14; }
+  .orb, .orb::before { transform-style: flat !important; }
+  .orb::before { display: none; }
+  .orb-1 { background: radial-gradient(circle, rgba(24,220,255,0.35) 0%, rgba(24,220,255,0) 70%) !important; animation: m-orbDrift1 18s ease-in-out infinite !important; }
+  .orb-2 { background: radial-gradient(circle, rgba(255,0,170,0.3) 0%, rgba(255,0,170,0) 70%) !important; animation: m-orbDrift2 18s ease-in-out infinite !important; }
+  .orb-3 { background: radial-gradient(circle, rgba(0,255,204,0.3) 0%, rgba(0,255,204,0) 70%) !important; animation: m-orbDrift1 18s ease-in-out infinite -4s !important; }
+  .orb-4, .orb-5, .orb-6 { display: none; }
+  @keyframes m-orbDrift1 { 0%, 100% { transform: translateY(0); opacity: 0.12; } 50% { transform: translateY(-20px); opacity: 0.18; } }
+  @keyframes m-orbDrift2 { 0%, 100% { transform: translateX(0); opacity: 0.1; } 50% { transform: translateX(15px); opacity: 0.16; } }
+  .glitch { animation: m-neonText 4s ease-in-out infinite !important; text-shadow: 0 0 6px rgba(0,255,204,0.6), 0 0 18px rgba(0,255,204,0.25) !important; }
+  .glitch::before, .glitch::after { display: none !important; }
+  @keyframes m-neonText { 0%, 100% { opacity: 0.88; } 50% { opacity: 1; } }
+  .section-head { text-shadow: 0 0 6px rgba(24,220,255,0.3), 0 0 14px rgba(24,220,255,0.12); }
+  .recipe-card, .project-card, .hero-holographic, .hero-visual-shell { transform-style: flat !important; perspective: none !important; }
+  .recipe-card:hover, .project-card:hover { transform: translateY(-4px) !important; }
+  .hero-visual-shell { transform: none !important; min-height: auto !important; }
+  .hero-identity-glow { filter: none !important; }
+  .tron-svg-bg { opacity: 0.35 !important; }
+}
