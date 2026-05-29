@@ -291,6 +291,9 @@ function buildPluginSummary(){
 }
 
 async function collectOperatorDossier(){
+  if(window.innerWidth<=768){
+    return{collectedAt:Date.now(),timestampLabel:new Date().toISOString(),fingerprintCode:'MOB',publicIp:'Mobile',networkItems:[{k:'Device',v:'Mobile'}],browserItems:[{k:'Browser',v:navigator.userAgent||'Unknown'}],whoisItems:[{k:'WHOIS',v:'Skipped on mobile'}]};
+  }
   var query=location.search?location.search.slice(1):'(none)';
   var now=Date.now();
   var ipPromise=fetchJsonWithTimeout('https://api64.ipify.org?format=json',3500).catch(function(){return null});
@@ -412,6 +415,7 @@ function armFingerprintGate(dossier){
     var tick=0;
     function draw(){
       if(!ctx)return;
+      if(window.innerWidth<=768){tick++;if(!solved)requestAnimationFrame(draw);return}
       var w=canvas.width,h=canvas.height,cx=w/2,cy=h/2;
       ctx.clearRect(0,0,w,h);
       var bg=ctx.createRadialGradient(cx,cy,10,cx,cy,w*0.45);
