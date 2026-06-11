@@ -1141,7 +1141,7 @@ async function resolveTrackUrl(idx){
   return null;
 }
 function setSeekWhenReady(seekSeconds){
-  if(!mPlayer||!(seekSeconds>0))return;
+  if(!mPlayer||typeof seekSeconds!=='number'||seekSeconds<0)return;
   var doSeek=function(){
     try{
       var max=(isFinite(mPlayer.duration)&&mPlayer.duration>2)?mPlayer.duration-1:seekSeconds;
@@ -1177,7 +1177,7 @@ async function playTrack(idx,opts){
   var absUrl;try{absUrl=new URL(url,location.href).href}catch(e){absUrl=url}
   if(!mPlayer)return;
   if(mPlayer.src!==absUrl){mPlayer.src=url;mPlayer.load()}
-  if(opts.seekTime&&opts.seekTime>0)setSeekWhenReady(opts.seekTime);
+  setSeekWhenReady(typeof opts.seekTime==='number'?Math.max(0,opts.seekTime):0);
   applyVolumeCurve();
   if(opts.autoplay===false){
     setMusicStatus('ready: '+cfg.label.toLowerCase(),null);
