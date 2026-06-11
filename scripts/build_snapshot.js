@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * build_snapshot.js
- * Fetches public GitHub repos for thumpersecure and writes a static JSON snapshot
- * to docs/data/site_snapshot.json for the Code Cookbook site.
+ * Fetches public GitHub repos for thumpersecure and writes static JSON snapshots
+ * for the Code Cookbook site.
  *
  * Usage:
  *   GITHUB_TOKEN=ghp_xxx node scripts/build_snapshot.js
@@ -16,6 +16,9 @@ const path = require('path');
 
 const USERNAME = 'thumpersecure';
 const OUTPUT_PATH = path.resolve(__dirname, '..', 'docs', 'data', 'site_snapshot.json');
+const FALLBACK_OUTPUT_PATH = path.resolve(__dirname, '..', 'docs', 'data', 'fallback-snapshot.json');
+const INDEX_PATH = path.resolve(__dirname, '..', 'docs', 'index.html');
+const SITEMAP_PATH = path.resolve(__dirname, '..', 'docs', 'sitemap.xml');
 const EXCLUDE_REPOS = new Set(['thumpersecure', 'pineapple-picopager', 'JlegaL', 'greystar-bob-faith']);
 const FEATURED_REPOS = new Set(['palm-tree', 'Telespot', 'Spin', 'opt-out-manual-2026']);
 /** Extra repos to include even if not yet on GitHub (e.g. new/upcoming projects). */
@@ -65,6 +68,91 @@ function httpsGet(url) {
     req.on('timeout', () => { req.destroy(); reject(new Error(`Timeout fetching ${url}`)); });
     req.setTimeout(15000);
   });
+}
+
+function ensureDirectory(filePath) {
+  const outDir = path.dirname(filePath);
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir, { recursive: true });
+  }
+}
+
+function snapshotJson(snapshot) {
+  return JSON.stringify(snapshot, null, 2) + '\n';
+}
+
+function inlineSnapshotJson(snapshot) {
+  return JSON.stringify(snapshot).replace(/</g, '\\u003c');
+}
+
+function escapeHtml(value) {
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function padNfo(value, width) {
+  value = String(value == null ? '' : value);
+  return value.length >= width ? value.slice(0, width) : value + ' '.repeat(width - value.length);
+}
+
+function buildNfoText(snapshot) {
+  const repos = Array.isArray(snapshot.repos) ? snapshot.repos.slice(0, 17) : [];
+  const stats = snapshot.stats || {};
+  const lines = [
+    '╔══════════════════════════════════════════════════════════╗',
+    '║            THUMPERSECURE TOOLKIT  2026            ║',
+    '║  TYPE : OSINT / SEO / Privacy                     ║',
+    `║  TOOLS: ${padNfo(stats.tools_count || repos.length, 4)} STARS: ${padNfo(stats.stars_total || 0, 5)}+                         ║`,
+    '╠══════════════════════════════════════════════════════════╣',
+    '  TOOL NAME             LANG        ★',
+    '  ───────────────────────────────────────',
+  ];
+  for (const repo of repos) {
+    lines.push(`  ${padNfo(repo.name || 'unknown', 21)} ${padNfo(repo.language || 'N/A', 10)} ${repo.stars || 0}`);
+  }
+  lines.push('╚══════════════════════════════════════════════════════════╝');
+  return lines.join('\n');
+}
+
+function writeJsonSnapshot(filePath, snapshot) {
+  ensureDirectory(filePath);
+  fs.writeFileSync(filePath, snapshotJson(snapshot));
+}
+
+function syncInlineFallback(snapshot) {
+  if (!fs.existsSync(INDEX_PATH)) return false;
+  const html = fs.readFileSync(INDEX_PATH, 'utf8');
+  const next = html.replace(
+    /<script id="fallback-snapshot" type="application\/json">\s*[\s\S]*?\s*<\/script>/,
+    `<script id="fallback-snapshot" type="application/json">\n${inlineSnapshotJson(snapshot)}\n</script>`,
+  );
+  if (next === html) return false;
+  fs.writeFileSync(INDEX_PATH, next);
+  return true;
+}
+
+function syncStaticNfo(snapshot) {
+  if (!fs.existsSync(INDEX_PATH)) return false;
+  const html = fs.readFileSync(INDEX_PATH, 'utf8');
+  const next = html.replace(
+    /(<pre class="nfo nfo-toolkit" id="nfoToolkit"[^>]*>)[\s\S]*?(<\/pre>)/,
+    `$1${escapeHtml(buildNfoText(snapshot))}$2`,
+  );
+  if (next === html) return false;
+  fs.writeFileSync(INDEX_PATH, next);
+  return true;
+}
+
+function syncSitemapLastmod(snapshot) {
+  if (!fs.existsSync(SITEMAP_PATH)) return false;
+  const lastmod = String(snapshot.last_updated_utc || new Date().toISOString()).slice(0, 10);
+  const xml = fs.readFileSync(SITEMAP_PATH, 'utf8');
+  const next = xml.replace(/<lastmod>[^<]+<\/lastmod>/, `<lastmod>${lastmod}</lastmod>`);
+  if (next === xml) return false;
+  fs.writeFileSync(SITEMAP_PATH, next);
+  return true;
 }
 
 /**
@@ -161,14 +249,16 @@ async function main() {
     process.exit(1);
   }
 
-  // Ensure output directory exists
-  const outDir = path.dirname(OUTPUT_PATH);
-  if (!fs.existsSync(outDir)) {
-    fs.mkdirSync(outDir, { recursive: true });
-  }
-
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(snapshot, null, 2) + '\n');
+  writeJsonSnapshot(OUTPUT_PATH, snapshot);
+  writeJsonSnapshot(FALLBACK_OUTPUT_PATH, snapshot);
+  const inlineUpdated = syncInlineFallback(snapshot);
+  const nfoUpdated = syncStaticNfo(snapshot);
+  const sitemapUpdated = syncSitemapLastmod(snapshot);
   console.log(`Snapshot written to ${OUTPUT_PATH}`);
+  console.log(`Fallback written to ${FALLBACK_OUTPUT_PATH}`);
+  console.log(`Inline fallback: ${inlineUpdated ? 'updated' : 'unchanged'}`);
+  console.log(`Static NFO: ${nfoUpdated ? 'updated' : 'unchanged'}`);
+  console.log(`Sitemap lastmod: ${sitemapUpdated ? 'updated' : 'unchanged'}`);
   console.log(`  Repos: ${snapshot.repos.length}`);
   console.log(`  Stars: ${snapshot.stats.stars_total}`);
   console.log(`  Featured: ${snapshot.stats.featured_count}`);
