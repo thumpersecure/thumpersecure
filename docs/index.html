@@ -157,6 +157,20 @@
 <div class="ambient" aria-hidden="true"></div>
 <div class="tron-grid" aria-hidden="true"></div>
 <div class="circuit-pattern" aria-hidden="true"></div>
+<div class="tron-artifact-field" aria-hidden="true">
+  <span class="tron-artifact artifact-rail rail-a"></span>
+  <span class="tron-artifact artifact-rail rail-b"></span>
+  <span class="tron-artifact artifact-rail rail-c"></span>
+  <span class="tron-artifact artifact-rail rail-d"></span>
+  <span class="tron-artifact artifact-node node-a"></span>
+  <span class="tron-artifact artifact-node node-b"></span>
+  <span class="tron-artifact artifact-node node-c"></span>
+  <span class="tron-artifact artifact-node node-d"></span>
+  <span class="tron-artifact artifact-glyph glyph-a">0101</span>
+  <span class="tron-artifact artifact-glyph glyph-b">TRON</span>
+  <span class="tron-artifact artifact-glyph glyph-c">I/O</span>
+  <span class="tron-artifact artifact-glyph glyph-d">GRID</span>
+</div>
 <canvas id="tronGridCanvas" aria-hidden="true"></canvas>
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
 <canvas id="rainCanvas" aria-hidden="true"></canvas>
@@ -542,6 +556,16 @@
           <p class="packet-intro">Data still travels the grid like light cycles. This module keeps the wire-side packet view, then contrasts it with Kismet listening to wireless beacons, probes, and management frames moving through the air.</p>
           <div class="packet-grid-visual glass tron-panel-surface">
             <canvas id="packetGridCanvas" aria-hidden="true"></canvas>
+            <div class="packet-static-grid" aria-hidden="true">
+              <span class="packet-channel channel-a"></span>
+              <span class="packet-channel channel-b"></span>
+              <span class="packet-channel channel-c"></span>
+              <span class="packet-channel channel-d"></span>
+              <span class="packet-burst burst-a"></span>
+              <span class="packet-burst burst-b"></span>
+              <span class="packet-burst burst-c"></span>
+              <span class="packet-burst burst-d"></span>
+            </div>
             <div class="packet-overlay-info">
               <div class="packet-node packet-src" data-label="SOURCE">SRC</div>
               <div class="packet-node packet-dst" data-label="DEST">DST</div>

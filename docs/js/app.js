@@ -1082,7 +1082,7 @@ function savePlaybackState(force){
   setSetting('music_track_index',normalizeIndex(mCurrentIndex));
   setSetting('music_queue_order',mQueueOrder.slice());
   setSetting('music_queue_pos',mQueuePos);
-  setSetting('music_current_time',mPlayer?Math.max(0,mPlayer.currentTime||0):0);
+  setSetting('music_current_time',0);
   setSetting('music_should_resume',!!(mPlayer&&mPlayer.src&&!mPlayer.paused));
 }
 function setMusicPanelExpanded(expanded){
@@ -1291,7 +1291,6 @@ function loadMusicState(){
   var idx=normalizeIndex(getSetting('music_track_index',0));
   var queue=getSetting('music_queue_order',[]);
   var queuePos=getSetting('music_queue_pos',-1);
-  var time=getSetting('music_current_time',0);
   var shouldResume=getSetting('music_should_resume',true);
   if(isQueueValid(queue)){
     mQueueOrder=queue.slice();
@@ -1303,7 +1302,7 @@ function loadMusicState(){
     mQueuePos=mQueueOrder.indexOf(idx);
   }
   mCurrentIndex=idx;
-  return{idx:idx,time:typeof time==='number'?Math.max(0,time):0,shouldResume:!!shouldResume};
+  return{idx:idx,time:0,shouldResume:!!shouldResume};
 }
 function handleAccessGrantedMusicKickoff(source){
   if(mAccessGranted)return;
@@ -1497,7 +1496,7 @@ function applyDisplayModeClass(){
 function applyCanvasVisibility(){
   var bgAnimEnabled=getSetting('bg_anim',true);
   var show=modeDark&&bgAnimEnabled&&!reducedMotion;
-  document.querySelectorAll('#particleCanvas,#rainCanvas,#tronGridCanvas').forEach(function(c){
+  document.querySelectorAll('#particleCanvas,#rainCanvas,#tronGridCanvas,.tron-artifact-field').forEach(function(c){
     c.style.display=show?'':'none';
   });
 }
