@@ -15,6 +15,14 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;line-height:1.6}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 100% 100% at 50% 0%,transparent 0%,rgba(0,0,0,0.03) 100%);opacity:0.8}
+body:not(.read-mode):not(.engage-mode)::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(115deg,transparent 0 17%,rgba(24,220,255,0.05) 17.2%,transparent 17.6% 40%,rgba(255,107,26,0.045) 40.3%,transparent 40.7%),
+    linear-gradient(65deg,transparent 0 28%,rgba(0,255,204,0.04) 28.2%,transparent 28.6% 62%,rgba(255,0,170,0.035) 62.2%,transparent 62.7%),
+    radial-gradient(circle at 18% 18%,rgba(24,220,255,0.11),transparent 24%),
+    radial-gradient(circle at 82% 28%,rgba(255,107,26,0.08),transparent 21%),
+    radial-gradient(circle at 50% 86%,rgba(0,255,204,0.08),transparent 28%);
+  mix-blend-mode:screen;opacity:0.72;animation:darkTronArtifacts 12s ease-in-out infinite}
 
 /* ====== BACKGROUND LAYERS ====== */
 #particleCanvas,#rainCanvas,#tronGridCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
@@ -38,11 +46,24 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 @keyframes gridPulse{0%,100%{opacity:0.4}50%{opacity:0.8}}
 @keyframes sectionEdgeGlow{0%,100%{opacity:0.5}50%{opacity:1}}
 @keyframes cornerBracketPulse{0%,100%{opacity:0.5}50%{opacity:0.9}}
+@keyframes darkTronArtifacts{0%,100%{filter:hue-rotate(0deg) brightness(1);opacity:0.6}50%{filter:hue-rotate(8deg) brightness(1.18);opacity:0.86}}
 @property --tron-glow-phase{syntax:'<number>';initial-value:0;inherits:false}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(ellipse 600px 400px at 10% 15%,rgba(0,255,204,0.05),transparent),
   radial-gradient(ellipse 500px 500px at 85% 10%,rgba(255,0,170,0.04),transparent),
   radial-gradient(ellipse 700px 400px at 50% 95%,rgba(139,92,246,0.05),transparent)}
+body:not(.read-mode):not(.engage-mode) .ambient::before,
+body:not(.read-mode):not(.engage-mode) .ambient::after{content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen}
+body:not(.read-mode):not(.engage-mode) .ambient::before{background:
+  linear-gradient(90deg,transparent 0 11%,rgba(24,220,255,0.12) 11.2%,transparent 11.5% 31%,rgba(24,220,255,0.08) 31.2%,transparent 31.5% 72%,rgba(0,255,204,0.08) 72.2%,transparent 72.5%),
+  linear-gradient(0deg,transparent 0 18%,rgba(255,107,26,0.08) 18.2%,transparent 18.5% 57%,rgba(24,220,255,0.08) 57.2%,transparent 57.5%);
+  opacity:0.5;animation:darkTronCircuitDrift 18s linear infinite}
+body:not(.read-mode):not(.engage-mode) .ambient::after{background:
+  conic-gradient(from 220deg at 18% 72%,transparent 0 16deg,rgba(24,220,255,0.12) 16deg 18deg,transparent 18deg 38deg,rgba(255,107,26,0.1) 38deg 40deg,transparent 40deg 360deg),
+  conic-gradient(from 40deg at 78% 18%,transparent 0 24deg,rgba(0,255,204,0.1) 24deg 26deg,transparent 26deg 72deg,rgba(255,0,170,0.08) 72deg 74deg,transparent 74deg 360deg);
+  opacity:0.42;animation:darkTronRecognizerPulse 9s ease-in-out infinite}
+@keyframes darkTronCircuitDrift{to{transform:translate3d(-48px,32px,0)}}
+@keyframes darkTronRecognizerPulse{0%,100%{opacity:0.28;transform:scale(1)}50%{opacity:0.62;transform:scale(1.025)}}
 .tron-grid{position:fixed;bottom:0;left:0;width:100%;height:45vh;pointer-events:none;z-index:0;
   background:linear-gradient(180deg,transparent 0%,rgba(24,220,255,0.02) 20%,rgba(24,220,255,0.05) 50%,rgba(24,220,255,0.08) 100%),
   linear-gradient(0deg,rgba(24,220,255,0.04) 1px,transparent 1px),
@@ -53,9 +74,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
   mask-image:linear-gradient(to top,rgba(0,0,0,0.5),transparent);
   -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,0.5),transparent);
   transform:perspective(1200px) rotateX(72deg);transform-origin:center bottom}
+body:not(.read-mode):not(.engage-mode) .tron-grid{
+  background:linear-gradient(180deg,transparent 0%,rgba(24,220,255,0.035) 20%,rgba(24,220,255,0.085) 50%,rgba(24,220,255,0.14) 100%),
+  linear-gradient(0deg,rgba(24,220,255,0.075) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(24,220,255,0.07) 1px,transparent 1px)}
 .circuit-pattern{position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 20h40M20 0v40M0 0l40 40M40 0L0 40' stroke='rgba(24,220,255,0.035)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
   opacity:0.7;will-change:auto}
+body:not(.read-mode):not(.engage-mode) .circuit-pattern::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  repeating-linear-gradient(90deg,transparent 0 92px,rgba(24,220,255,0.08) 92px 94px,transparent 94px 180px),
+  repeating-linear-gradient(0deg,transparent 0 126px,rgba(255,107,26,0.055) 126px 128px,transparent 128px 230px);
+  opacity:0.55;animation:dataStream 7s linear infinite}
 
 /* ====== TRON SVG BACKGROUND ====== */
 .tron-svg-bg{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.6}
@@ -806,8 +835,18 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 /* ====== PACKET OVER THE WIRE (Tron/Matrix graphical) ====== */
 .packet-over-wire-section{padding:3rem 0 4rem}
 .packet-intro{max-width:780px;margin:0 auto 1.5rem;font-size:0.9rem;color:var(--text);line-height:1.75}
-.packet-grid-visual{position:relative;max-width:920px;margin:0 auto 2rem;border-radius:12px;overflow:hidden;min-height:320px}
-#packetGridCanvas{display:block;width:100%;height:320px;background:linear-gradient(180deg,#020208 0%,#050512 50%,#020208 100%)}
+.packet-grid-visual{position:relative;max-width:920px;margin:0 auto 2rem;border-radius:16px;overflow:hidden;min-height:320px;border-color:rgba(24,220,255,0.34);box-shadow:0 0 42px rgba(24,220,255,0.14),0 0 90px rgba(255,107,26,0.06),inset 0 0 60px rgba(24,220,255,0.04)}
+.packet-grid-visual::before,.packet-grid-visual::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:2}
+.packet-grid-visual::before{background:
+  linear-gradient(90deg,transparent,rgba(24,220,255,0.16),transparent),
+  repeating-linear-gradient(0deg,rgba(255,255,255,0.035) 0 1px,transparent 1px 6px);
+  mix-blend-mode:screen;opacity:0.42;animation:packetHudSweep 5s linear infinite}
+.packet-grid-visual::after{inset:10px;border:1px solid rgba(24,220,255,0.22);border-radius:12px;box-shadow:inset 0 0 28px rgba(24,220,255,0.12),0 0 24px rgba(255,107,26,0.08)}
+@keyframes packetHudSweep{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+#packetGridCanvas{display:block;width:100%;height:320px;background:
+  radial-gradient(circle at 14% 50%,rgba(24,220,255,0.18),transparent 15%),
+  radial-gradient(circle at 86% 50%,rgba(255,107,26,0.16),transparent 16%),
+  linear-gradient(180deg,#020208 0%,#071120 50%,#020208 100%)}
 .packet-overlay-info{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem}
 .packet-node{font-family:var(--mono);font-size:0.72rem;font-weight:700;letter-spacing:0.2em;color:var(--tron);text-shadow:0 0 12px var(--tron),0 0 24px rgba(24,220,255,0.5);animation:packetNodePulse 2s ease-in-out infinite}
 .packet-src{align-self:flex-start}
@@ -817,6 +856,13 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .packet-flow-label{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:0.58rem;letter-spacing:0.25em;color:#deedf8;opacity:0.88;text-shadow:0 0 10px rgba(24,220,255,0.2)}
 .packet-forensic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:920px;margin:0 auto}
 @media(max-width:768px){.packet-forensic-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .packet-grid-visual{min-height:280px}
+  #packetGridCanvas{height:280px}
+  .packet-overlay-info{padding:1rem 1.1rem}
+  .packet-node{font-size:0.62rem;letter-spacing:0.14em}
+  .packet-flow-label{bottom:0.75rem;width:calc(100% - 2rem);font-size:0.48rem;letter-spacing:0.14em;text-align:center}
+}
 .packet-forensic-card{padding:1.2rem 1.3rem;border-radius:12px;transition:border-color .3s,box-shadow .3s,transform .3s}
 .packet-forensic-card:hover{border-color:rgba(24,220,255,0.5);box-shadow:0 0 35px rgba(24,220,255,0.15);transform:translateY(-2px)}
 .pf-icon{font-size:1.8rem;margin-bottom:0.5rem;filter:drop-shadow(0 0 8px rgba(24,220,255,0.4))}
@@ -1742,10 +1788,13 @@ body.read-mode .top-toggle-btn{
    MOBILE VISUAL FALLBACKS — Cyberpunk feel, zero GPU killers
    ============================================================ */
 @media (max-width: 768px) {
-  body::after {
+  body:not(.read-mode):not(.engage-mode)::after {
     content: '';
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background: linear-gradient(135deg, #06060e 0%, #0a0c1a 25%, #0d0618 50%, #06060e 75%, #080e1c 100%);
+    background:
+      linear-gradient(135deg, #06060e 0%, #0a0c1a 25%, #0d0618 50%, #06060e 75%, #080e1c 100%),
+      repeating-linear-gradient(90deg, rgba(24,220,255,0.05) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(0deg, rgba(255,107,26,0.04) 0 1px, transparent 1px 58px);
     background-size: 400% 400%;
     animation: m-bgShift 12s ease-in-out infinite;
   }
