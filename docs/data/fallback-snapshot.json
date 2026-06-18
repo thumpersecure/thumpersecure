@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-06-17T07:39:43.281Z",
+  "last_updated_utc": "2026-06-18T07:31:18.156Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 688,
+    "stars_total": 690,
     "featured_count": 4,
     "followers": 83
   },
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 53,
-      "last_updated": "2026-05-21T04:42:09Z",
+      "stars": 54,
+      "last_updated": "2026-06-17T13:10:59Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -130,8 +130,8 @@
         "osint-tool",
         "phone-numbers"
       ],
-      "stars": 22,
-      "last_updated": "2026-04-05T16:02:57Z",
+      "stars": 23,
+      "last_updated": "2026-06-17T20:41:51Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/TelespotXX",
