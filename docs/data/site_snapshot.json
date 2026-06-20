@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-06-20T07:13:22.032Z",
+  "last_updated_utc": "2026-06-20T17:05:09.655Z",
   "stats": {
     "tools_count": 17,
     "stars_total": 689,
@@ -92,7 +92,7 @@
         "opt-out"
       ],
       "stars": 54,
-      "last_updated": "2026-06-17T13:10:59Z",
+      "last_updated": "2026-06-20T17:04:52Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -122,7 +122,7 @@
     },
     {
       "name": "TelespotXX",
-      "description": "👁️‍🗨️ Telespot , TelespotX, and Telespotter ... all in ONE web app for easier use for all OSINT Specialists.",
+      "description": "👁���‍🗨️ Telespot , TelespotX, and Telespotter ... all in ONE web app for easier use for all OSINT Specialists.",
       "topics": [
         "osint",
         "osint-2026",
