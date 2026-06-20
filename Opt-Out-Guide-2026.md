@@ -496,17 +496,89 @@ Thank you,
 <summary>🔎 <strong>TruePeopleSearch</strong> — 🟢 Easy • ⏱️ 5-10 minutes</summary>
 
 **Domain:** `truepeoplesearch.com`  
-**Opt-Out:** https://www.truepeoplesearch.com/removal  
+**Opt-Out Form:** https://www.truepeoplesearch.com/removal  
 **Requirements:** No email required • No ID required  
 
-### ✅ Steps
-- [ ] Find your record on truepeoplesearch.com
-- [ ] Copy the URL of your record
-- [ ] Go to truepeoplesearch.com/removal
-- [ ] Paste the record URL into the removal form
-- [ ] Complete the CAPTCHA
-- [ ] Submit the removal request
-- [ ] Check back later to confirm removal
+**Who owns it:** Owner hidden behind GoDaddy's Domains By Proxy privacy shield. Only public address is a virtual PO Box in San Francisco. Running since 2008, domain paid through 2029. Site sits behind Cloudflare so the real servers are masked.
+
+### ✅ Steps (Form Method — Try First)
+- [ ] Search your name on truepeoplesearch.com and find your listing
+- [ ] Copy the full URL of your record (looks like `/find/person/pXXXXXXX`)
+- [ ] Go to https://www.truepeoplesearch.com/removal
+- [ ] Paste your record URL and complete the CAPTCHA
+- [ ] Submit — no email confirmation required
+- [ ] Check back in 24–72 hours to confirm removal
+
+### 📧 If the Form Doesn't Work — Email Them Directly
+
+These email addresses were verified as active mailboxes via SMTP (June 2026):
+
+| Address | Status | Use For |
+|---|---|---|
+| `privacy@truepeoplesearch.com` | ✅ Confirmed active (not publicly listed) | **Send removal requests here first** |
+| `support@truepeoplesearch.com` | ✅ Confirmed active (publicly listed) | CC on all requests |
+| `abuse@truepeoplesearch.com` | ✅ Confirmed active (not publicly listed) | Escalation only |
+
+**Why email `privacy@` instead of `support@`?**  
+`privacy@` isn't listed on their website — we found it via SMTP testing. It goes directly to whoever handles data/privacy requests, so it's more likely to get action than the general support inbox.
+
+### 📧 Email Template
+
+```
+TO:  privacy@truepeoplesearch.com
+CC:  support@truepeoplesearch.com
+Subject: Data Removal Request — [FULL NAME] — [CITY, STATE]
+
+Dear TruePeopleSearch Privacy Team,
+
+I am writing to formally request the removal of my personal information
+from your website pursuant to the California Consumer Privacy Act (CCPA,
+Cal. Civ. Code § 1798.105) and any other applicable state privacy laws.
+
+Subject of Request:
+  Full Name:      [FULL NAME]
+  Listed Address: [ADDRESS]
+  Phone Numbers:  [PHONE(S)]
+  Date of Birth:  [DOB or approximate age]
+  Listing URL:    https://www.truepeoplesearch.com/find/person/[ID]
+
+Please permanently delete all records associated with the above individual
+and suppress them from future re-population, including all associated
+addresses, phone numbers, listed relatives, and any other personally
+identifiable information.
+
+I expect a response within 45 days as required under CCPA.
+
+Regards,
+[YOUR NAME]
+[YOUR EMAIL]
+```
+
+### 🔺 Escalation — If They Ignore You
+
+If you get no response after 14 days, contact the companies that keep their site running. These companies can pressure or suspend TruePeopleSearch:
+
+**1. GoDaddy (they registered the domain)**
+- Email: `abuse@godaddy.com`
+- Phone: +1 (480) 624-2505
+- Say: The site is publishing my private home address and personal info without consent. I want the domain owner notified via their proxy service.
+
+**2. Cloudflare (they host/proxy the site's traffic)**
+- Email: `abuse@cloudflare.com`
+- Form: https://www.cloudflare.com/abuse/
+- Say: This site is publishing my personal information (home address, phone number) without consent, enabling potential stalking or harassment.
+
+**3. Domains By Proxy (GoDaddy's privacy shield — reach the hidden owner)**
+- Form: https://www.godaddy.com/whois/results.aspx?domain=truepeoplesearch.com&action=contactDomainOwner
+- This sends a message directly to the actual site owner even though their identity is hidden.
+
+**Postal mail (last resort):**
+```
+TruePeopleSearch.com
+PO Box 7775 PMB 29296
+San Francisco, CA 94120-7775
+```
+(PMB = private mailbox service, not a real office — but certified mail creates a paper trail.)
 
 </details>
 
