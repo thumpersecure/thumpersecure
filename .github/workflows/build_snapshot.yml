@@ -30,13 +30,13 @@ jobs:
       - name: Check for changes
         id: diff
         run: |
-          git diff --quiet docs/data/site_snapshot.json && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --quiet docs/data/site_snapshot.json docs/data/fallback-snapshot.json docs/index.html docs/sitemap.xml && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push
         if: steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/site_snapshot.json
+          git add docs/data/site_snapshot.json docs/data/fallback-snapshot.json docs/index.html docs/sitemap.xml
           git commit -m "chore: update site snapshot [skip ci]"
           git push

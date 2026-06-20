@@ -15,6 +15,14 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;line-height:1.6}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 100% 100% at 50% 0%,transparent 0%,rgba(0,0,0,0.03) 100%);opacity:0.8}
+body:not(.read-mode):not(.engage-mode)::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(115deg,transparent 0 17%,rgba(24,220,255,0.05) 17.2%,transparent 17.6% 40%,rgba(255,107,26,0.045) 40.3%,transparent 40.7%),
+    linear-gradient(65deg,transparent 0 28%,rgba(0,255,204,0.04) 28.2%,transparent 28.6% 62%,rgba(255,0,170,0.035) 62.2%,transparent 62.7%),
+    radial-gradient(circle at 18% 18%,rgba(24,220,255,0.11),transparent 24%),
+    radial-gradient(circle at 82% 28%,rgba(255,107,26,0.08),transparent 21%),
+    radial-gradient(circle at 50% 86%,rgba(0,255,204,0.08),transparent 28%);
+  mix-blend-mode:screen;opacity:0.72;animation:darkTronArtifacts 12s ease-in-out infinite}
 
 /* ====== BACKGROUND LAYERS ====== */
 #particleCanvas,#rainCanvas,#tronGridCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
@@ -38,11 +46,24 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 @keyframes gridPulse{0%,100%{opacity:0.4}50%{opacity:0.8}}
 @keyframes sectionEdgeGlow{0%,100%{opacity:0.5}50%{opacity:1}}
 @keyframes cornerBracketPulse{0%,100%{opacity:0.5}50%{opacity:0.9}}
+@keyframes darkTronArtifacts{0%,100%{filter:hue-rotate(0deg) brightness(1);opacity:0.6}50%{filter:hue-rotate(8deg) brightness(1.18);opacity:0.86}}
 @property --tron-glow-phase{syntax:'<number>';initial-value:0;inherits:false}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(ellipse 600px 400px at 10% 15%,rgba(0,255,204,0.05),transparent),
   radial-gradient(ellipse 500px 500px at 85% 10%,rgba(255,0,170,0.04),transparent),
   radial-gradient(ellipse 700px 400px at 50% 95%,rgba(139,92,246,0.05),transparent)}
+body:not(.read-mode):not(.engage-mode) .ambient::before,
+body:not(.read-mode):not(.engage-mode) .ambient::after{content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen}
+body:not(.read-mode):not(.engage-mode) .ambient::before{background:
+  linear-gradient(90deg,transparent 0 11%,rgba(24,220,255,0.12) 11.2%,transparent 11.5% 31%,rgba(24,220,255,0.08) 31.2%,transparent 31.5% 72%,rgba(0,255,204,0.08) 72.2%,transparent 72.5%),
+  linear-gradient(0deg,transparent 0 18%,rgba(255,107,26,0.08) 18.2%,transparent 18.5% 57%,rgba(24,220,255,0.08) 57.2%,transparent 57.5%);
+  opacity:0.5;animation:darkTronCircuitDrift 18s linear infinite}
+body:not(.read-mode):not(.engage-mode) .ambient::after{background:
+  conic-gradient(from 220deg at 18% 72%,transparent 0 16deg,rgba(24,220,255,0.12) 16deg 18deg,transparent 18deg 38deg,rgba(255,107,26,0.1) 38deg 40deg,transparent 40deg 360deg),
+  conic-gradient(from 40deg at 78% 18%,transparent 0 24deg,rgba(0,255,204,0.1) 24deg 26deg,transparent 26deg 72deg,rgba(255,0,170,0.08) 72deg 74deg,transparent 74deg 360deg);
+  opacity:0.42;animation:darkTronRecognizerPulse 9s ease-in-out infinite}
+@keyframes darkTronCircuitDrift{to{transform:translate3d(-48px,32px,0)}}
+@keyframes darkTronRecognizerPulse{0%,100%{opacity:0.28;transform:scale(1)}50%{opacity:0.62;transform:scale(1.025)}}
 .tron-grid{position:fixed;bottom:0;left:0;width:100%;height:45vh;pointer-events:none;z-index:0;
   background:linear-gradient(180deg,transparent 0%,rgba(24,220,255,0.02) 20%,rgba(24,220,255,0.05) 50%,rgba(24,220,255,0.08) 100%),
   linear-gradient(0deg,rgba(24,220,255,0.04) 1px,transparent 1px),
@@ -53,9 +74,35 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
   mask-image:linear-gradient(to top,rgba(0,0,0,0.5),transparent);
   -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,0.5),transparent);
   transform:perspective(1200px) rotateX(72deg);transform-origin:center bottom}
+body:not(.read-mode):not(.engage-mode) .tron-grid{
+  background:linear-gradient(180deg,transparent 0%,rgba(24,220,255,0.035) 20%,rgba(24,220,255,0.085) 50%,rgba(24,220,255,0.14) 100%),
+  linear-gradient(0deg,rgba(24,220,255,0.075) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(24,220,255,0.07) 1px,transparent 1px)}
 .circuit-pattern{position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 20h40M20 0v40M0 0l40 40M40 0L0 40' stroke='rgba(24,220,255,0.035)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
   opacity:0.7;will-change:auto}
+body:not(.read-mode):not(.engage-mode) .circuit-pattern::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  repeating-linear-gradient(90deg,transparent 0 92px,rgba(24,220,255,0.08) 92px 94px,transparent 94px 180px),
+  repeating-linear-gradient(0deg,transparent 0 126px,rgba(255,107,26,0.055) 126px 128px,transparent 128px 230px);
+  opacity:0.55;animation:dataStream 7s linear infinite}
+.tron-artifact-field{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;mix-blend-mode:screen;opacity:0.95;
+  background:radial-gradient(circle at 18% 18%,rgba(24,220,255,0.09),transparent 18%),
+  radial-gradient(circle at 82% 26%,rgba(255,107,26,0.08),transparent 18%),
+  linear-gradient(115deg,transparent 0 24%,rgba(24,220,255,0.035) 24.2%,transparent 24.8% 58%,rgba(0,255,204,0.03) 58.2%,transparent 59%),
+  repeating-linear-gradient(90deg,rgba(24,220,255,0.026) 0 1px,transparent 1px 72px)}
+.tron-artifact{position:absolute;display:block;color:var(--tron);filter:drop-shadow(0 0 10px rgba(24,220,255,0.42));opacity:0.58}
+.artifact-rail{height:2px;width:clamp(220px,34vw,520px);background:linear-gradient(90deg,transparent,var(--tron),var(--cyan),transparent);box-shadow:0 0 16px rgba(24,220,255,0.5),0 0 28px rgba(0,255,204,0.18);animation:artifactRailDrift 9s linear infinite}
+.rail-a{top:14%;left:-20%;animation-duration:8s}
+.rail-b{top:38%;right:-24%;animation-duration:11s;animation-direction:reverse;background:linear-gradient(90deg,transparent,var(--orange),var(--tron),transparent)}
+.rail-c{bottom:30%;left:-18%;animation-duration:10s;transform:rotate(-8deg)}
+.rail-d{bottom:12%;right:-18%;animation-duration:13s;animation-direction:reverse;transform:rotate(6deg)}
+.artifact-node{width:9px;height:9px;border-radius:50%;border:1px solid currentColor;background:rgba(24,220,255,0.28);box-shadow:0 0 18px currentColor,0 0 34px rgba(24,220,255,0.28);animation:artifactNodePulse 2.8s ease-in-out infinite}
+.node-a{top:22%;left:14%}.node-b{top:48%;right:18%;color:var(--orange);animation-delay:-0.8s}.node-c{bottom:24%;left:31%;color:var(--cyan);animation-delay:-1.4s}.node-d{bottom:42%;right:39%;color:var(--magenta);animation-delay:-2s}
+.artifact-glyph{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;padding:0.25rem 0.45rem;border:1px solid rgba(24,220,255,0.2);background:rgba(2,8,18,0.34);animation:artifactGlyphGlitch 5s steps(2,end) infinite}
+.glyph-a{top:18%;right:12%}.glyph-b{top:64%;left:8%;animation-delay:-1.2s}.glyph-c{bottom:18%;right:22%;color:var(--orange);animation-delay:-2.4s}.glyph-d{top:42%;left:38%;color:var(--cyan);animation-delay:-3.2s}
+@keyframes artifactRailDrift{0%{transform:translate3d(-12vw,0,0) scaleX(0.65);opacity:0}12%{opacity:0.72}88%{opacity:0.72}100%{transform:translate3d(124vw,0,0) scaleX(1.05);opacity:0}}
+@keyframes artifactNodePulse{0%,100%{transform:scale(1);opacity:0.38}50%{transform:scale(1.8);opacity:0.86}}
+@keyframes artifactGlyphGlitch{0%,92%,100%{transform:translate3d(0,0,0);opacity:0.42}94%{transform:translate3d(3px,-1px,0);opacity:0.9}96%{transform:translate3d(-2px,1px,0);opacity:0.64}}
 
 /* ====== TRON SVG BACKGROUND ====== */
 .tron-svg-bg{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.6}
@@ -692,6 +739,8 @@ footer p{max-width:980px;margin:0.25rem auto;line-height:1.65}
 footer .foot-main{color:var(--text)}
 footer .foot-sub{font-size:0.69rem;color:var(--muted)}
 footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:underline}
+.footer-github-link{display:inline-flex;align-items:center;gap:6px;color:#8b8b9e;text-decoration:none;font-size:0.78rem;letter-spacing:0.04em;transition:color 0.2s}
+.footer-github-link:hover{color:#a78bfa;text-decoration:none}
 .cb-bottom-sentinel{display:block;width:100%;height:72px;margin-top:0.5rem;opacity:0;pointer-events:none}
 .back-to-top-btn{position:fixed;left:clamp(0.8rem,2.5vw,1.4rem);bottom:clamp(0.8rem,2.5vw,1.4rem);z-index:10950;border:1px solid rgba(0,255,204,0.35);background:rgba(2,9,18,0.92);color:var(--cyan);font-family:var(--mono);font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 0.75rem;border-radius:999px;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,border-color .22s ease,box-shadow .22s ease}
 .back-to-top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
@@ -804,17 +853,41 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 /* ====== PACKET OVER THE WIRE (Tron/Matrix graphical) ====== */
 .packet-over-wire-section{padding:3rem 0 4rem}
 .packet-intro{max-width:780px;margin:0 auto 1.5rem;font-size:0.9rem;color:var(--text);line-height:1.75}
-.packet-grid-visual{position:relative;max-width:920px;margin:0 auto 2rem;border-radius:12px;overflow:hidden;min-height:320px}
-#packetGridCanvas{display:block;width:100%;height:320px;background:linear-gradient(180deg,#020208 0%,#050512 50%,#020208 100%)}
-.packet-overlay-info{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem}
+.packet-grid-visual{position:relative;max-width:920px;margin:0 auto 2rem;border-radius:12px;overflow:hidden;min-height:320px;background:
+  radial-gradient(circle at 18% 35%,rgba(24,220,255,0.18),transparent 18%),
+  radial-gradient(circle at 82% 65%,rgba(255,107,26,0.16),transparent 18%),
+  linear-gradient(180deg,#020208 0%,#050512 50%,#020208 100%)}
+.packet-grid-visual::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(0deg,rgba(24,220,255,0.08) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(24,220,255,0.07) 1px,transparent 1px),
+  linear-gradient(115deg,transparent 0 42%,rgba(255,107,26,0.14) 42.2%,transparent 43% 58%,rgba(0,255,204,0.12) 58.2%,transparent 59%);
+  background-size:36px 24px,52px 36px,100% 100%;opacity:0.78;transform:perspective(700px) rotateX(58deg) scale(1.18);transform-origin:center bottom}
+.packet-grid-visual::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(24,220,255,0.12),transparent);opacity:0.5;animation:packetPanelSweep 4.6s linear infinite}
+#packetGridCanvas{position:relative;z-index:1;display:block;width:100%;height:320px;background:transparent}
+.packet-static-grid{position:absolute;inset:0;z-index:2;pointer-events:none}
+.packet-channel{position:absolute;left:14%;right:14%;height:2px;background:linear-gradient(90deg,transparent,var(--tron),var(--cyan),transparent);box-shadow:0 0 14px rgba(24,220,255,0.55);animation:packetChannelPulse 2.8s ease-in-out infinite}
+.channel-a{top:32%}.channel-b{top:46%;animation-delay:-0.6s;background:linear-gradient(90deg,transparent,var(--orange),var(--tron),transparent)}.channel-c{top:60%;animation-delay:-1.2s}.channel-d{top:72%;animation-delay:-1.8s;background:linear-gradient(90deg,transparent,var(--magenta),var(--orange),transparent)}
+.packet-burst{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--tron);box-shadow:0 0 16px var(--tron),0 0 28px rgba(24,220,255,0.45);animation:packetBurstRun 3.2s linear infinite}
+.burst-a{top:calc(32% - 4px);left:16%;animation-delay:-0.2s}.burst-b{top:calc(46% - 4px);left:18%;background:var(--orange);box-shadow:0 0 16px var(--orange),0 0 28px rgba(255,107,26,0.42);animation-delay:-1s}.burst-c{top:calc(60% - 4px);left:20%;animation-delay:-1.8s}.burst-d{top:calc(72% - 4px);left:22%;background:var(--magenta);box-shadow:0 0 16px var(--magenta);animation-delay:-2.4s}
+.packet-overlay-info{position:absolute;inset:0;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem}
 .packet-node{font-family:var(--mono);font-size:0.72rem;font-weight:700;letter-spacing:0.2em;color:var(--tron);text-shadow:0 0 12px var(--tron),0 0 24px rgba(24,220,255,0.5);animation:packetNodePulse 2s ease-in-out infinite}
 .packet-src{align-self:flex-start}
 .packet-dst{align-self:flex-end;color:var(--orange);text-shadow:0 0 12px var(--orange),0 0 24px rgba(255,107,26,0.42)}
 .packet-node::after{content:attr(data-label);display:block;font-size:0.5rem;letter-spacing:0.15em;color:var(--muted);margin-top:0.2rem}
 @keyframes packetNodePulse{0%,100%{opacity:0.85}50%{opacity:1;text-shadow:0 0 16px var(--tron),0 0 32px rgba(24,220,255,0.6)}}
+@keyframes packetPanelSweep{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@keyframes packetChannelPulse{0%,100%{opacity:0.38;filter:brightness(0.9)}50%{opacity:0.92;filter:brightness(1.3)}}
+@keyframes packetBurstRun{0%{transform:translateX(0) scale(0.7);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(620px) scale(1.15);opacity:0}}
 .packet-flow-label{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:0.58rem;letter-spacing:0.25em;color:#deedf8;opacity:0.88;text-shadow:0 0 10px rgba(24,220,255,0.2)}
 .packet-forensic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:920px;margin:0 auto}
 @media(max-width:768px){.packet-forensic-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .packet-grid-visual{min-height:280px}
+  #packetGridCanvas{height:280px}
+  .packet-overlay-info{padding:1rem 1.1rem}
+  .packet-node{font-size:0.62rem;letter-spacing:0.14em}
+  .packet-flow-label{bottom:0.75rem;width:calc(100% - 2rem);font-size:0.48rem;letter-spacing:0.14em;text-align:center}
+}
 .packet-forensic-card{padding:1.2rem 1.3rem;border-radius:12px;transition:border-color .3s,box-shadow .3s,transform .3s}
 .packet-forensic-card:hover{border-color:rgba(24,220,255,0.5);box-shadow:0 0 35px rgba(24,220,255,0.15);transform:translateY(-2px)}
 .pf-icon{font-size:1.8rem;margin-bottom:0.5rem;filter:drop-shadow(0 0 8px rgba(24,220,255,0.4))}
@@ -826,8 +899,17 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .stego-canvas-wrap{position:relative;display:inline-block;border:1px solid rgba(24,220,255,0.2);border-radius:8px;overflow:hidden;box-shadow:0 0 20px rgba(24,220,255,0.08)}
 #stegoCanvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
 .stego-hint{display:block;font-family:var(--mono);font-size:0.55rem;letter-spacing:0.12em;color:var(--muted);text-align:center;padding:0.4rem;background:rgba(0,0,0,0.4)}
-.kismet-visual{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:0.8rem;align-items:center}
-#kismetSignalCanvas{display:block;width:100%;height:auto;border-radius:12px;border:1px solid rgba(24,220,255,0.14);background:radial-gradient(circle at 50% 50%,rgba(6,18,32,0.94),rgba(2,4,12,0.94))}
+.kismet-visual{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:0.8rem;align-items:center}
+.kismet-visual::before{content:'';position:absolute;left:8%;top:50%;width:min(38%,180px);aspect-ratio:1;border-radius:50%;transform:translateY(-50%);pointer-events:none;z-index:2;background:
+  repeating-radial-gradient(circle,transparent 0 20px,rgba(24,220,255,0.14) 21px 22px,transparent 23px 42px),
+  conic-gradient(from 20deg,rgba(0,255,204,0.35),transparent 24%,transparent 100%);mix-blend-mode:screen;animation:kismetCssSweep 3.4s linear infinite}
+.kismet-visual::after{content:'';position:absolute;left:18%;top:42%;width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:45px 22px 0 rgba(0,255,204,0.7),84px -18px 0 rgba(255,0,170,0.55),108px 38px 0 rgba(24,220,255,0.7),0 0 16px var(--orange);pointer-events:none;z-index:3;animation:kismetPipPulse 2.2s ease-in-out infinite}
+#kismetSignalCanvas{position:relative;z-index:1;display:block;width:100%;height:auto;border-radius:12px;border:1px solid rgba(24,220,255,0.14);background:
+  radial-gradient(circle at 50% 50%,rgba(24,220,255,0.12),transparent 8%),
+  repeating-radial-gradient(circle at 50% 50%,transparent 0 24px,rgba(24,220,255,0.13) 25px 26px,transparent 27px 48px),
+  radial-gradient(circle at 50% 50%,rgba(6,18,32,0.94),rgba(2,4,12,0.94))}
+@keyframes kismetCssSweep{to{transform:translateY(-50%) rotate(360deg)}}
+@keyframes kismetPipPulse{0%,100%{opacity:0.38;filter:brightness(0.9)}50%{opacity:0.95;filter:brightness(1.4)}}
 .kismet-list{display:grid;gap:0.45rem}
 .kismet-list div{display:grid;gap:0.18rem;padding:0.55rem 0.65rem;border-radius:10px;border:1px solid rgba(24,220,255,0.14);background:rgba(2,9,18,0.75)}
 .kismet-list span{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.18em;color:var(--amber)}
@@ -851,6 +933,12 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 @media(max-width:768px){
   .ra-analyze{bottom:-4rem}
   .kismet-visual{grid-template-columns:1fr}
+  .packet-grid-visual{min-height:220px}
+  .packet-static-grid{opacity:0.82}
+  .packet-burst{animation-name:packetBurstRunSmall}
+  .kismet-visual::before{left:50%;top:34%;width:min(52%,160px);transform:translate(-50%,-50%)}
+  .kismet-visual::after{left:42%;top:27%}
+  @keyframes packetBurstRunSmall{0%{transform:translateX(0) scale(0.7);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(58vw) scale(1.05);opacity:0}}
   .forge-trace-list{grid-template-columns:repeat(2,minmax(0,1fr))}
   #inviteForgeCanvas{height:420px}
   .boot-shell{padding:0.8rem}
@@ -1198,7 +1286,7 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
   .stego-canvas-wrap{display:block;max-width:100%;margin:0 auto}
   /* Canvas height reductions */
   #inviteForgeCanvas{height:280px}
-  #packetGridCanvas{height:220px}
+  #packetGridCanvas{height:280px}
   .packet-overlay-info{padding:1rem 1.2rem}
   /* Scroll containment */
   .cb-body{overscroll-behavior:contain}
@@ -1230,7 +1318,8 @@ body.engage-mode .crt,
 body.engage-mode .scanline-overlay,
 body.engage-mode .sweep,
 body.engage-mode .holographic-vignette,
-body.engage-mode .data-orbs{opacity:0;display:none}
+body.engage-mode .data-orbs,
+body.engage-mode .tron-artifact-field{opacity:0;display:none}
 body.engage-mode .hero-energy-lanes,
 body.engage-mode .hero-identity-glow,
 body.engage-mode .hero-stats-circuit{display:none}
@@ -1263,6 +1352,7 @@ body.read-mode .data-orbs,
 body.read-mode .ambient,
 body.read-mode .tron-grid,
 body.read-mode .circuit-pattern,
+body.read-mode .tron-artifact-field,
 body.read-mode .tron-svg-bg{opacity:0;display:none}
 body.read-mode .hero-energy-lanes,
 body.read-mode .hero-identity-glow,
@@ -1426,7 +1516,7 @@ body.read-mode .top-toggle-btn{
   .glitch{animation:none !important}
   .glitch::before,.glitch::after{animation:none !important;display:none}
   .legend-quote-card.hot::before{animation:none}
-  #rainCanvas,#tronGridCanvas{display:none}
+  #particleCanvas,#rainCanvas,#tronGridCanvas{display:none}
   .pi-link{animation:none}
   .tron-svg-bg .circuit-lines path,.tron-svg-bg .data-nodes circle,.tron-svg-bg .hexagons polygon{animation:none}
   .orb,.holographic-vignette{animation:none}
@@ -1740,10 +1830,13 @@ body.read-mode .top-toggle-btn{
    MOBILE VISUAL FALLBACKS — Cyberpunk feel, zero GPU killers
    ============================================================ */
 @media (max-width: 768px) {
-  body::after {
+  body:not(.read-mode):not(.engage-mode)::after {
     content: '';
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background: linear-gradient(135deg, #06060e 0%, #0a0c1a 25%, #0d0618 50%, #06060e 75%, #080e1c 100%);
+    background:
+      linear-gradient(135deg, #06060e 0%, #0a0c1a 25%, #0d0618 50%, #06060e 75%, #080e1c 100%),
+      repeating-linear-gradient(90deg, rgba(24,220,255,0.05) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(0deg, rgba(255,107,26,0.04) 0 1px, transparent 1px 58px);
     background-size: 400% 400%;
     animation: m-bgShift 12s ease-in-out infinite;
   }
