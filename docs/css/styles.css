@@ -165,6 +165,17 @@ body:not(.read-mode):not(.engage-mode) .circuit-pattern::before{content:'';posit
 .ra-title{font-family:var(--mono);font-size:clamp(1.2rem,4vw,2rem);font-weight:700;color:var(--cyan);letter-spacing:0.15em;
   text-shadow:0 0 20px var(--cyan),0 0 40px rgba(24,220,255,0.5);margin-bottom:0.8rem}
 .ra-sub{font-family:var(--mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.16em;margin-bottom:1.5rem;line-height:1.7}
+/* Norman Door #1: Decoy CTA — looks like the real entry, does nothing */
+.ra-btn-decoy{display:block;width:min(320px,80vw);margin:0 auto 0.5rem;font-size:1rem;padding:1.1rem 2rem;
+  animation:raDecoyPulse 2s ease-in-out infinite;position:relative}
+.ra-btn-decoy:disabled{opacity:0.7;cursor:wait;animation:none}
+@keyframes raDecoyPulse{0%,100%{box-shadow:0 0 22px rgba(24,220,255,0.38),0 0 44px rgba(24,220,255,0.14)}
+  50%{box-shadow:0 0 40px rgba(24,220,255,0.6),0 0 80px rgba(24,220,255,0.28)}}
+/* Norman Door #1: "or" separator between decoy and real options */
+.ra-decoy-sep{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.3em;color:var(--dim);
+  text-align:center;margin:0.5rem 0 0.25rem;user-select:none}
+/* Norman Door #3: Invisible threshold — the apostrophe in "YOU'RE". No cursor, no hover, no tell. */
+#raSecretKey{cursor:default;user-select:none}
 .ra-btn{font-family:var(--mono);font-size:0.9rem;font-weight:700;letter-spacing:0.2em;padding:1rem 2.5rem;
   background:linear-gradient(135deg,var(--tron),var(--cyan));color:#000;border:none;border-radius:4px;
   cursor:pointer;transition:all 0.2s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 22px rgba(24,220,255,0.38),0 0 44px rgba(24,220,255,0.14)}

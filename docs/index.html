@@ -49,9 +49,11 @@
     <div class="ra-glow-orb ra-glow-1" aria-hidden="true"></div>
     <div class="ra-glow-orb ra-glow-2" aria-hidden="true"></div>
     <div class="ra-message">
-      <span class="ra-label">CONFIRM YOU'RE HUMAN</span>
+      <span class="ra-label">CONFIRM YOU<span id="raSecretKey">'</span>RE HUMAN</span>
       <h2 class="ra-title">SELECT THE CORRECT VALUE</h2>
       <p class="ra-sub">Choose wisely to proceed.</p>
+      <button type="button" id="requestAccessBtn" class="ra-btn ra-btn-decoy">REQUEST ACCESS</button>
+      <p class="ra-decoy-sep">— or identify your value —</p>
       <div id="raHumanCheck" class="ra-human-check">
         <button type="button" class="ra-btn ra-option-btn" data-value="courtesy">COURTESY</button>
         <button type="button" class="ra-btn ra-option-btn" data-value="integrity">INTEGRITY</button>
@@ -60,7 +62,6 @@
         <button type="button" class="ra-btn ra-option-btn" data-value="indomitable-spirit">INDOMITABLE SPIRIT</button>
       </div>
       <p id="raPasswordHint" class="ra-password-hint" role="status" aria-live="polite" aria-atomic="true"></p>
-      <button type="button" id="requestAccessBtn" class="ra-btn" style="display:none;">REQUEST ACCESS</button>
       <form id="raPasswordForm" class="ra-password-form" hidden novalidate aria-hidden="true" autocomplete="off">
         <input type="password" id="raPasswordInput" class="ra-password-input" value="" autocomplete="current-password">
         <button type="submit" id="raPasswordSubmit" class="ra-btn ra-btn-submit" style="display:none;">SUBMIT</button>
@@ -83,19 +84,73 @@
   var hint=document.getElementById('raPasswordHint');
   var input=document.getElementById('raPasswordInput');
   var form=document.getElementById('raPasswordForm');
+  var decoyBtn=document.getElementById('requestAccessBtn');
+  var secretKey=document.getElementById('raSecretKey');
+
+  // Track state for wrong-order lock
+  var wrongClicked=false;
+  var decoyBusy=false;
+
+  function submitAccess(){
+    if(input)input.value='integrity';
+    if(form){form.hidden=false;form.dispatchEvent(new Event('submit',{cancelable:true}));}
+  }
+
+  // ── FEATURE 1: Decoy button ──────────────────────────────────────────────
+  // The big "REQUEST ACCESS" CTA does nothing real — fake auth sequence, then resets.
+  if(decoyBtn){
+    decoyBtn.addEventListener('click',function(){
+      if(decoyBusy)return;
+      decoyBusy=true;
+      decoyBtn.disabled=true;
+      if(hint)hint.textContent='Verifying credentials…';
+      setTimeout(function(){
+        if(hint)hint.textContent='Authentication failed. Insufficient clearance level.';
+        setTimeout(function(){
+          if(hint)hint.textContent='Select the correct value to proceed.';
+          decoyBtn.disabled=false;
+          decoyBusy=false;
+        },2200);
+      },2000);
+    });
+  }
+
+  // ── FEATURE 2: Wrong-order lock ──────────────────────────────────────────
+  // INTEGRITY on first try is denied. You have to fail once first.
   btns.forEach(function(b){
     b.addEventListener('click',function(){
       var v=b.getAttribute('data-value');
       if(v==='integrity'){
-        if(input)input.value='integrity';
-        if(form){form.hidden=false;form.dispatchEvent(new Event('submit',{cancelable:true}));}
+        if(!wrongClicked){
+          if(hint)hint.textContent='Not yet. The correct answer requires context.';
+          b.style.filter='brightness(0.45)';
+          setTimeout(function(){b.style.filter='';},1400);
+        } else {
+          submitAccess();
+        }
       } else {
-        if(hint)hint.textContent='Try again. Choose the value that matters most.';
+        wrongClicked=true;
+        if(hint)hint.textContent='Closer. Sequence matters.';
         b.style.opacity='0.4';
         b.disabled=true;
       }
     });
   });
+
+  // ── FEATURE 3: Invisible threshold ───────────────────────────────────────
+  // Long-press (800ms) on the apostrophe in "YOU'RE" bypasses the puzzle entirely.
+  // No hover state. No cursor change. No label. It's a door with no handle.
+  if(secretKey){
+    var pressTimer=null;
+    function startPress(){pressTimer=setTimeout(function(){submitAccess();},800);}
+    function cancelPress(){clearTimeout(pressTimer);}
+    secretKey.addEventListener('mousedown',startPress);
+    secretKey.addEventListener('mouseup',cancelPress);
+    secretKey.addEventListener('mouseleave',cancelPress);
+    secretKey.addEventListener('touchstart',function(e){e.preventDefault();startPress();},{passive:false});
+    secretKey.addEventListener('touchend',cancelPress);
+    secretKey.addEventListener('touchcancel',cancelPress);
+  }
 })();
 </script>
 
