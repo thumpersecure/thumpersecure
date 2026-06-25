@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-06-24T07:03:31.239Z",
+  "last_updated_utc": "2026-06-25T07:03:26.878Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 691,
+    "stars_total": 693,
     "featured_count": 4,
-    "followers": 83
+    "followers": 85
   },
   "repos": [
     {
@@ -44,8 +44,8 @@
       "name": "Spin",
       "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
       "topics": [],
-      "stars": 88,
-      "last_updated": "2026-06-15T06:52:37Z",
+      "stars": 89,
+      "last_updated": "2026-06-24T09:10:10Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/Spin/",
       "html_url": "https://github.com/thumpersecure/Spin",
@@ -182,8 +182,8 @@
       "name": "quevidkit",
       "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
-      "stars": 6,
-      "last_updated": "2026-06-18T14:41:15Z",
+      "stars": 7,
+      "last_updated": "2026-06-24T14:03:21Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/quevidkit/",
       "html_url": "https://github.com/thumpersecure/quevidkit",
