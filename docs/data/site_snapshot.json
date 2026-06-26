@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-06-25T07:03:26.878Z",
+  "last_updated_utc": "2026-06-26T07:09:46.309Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 693,
+    "stars_total": 695,
     "featured_count": 4,
-    "followers": 85
+    "followers": 87
   },
   "repos": [
     {
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 65,
-      "last_updated": "2026-05-28T10:49:31Z",
+      "stars": 66,
+      "last_updated": "2026-06-25T16:43:56Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 54,
-      "last_updated": "2026-06-20T19:08:54Z",
+      "stars": 55,
+      "last_updated": "2026-06-25T13:30:40Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
