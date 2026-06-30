@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-06-29T07:30:56.831Z",
+  "last_updated_utc": "2026-06-30T07:09:50.979Z",
   "stats": {
     "tools_count": 17,
     "stars_total": 699,
@@ -172,7 +172,7 @@
         "osint-tool"
       ],
       "stars": 12,
-      "last_updated": "2026-05-13T00:12:10Z",
+      "last_updated": "2026-06-30T04:30:17Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/ofacebook/",
       "html_url": "https://github.com/thumpersecure/ofacebook",
