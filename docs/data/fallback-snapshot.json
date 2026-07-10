@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-08T06:45:02.974Z",
+  "last_updated_utc": "2026-07-10T07:04:34.645Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 706,
+    "stars_total": 707,
     "featured_count": 4,
     "followers": 85
   },
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 132,
-      "last_updated": "2026-07-07T03:29:27Z",
+      "stars": 133,
+      "last_updated": "2026-07-09T04:13:02Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -122,7 +122,7 @@
     },
     {
       "name": "TelespotXX",
-      "description": "👁��‍🗨️ Telespot , TelespotX, and Telespotter ... all in ONE web app for easier use for all OSINT Specialists.",
+      "description": "👁️‍🗨️ Telespot , TelespotX, and Telespotter ... all in ONE web app for easier use for all OSINT Specialists.",
       "topics": [
         "osint",
         "osint-2026",
