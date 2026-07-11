@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-07-10T07:04:34.645Z",
+  "last_updated_utc": "2026-07-11T06:40:21.206Z",
   "stats": {
     "tools_count": 17,
     "stars_total": 707,
@@ -44,8 +44,8 @@
       "name": "Spin",
       "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
       "topics": [],
-      "stars": 91,
-      "last_updated": "2026-07-01T09:37:10Z",
+      "stars": 90,
+      "last_updated": "2026-07-11T02:37:37Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/Spin/",
       "html_url": "https://github.com/thumpersecure/Spin",
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 66,
-      "last_updated": "2026-06-25T16:43:56Z",
+      "stars": 67,
+      "last_updated": "2026-07-10T19:15:03Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
