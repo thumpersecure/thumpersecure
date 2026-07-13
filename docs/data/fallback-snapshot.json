@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-12T06:49:07.386Z",
+  "last_updated_utc": "2026-07-13T06:58:52.640Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 707,
+    "stars_total": 708,
     "featured_count": 4,
     "followers": 85
   },
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 67,
-      "last_updated": "2026-07-10T19:15:03Z",
+      "stars": 68,
+      "last_updated": "2026-07-12T09:15:32Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -200,7 +200,7 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-07-12T02:19:20Z",
+      "last_updated": "2026-07-12T15:30:07Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/4philly/",
       "html_url": "https://github.com/thumpersecure/4philly",
