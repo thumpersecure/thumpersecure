@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-14T06:39:04.523Z",
+  "last_updated_utc": "2026-07-15T07:46:05.441Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 710,
+    "stars_total": 709,
     "featured_count": 4,
     "followers": 85
   },
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 56,
-      "last_updated": "2026-07-13T13:35:10Z",
+      "stars": 55,
+      "last_updated": "2026-07-14T10:58:06Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -191,7 +191,7 @@
     },
     {
       "name": "4philly",
-      "description": "Look up any Philadelphia property’s L&I record — business licenses, open violations, and 311 complaints — pulled live from the city’s own data. Eclipse and Carto are cross-checked side by side, so you can see where the two sources disagree and which one to trust. Free, open-source, installable on phone or desktop.",
+      "description": "4philly.net - Know before you sign! Look up tool for Philadelphia property records —  Easily checks licenses,  violations, and 311 complaints — pulled live from the city’s own data. Eclipse and Carto are cross-checked side by side… into one APP you can trust. Free, open-source, made by tenants.",
       "topics": [
         "311",
         "inspection",
@@ -200,9 +200,9 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-07-14T03:47:39Z",
+      "last_updated": "2026-07-15T00:26:13Z",
       "language": "HTML",
-      "homepage": "https://thumpersecure.github.io/4philly/",
+      "homepage": "https://4philly.net/",
       "html_url": "https://github.com/thumpersecure/4philly",
       "featured": false
     },
