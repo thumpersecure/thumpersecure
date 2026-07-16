@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-15T07:46:05.441Z",
+  "last_updated_utc": "2026-07-16T07:51:19.728Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 709,
+    "stars_total": 712,
     "featured_count": 4,
     "followers": 85
   },
@@ -44,8 +44,8 @@
       "name": "Spin",
       "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
       "topics": [],
-      "stars": 90,
-      "last_updated": "2026-07-11T02:37:37Z",
+      "stars": 91,
+      "last_updated": "2026-07-15T16:49:25Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/Spin/",
       "html_url": "https://github.com/thumpersecure/Spin",
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 55,
-      "last_updated": "2026-07-14T10:58:06Z",
+      "stars": 56,
+      "last_updated": "2026-07-15T22:21:25Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -102,8 +102,8 @@
       "name": "TeleSTOP",
       "description": "📵 A windows desktop program designed for one thing; to help you remove your data from 50+ people-search sites at the source. No cloud, no APIs, 100% local. Pairs with xTELENUMSINT for faster detection/reporting. Reduce spam calls. Lower your risk for identity theft. Take back control. NO coding required. 100% free.",
       "topics": [],
-      "stars": 38,
-      "last_updated": "2026-05-25T18:02:49Z",
+      "stars": 39,
+      "last_updated": "2026-07-16T02:46:18Z",
       "language": "TypeScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/TeleSTOP",
@@ -200,7 +200,7 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-07-15T00:26:13Z",
+      "last_updated": "2026-07-15T17:30:29Z",
       "language": "HTML",
       "homepage": "https://4philly.net/",
       "html_url": "https://github.com/thumpersecure/4philly",
