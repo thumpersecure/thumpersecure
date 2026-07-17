@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-07-16T07:51:19.728Z",
+  "last_updated_utc": "2026-07-17T07:48:42.412Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 712,
+    "stars_total": 713,
     "featured_count": 4,
-    "followers": 85
+    "followers": 86
   },
   "repos": [
     {
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 56,
-      "last_updated": "2026-07-15T22:21:25Z",
+      "stars": 57,
+      "last_updated": "2026-07-16T17:03:50Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -200,7 +200,7 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-07-15T17:30:29Z",
+      "last_updated": "2026-07-16T16:32:17Z",
       "language": "HTML",
       "homepage": "https://4philly.net/",
       "html_url": "https://github.com/thumpersecure/4philly",
