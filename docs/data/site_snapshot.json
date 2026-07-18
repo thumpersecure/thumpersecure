@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-17T07:48:42.412Z",
+  "last_updated_utc": "2026-07-18T07:23:01.470Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 713,
+    "stars_total": 714,
     "featured_count": 4,
     "followers": 86
   },
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 57,
-      "last_updated": "2026-07-16T17:03:50Z",
+      "stars": 58,
+      "last_updated": "2026-07-18T05:29:38Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
