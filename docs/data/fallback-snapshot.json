@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-18T07:23:01.470Z",
+  "last_updated_utc": "2026-07-19T07:54:14.637Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 714,
+    "stars_total": 717,
     "featured_count": 4,
     "followers": 86
   },
@@ -60,8 +60,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 81,
-      "last_updated": "2026-07-13T18:56:46Z",
+      "stars": 83,
+      "last_updated": "2026-07-18T22:30:32Z",
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 58,
-      "last_updated": "2026-07-18T05:29:38Z",
+      "stars": 59,
+      "last_updated": "2026-07-19T03:09:45Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
