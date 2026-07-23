@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-07-23T13:42:07.474Z",
+  "last_updated_utc": "2026-07-23T13:45:36.502Z",
   "stats": {
     "tools_count": 17,
     "stars_total": 718,
@@ -180,7 +180,7 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video���tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
+      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 7,
       "last_updated": "2026-06-24T14:03:21Z",
