@@ -1,18 +1,18 @@
 {
-  "last_updated_utc": "2026-07-25T07:46:47.563Z",
+  "last_updated_utc": "2026-07-26T08:02:44.963Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 718,
+    "stars_total": 722,
     "featured_count": 4,
-    "followers": 86
+    "followers": 87
   },
   "repos": [
     {
       "name": "palm-tree",
       "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
-      "stars": 150,
-      "last_updated": "2026-05-21T12:14:06Z",
+      "stars": 151,
+      "last_updated": "2026-07-25T13:42:16Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 133,
-      "last_updated": "2026-07-09T04:13:02Z",
+      "stars": 134,
+      "last_updated": "2026-07-26T07:40:19Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -60,8 +60,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 84,
-      "last_updated": "2026-07-19T13:25:03Z",
+      "stars": 85,
+      "last_updated": "2026-07-26T07:26:37Z",
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 68,
-      "last_updated": "2026-07-12T09:15:32Z",
+      "stars": 69,
+      "last_updated": "2026-07-26T07:28:03Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -180,7 +180,7 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video���tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
+      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 7,
       "last_updated": "2026-07-23T20:11:54Z",
@@ -200,7 +200,7 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-07-23T19:15:54Z",
+      "last_updated": "2026-07-26T02:04:15Z",
       "language": "HTML",
       "homepage": "https://4philly.net/",
       "html_url": "https://github.com/thumpersecure/4philly",
