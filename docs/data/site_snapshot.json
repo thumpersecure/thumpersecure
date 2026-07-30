@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-29T06:48:57.362Z",
+  "last_updated_utc": "2026-07-30T06:47:29.458Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 719,
+    "stars_total": 718,
     "featured_count": 4,
     "followers": 87
   },
@@ -60,8 +60,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 84,
-      "last_updated": "2026-07-26T19:07:28Z",
+      "stars": 83,
+      "last_updated": "2026-07-29T23:30:22Z",
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
