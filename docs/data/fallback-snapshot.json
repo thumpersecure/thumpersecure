@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-07-30T06:47:29.458Z",
+  "last_updated_utc": "2026-07-31T06:53:32.358Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 718,
+    "stars_total": 720,
     "featured_count": 4,
     "followers": 87
   },
@@ -11,8 +11,8 @@
       "name": "palm-tree",
       "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
-      "stars": 151,
-      "last_updated": "2026-07-25T13:42:16Z",
+      "stars": 152,
+      "last_updated": "2026-07-30T13:39:40Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 68,
-      "last_updated": "2026-07-26T19:07:28Z",
+      "stars": 69,
+      "last_updated": "2026-07-31T01:08:42Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -180,7 +180,7 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
+      "description": "📽️ quevidkit is a toolkit providing forensic video��tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 7,
       "last_updated": "2026-07-23T20:11:54Z",
@@ -200,7 +200,7 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-07-26T23:51:42Z",
+      "last_updated": "2026-07-31T03:41:44Z",
       "language": "HTML",
       "homepage": "https://4philly.net/",
       "html_url": "https://github.com/thumpersecure/4philly",
