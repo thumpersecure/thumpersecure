@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-08-01T06:45:34.128Z",
+  "last_updated_utc": "2026-08-02T06:48:37.088Z",
   "stats": {
     "tools_count": 17,
     "stars_total": 720,
@@ -180,7 +180,7 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video��tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
+      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 7,
       "last_updated": "2026-07-23T20:11:54Z",
@@ -200,7 +200,7 @@
         "philadelphia"
       ],
       "stars": 2,
-      "last_updated": "2026-08-01T03:00:16Z",
+      "last_updated": "2026-08-01T22:09:53Z",
       "language": "HTML",
       "homepage": "https://4philly.net/",
       "html_url": "https://github.com/thumpersecure/4philly",
