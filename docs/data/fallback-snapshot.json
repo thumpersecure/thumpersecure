@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-08-02T06:48:37.088Z",
+  "last_updated_utc": "2026-08-03T06:59:39.370Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 720,
+    "stars_total": 721,
     "featured_count": 4,
     "followers": 86
   },
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 69,
-      "last_updated": "2026-07-31T01:08:42Z",
+      "stars": 70,
+      "last_updated": "2026-08-02T12:44:33Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -180,7 +180,7 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
+      "description": "📽️ quevidkit is a toolkit providing forensic video��tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 7,
       "last_updated": "2026-07-23T20:11:54Z",
