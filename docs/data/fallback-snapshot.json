@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-08-05T06:47:49.350Z",
+  "last_updated_utc": "2026-08-06T06:49:47.947Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 727,
+    "stars_total": 726,
     "featured_count": 4,
     "followers": 86
   },
@@ -130,8 +130,8 @@
         "osint-tool",
         "phone-numbers"
       ],
-      "stars": 25,
-      "last_updated": "2026-07-06T16:27:29Z",
+      "stars": 24,
+      "last_updated": "2026-08-05T08:14:40Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/TelespotXX",
