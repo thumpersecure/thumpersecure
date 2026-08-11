@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-08-10T06:23:03.078Z",
+  "last_updated_utc": "2026-08-11T06:14:42.585Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 729,
+    "stars_total": 730,
     "featured_count": 4,
     "followers": 85
   },
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 74,
-      "last_updated": "2026-08-06T20:13:42Z",
+      "stars": 75,
+      "last_updated": "2026-08-10T20:57:25Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
