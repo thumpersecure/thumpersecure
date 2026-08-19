@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-08-18T06:04:44.465Z",
+  "last_updated_utc": "2026-08-19T06:05:14.313Z",
   "stats": {
     "tools_count": 17,
-    "stars_total": 731,
+    "stars_total": 733,
     "featured_count": 4,
     "followers": 86
   },
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 137,
-      "last_updated": "2026-08-16T09:29:51Z",
+      "stars": 138,
+      "last_updated": "2026-08-18T13:20:34Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 60,
-      "last_updated": "2026-08-07T17:15:12Z",
+      "stars": 61,
+      "last_updated": "2026-08-19T05:04:08Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
