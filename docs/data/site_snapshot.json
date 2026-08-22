@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-08-21T06:05:38.357Z",
+  "last_updated_utc": "2026-08-22T06:03:39.954Z",
   "stats": {
-    "tools_count": 17,
-    "stars_total": 734,
+    "tools_count": 18,
+    "stars_total": 733,
     "featured_count": 4,
     "followers": 86
   },
@@ -11,8 +11,8 @@
       "name": "palm-tree",
       "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
-      "stars": 152,
-      "last_updated": "2026-08-13T12:22:03Z",
+      "stars": 151,
+      "last_updated": "2026-08-22T03:35:21Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 137,
-      "last_updated": "2026-08-19T08:51:58Z",
+      "stars": 138,
+      "last_updated": "2026-08-21T20:50:10Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -113,8 +113,8 @@
       "name": "spicy-cat",
       "description": "💋 An online privacy tool that generates realistic digital personas and human-like behavioral noise to disrupt profiling, correlation, and attribution. For best results use TOR and Firefox. Coded in Python.",
       "topics": [],
-      "stars": 27,
-      "last_updated": "2026-07-01T13:03:59Z",
+      "stars": 26,
+      "last_updated": "2026-08-22T03:35:21Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/spicy-cat",
@@ -252,6 +252,17 @@
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/zweather/",
       "html_url": "https://github.com/thumpersecure/zweather",
+      "featured": false
+    },
+    {
+      "name": "phl-rental-license-log",
+      "description": "Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
+      "topics": [],
+      "stars": 0,
+      "last_updated": "2026-08-21T21:40:10Z",
+      "language": "HTML",
+      "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
+      "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
       "featured": false
     }
   ]
