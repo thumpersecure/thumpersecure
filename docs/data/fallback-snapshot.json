@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-09-08T06:02:40.952Z",
+  "last_updated_utc": "2026-09-09T06:02:52.705Z",
   "stats": {
-    "tools_count": 18,
-    "stars_total": 726,
+    "tools_count": 19,
+    "stars_total": 727,
     "featured_count": 4,
     "followers": 87
   },
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 62,
-      "last_updated": "2026-08-24T15:31:22Z",
+      "stars": 63,
+      "last_updated": "2026-09-08T23:38:22Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -233,6 +233,17 @@
       "featured": false
     },
     {
+      "name": "anti-corruption-wiki",
+      "description": "Corruption & Integrity Wiki: a retro MediaWiki-style static reference on anti-corruption frameworks, investigation, detection, technology, and measurement",
+      "topics": [],
+      "stars": 0,
+      "last_updated": "2026-09-09T01:39:57Z",
+      "language": "HTML",
+      "homepage": "https://thumpersecure.github.io/anti-corruption-wiki/",
+      "html_url": "https://github.com/thumpersecure/anti-corruption-wiki",
+      "featured": false
+    },
+    {
       "name": "fraud-osint",
       "description": "📝 Retro MediaWiki-style static wiki on forensic accounting & OSINT — built from a 7-source review + verified 2024-2026 research.",
       "topics": [],
@@ -248,7 +259,7 @@
       "description": "📊 Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-09-07T08:36:56Z",
+      "last_updated": "2026-09-08T12:57:50Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
       "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
