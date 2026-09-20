@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-09-19T06:02:33.053Z",
+  "last_updated_utc": "2026-09-20T06:02:35.553Z",
   "stats": {
     "tools_count": 18,
-    "stars_total": 730,
+    "stars_total": 732,
     "featured_count": 4,
-    "followers": 88
+    "followers": 89
   },
   "repos": [
     {
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 138,
-      "last_updated": "2026-09-17T22:54:32Z",
+      "stars": 139,
+      "last_updated": "2026-09-19T20:03:53Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -44,8 +44,8 @@
       "name": "Spin",
       "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
       "topics": [],
-      "stars": 94,
-      "last_updated": "2026-08-30T02:40:48Z",
+      "stars": 95,
+      "last_updated": "2026-09-19T23:57:39Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/Spin/",
       "html_url": "https://github.com/thumpersecure/Spin",
