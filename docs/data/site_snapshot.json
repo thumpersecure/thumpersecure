@@ -1,15 +1,15 @@
 {
-  "last_updated_utc": "2026-09-22T06:02:56.059Z",
+  "last_updated_utc": "2026-09-23T06:02:44.998Z",
   "stats": {
-    "tools_count": 18,
-    "stars_total": 733,
+    "tools_count": 19,
+    "stars_total": 734,
     "featured_count": 4,
     "followers": 90
   },
   "repos": [
     {
       "name": "palm-tree",
-      "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
+      "description": "���� An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
       "stars": 152,
       "last_updated": "2026-09-13T02:20:42Z",
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 79,
-      "last_updated": "2026-09-13T22:12:57Z",
+      "stars": 80,
+      "last_updated": "2026-09-22T15:45:02Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -252,6 +252,17 @@
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/fraud-osint/",
       "html_url": "https://github.com/thumpersecure/fraud-osint",
+      "featured": false
+    },
+    {
+      "name": "phl-rental-license-log",
+      "description": "📊 Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
+      "topics": [],
+      "stars": 0,
+      "last_updated": "2026-09-22T23:17:57Z",
+      "language": "HTML",
+      "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
+      "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
       "featured": false
     },
     {
