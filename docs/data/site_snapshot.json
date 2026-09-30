@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-09-29T06:02:54.609Z",
+  "last_updated_utc": "2026-09-30T06:02:50.465Z",
   "stats": {
     "tools_count": 19,
-    "stars_total": 738,
+    "stars_total": 745,
     "featured_count": 4,
     "followers": 91
   },
@@ -34,7 +34,7 @@
         "telephone-number"
       ],
       "stars": 140,
-      "last_updated": "2026-09-24T20:28:19Z",
+      "last_updated": "2026-09-30T01:47:22Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -44,8 +44,8 @@
       "name": "Spin",
       "description": "🕸️  SpinWeb Browser - A full featured desktop application for OSINT, security, and extreme privacy. Next Generation Features and Advanced OSINT Tools. New Jessica Jones Version!",
       "topics": [],
-      "stars": 95,
-      "last_updated": "2026-09-19T23:57:39Z",
+      "stars": 96,
+      "last_updated": "2026-09-30T01:49:05Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/Spin/",
       "html_url": "https://github.com/thumpersecure/Spin",
@@ -60,8 +60,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 82,
-      "last_updated": "2026-08-24T00:32:28Z",
+      "stars": 83,
+      "last_updated": "2026-09-30T01:49:32Z",
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 80,
-      "last_updated": "2026-09-22T15:45:02Z",
+      "stars": 81,
+      "last_updated": "2026-09-30T01:48:48Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 67,
-      "last_updated": "2026-09-29T01:25:17Z",
+      "stars": 68,
+      "last_updated": "2026-09-29T19:16:37Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -110,17 +110,6 @@
       "featured": false
     },
     {
-      "name": "spicy-cat",
-      "description": "💋 An online privacy tool that generates realistic digital personas and human-like behavioral noise to disrupt profiling, correlation, and attribution. For best results use TOR and Firefox. Coded in Python.",
-      "topics": [],
-      "stars": 26,
-      "last_updated": "2026-09-02T00:09:29Z",
-      "language": "Python",
-      "homepage": null,
-      "html_url": "https://github.com/thumpersecure/spicy-cat",
-      "featured": false
-    },
-    {
       "name": "TelespotXX",
       "description": "👁️‍🗨️ Telespot , TelespotX, and Telespotter ... all in ONE web app for easier use for all OSINT Specialists.",
       "topics": [
@@ -130,11 +119,22 @@
         "osint-tool",
         "phone-numbers"
       ],
-      "stars": 26,
-      "last_updated": "2026-09-04T06:24:46Z",
+      "stars": 27,
+      "last_updated": "2026-09-30T01:49:56Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/TelespotXX",
+      "featured": false
+    },
+    {
+      "name": "spicy-cat",
+      "description": "💋 An online privacy tool that generates realistic digital personas and human-like behavioral noise to disrupt profiling, correlation, and attribution. For best results use TOR and Firefox. Coded in Python.",
+      "topics": [],
+      "stars": 26,
+      "last_updated": "2026-09-02T00:09:29Z",
+      "language": "Python",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/spicy-cat",
       "featured": false
     },
     {
@@ -157,8 +157,8 @@
         "webapp",
         "wireless"
       ],
-      "stars": 13,
-      "last_updated": "2026-05-02T18:21:39Z",
+      "stars": 14,
+      "last_updated": "2026-09-30T01:48:34Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/blueTTool/",
       "html_url": "https://github.com/thumpersecure/blueTTool",
@@ -171,8 +171,8 @@
         "osint-facebook",
         "osint-tool"
       ],
-      "stars": 11,
-      "last_updated": "2026-09-09T13:51:56Z",
+      "stars": 12,
+      "last_updated": "2026-09-30T01:48:11Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/ofacebook/",
       "html_url": "https://github.com/thumpersecure/ofacebook",
@@ -211,7 +211,7 @@
       "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 1,
-      "last_updated": "2026-09-23T17:20:50Z",
+      "last_updated": "2026-09-29T22:12:41Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/quevidkit/",
       "html_url": "https://github.com/thumpersecure/quevidkit",
@@ -259,7 +259,7 @@
       "description": "📊 Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-09-28T08:43:03Z",
+      "last_updated": "2026-09-29T08:36:15Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
       "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
