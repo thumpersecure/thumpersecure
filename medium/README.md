@@ -10,15 +10,14 @@ Images live in [`images/`](images/).
 
 ## Importing into Medium
 
-Medium's importer takes a **public URL** to a rendered web page. It can't read a file upload or a raw GitHub file.
+A copy of the HTML version is published through GitHub Pages at:
 
-1. Use a page that renders this article. Either:
-   - copy `esp32-hidden-sdr.html` into `docs/medium/` so GitHub Pages serves it at
-     `https://thumpersecure.github.io/thumpersecure/medium/esp32-hidden-sdr.html`, or
-   - use the GitHub page for `esp32-hidden-sdr.md`.
-2. In Medium, open your profile, then **Stories → Import a story**, paste the URL, and click **Import**.
-3. Check the draft. Fix any captions, add the tags listed at the end of the article, and pick a cover image.
+    https://thumpersecure.github.io/thumpersecure/medium/esp32-hidden-sdr.html
 
-The HTML version doesn't use tables, because Medium doesn't support them. Its images point to `raw.githubusercontent.com/.../main/medium/images/`, so they only resolve once this folder is on `main`.
+(the source for that page is `docs/medium/`; keep it in sync with the file here when the article changes).
 
-You can also skip the importer: open the rendered Markdown on GitHub, copy all of it, and paste it into a new Medium story. Medium keeps headings, bold, links, lists and images when you paste.
+1. In Medium, open your profile, then **Stories → Import a story**.
+2. Paste the URL above and click **Import**.
+3. Check the draft: set the cover image, fix any captions, and add the tags listed at the end of the article.
+
+The HTML version doesn't use tables, because Medium doesn't support them.
