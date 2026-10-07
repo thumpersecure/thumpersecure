@@ -6,8 +6,8 @@
 
 ---
 
-![Block diagram of an ESP32 system-on-chip: RF front-end, ADC/DAC, a locked Wi-Fi modem, and CPU. A green arrow shows an undocumented debug bypass carrying raw baseband I/Q from the ADC/DAC directly to the CPU, skipping the modem.](images/esp32-debug-bypass-diagram.jpg)
-*The short version: a factory-test path lets software read the radio's raw samples before the Wi-Fi modem touches them.*
+![Illustration: an ESP32 block diagram with a hidden debug tap carrying raw I/Q from the ADC straight to the CPU, beside a synthetic 2.4 GHz spectrum and waterfall.](images/esp32-sdr-cover.png)
+*Illustration: the hidden tap skips the Wi-Fi modem and puts raw radio samples straight into memory. The spectrum and waterfall are synthetic.*
 
 The ESP32 is one of the most common microcontrollers on the planet. It's in smart plugs, light bulbs, hobby robots, badge projects, and millions of dev boards that cost less than a coffee. Everyone knows it has Wi-Fi and Bluetooth.
 
@@ -28,9 +28,6 @@ It's most likely a leftover from wafer-level factory testing, the kind of thing 
 Then it got more interesting. **A Reddit user, h0m3us3r, independently found the same mechanism** and published it as [eSpDR](https://github.com/h0m3us3r/eSpDR). They also found a raw I/Q **transmit** playback engine: the same kind of debug path running the other direction, from memory out to the antenna.
 
 Two unrelated groups landing on the same hidden feature within days of each other is a strong sign it's real and reproducible. [RTL-SDR.com](https://www.rtl-sdr.com/various-projects-independently-find-hidden-sdr-capabilities-in-esp32-microcontrollers/) rounded up the parallel projects, and [Hackaday](https://hackaday.com/2026/10/03/the-esp32-an-sdr-in-itself/) and [CNX Software](https://www.cnx-software.com/2026/10/04/esp-sdr-firmware-turns-esp32-into-a-2-4-5-ghz-software-defined-radio-sdr/) covered it in the first week of October 2026.
-
-![ESP-SDR spectrum and waterfall display tuned to 2.44 GHz at 80 MS/s with 40 MHz analog width, showing Wi-Fi channel activity across the 2.4 GHz band.](images/esp32-sdr-spectrum-80msps.jpg)
-*An ESP32 used as an 80 MS/s receiver across the 2.4 GHz band. Spectrum on top, waterfall below.*
 
 ---
 
@@ -54,9 +51,6 @@ Raw I/Q is what makes something an SDR. With it you aren't limited to whatever t
 80 MS/s of 32-bit I/Q works out to about **2.56 Gbit/s**. No ESP32 USB or UART link comes close to carrying that.
 
 So the original ESPARGOS firmware works in **bursts**. It captures a short chunk into SRAM, runs an FFT **on the chip**, ships a compact spectrum snapshot to your computer, and repeats. That's fine for a waterfall display, but it left gaps of about **42 ms** between captures, during which the radio wasn't watching at all.
-
-![ESP-WebSDR in a browser connected to an ESP32-C3, showing the On-Chip Spectrum capture mode at 2412 MHz with an 80 MHz span, power spectrum, and waterfall.](images/esp-websdr-c3-onchip-spectrum.png)
-*ESP-WebSDR running entirely in the browser, talking to an ESP32-C3 over USB in "On-Chip Spectrum" mode.*
 
 **Zoltan Doczi** then improved on this ([pull request](https://github.com/ESPARGOS/esp-sdr/pull/1)). His approach was a **ring buffer striped across three 64 KiB SRAM banks**, so the dump engine never stalls while the CPU is reading. On the ESP32-S3 the results were:
 
@@ -124,9 +118,6 @@ Unplug the board, **wait about five seconds**, and plug it back in so it boots i
 - **Code:** the firmware is GPL-3.0 at **[github.com/ESPARGOS/esp-sdr](https://github.com/ESPARGOS/esp-sdr)**. It uses a plain-text serial protocol (`INFO`, `FREQ <MHz>`, `CAP16`, …), so it's easy to script from Python.
 - **Desktop SDR apps:** for GNU Radio / Gqrx, look at **SoapyESPSDR** (ESP32-S31). For SDR++, follow the turbo-mode / 250 kS/s work in the esp-sdr pull requests.
 - **The parallel project:** **[h0m3us3r/eSpDR](https://github.com/h0m3us3r/eSpDR)** takes a different, streaming-oriented approach on the ESP32-S3.
-
-![Six phone screenshots of community ESP32 SDR front-ends: a signal scanner for Bluetooth, drones and trackers; an analog FPV video receiver; a spectrum and waterfall view; a panorama sweep; and a Wi-Fi channel occupancy chart.](images/esp32-sdr-mobile-apps.jpg)
-*It's moving fast. Community front-ends are already showing up with signal scanners, analog FPV video receivers, panorama sweeps, and Wi-Fi channel planners.*
 
 ---
 
