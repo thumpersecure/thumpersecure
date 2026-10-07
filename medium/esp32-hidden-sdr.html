@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The $3 Chip That Was Secretly a Software-Defined Radio</title>
+<style>body{max-width:42em;margin:0 auto;padding:16px;font:18px/1.6 Georgia,serif;color:#1a1a1a;background:#fff}img{max-width:100%}code{font-size:85%}</style>
+</head>
+<body>
+<article>
+<h1 id="the-3-chip-that-was-secretly-a-software-defined-radio">The $3 Chip That Was Secretly a Software-Defined Radio</h1>
+<h3 id="researchers-found-an-undocumented-debug-path-inside-the-esp32-that-streams-raw-80-mss-iq-samples-straight-from-the-radio-heres-what-was-found-why-it-matters-and-how-to-try-it-on-a-board-you-already-own-in-about-ten-minutes">Researchers found an undocumented debug path inside the ESP32 that streams raw 80 MS/s I/Q samples straight from the radio. Here's what was found, why it matters, and how to try it on a board you already own, in about ten minutes.</h3>
+<p><em>By ThumperSecure · October 2026</em></p>
+<hr />
+<p><img src="https://raw.githubusercontent.com/thumpersecure/thumpersecure/main/medium/images/esp32-debug-bypass-diagram.jpg" alt="Block diagram of an ESP32 system-on-chip: RF front-end, ADC/DAC, a locked Wi-Fi modem, and CPU. A green arrow shows an undocumented debug bypass carrying raw baseband I/Q from the ADC/DAC directly to the CPU, skipping the modem." /> <em>The short version: a factory-test path lets software read the radio's raw samples before the Wi-Fi modem touches them.</em></p>
+<p>The ESP32 is one of the most common microcontrollers on the planet. It's in smart plugs, light bulbs, hobby robots, badge projects, and millions of dev boards that cost less than a coffee. Everyone knows it has Wi-Fi and Bluetooth.</p>
+<p>What nobody outside Espressif seems to have known until a few weeks ago is that <strong>the radio inside it can also act as a software-defined radio (SDR).</strong> There's an undocumented hardware path that copies the radio's raw baseband samples (the I/Q stream every SDR is built on) directly into the chip's memory, at up to <strong>80 million samples per second.</strong></p>
+<p>No extra hardware and no modified silicon. The capability has been sitting in the chip the whole time.</p>
+<hr />
+<h2 id="what-was-discovered">What was discovered</h2>
+<p>The discovery came from <strong>ESPARGOS</strong>, a research project known for building phased arrays out of ESP32s to locate Wi-Fi transmitters. The team was digging through <code>librftest</code>, a closed-source library Espressif ships for factory and RF testing.</p>
+<p>Using LLMs to help reverse-engineer a function called <strong><code>adctrig</code></strong>, they worked out how it configures a set of undocumented debug registers. With those registers set, the modem's <strong>sample-dump engine</strong> writes the radio ADC's raw I/Q samples straight into internal SRAM, <strong>bypassing the Wi-Fi modem entirely</strong>.</p>
+<p>It's most likely a leftover from wafer-level factory testing, the kind of thing a chip vendor uses to check that every radio on a production line works. It was never meant to be a feature.</p>
+<p>Then it got more interesting. <strong>A Reddit user, h0m3us3r, independently found the same mechanism</strong> and published it as <a href="https://github.com/h0m3us3r/eSpDR">eSpDR</a>. They also found a raw I/Q <strong>transmit</strong> playback engine: the same kind of debug path running the other direction, from memory out to the antenna.</p>
+<p>Two unrelated groups landing on the same hidden feature within days of each other is a strong sign it's real and reproducible. <a href="https://www.rtl-sdr.com/various-projects-independently-find-hidden-sdr-capabilities-in-esp32-microcontrollers/">RTL-SDR.com</a> rounded up the parallel projects, and <a href="https://hackaday.com/2026/10/03/the-esp32-an-sdr-in-itself/">Hackaday</a> and <a href="https://www.cnx-software.com/2026/10/04/esp-sdr-firmware-turns-esp32-into-a-2-4-5-ghz-software-defined-radio-sdr/">CNX Software</a> covered it in the first week of October 2026.</p>
+<p><img src="https://raw.githubusercontent.com/thumpersecure/thumpersecure/main/medium/images/esp32-sdr-spectrum-80msps.jpg" alt="ESP-SDR spectrum and waterfall display tuned to 2.44 GHz at 80 MS/s with 40 MHz analog width, showing Wi-Fi channel activity across the 2.4 GHz band." /> <em>An ESP32 used as an 80 MS/s receiver across the 2.4 GHz band. Spectrum on top, waterfall below.</em></p>
+<hr />
+<h2 id="wait-didnt-esp32s-already-do-spectrum-stuff">Wait, didn't ESP32s already do "spectrum" stuff?</h2>
+<p>Sort of, and that's why some people are shrugging this off as old news. It isn't. Here's what was already possible and how it differs:</p>
+<ul>
+<li><strong>RSSI channel sweeps</strong> gave power-per-Wi-Fi-channel "spectrum analyzers": coarse signal strength only, with no waveform.</li>
+<li><strong>Wi-Fi CSI</strong> (Channel State Information) gave complex per-subcarrier channel estimates, but only for Wi-Fi frames the modem successfully decoded.</li>
+<li><strong><code>librftest</code> factory functions</strong> (test tones, RX packet counters) have been known for years, but never exposed raw samples.</li>
+<li><strong>New: the raw I/Q tap</strong> gives <strong>the actual baseband waveform, at up to 80 MS/s</strong>, for <strong>any signal in range, Wi-Fi or not.</strong></li>
+</ul>
+<p>Raw I/Q is what makes something an SDR. With it you aren't limited to whatever the Wi-Fi modem decides to decode. You get the waveform itself and can demodulate, visualize, or analyze it however you like in software.</p>
+<hr />
+<h2 id="the-bandwidth-problem-and-the-fix">The bandwidth problem, and the fix</h2>
+<p>80 MS/s of 32-bit I/Q works out to about <strong>2.56 Gbit/s</strong>. No ESP32 USB or UART link comes close to carrying that.</p>
+<p>So the original ESPARGOS firmware works in <strong>bursts</strong>. It captures a short chunk into SRAM, runs an FFT <strong>on the chip</strong>, ships a compact spectrum snapshot to your computer, and repeats. That's fine for a waterfall display, but it left gaps of about <strong>42 ms</strong> between captures, during which the radio wasn't watching at all.</p>
+<p><img src="https://raw.githubusercontent.com/thumpersecure/thumpersecure/main/medium/images/esp-websdr-c3-onchip-spectrum.png" alt="ESP-WebSDR in a browser connected to an ESP32-C3, showing the On-Chip Spectrum capture mode at 2412 MHz with an 80 MHz span, power spectrum, and waterfall." /> <em>ESP-WebSDR running entirely in the browser, talking to an ESP32-C3 over USB in "On-Chip Spectrum" mode.</em></p>
+<p><strong>Zoltan Doczi</strong> then improved on this (<a href="https://github.com/ESPARGOS/esp-sdr/pull/1">pull request</a>). His approach was a <strong>ring buffer striped across three 64 KiB SRAM banks</strong>, so the dump engine never stalls while the CPU is reading. On the ESP32-S3 the results were:</p>
+<ul>
+<li><strong>About 50× faster</strong>: gapless spectrum at <strong>roughly 1,300 spectra per second</strong></li>
+<li>The blind gap dropped <strong>from ~42 ms to ~48 µs</strong></li>
+<li>The first <strong>real, continuous (decimated) I/Q output, at 250 kS/s</strong>, with a source module for <strong>SDR++</strong></li>
+</ul>
+<p>To show it was a real radio and not just a pretty waterfall, he received <strong>FM broadcast radio</strong> with it. An upconverter (a moRFeus) shifted 90.9 MHz up to 2350 MHz, where the ESP32 can tune, and it played.</p>
+<hr />
+<h2 id="the-practical-limits-read-these-before-you-buy-anything">The practical limits (read these before you buy anything)</h2>
+<p>This isn't a HackRF replacement. It's a capable receiver at a very low price, with some caveats:</p>
+<ul>
+<li><strong>Mostly receive-only.</strong> Transmit exists in the silicon, but it's experimental. ESPARGOS has deliberately <em>not</em> published TX support, citing misuse concerns.</li>
+<li><strong>Frequency coverage:</strong> roughly <strong>2.2–2.7 GHz</strong> on most chips. The <strong>ESP32-C5</strong> adds <strong>4.8–6.0 GHz</strong>, which covers 5 GHz Wi-Fi, 5.8 GHz FPV video, and LTE Band 7 / 5G NR n7 nearby. To go lower (FM, VHF, UHF) you need an upconverter.</li>
+<li><strong>Usable bandwidth:</strong> about <strong>13–54 MHz</strong>, depending on the chip (some up to ~69 MHz).</li>
+<li><strong>Burst vs. streaming:</strong> most chips do burst captures or on-chip spectrum. Continuous streaming needs a fast link. The new <strong>ESP32-S31</strong> streams up to <strong>20 MS/s over high-speed USB</strong> or <strong>40 MS/s over Gigabit Ethernet</strong>, and works with GNU Radio and Gqrx through <a href="https://github.com/ESPARGOS/SoapyESPSDR">SoapyESPSDR</a>.</li>
+<li><strong>Not lab-grade.</strong> Calibration, DC offset, I/Q imbalance and phase noise are all still being worked out by the community.</li>
+</ul>
+<hr />
+<h2 id="how-to-get-started-about-10-minutes-no-soldering">How to get started (about 10 minutes, no soldering)</h2>
+<p>The easiest route is entirely in your browser. You don't need a toolchain, drivers, or a command line.</p>
+<h3 id="what-you-need">What you need</h3>
+<ol type="1">
+<li><strong>An ESP32 dev board.</strong> Best picks:
+<ul>
+<li><strong>ESP32-S3</strong> (e.g. ESP32-S3-DevKitC): native USB, fastest, gets the gapless "turbo" modes</li>
+<li><strong>ESP32-C5</strong>: the only one with <strong>5 GHz</strong> reception</li>
+<li><strong>ESP32-C3 / C6 / C61</strong>: cheap and widely available, and they work well</li>
+<li>The original ESP32 also works, but over UART only (slower)</li>
+</ul></li>
+<li><strong>A USB cable that carries data</strong>, not just charge. This is the most common reason it "doesn't work."</li>
+<li><strong>A desktop Chromium-based browser</strong> (Chrome, Edge, Brave, Opera). The tools use <strong>Web Serial</strong>, which Firefox and Safari don't support.</li>
+</ol>
+<h3 id="step-1-flash-the-firmware-from-your-browser">Step 1: Flash the firmware from your browser</h3>
+<ol type="1">
+<li>Plug the board in. If it has two USB ports, use the one marked <strong>USB</strong> / native / JTAG rather than <strong>UART</strong>.</li>
+<li>Open the web flasher: <strong><a href="https://espargos.net/espsdr/app/flash.html">espargos.net/espsdr/app/flash.html</a></strong></li>
+<li>Choose your chip, click install, and pick your board's serial port when the browser asks.</li>
+<li>If flashing won't start, hold the <strong>BOOT</strong> button while you plug the board in, then try again.</li>
+</ol>
+<h3 id="step-2-power-cycle">Step 2: Power-cycle</h3>
+<p>Unplug the board, <strong>wait about five seconds</strong>, and plug it back in so it boots into the new firmware.</p>
+<h3 id="step-3-open-the-receiver">Step 3: Open the receiver</h3>
+<ol type="1">
+<li>Go to <strong><a href="https://espargos.net/espsdr/app/">espargos.net/espsdr/app</a></strong></li>
+<li>Click <strong>Connect</strong> and choose the board.</li>
+<li>You should see a live <strong>power spectrum</strong> and <strong>waterfall</strong>.</li>
+</ol>
+<h3 id="step-4-things-to-try-first">Step 4: Things to try first</h3>
+<ul>
+<li><strong>Watch Wi-Fi breathe.</strong> Tune to <strong>2412</strong>, <strong>2437</strong> and <strong>2462 MHz</strong> (Wi-Fi channels 1, 6 and 11). Load a video on your phone and watch the bursts light up the waterfall.</li>
+<li><strong>Microwave oven test.</strong> Tune to around <strong>2450 MHz</strong> and run a microwave for 30 seconds. You'll see a wide, sweeping smear. It's a satisfying first "I built a spectrum analyzer" moment.</li>
+<li><strong>Bluetooth hopping.</strong> With a pair of earbuds streaming nearby, look for narrow, short blips scattered across 2402–2480 MHz.</li>
+<li><strong>Switch modes.</strong> Compare <strong>On-Chip Spectrum</strong> (fast, continuous-looking) with raw snapshot capture, and try <strong>AGC</strong> vs. manual gain.</li>
+<li><strong>On an ESP32-C5:</strong> flip to <strong>5.5 GHz</strong> and look at 5 GHz Wi-Fi or a 5.8 GHz FPV drone video transmitter.</li>
+</ul>
+<h3 id="step-5-optional-go-further">Step 5 (optional): Go further</h3>
+<ul>
+<li><strong>Code:</strong> the firmware is GPL-3.0 at <strong><a href="https://github.com/ESPARGOS/esp-sdr">github.com/ESPARGOS/esp-sdr</a></strong>. It uses a plain-text serial protocol (<code>INFO</code>, <code>FREQ &lt;MHz&gt;</code>, <code>CAP16</code>, …), so it's easy to script from Python.</li>
+<li><strong>Desktop SDR apps:</strong> for GNU Radio / Gqrx, look at <strong>SoapyESPSDR</strong> (ESP32-S31). For SDR++, follow the turbo-mode / 250 kS/s work in the esp-sdr pull requests.</li>
+<li><strong>The parallel project:</strong> <strong><a href="https://github.com/h0m3us3r/eSpDR">h0m3us3r/eSpDR</a></strong> takes a different, streaming-oriented approach on the ESP32-S3.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/thumpersecure/thumpersecure/main/medium/images/esp32-sdr-mobile-apps.jpg" alt="Six phone screenshots of community ESP32 SDR front-ends: a signal scanner for Bluetooth, drones and trackers; an analog FPV video receiver; a spectrum and waterfall view; a panorama sweep; and a Wi-Fi channel occupancy chart." /> <em>It's moving fast. Community front-ends are already showing up with signal scanners, analog FPV video receivers, panorama sweeps, and Wi-Fi channel planners.</em></p>
+<hr />
+<h2 id="a-note-on-staying-legal">A note on staying legal</h2>
+<p><strong>Receiving</strong> is legal in most places, but laws on intercepting and <em>using</em> the contents of communications vary. Look at spectrum, not at other people's data. <strong>Transmitting</strong> is a different matter: raw-I/Q TX on Wi-Fi hardware can easily put out-of-spec or interfering signals on the air. Unless you're licensed (the 13 cm amateur band overlaps this range) and know exactly what you're emitting, don't transmit.</p>
+<hr />
+<h2 id="why-this-matters">Why this matters</h2>
+<ul>
+<li><strong>SDR just got even cheaper.</strong> A capable 2.4 GHz spectrum and I/Q tool now costs about as much as a sandwich, and many people already have one in a drawer.</li>
+<li><strong>Security research gets a new lens.</strong> Spotting rogue transmitters, mapping Wi-Fi and BLE congestion, finding hidden cameras and trackers, and checking RF hygiene at a site survey are all now possible with an off-the-shelf microcontroller.</li>
+<li><strong>Education.</strong> Students can now learn I/Q, FFTs, and modulation on a $3 chip instead of a $300 radio.</li>
+<li><strong>The method is notable too.</strong> LLM-assisted reverse engineering of a closed vendor binary turned up a hardware capability that had been sitting in hundreds of millions of devices. That probably won't be the last such find.</li>
+</ul>
+<p>Treating the ESP32 as an RF tool isn't new. What's new, and only about a month old, is that software can read <strong>raw I/Q at 80 MS/s</strong> out of the silicon through an undocumented tap. It's very early, and worth trying now while the community is still working out what the chip can do.</p>
+<hr />
+<h3 id="sources-and-further-reading">Sources and further reading</h3>
+<ul>
+<li>ESPARGOS — <a href="https://espargos.net/espsdr/">ESP-SDR project page</a> · <a href="https://espargos.net/news/iq-sampling-and-sdr-mode/">IQ Sampling and SDR Mode</a></li>
+<li>GitHub — <a href="https://github.com/ESPARGOS/esp-sdr">ESPARGOS/esp-sdr</a> · <a href="https://github.com/ESPARGOS/SoapyESPSDR">ESPARGOS/SoapyESPSDR</a> · <a href="https://github.com/h0m3us3r/eSpDR">h0m3us3r/eSpDR</a> · <a href="https://github.com/ESPARGOS/esp-sdr/pull/1">Gapless ring capture PR</a></li>
+<li>RTL-SDR.com — <a href="https://www.rtl-sdr.com/various-projects-independently-find-hidden-sdr-capabilities-in-esp32-microcontrollers/">Various Projects Independently Find Hidden SDR Capabilities in ESP32 Microcontrollers</a></li>
+<li>Hackaday — <a href="https://hackaday.com/2026/10/03/the-esp32-an-sdr-in-itself/">The ESP32, An SDR In Itself</a> (Oct 3, 2026)</li>
+<li>CNX Software — <a href="https://www.cnx-software.com/2026/10/04/esp-sdr-firmware-turns-esp32-into-a-2-4-5-ghz-software-defined-radio-sdr/">ESP-SDR firmware turns ESP32 into a 2.4/5 GHz SDR</a> (Oct 4, 2026)</li>
+</ul>
+<p><em>Tags: ESP32, Software Defined Radio, SDR, Reverse Engineering, Cybersecurity</em></p>
+</article>
+</body>
+</html>
