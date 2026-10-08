@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-10-07T15:21:41.848Z",
+  "last_updated_utc": "2026-10-08T12:21:02.790Z",
   "stats": {
     "tools_count": 20,
-    "stars_total": 749,
+    "stars_total": 750,
     "featured_count": 4,
     "followers": 91
   },
@@ -91,8 +91,8 @@
         "guide",
         "opt-out"
       ],
-      "stars": 68,
-      "last_updated": "2026-09-29T19:16:37Z",
+      "stars": 69,
+      "last_updated": "2026-10-08T09:37:38Z",
       "language": null,
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
@@ -259,7 +259,7 @@
       "description": "The Greystar Review — sourced record of lawsuits, regulators, reporting and tenant letters on Greystar and Bob Faith",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-10-07T11:17:30Z",
+      "last_updated": "2026-10-08T11:17:30Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/greystar-review/",
       "html_url": "https://github.com/thumpersecure/greystar-review",
@@ -270,7 +270,7 @@
       "description": "📊 Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-10-06T15:08:52Z",
+      "last_updated": "2026-10-07T15:32:35Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
       "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
