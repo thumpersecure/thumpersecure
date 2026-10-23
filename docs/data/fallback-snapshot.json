@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-10-22T10:44:57.406Z",
+  "last_updated_utc": "2026-10-23T10:36:22.591Z",
   "stats": {
-    "tools_count": 22,
-    "stars_total": 764,
+    "tools_count": 21,
+    "stars_total": 761,
     "featured_count": 4,
     "followers": 93
   },
@@ -60,8 +60,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 86,
-      "last_updated": "2026-10-15T14:46:51Z",
+      "stars": 87,
+      "last_updated": "2026-10-22T16:31:11Z",
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 83,
-      "last_updated": "2026-10-21T11:26:04Z",
+      "stars": 84,
+      "last_updated": "2026-10-22T16:31:42Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -179,32 +179,6 @@
       "featured": false
     },
     {
-      "name": "ghostvisor",
-      "description": "👻 ghostvisor : combining mmWave, csi, pax, pir, and more. v1",
-      "topics": [
-        "csi",
-        "cyd",
-        "espc2",
-        "espc6",
-        "lilygo",
-        "lora",
-        "mmwave",
-        "mmwave-radar",
-        "mmwave-sensor",
-        "pax",
-        "pi400",
-        "raspberry-pi",
-        "wifi-csi",
-        "wifi-sensing"
-      ],
-      "stars": 5,
-      "last_updated": "2026-10-20T00:42:02Z",
-      "language": "Python",
-      "homepage": "https://thumpersecure.github.io/ghostvisor/",
-      "html_url": "https://github.com/thumpersecure/ghostvisor",
-      "featured": false
-    },
-    {
       "name": "4philly",
       "description": "🦜 4philly.net - Know before you sign! Look up tool for Philadelphia property records —  Easily checks licenses,  violations, and 311 complaints — pulled live from the city’s own data. Eclipse and Carto are cross-checked side by side… into one APP you can trust. Free, open-source, made by tenants.",
       "topics": [
@@ -285,7 +259,7 @@
       "description": "The Greystar Review — sourced record of lawsuits, regulators, reporting and tenant letters on Greystar and Bob Faith",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-10-21T11:17:24Z",
+      "last_updated": "2026-10-22T11:17:25Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/greystar-review/",
       "html_url": "https://github.com/thumpersecure/greystar-review",
