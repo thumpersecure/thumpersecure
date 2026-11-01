@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-11-01T06:02:24.376Z",
+  "last_updated_utc": "2026-11-01T12:09:49.636Z",
   "stats": {
     "tools_count": 21,
     "stars_total": 763,
@@ -208,7 +208,7 @@
     },
     {
       "name": "quevidkit",
-      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front‑end that runs in the browser or connects to a FastAPI server.",
+      "description": "📽️ quevidkit is a toolkit providing forensic video‑tampering analysis. It consists of a Python CLI/REST backend and a simple web front���end that runs in the browser or connects to a FastAPI server.",
       "topics": [],
       "stars": 2,
       "last_updated": "2026-11-01T06:01:13Z",
@@ -259,7 +259,7 @@
       "description": "The Greystar Review — sourced record of lawsuits, regulators, reporting and tenant letters on Greystar and Bob Faith",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-11-01T05:58:14Z",
+      "last_updated": "2026-11-01T11:17:24Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/greystar-review/",
       "html_url": "https://github.com/thumpersecure/greystar-review",
