@@ -1,10 +1,10 @@
 {
-  "last_updated_utc": "2026-11-03T13:07:26.261Z",
+  "last_updated_utc": "2026-11-04T13:22:38.626Z",
   "stats": {
     "tools_count": 21,
-    "stars_total": 764,
+    "stars_total": 765,
     "featured_count": 4,
-    "followers": 94
+    "followers": 93
   },
   "repos": [
     {
@@ -77,8 +77,8 @@
         "osint-tool",
         "osint-tools"
       ],
-      "stars": 84,
-      "last_updated": "2026-10-22T16:31:42Z",
+      "stars": 85,
+      "last_updated": "2026-11-04T11:28:13Z",
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
@@ -281,7 +281,7 @@
       "description": "📊 Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-11-02T18:18:42Z",
+      "last_updated": "2026-11-03T16:13:31Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
       "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
