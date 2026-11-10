@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-11-09T14:31:06.081Z",
+  "last_updated_utc": "2026-11-10T13:52:00.009Z",
   "stats": {
     "tools_count": 21,
     "stars_total": 768,
@@ -281,7 +281,7 @@
       "description": "📊 Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-11-08T15:10:27Z",
+      "last_updated": "2026-11-09T18:45:08Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
       "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
