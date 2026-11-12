@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-11-11T13:03:22.929Z",
+  "last_updated_utc": "2026-11-12T14:05:53.488Z",
   "stats": {
-    "tools_count": 21,
-    "stars_total": 768,
+    "tools_count": 20,
+    "stars_total": 766,
     "featured_count": 4,
     "followers": 95
   },
@@ -179,23 +179,6 @@
       "featured": false
     },
     {
-      "name": "4philly",
-      "description": "🦜 4philly.net - Know before you sign! Look up tool for Philadelphia property records —  Easily checks licenses,  violations, and 311 complaints — pulled live from the city’s own data. Eclipse and Carto are cross-checked side by side… into one APP you can trust. Free, open-source, made by tenants.",
-      "topics": [
-        "311",
-        "inspection",
-        "license-management",
-        "opendata",
-        "philadelphia"
-      ],
-      "stars": 2,
-      "last_updated": "2026-11-10T21:27:31Z",
-      "language": "HTML",
-      "homepage": "https://4philly.net/",
-      "html_url": "https://github.com/thumpersecure/4philly",
-      "featured": false
-    },
-    {
       "name": "LOVE-BOMB",
       "description": "❤️‍🔥LOVEBOMB",
       "topics": [],
@@ -281,7 +264,7 @@
       "description": "📊 Daily append-only change log of Philadelphia Active/Expired rental licenses (public open data from phl.carto.com). Proof-of-concept history tracker.",
       "topics": [],
       "stars": 0,
-      "last_updated": "2026-11-10T16:24:59Z",
+      "last_updated": "2026-11-11T17:08:56Z",
       "language": "HTML",
       "homepage": "https://thumpersecure.github.io/phl-rental-license-log/",
       "html_url": "https://github.com/thumpersecure/phl-rental-license-log",
