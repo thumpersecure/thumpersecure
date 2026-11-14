@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-11-13T13:30:50.946Z",
+  "last_updated_utc": "2026-11-14T12:36:45.531Z",
   "stats": {
     "tools_count": 20,
-    "stars_total": 766,
+    "stars_total": 768,
     "featured_count": 4,
     "followers": 95
   },
@@ -33,8 +33,8 @@
         "phone-number",
         "telephone-number"
       ],
-      "stars": 144,
-      "last_updated": "2026-10-28T17:57:52Z",
+      "stars": 145,
+      "last_updated": "2026-11-13T18:14:37Z",
       "language": "Python",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespot",
@@ -52,6 +52,23 @@
       "featured": true
     },
     {
+      "name": "Telespotter",
+      "description": "🦀 A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
+      "topics": [
+        "osint",
+        "osint-phonenumbers",
+        "osint-python",
+        "osint-tool",
+        "osint-tools"
+      ],
+      "stars": 87,
+      "last_updated": "2026-11-14T00:47:39Z",
+      "language": "Rust",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/Telespotter",
+      "featured": false
+    },
+    {
       "name": "xTELENUMSINT",
       "description": "☎️ xTELENUMSINT - A powerful new Chrome extension for Telephone OSINT (NUMSINT) that automates searches in Google using 10 different formats. It then generates an extensive report using pattern analysis with advanced options. No coding required.",
       "topics": [
@@ -65,23 +82,6 @@
       "language": "JavaScript",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
-      "featured": false
-    },
-    {
-      "name": "Telespotter",
-      "description": "🦀 A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
-      "topics": [
-        "osint",
-        "osint-phonenumbers",
-        "osint-python",
-        "osint-tool",
-        "osint-tools"
-      ],
-      "stars": 86,
-      "last_updated": "2026-11-10T14:12:16Z",
-      "language": "Rust",
-      "homepage": null,
-      "html_url": "https://github.com/thumpersecure/Telespotter",
       "featured": false
     },
     {
