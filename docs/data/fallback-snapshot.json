@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-11-20T14:29:30.136Z",
+  "last_updated_utc": "2026-11-21T13:48:14.202Z",
   "stats": {
     "tools_count": 20,
-    "stars_total": 771,
+    "stars_total": 772,
     "featured_count": 4,
     "followers": 96
   },
@@ -52,6 +52,22 @@
       "featured": true
     },
     {
+      "name": "xTELENUMSINT",
+      "description": "☎️ xTELENUMSINT - A powerful new Chrome extension for Telephone OSINT (NUMSINT) that automates searches in Google using 10 different formats. It then generates an extensive report using pattern analysis with advanced options. No coding required.",
+      "topics": [
+        "osint-phonenumbers",
+        "osint-tool",
+        "phone-number",
+        "telephone-number"
+      ],
+      "stars": 88,
+      "last_updated": "2026-11-20T17:28:23Z",
+      "language": "JavaScript",
+      "homepage": null,
+      "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
+      "featured": false
+    },
+    {
       "name": "Telespotter",
       "description": "🦀 A version of Telespot in RUST - a tool that searches telephone numbers across Google, Bing, DuckDuckGo, and Dehashed for phone numbers and focuses on identifying names, locations, and usernames in the results. ",
       "topics": [
@@ -66,22 +82,6 @@
       "language": "Rust",
       "homepage": null,
       "html_url": "https://github.com/thumpersecure/Telespotter",
-      "featured": false
-    },
-    {
-      "name": "xTELENUMSINT",
-      "description": "☎️ xTELENUMSINT - A powerful new Chrome extension for Telephone OSINT (NUMSINT) that automates searches in Google using 10 different formats. It then generates an extensive report using pattern analysis with advanced options. No coding required.",
-      "topics": [
-        "osint-phonenumbers",
-        "osint-tool",
-        "phone-number",
-        "telephone-number"
-      ],
-      "stars": 87,
-      "last_updated": "2026-10-22T16:31:11Z",
-      "language": "JavaScript",
-      "homepage": null,
-      "html_url": "https://github.com/thumpersecure/xTELENUMSINT",
       "featured": false
     },
     {
