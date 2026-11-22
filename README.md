@@ -58,3 +58,5 @@ Individual projects in the THUMPERSECURE ecosystem may have different licenses. 
 ## 🙏 Acknowledgments
 
 Thanks to the OSINT and privacy communities for ongoing research, feedback, and collaboration. THUMPERSECURE stands on the shoulders of open-source tooling and the practitioners who build in public.
+
+Made by [justinhorn.pro](https://justinhorn.pro)
