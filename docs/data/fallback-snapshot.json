@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-11-22T18:57:53.740Z",
+  "last_updated_utc": "2026-11-23T16:40:30.716Z",
   "stats": {
     "tools_count": 20,
     "stars_total": 773,
@@ -92,8 +92,8 @@
         "opt-out"
       ],
       "stars": 73,
-      "last_updated": "2026-11-16T19:46:14Z",
-      "language": null,
+      "last_updated": "2026-11-22T19:10:31Z",
+      "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/opt-out-manual-2026/",
       "html_url": "https://github.com/thumpersecure/opt-out-manual-2026",
       "featured": true
