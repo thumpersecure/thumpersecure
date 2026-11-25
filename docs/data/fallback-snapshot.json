@@ -1,5 +1,5 @@
 {
-  "last_updated_utc": "2026-11-24T16:36:05.373Z",
+  "last_updated_utc": "2026-11-25T16:18:39.537Z",
   "stats": {
     "tools_count": 20,
     "stars_total": 774,
@@ -11,8 +11,8 @@
       "name": "palm-tree",
       "description": "🌴 An internet traffic noise generater using a ton of random parameters including: using 30+ personas, 10 parallel generators, chaos theory, live headlines, and more. Bash, Python, or both!",
       "topics": [],
-      "stars": 155,
-      "last_updated": "2026-11-21T23:05:46Z",
+      "stars": 154,
+      "last_updated": "2026-11-25T11:38:40Z",
       "language": "Python",
       "homepage": "https://thumpersecure.github.io/palm-tree/",
       "html_url": "https://github.com/thumpersecure/palm-tree",
@@ -171,8 +171,8 @@
         "osint-facebook",
         "osint-tool"
       ],
-      "stars": 14,
-      "last_updated": "2026-11-01T05:59:16Z",
+      "stars": 15,
+      "last_updated": "2026-11-24T21:41:11Z",
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/ofacebook/",
       "html_url": "https://github.com/thumpersecure/ofacebook",
