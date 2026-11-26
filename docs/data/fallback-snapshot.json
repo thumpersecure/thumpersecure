@@ -1,8 +1,8 @@
 {
-  "last_updated_utc": "2026-11-25T16:18:39.537Z",
+  "last_updated_utc": "2026-11-26T15:54:30.047Z",
   "stats": {
     "tools_count": 20,
-    "stars_total": 774,
+    "stars_total": 775,
     "featured_count": 4,
     "followers": 94
   },
@@ -138,6 +138,20 @@
       "featured": false
     },
     {
+      "name": "ofacebook",
+      "description": "🪬 Ofacebook is an OSINT tool that expands a username/ID into high-signal URL variants using prefixes, with workflows, search goals, and an in-app assistant for investigative information gathering.",
+      "topics": [
+        "osint-facebook",
+        "osint-tool"
+      ],
+      "stars": 16,
+      "last_updated": "2026-11-26T08:58:30Z",
+      "language": "JavaScript",
+      "homepage": "https://thumpersecure.github.io/ofacebook/",
+      "html_url": "https://github.com/thumpersecure/ofacebook",
+      "featured": false
+    },
+    {
       "name": "blueTTool",
       "description": "🩵blueTTool is an easy to use web-based testing and management utility designed for Bluetooth Low Energy (BLE) devices. It is used with the Bluefy browser on iOS devices to bypass Apple's native Web Bluetooth restrictions.",
       "topics": [
@@ -162,20 +176,6 @@
       "language": "JavaScript",
       "homepage": "https://thumpersecure.github.io/blueTTool/",
       "html_url": "https://github.com/thumpersecure/blueTTool",
-      "featured": false
-    },
-    {
-      "name": "ofacebook",
-      "description": "🪬 Ofacebook is an OSINT tool that expands a username/ID into high-signal URL variants using prefixes, with workflows, search goals, and an in-app assistant for investigative information gathering.",
-      "topics": [
-        "osint-facebook",
-        "osint-tool"
-      ],
-      "stars": 15,
-      "last_updated": "2026-11-24T21:41:11Z",
-      "language": "JavaScript",
-      "homepage": "https://thumpersecure.github.io/ofacebook/",
-      "html_url": "https://github.com/thumpersecure/ofacebook",
       "featured": false
     },
     {
